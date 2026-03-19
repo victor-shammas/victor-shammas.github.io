@@ -6,58 +6,40 @@
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta name="author" content="{{ .Site.Params.author }}">
-
   {{/* Open Graph */}}
   <meta property="og:title" content="{{ .Title }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   {{ with .Params.image }}<meta property="og:image" content="{{ . }}">{{ end }}
-
   {{/* Fonts */}}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-
   {{/* Stylesheet */}}
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-
   <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open menu">☰</button>
   <div class="overlay" onclick="toggleMenu()"></div>
-
   <div class="site">
-
     {{- partial "sidebar.html" . -}}
-
     <main class="main">
       <div class="content">
         {{- block "main" . -}}{{- end -}}
-
+        {{ if ne .Section "blog" }}
+          {{ partial "bluesky-feed-footer.html" . }}
+        {{ end }}
         <footer class="site-footer">
           &copy; {{ now.Year }} Victor Shammas
         </footer>
       </div>
     </main>
-
-    {{- block "main" . -}}{{- end -}}
-
-        {{ if ne .Section "blog" }}
-          {{ partial "bluesky-feed-footer.html" . }}
-        {{ end }}
-
-        <footer class="site-footer">
-          &copy; {{ now.Year }} Victor Shammas
-        </footer>
-    
   </div>
-
   <script>
   function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('open');
     document.querySelector('.overlay').classList.toggle('open');
   }
   </script>
-
 </body>
 </html>
