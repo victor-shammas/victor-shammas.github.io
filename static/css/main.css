@@ -39,6 +39,8 @@ a:hover { color: var(--accent-light); }
 
 .site { display: flex; min-height: 100vh; }
 
+.center { display: block; margin-left: auto; margin-right: auto; width: 50%; }
+
 /* ── Sidebar ─────────────────────────────────────────────────── */
 
 .sidebar {
