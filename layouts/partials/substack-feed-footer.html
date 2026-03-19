@@ -1,0 +1,236 @@
+{{/* 
+  Substack Feed — Horizontal footer variant
+  5 latest posts from The Theory Brief.
+  Place in layouts/partials/substack-feed-footer.html
+  
+  In baseof.html, place ABOVE the Bluesky feed partial:
+  {{ partial "substack-feed-footer.html" . }}
+  {{ partial "bluesky-feed-footer.html" . }}
+*/}}
+
+<aside class="stk-footer" id="stk-footer" aria-label="Theory Brief feed">
+  <div class="stk-footer__header">
+    <svg class="stk-footer__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.539 8.242H1.46V5.836h21.08v2.406zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.406h21.08V0z" fill="currentColor"/>
+    </svg>
+    <span class="stk-footer__title">The Theory Brief</span>
+    <a class="stk-footer__subscribe" href="https://www.theorybrief.com" target="_blank" rel="noopener noreferrer">Subscribe</a>
+  </div>
+  <div class="stk-footer__posts" id="stk-footer-posts">
+    <div class="stk-footer__loading">Loading posts&hellip;</div>
+  </div>
+  <a class="stk-footer__view-more" href="https://www.theorybrief.com" target="_blank" rel="noopener noreferrer">
+    Read more on The Theory Brief &rarr;
+  </a>
+</aside>
+
+<style>
+  .stk-footer {
+    border-top: 1px solid #e2e2e2;
+    padding: 1.5rem 0 0.75rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-top: 3rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .stk-footer__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .stk-footer__icon {
+    width: 18px;
+    height: 18px;
+    color: #ff6719;
+    flex-shrink: 0;
+  }
+  .stk-footer__title {
+    font-weight: 600;
+    flex-grow: 1;
+    font-size: 0.9rem;
+  }
+  .stk-footer__subscribe {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background: #ff6719;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .stk-footer__subscribe:hover {
+    background: #e85a10;
+  }
+  .stk-footer__posts {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .stk-footer__loading {
+    color: #888;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+  .stk-footer__error {
+    color: #c0392b;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  /* Individual post card */
+  .stk-ft-post {
+    padding: 0.75rem;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .stk-ft-post:hover {
+    border-color: #ff6719;
+  }
+  .stk-ft-post__title {
+    margin: 0 0 0.35rem 0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .stk-ft-post__excerpt {
+    margin: 0 0 0.4rem 0;
+    color: #555;
+    font-size: 0.78rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+  .stk-ft-post__date {
+    font-size: 0.72rem;
+    color: #888;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid #eee;
+  }
+
+  .stk-footer__view-more {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ff6719;
+    text-decoration: none;
+  }
+  .stk-footer__view-more:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .stk-footer__posts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    .stk-footer__posts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 420px) {
+    .stk-footer__posts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .stk-footer {
+      border-top-color: #333;
+    }
+    .stk-ft-post {
+      background: #1a1a1a;
+      border-color: #333;
+    }
+    .stk-ft-post__title {
+      color: #e0e0e0;
+    }
+    .stk-ft-post__excerpt {
+      color: #aaa;
+    }
+    .stk-ft-post__date {
+      border-top-color: #333;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  var FEED_URL = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.theorybrief.com%2Ffeed";
+  var POST_LIMIT = 5;
+  var container = document.getElementById("stk-footer-posts");
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.appendChild(document.createTextNode(str || ""));
+    return div.innerHTML;
+  }
+
+  function stripHtml(html) {
+    var tmp = document.createElement("div");
+    tmp.innerHTML = html || "";
+    return tmp.textContent || tmp.innerText || "";
+  }
+
+  function formatDate(dateStr) {
+    var d = new Date(dateStr);
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+
+  function renderPost(item) {
+    var excerpt = stripHtml(item.description || item.content || "");
+    if (excerpt.length > 200) excerpt = excerpt.slice(0, 200).replace(/\s+\S*$/, "") + "…";
+
+    return '<a class="stk-ft-post" href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener noreferrer">' +
+      '<h3 class="stk-ft-post__title">' + escapeHtml(item.title) + '</h3>' +
+      '<p class="stk-ft-post__excerpt">' + escapeHtml(excerpt) + '</p>' +
+      '<div class="stk-ft-post__date">' + formatDate(item.pubDate) + '</div>' +
+      '</a>';
+  }
+
+  fetch(FEED_URL)
+    .then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data.items || data.items.length === 0) {
+        container.innerHTML = '<div class="stk-footer__loading">No posts yet.</div>';
+        return;
+      }
+      var posts = data.items.slice(0, POST_LIMIT);
+      container.innerHTML = posts.map(renderPost).join("");
+    })
+    .catch(function (err) {
+      console.error("Substack feed error:", err);
+      container.innerHTML = '<div class="stk-footer__error">Could not load feed.</div>';
+    });
+})();
+</script>
