@@ -1,0 +1,28 @@
+<aside class="sidebar" id="sidebar">
+  <a href="/" class="sidebar__name">Victor Shammas</a>
+  <div class="sidebar__title">Sociologist</div>
+
+  <ul class="sidebar__nav">
+    {{- range .Site.Menus.main -}}
+      <li>
+        <a href="{{ .URL }}"
+           {{- if .Params.external }} class="external" target="_blank" rel="noopener"
+           {{- else if eq $.RelPermalink .URL }} class="active"
+           {{- else if and (ne .URL "/") (hasPrefix $.RelPermalink .URL) }} class="active"
+           {{- end -}}>
+          {{ .Name }}
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+
+  <div class="sidebar__footer">
+    <div>Dept. of Sociology &amp; Social Work<br>University of Agder, Norway</div>
+    <div class="sidebar__links">
+      <a href="{{ .Site.Params.social.googleScholar }}" target="_blank">Google Scholar</a>
+      <a href="{{ .Site.Params.social.academia }}" target="_blank">Academia</a>
+      <a href="{{ .Site.Params.social.researchGate }}" target="_blank">ResearchGate</a>
+      <a href="{{ .Site.Params.social.linkedIn }}" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</aside>

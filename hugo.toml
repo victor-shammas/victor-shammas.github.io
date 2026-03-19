@@ -1,0 +1,66 @@
+baseURL = "https://www.victorshammas.com/"
+languageCode = "en-us"
+title = "Dr. Victor Shammas"
+theme = ""
+
+# Prevent Hugo from modifying URLs
+relativeURLs = false
+canonicalifyURLs = false
+
+[params]
+  description = "Sociologist — University of Agder, Norway"
+  author = "Victor Lund Shammas"
+  email = "contact@victorshammas.com"
+  phone = "(+47) 48360509"
+
+[params.social]
+  googleScholar = "https://scholar.google.no/citations?user=FQgxhqkAAAAJ"
+  academia = "https://uio.academia.edu/VictorLundShammas"
+  researchGate = "https://www.researchgate.net/profile/Victor_Shammas"
+  linkedIn = "https://www.linkedin.com/in/victor-shammas/"
+  webOfScience = "https://www.webofscience.com/wos/author/record/ABG-2748-2021"
+  youtube = "https://www.youtube.com/@VictorShammas"
+  substack = "https://www.theorybrief.com"
+
+[menus]
+  [[menus.main]]
+    name = "Research"
+    url = "/"
+    weight = 1
+  [[menus.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+  [[menus.main]]
+    name = "Media"
+    url = "/media/"
+    weight = 3
+  [[menus.main]]
+    name = "Theory Brief"
+    url = "https://www.theorybrief.com"
+    weight = 4
+    [menus.main.params]
+      external = true
+  [[menus.main]]
+    name = "Norwegian"
+    url = "/norwegian/"
+    weight = 5
+  [[menus.main]]
+    name = "About"
+    url = "/about/"
+    weight = 6
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+[pagination]
+  pagerSize = 10

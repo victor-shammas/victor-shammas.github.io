@@ -1,0 +1,112 @@
+# ================================================================
+# Decap CMS Configuration
+# Docs: https://decapcms.org/docs/
+# ================================================================
+
+# ── Backend ──────────────────────────────────────────────────────
+# Uses GitHub OAuth for authentication. You log in at /admin/ with
+# your GitHub account. Requires registering an OAuth app on Netlify
+# (see README for one-time setup steps).
+backend:
+  name: github
+  repo: victor-shammas/victorshammas.com
+  branch: main
+
+# ── Media ────────────────────────────────────────────────────────
+# Where uploaded images (e.g. blog post feature images) are stored.
+media_folder: "static/images/blog"
+public_folder: "/images/blog"
+
+# ── Slug settings ────────────────────────────────────────────────
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# ── Collections ──────────────────────────────────────────────────
+
+collections:
+
+  # ── Blog Posts ─────────────────────────────────────────────────
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sort: "date:desc"
+    summary: "{{title}} — {{year}}/{{month}}/{{day}}"
+    preview_path: "blog/{{slug}}"
+
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "The headline of your blog post."
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+
+      - label: "Draft"
+        name: "draft"
+        widget: "boolean"
+        default: true
+        hint: "Set to false when ready to publish."
+
+      - label: "Deck / Subtitle"
+        name: "dek"
+        widget: "string"
+        required: false
+        hint: "A one-line summary shown below the title in italics."
+
+      - label: "Feature Image"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "Optional cover image for the post."
+
+      - label: "Summary"
+        name: "summary"
+        widget: "text"
+        required: false
+        hint: "Short excerpt shown on the blog listing page. If empty, Hugo auto-generates one."
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "The full post content. Supports Markdown, images, links, and HTML."
+
+  # ── Static Pages ───────────────────────────────────────────────
+  # These let you edit the About, Media, and Norwegian pages via
+  # the CMS GUI. The Research (home) page uses raw HTML for its
+  # complex bibliography formatting, so it's edited in the repo.
+
+  - name: "pages"
+    label: "Pages"
+    files:
+
+      - label: "About"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Media"
+        name: "media"
+        file: "content/media.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Norwegian"
+        name: "norwegian"
+        file: "content/norwegian.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
