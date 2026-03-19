@@ -212,10 +212,20 @@
     return result;
   }
 
-  function renderPost(item) {
+function renderPost(item) {
     var post = item.post;
     var record = post.record;
+    var author = post.author;
+    var isRepost = item.reason && item.reason.$type === "app.bsky.feed.defs#reasonRepost";
+    var authorLine = '<div class="bsky-sb-post__author">' +
+      '<a href="https://bsky.app/profile/' + escapeHtml(author.handle) + '" target="_blank" rel="noopener noreferrer">' +
+      '<strong>' + escapeHtml(author.displayName || author.handle) + '</strong> ' +
+      '<span class="bsky-sb-post__handle">@' + escapeHtml(author.handle) + '</span>' +
+      '</a>' +
+      (isRepost ? ' <span class="bsky-sb-post__repost-label">&#x21BB; reposted</span>' : '') +
+      '</div>';
     return '<div class="bsky-sb-post">' +
+      authorLine +
       '<p class="bsky-sb-post__text">' + linkify(record.text, record.facets) + "</p>" +
       '<div class="bsky-sb-post__meta">' +
       '<a href="' + postUrl(post.uri) + '" target="_blank" rel="noopener noreferrer">' + timeAgo(record.createdAt) + "</a>" +
@@ -223,7 +233,7 @@
       '<span class="bsky-sb-post__stat">&#x21BB; ' + (post.repostCount || 0) + "</span>" +
       "</div></div>";
   }
-
+  
   fetch(API_URL + "?actor=" + encodeURIComponent(BSKY_HANDLE) + "&limit=" + POST_LIMIT + "&filter=posts_no_replies")
     .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
     .then(function (data) {
