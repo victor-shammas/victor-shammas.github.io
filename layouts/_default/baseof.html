@@ -40,6 +40,16 @@
       </div>
     </main>
 
+    {{- block "main" . -}}{{- end -}}
+
+        {{ if ne .Section "blog" }}
+          {{ partial "bluesky-feed-footer.html" . }}
+        {{ end }}
+
+        <footer class="site-footer">
+          &copy; {{ now.Year }} Victor Shammas
+        </footer>
+    
   </div>
 
   <script>
