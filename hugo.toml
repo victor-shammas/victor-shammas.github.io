@@ -1,7 +1,6 @@
 baseURL = "https://www.victorshammas.com/"
 languageCode = "en-us"
 title = "Dr. Victor Shammas"
-theme = ""
 
 # Prevent Hugo from modifying URLs
 relativeURLs = false
