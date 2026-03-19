@@ -1,0 +1,295 @@
+{{/* 
+  Bluesky Feed — Horizontal footer variant
+  4 posts in a row, full width.
+  Place in layouts/partials/bluesky-feed-footer.html
+  
+  In baseof.html, use with blog exclusion:
+  {{ if ne .Section "blog" }}{{ partial "bluesky-feed-footer.html" . }}{{ end }}
+*/}}
+
+<aside class="bsky-footer" id="bsky-footer" aria-label="Bluesky feed">
+  <div class="bsky-footer__header">
+    <svg class="bsky-footer__icon" viewBox="0 0 600 530" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M135.72 44.03C202.216 93.951 273.74 195.17 300 249.49c26.262-54.316 97.782-155.54 164.28-205.46C512.26 8.009 590-19.862 590 68.825c0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.38-3.69-10.832-3.708-7.896-.017-2.936-1.193.516-3.707 7.896-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.256 82.697-152.22-67.106 11.42-142.547-7.45-163.25-81.433C20.15 217.613 10 86.536 10 68.824c0-88.687 77.742-60.816 125.72-24.795z"/>
+    </svg>
+    <span class="bsky-footer__title">Latest on Bluesky</span>
+    <a class="bsky-footer__follow" href="https://bsky.app/profile/victorshammas.com" target="_blank" rel="noopener noreferrer">Follow</a>
+  </div>
+  <div class="bsky-footer__posts" id="bsky-footer-posts">
+    <div class="bsky-footer__loading">Loading posts&hellip;</div>
+  </div>
+  <a class="bsky-footer__view-more" href="https://bsky.app/profile/victorshammas.com" target="_blank" rel="noopener noreferrer">
+    View profile on Bluesky &rarr;
+  </a>
+</aside>
+
+<style>
+  .bsky-footer {
+    border-top: 1px solid #e2e2e2;
+    padding: 1.5rem 0 0.75rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-top: 3rem;
+    max-width: 100%;
+  }
+  .bsky-footer__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .bsky-footer__icon {
+    width: 18px;
+    height: 18px;
+    color: #0085ff;
+    flex-shrink: 0;
+  }
+  .bsky-footer__title {
+    font-weight: 600;
+    flex-grow: 1;
+    font-size: 0.9rem;
+  }
+  .bsky-footer__follow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background: #0085ff;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .bsky-footer__follow:hover {
+    background: #0070dd;
+  }
+  .bsky-footer__posts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .bsky-footer__loading {
+    color: #888;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+  .bsky-footer__error {
+    color: #c0392b;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  /* Individual post card */
+  .bsky-ft-post {
+    padding: 0.75rem;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .bsky-ft-post__author {
+    margin-bottom: 0.35rem;
+  }
+  .bsky-ft-post__author a {
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 0.78rem;
+  }
+  .bsky-ft-post__author a:hover {
+    text-decoration: underline;
+  }
+  .bsky-ft-post__handle {
+    color: #888;
+    font-weight: normal;
+  }
+  .bsky-ft-post__repost-label {
+    color: #888;
+    font-size: 0.72rem;
+    font-style: italic;
+  }
+  .bsky-ft-post__text {
+    margin: 0 0 0.4rem 0;
+    color: #1a1a1a;
+    font-size: 0.82rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+  .bsky-ft-post__text a {
+    color: #0085ff;
+    text-decoration: none;
+  }
+  .bsky-ft-post__text a:hover {
+    text-decoration: underline;
+  }
+  .bsky-ft-post__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    color: #888;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid #eee;
+  }
+  .bsky-ft-post__meta a {
+    color: #888;
+    text-decoration: none;
+  }
+  .bsky-ft-post__meta a:hover {
+    color: #0085ff;
+  }
+  .bsky-ft-post__stat {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .bsky-footer__view-more {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #0085ff;
+    text-decoration: none;
+  }
+  .bsky-footer__view-more:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive: stack to 2 columns on smaller screens */
+  @media (max-width: 700px) {
+    .bsky-footer__posts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  /* Stack to single column on very small screens */
+  @media (max-width: 420px) {
+    .bsky-footer__posts {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bsky-footer {
+      border-top-color: #333;
+    }
+    .bsky-ft-post {
+      background: #1a1a1a;
+      border-color: #333;
+    }
+    .bsky-ft-post__author a {
+      color: #e0e0e0;
+    }
+    .bsky-ft-post__text {
+      color: #e0e0e0;
+    }
+    .bsky-ft-post__meta {
+      border-top-color: #333;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  var BSKY_HANDLE = "victorshammas.com";
+  var POST_LIMIT = 4;
+  var API_URL = "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
+  var container = document.getElementById("bsky-footer-posts");
+
+  function timeAgo(dateStr) {
+    var now = Date.now();
+    var then = new Date(dateStr).getTime();
+    var diff = Math.floor((now - then) / 1000);
+    if (diff < 60) return "just now";
+    if (diff < 3600) return Math.floor(diff / 60) + "m";
+    if (diff < 86400) return Math.floor(diff / 3600) + "h";
+    if (diff < 604800) return Math.floor(diff / 86400) + "d";
+    return new Date(dateStr).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  }
+
+  function postUrl(uri) {
+    return "https://bsky.app/profile/" + BSKY_HANDLE + "/post/" + uri.split("/").pop();
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  function linkify(text, facets) {
+    if (!facets || facets.length === 0) return escapeHtml(text);
+    var encoder = new TextEncoder();
+    var bytes = encoder.encode(text);
+    var sorted = [].concat(facets).sort(function (a, b) { return a.index.byteStart - b.index.byteStart; });
+    var result = "";
+    var lastByte = 0;
+    for (var i = 0; i < sorted.length; i++) {
+      var facet = sorted[i];
+      var start = facet.index.byteStart;
+      var end = facet.index.byteEnd;
+      var decoder = new TextDecoder();
+      result += escapeHtml(decoder.decode(bytes.slice(lastByte, start)));
+      var segment = new TextDecoder().decode(bytes.slice(start, end));
+      var feature = facet.features[0];
+      if (feature && feature.$type === "app.bsky.richtext.facet#link") {
+        result += '<a href="' + escapeHtml(feature.uri) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(segment) + "</a>";
+      } else if (feature && feature.$type === "app.bsky.richtext.facet#mention") {
+        result += '<a href="https://bsky.app/profile/' + escapeHtml(feature.did) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(segment) + "</a>";
+      } else if (feature && feature.$type === "app.bsky.richtext.facet#tag") {
+        result += '<a href="https://bsky.app/hashtag/' + encodeURIComponent(feature.tag) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(segment) + "</a>";
+      } else {
+        result += escapeHtml(segment);
+      }
+      lastByte = end;
+    }
+    result += escapeHtml(new TextDecoder().decode(bytes.slice(lastByte)));
+    return result;
+  }
+
+  function renderPost(item) {
+    var post = item.post;
+    var record = post.record;
+    var author = post.author;
+    var isRepost = item.reason && item.reason.$type === "app.bsky.feed.defs#reasonRepost";
+    var authorLine = '<div class="bsky-ft-post__author">' +
+      '<a href="https://bsky.app/profile/' + escapeHtml(author.handle) + '" target="_blank" rel="noopener noreferrer">' +
+      '<strong>' + escapeHtml(author.displayName || author.handle) + '</strong> ' +
+      '<span class="bsky-ft-post__handle">@' + escapeHtml(author.handle) + '</span>' +
+      '</a>' +
+      (isRepost ? ' <span class="bsky-ft-post__repost-label">&#x21BB; reposted</span>' : '') +
+      '</div>';
+    return '<div class="bsky-ft-post">' +
+      authorLine +
+      '<p class="bsky-ft-post__text">' + linkify(record.text, record.facets) + "</p>" +
+      '<div class="bsky-ft-post__meta">' +
+      '<a href="' + postUrl(post.uri) + '" target="_blank" rel="noopener noreferrer">' + timeAgo(record.createdAt) + "</a>" +
+      '<span class="bsky-ft-post__stat">&hearts; ' + (post.likeCount || 0) + "</span>" +
+      '<span class="bsky-ft-post__stat">&#x21BB; ' + (post.repostCount || 0) + "</span>" +
+      "</div></div>";
+  }
+
+  fetch(API_URL + "?actor=" + encodeURIComponent(BSKY_HANDLE) + "&limit=" + POST_LIMIT + "&filter=posts_no_replies")
+    .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
+    .then(function (data) {
+      if (!data.feed || data.feed.length === 0) { container.innerHTML = '<div class="bsky-footer__loading">No posts yet.</div>'; return; }
+      container.innerHTML = data.feed.map(renderPost).join("");
+    })
+    .catch(function (err) {
+      console.error("Bluesky footer error:", err);
+      container.innerHTML = '<div class="bsky-footer__error">Could not load feed.</div>';
+    });
+})();
+</script>
