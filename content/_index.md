@@ -36,7 +36,5 @@ PO Box 422, 4604 Kristiansand, Norway
 <a href="https://uio.academia.edu/VictorLundShammas" target="_blank">Academia.edu</a>
 <a href="https://www.researchgate.net/profile/Victor_Shammas" target="_blank">ResearchGate</a>
 <a href="https://www.linkedin.com/in/victor-shammas/" target="_blank">LinkedIn</a>
-<a href="https://www.webofscience.com/wos/author/record/ABG-2748-2021" target="_blank">Web of Science</a>
-<a href="https://www.youtube.com/@VictorShammas" target="_blank">YouTube</a>
 <a href="https://www.theorybrief.com" target="_blank">Substack</a>
 </div>
