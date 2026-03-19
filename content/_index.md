@@ -1,8 +1,9 @@
 ---
 title: "About"
 ---
-
+<center>
 <img class="about-photo" src="/images/shammas-keynote-2023.jpg" alt="Victor Shammas delivering keynote address">
+</center>
 
 Dr. Victor Lund Shammas is Head of Department and Associate Professor of Sociology in the Department of Sociology and Social Work, University of Agder in Norway. He holds a PhD in Sociology from the University of Oslo (2017) and has previously worked as Senior Researcher at the Work Research Institute (AFI), Oslo Metropolitan University.
 
