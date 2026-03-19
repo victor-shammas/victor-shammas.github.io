@@ -1,12 +1,13 @@
 # ================================================================
-# Decap CMS Configuration
-# Docs: https://decapcms.org/docs/
+# Sveltia CMS Configuration
+# Docs: https://github.com/sveltia/sveltia-cms
+# (compatible with Decap/Netlify CMS config format)
 # ================================================================
 
 # ── Backend ──────────────────────────────────────────────────────
-# Uses GitHub OAuth for authentication. You log in at /admin/ with
-# your GitHub account. Requires registering an OAuth app on Netlify
-# (see README for one-time setup steps).
+# Sveltia CMS authenticates directly with GitHub using PKCE.
+# No OAuth proxy or Netlify Identity needed — it all happens
+# in the browser. Only users with repo write access can log in.
 backend:
   name: github
   repo: victor-shammas/victorshammas.com

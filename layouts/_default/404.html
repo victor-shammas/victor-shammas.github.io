@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+<header class="page-header">
+  <h1>Page Not Found</h1>
+  <p>The page you're looking for doesn't exist.</p>
+</header>
+
+<div class="prose">
+  <p>You may have followed an outdated link. Try navigating from the <a href="/">homepage</a>.</p>
+</div>
+
+{{/*
+  Redirect old Squarespace /s/ PDF URLs to /pdfs/.
+  External links pointing to victorshammas.com/s/filename.pdf
+  will hit this 404 page, and the script redirects them.
+*/}}
+<script>
+(function() {
+  var path = window.location.pathname;
+  if (path.indexOf('/s/') === 0) {
+    var newPath = '/pdfs/' + path.substring(3);
+    window.location.replace(newPath);
+  }
+})();
+</script>
+
+{{ end }}

@@ -1,11 +1,14 @@
 # victorshammas.com
 
-Personal academic website built with [Hugo](https://gohugo.io/) and [Decap CMS](https://decapcms.org/), deployed on [Netlify](https://www.netlify.com/).
+Personal academic website built with [Hugo](https://gohugo.io/) and [Sveltia CMS](https://github.com/sveltia/sveltia-cms), deployed on [GitHub Pages](https://pages.github.com/).
 
 ## Architecture
 
 ```
 victorshammas.com/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml    # GitHub Actions: build Hugo → deploy to Pages
 ├── archetypes/          # Templates for new content
 │   └── blog.md          # Blog post template
 ├── content/
@@ -34,7 +37,7 @@ victorshammas.com/
 │       ├── index.html    # CMS entry point
 │       └── config.yml    # CMS configuration
 ├── hugo.toml             # Hugo configuration
-├── netlify.toml          # Netlify build + redirect config
+├── hugo.toml             # Hugo configuration
 └── README.md
 ```
 
@@ -79,7 +82,7 @@ Open `http://localhost:1313` to see your site. The `-D` flag shows draft posts.
 
 Copy all your PDF files into `static/pdfs/`. The filenames should match the links in the content files. For example, `static/pdfs/Shammas-2024-The-Global-Hinterland-of-Social-Democracy.pdf`.
 
-**Tip:** You can download all PDFs from your current Squarespace site in bulk. The PDF links in the content currently point to `/pdfs/filename.pdf`. During transition, you can temporarily point them back to the Squarespace URLs (`https://www.victorshammas.com/s/filename.pdf`) — the Netlify redirect rule in `netlify.toml` handles `/s/*` → `/pdfs/*` mapping for incoming links from external sites.
+**Tip:** You can download all PDFs from your current Squarespace site in bulk using the `download-pdfs.sh` script. The PDF links in the content point to `/pdfs/filename.pdf`. Old external links pointing to `/s/filename.pdf` are handled by a JavaScript redirect in the custom 404 page.
 
 ### 4. Add Your Images
 
@@ -87,62 +90,47 @@ Place images in `static/images/`:
 - `static/images/shammas-keynote-2023.jpg` (About page photo)
 - `static/images/blog/` (blog post feature images)
 
-## Deploying to Netlify
+## Deploying to GitHub Pages
 
 ### Step 1: Push to GitHub
 
 ```bash
 cd victorshammas.com
-git init
 git add .
-git commit -m "Initial site"
-git branch -M main
-git remote add origin https://github.com/victor-shammas/victorshammas.com.git
-git push -u origin main
+git commit -m "Switch to GitHub Pages"
+git push
 ```
 
-### Step 2: Connect to Netlify
+### Step 2: Enable GitHub Pages
 
-1. Go to [app.netlify.com](https://app.netlify.com) and sign in with GitHub.
-2. Click **"Add new site"** → **"Import an existing project"**.
-3. Select your `victorshammas.com` repository.
-4. Netlify will auto-detect Hugo. Build settings should show:
-   - **Build command:** `hugo --minify`
-   - **Publish directory:** `public`
-5. Click **Deploy site**.
+1. Go to your repo on GitHub: `github.com/victor-shammas/victorshammas.com`
+2. Click **Settings** → **Pages** (in the left sidebar)
+3. Under **Source**, select **GitHub Actions**
+4. That's it — the workflow at `.github/workflows/deploy.yml` handles the rest
 
-Your site will be live at a `*.netlify.app` URL within ~30 seconds.
+Your site will be live at `https://victor-shammas.github.io/victorshammas.com/` within a minute or two.
 
 ### Step 3: Custom Domain
 
-1. In Netlify dashboard → **Domain management** → **Add custom domain**.
-2. Enter `www.victorshammas.com`.
-3. Netlify will give you DNS settings. Update your domain registrar's nameservers to point to Netlify, or add a CNAME record:
+1. In the same **Settings** → **Pages** section, under **Custom domain**, enter `www.victorshammas.com` and click Save.
+2. At your domain registrar, add a CNAME record:
    ```
-   www  CNAME  YOUR-SITE-NAME.netlify.app
+   www  CNAME  victor-shammas.github.io
    ```
-4. Netlify auto-provisions HTTPS via Let's Encrypt.
+3. GitHub auto-provisions HTTPS via Let's Encrypt.
+4. Wait a few minutes for DNS propagation and HTTPS provisioning.
 
-### Step 4: Enable the CMS (GitHub OAuth via Netlify)
+### Step 4: Using the CMS
 
-This gives you a secure login at `/admin/` using your GitHub account. One-time setup:
+Go to `https://www.victorshammas.com/admin/` (or your GitHub Pages URL + `/admin/`).
 
-1. In your Netlify dashboard, go to **Site configuration** → **Access & security** → **OAuth** → **Install provider**.
-2. Select **GitHub** as the provider.
-3. You'll need a GitHub OAuth App. Go to [github.com/settings/developers](https://github.com/settings/developers) → **OAuth Apps** → **New OAuth App**.
-4. Fill in:
-   - **Application name:** `victorshammas.com CMS`
-   - **Homepage URL:** `https://www.victorshammas.com`
-   - **Authorization callback URL:** `https://api.netlify.com/auth/done`
-5. Click **Register application**. Copy the **Client ID** and **Client Secret**.
-6. Back in Netlify, paste the Client ID and Client Secret into the OAuth provider form. Save.
-7. Go to `https://www.victorshammas.com/admin/` — you'll be prompted to log in with GitHub. Authorize the app, and you're in.
-
-Only users with write access to the `victor-shammas/victorshammas.com` repo can log in, so it's inherently secure — no one else can access the CMS.
+Sveltia CMS authenticates directly with GitHub in the browser — no OAuth app registration needed. Click "Sign in with GitHub," authorize, and you're in.
 
 ## Using the CMS
 
-Navigate to `https://www.victorshammas.com/admin/` and log in with your GitHub account.
+Navigate to `https://www.victorshammas.com/admin/` and sign in with GitHub.
+
+Sveltia CMS handles authentication directly in the browser using GitHub's PKCE flow — no proxy or third-party service needed. Only users with write access to the repository can log in.
 
 ### Writing a New Blog Post
 
@@ -158,7 +146,7 @@ Navigate to `https://www.victorshammas.com/admin/` and log in with your GitHub a
    - **Body** — Write in the rich-text/Markdown editor.
 4. Click **Publish** (or **Save** if still a draft).
 
-Behind the scenes, Decap CMS commits a new `.md` file to your GitHub repo via the GitHub API. Netlify detects the push, rebuilds Hugo, and your post is live within ~15 seconds.
+Behind the scenes, Sveltia CMS commits a new `.md` file to your GitHub repo via the GitHub API. GitHub Actions detects the push, rebuilds Hugo, and your post is live within ~30 seconds.
 
 ### Editing Existing Pages
 
@@ -210,7 +198,7 @@ hugo --minify
 
 ### PDFs
 
-Your current PDFs are hosted at `https://www.victorshammas.com/s/*.pdf`. Download them all and place them in `static/pdfs/`. The `netlify.toml` includes a redirect from `/s/*` to `/pdfs/*` so external links to your old PDF URLs will continue to work.
+Your current PDFs are hosted at `https://www.victorshammas.com/s/*.pdf`. Download them all using `download-pdfs.sh` and place them in `static/pdfs/`. The custom 404 page includes a JavaScript redirect from `/s/*` to `/pdfs/*` so external links to your old PDF URLs will continue to work.
 
 ### Blog post content
 
