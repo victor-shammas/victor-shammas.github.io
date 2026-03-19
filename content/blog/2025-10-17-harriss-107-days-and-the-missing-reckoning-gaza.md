@@ -1,17 +1,19 @@
 ---
-title: "Harris's 107 Days and the Missing Reckoning: Gaza"
+title: "Harris’s 107 Days and the Missing Reckoning: Gaza"
 date: 2025-10-17
 draft: false
-dek: Early coverage of Kamala Harris's campaign memoir, 107 Days, has been
-  unfair. Yet Harris still won't adequately deal with the Biden administration's
-  complicity in the Gaza genocide, or her own role.
-image: /images/blog/85f7114b-f2fd-4605-93c1-35c9381ad212_1400x1827.webp
-summary: Much of the early media coverage of Kamala Harris's campaign-trail
-  memoir was essentially unfair. Political commentators portrayed her book as
-  divisive, splitting the Democratic camp at a time when unity against Trump 2.0
-  was the top priority. But what were these horribly divisive truths?
+dek: ""
+image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/69b948306816bf6696671dfc/1773750389235/"
+summary: "Much of the early media coverage of Kamala Harris’s campaign-trail memoir,107 Days, was essentially unfair. Political commentators and media outlets portrayed her book as divisive, splitting the Democratic camp at a time when unity against Trump 2.0 was the top priority.USA Todayreportedthat107..."
 ---
-Much of the early media coverage of Kamala Harris’s campaign-trail memoir, *[107 Days](https://107daysbook.com/)*, was essentially unfair. Political commentators and media outlets portrayed her book as divisive, splitting the Democratic camp at a time when unity against Trump 2.0 was the top priority. *USA Today* [reported](https://eu.usatoday.com/story/news/politics/2025/09/19/kamala-harris-new-book-107-days-takeaways/86224505007/) that *107 Days* was filled with “score-settling.” *Politico* [claimed](https://www.politico.com/news/2025/09/19/kamala-harris-new-book-befuddles-dems-00574304) Harris’s book constituted an “ambush of fellow Democrats” because—shockingly!—Harris “used her new memoir to speak her mind”; four days later, the outlet [wrote](https://www.politico.com/news/2025/09/23/kamala-harris-democrats-book-tour-00576277), Harris was desperately trying to “unburn the bridges.” *The Hill* [adopted](https://thehill.com/homenews/campaign/5516157-harris-memoir-democrats-divided/) a similar line, but outsourced the task of giving voice to it to Democratic strategists said to be “frustrated” with Harris over a book intent on “picking fights and causing divisions at the worst possible time for the party.”
+
+```
+Early coverage of Kamala Harris’s campaign memoir, 107 Days, has been unfair. Yet Harris still won't adequately deal with the Biden administration's complicity in the Gaza genocide, or her own role.
+```
+
+![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/24009170-fd44-41fa-b643-2532b87c30c4/85f7114b-f2fd-4605-93c1-35c9381ad212_1400x1827.jpg)
+
+Much of the early media coverage of Kamala Harris’s campaign-trail memoir, [*107 Days*](https://107daysbook.com/), was essentially unfair. Political commentators and media outlets portrayed her book as divisive, splitting the Democratic camp at a time when unity against Trump 2.0 was the top priority. *USA Today* [reported](https://eu.usatoday.com/story/news/politics/2025/09/19/kamala-harris-new-book-107-days-takeaways/86224505007/) that *107 Days* was filled with “score-settling.” *Politico* [claimed](https://www.politico.com/news/2025/09/19/kamala-harris-new-book-befuddles-dems-00574304) Harris’s book constituted an “ambush of fellow Democrats” because—shockingly!—Harris “used her new memoir to speak her mind”; four days later, the outlet [wrote](https://www.politico.com/news/2025/09/23/kamala-harris-democrats-book-tour-00576277), Harris was desperately trying to “unburn the bridges.” *The Hill* [adopted](https://thehill.com/homenews/campaign/5516157-harris-memoir-democrats-divided/) a similar line, but outsourced the task of giving voice to it to Democratic strategists said to be “frustrated” with Harris over a book intent on “picking fights and causing divisions at the worst possible time for the party.”
 
 So what were these horribly divisive, bridge-burning, mind-speaking truths?
 

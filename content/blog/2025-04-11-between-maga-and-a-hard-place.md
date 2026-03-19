@@ -2,15 +2,79 @@
 title: "Between MAGA and a Hard Place"
 date: 2025-04-11
 draft: false
-dek: "Two books — one on Steve Bannon and the global far right, the other on life at a Chinese university — reveal a world increasingly riven by ideological contestation. Fukuyama's 'end of history' is most definitely over."
-image: "/images/blog/maga-hard-place.jpg"
-summary: "Published half a decade ago now, War for Eternity examines the rise of the new right via key figures like Steve Bannon, Aleksandr Dugin, and a smattering of other far-right characters from across the globe. Sadly, the book remains even more relevant now, under Trump 2.0."
+dek: ""
+image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/6867bffd2d7a517d2a81a57c/1751630064933/"
+summary: "Benjamin R. Teitelbaum (2020).War for Eternity: The Return of Traditionalism and the Rise of the Populist Right. Penguin Books."
 ---
 
-**Benjamin R. Teitelbaum (2020).** [***War for Eternity: The Return of Traditionalism and the Rise of the Populist Right***](https://www.penguin.co.uk/books/315812/war-for-eternity-by-teitelbaum-benjamin-r/9780141992037). Penguin Books.
+```
+Two books — one on Steve Bannon and the global far right, the other on life at a Chinese university — reveal a world increasingly riven by ideological contestation. Fukuyama's "end of history" is most definitely over.
+```
 
-**Daniel A. Bell (2023).** [***The Dean of Shandong: Confessions of a Minor Bureaucrat at a Chinese University***](https://press.princeton.edu/books/hardcover/9780691247120/the-dean-of-shandong). Princeton University Press.
+![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/82f15dbc-e0ff-4108-af9d-a5388fb999dc/ebd6c3c7-2e73-4c5d-aa33-f64f4e1f0dc0_682x522.jpg)
 
-Published half a decade ago now, *War for Eternity* examines the rise of the new right, including the alt-right or "populist nationalist" movement, via key figures like Steve Bannon, Aleksandr Dugin, and a smattering of other far-right characters from across the globe. Sadly, the book remains even more relevant now, five years later, under Trump 2.0.
+**Benjamin R. Teitelbaum (2020).** [***War for Eternity: The Return of Traditionalism and the Rise of the Populist Right***](https://www.penguin.co.uk/books/315812/war-for-eternity-by-teitelbaum-benjamin-r/9780141992037)**. Penguin Books.**
 
-<!-- Continue with the full post content... -->
+**Daniel A. Bell (2023).** [***The Dean of Shandong: Confessions of a Minor Bureaucrat at a Chinese University***](https://press.princeton.edu/books/hardcover/9780691247120/the-dean-of-shandong)**. Princeton University Press.**
+
+Published half a decade ago now, *War for Eternity* examines the rise of the new right, including the alt-right or “populist nationalist” movement, via key figures like Steve Bannon, Aleksandr Dugin, and a smattering of other far-right characters from across the globe. Sadly, the book remains even more relevant now, five years later, under Trump 2.0.
+
+Despite the wide cast of characters, Bannon is really the key player here. The US edition’s subtitle underscores the book’s Bannon-centricity, “Inside Bannon’s Far-Right Circle of Global Power Brokers”—which is depersonalized in the UK edition, whose subtitle, “The Return of Traditionalism and the Rise of the Populist Right,” offers a more intellectualist, “history of ideas” framing.
+
+Benjamin Teitelbaum sketches Bannon’s intellectual formation through his (apparent) encounter with Traditionalism, an obscurantist ideology that combines, in varying degrees, spiritualism, esotericism, occultism, reactionary conservatism, and racial supremacism, via key figures like the fascist philosopher Julius Evola and the mystical metaphysician René Guénon.
+
+A breezy read, Teitelbaum’s book is at its best when offering a richly textured portrayal of Bannon’s worldview. Bannon was and remains—via his influential *War Room* podcast, CPAC [speeches](https://apnews.com/article/steve-bannon-cpac-nazi-salute-gesture-wave-43a06de6184fe58940c8ae3d743bc6ba), and global networking—a key MAGA ideologue. Famously, Bannon was ousted from the first Trump administration in mid-2017 after falling out with the Trump family: Jared Kushner and Ivanka are denounced by Bannon here for wanting to “maintain the status quo,” with Kushner described as a “centrist Democrat” in Teitelbaum’s retelling.
+
+Bannon’s formal removal from power hasn’t stopped him from remaining essential to understanding both Trump’s first and second terms—and hence the world we all inhabit. Teitelbaum has had significant access to Bannon, to a lesser extent the Russian writer Aleksandr Dugin, documenting (retroactively, through interviews) their first encounter in Rome in November 2018, which appears now as a key event in the growing interweaving of Putinism and Trumpism.
+
+Coming to this book five years after its publication, *War for Eternity* now feels less relevant in the extensive sections on the far-right philosopher Olavo de Carvalho, a significant influence on Bolsonaro—if only because Brazil’s former president now is finished, politically, and because the country appears to have turned a new page with Lula since 2023.
+
+More importantly, in places, Teitelbaum’s book feels just a bit too bewitched with its main character, as indeed other reviewers have [noted](https://www.theguardian.com/books/2020/jun/05/war-for-eternity-benjamin-r-teitelbaum-starstruck-steve-bannon-dugin-putin-trump#:~:text=At%20times%20Ito%20see%20him.). Bannon morphs into just plain “Steve.” The price of proximity and extraordinary access is the risk of (involuntary) glorification, and serving as a conduit for Bannon’s own propagandistic worldview and account of Trump’s first term. We are never quite told why Bannon would offer the author access to his “circle of global power brokers”—what’s in it for “Steve”? Could it be that he hopes to gain respectability, a serious platform for his dangerous, divisive, and destructive views? This is a constant dilemma in journalism. But in *War for Eternity*, proximity at times drifts into at least the appearance of entrancement.
+
+There’s also the risk of sanewashing, or ex post facto rationalizing, an ideological movement that is, at its core, aggressively simplistic, premised on hardline nationalism and reactionary values. The intellectualization of “Traditionalism” produces the illusion of ideological depth and historicity. But maybe Bannon himself has it right: “I’m just some fuckin’ guy, making it up as I go along.”
+
+**A Dean of Illiberalism**
+
+*The Dean of Shandong*, styled as the “confessions of a minor bureaucrat at a Chinese university,” is an at-times amusing collection of somewhat trifling essays, written by the Canadian political theorist and long-time China resident Daniel A. Bell (not to be confused with the earlier American sociologist Daniel Bell). One of the [essays](https://www.wsj.com/articles/for-chinese-leaders-hair-color-is-about-more-than-style-598199), for instance, asks why Chinese political leaders have felt compelled to dye their hair (short answer: to maintain the appearance of youthfulness and vigor)—and why Xi now appears to have abandoned the practice (though he may be dyeing in streaks of gray, Bell notes). It’s a smart, Erving Goffman–style attention to sociological detail.
+
+But behind its seemingly trifling qualities, there is a great seriousness here, for Bell, a scholar of Confucianism, offers a kind of Confucian apologia for China’s system of governance. It’s an at times sycophantic narrative, all the more efficacious coming from an outsider born and raised in a high-functioning liberal democracy like Canada: If one wanted to mount a defense of the Confucian-“communist”-capitalist synthesis that is contemporary China, this one-time dean’s unconventional essays would surely be just the sort of thing one would want to put out there: lighthearted, quirky, yet essentially reconciled with the basic ideological parameters of the state from which it arises.
+
+Bell has lived in China for decades, employed first as professor at Beijing’s prestigious Tsinghua University (while eccentrically owning a Thai restaurant, Purple Haze, popular among expats in the Chinese capital), before being tapped by the mighty Organization Department of the Chinese Communist Party, which annually presides over millions of appointments in the country’s sprawling public sector, to serve as Dean of the Faculty of Political Science at Shandong University—a newer, provincial university, but still something of a promotion: Few Westerners have ever been hired as deans, Bell observes. (He has since moved on to Hong Kong University.)
+
+Of course, one has to ask why Bell was chosen for this post. The answer probably isn’t solely academic: Bell is also an effective propagandist of sorts. While he avers to be critical of China’s political system—and there are asides on corruption, Uyghur and Tibetan repression, and the “possibility of a return to Maoist-style personal dictatorship” after the abolition of term limits in 2018, initiating the era of Xi—the book is, as noted, a concise defense of the Chinese system. Bell doesn’t try to conceal these aims. As he readily admits,
+
+> I do have an agenda and I should come clean about normative commitments. I worry about the demonization of China and especially of its political system. I think much thinking and policy making in Western countries is based on crude stereotypes about China’s political system, such as the view that the CCP exercises total control over intellectual discourse and there is no room for independent thinking. The reality is much more complex, as I hope to show.
+
+And he appears willing to make some concessions to China critics:
+
+> I most certainly do not want to deny that increased demonization is related to worrisome developments in Chinese politics over the past decade or so. The CCP—to a certain extent—has become more repressive at home and more aggressive abroad.
+
+Other reviewers have approved of Bell’s charge that, in the words of the Financial Times’s critic, “western critics of China are often ignorant of the pros and cons of China’s system,” nevertheless, Bell’s own qualifiers often seem like a hedge intended to preempt criticism of what remains his essentially illiberal stance. Bell is no democrat: Except at the lowest levels of governance (e.g., “village councils”), where the stakes are less significant, Bell thinks China’s system of top-down corporatist governance is superior to Western liberal democracy. And he wants to foreground the system’s Confucianism: Bell half-jokingly thinks the CCP should be rebranded the Chinese *Confucian* Party when engaging abroad.
+
+Bell’s controversial 2015 [book](https://press.princeton.edu/books/paperback/9780691173047/the-china-model?srsltid=AfmBOoomBQYQhDa1YZT86bf2c8qtWQmNPVWomso3OTUNn8akvEIOs8BU), *The China Model: Political Meritocracy and the Limits of Democracy*, mounted a longer defense of the Chinese model of governance, which he describes as a “political meritocracy” (a normative ideal, Bell recognizes, that the country does not live up to), and dismisses Western liberal democracy, under the formula “one person, one vote.” In a [TED talk](https://www.youtube.com/watch?v=eWmM7fagcug) outlining his position, Bell describes how his sister in Canada thinks him “brainwashed” after having living “too long” in China. But one could just as easily flip it around, Bell says, and claim that it is *she* who has been brainwashed from having lived in the West for too long. Demonization is never good, but this sort of equivocating misses the mark. (Bell is an oddly charming speaker, and he jokes that he hopes his sister never sees the YouTube recording of his talk.)
+
+And while the twice-election of Donald Trump has given new force to Bell’s criticism of liberal democracy—in essence, the Popperian [observation](https://en.wikipedia.org/wiki/Paradox_of_tolerance) that such a system can run itself into the ground—it’s hard to see why the answer to liberalism’s potential for self-defeat should be to roll over and implement an authoritarian “meritocracy”: That’s cutting off one’s nose to spite one’s face. Meritocracy, moreover, is rarely as meritorious as its advocates suggest; the term was invented as an essentially [satirical](https://www.theguardian.com/politics/2001/jun/29/comment) concept in the 1950s by the sociologist Michael Young to skewer unfolding political developments.
+
+In the face of liberal democracy’s frailties, surely the answer should be *more politics*, not less—including encouraging citizens to engage in the (civic) educative experience of activism, and the strengthening of public media and systems of public education. That’s how you make populations less susceptible to the “mind bomb” of Trumpist propaganda.
+
+Removing the people from the political equation isn’t meritocracy; it’s a recipe for oligarchy, or rule by the few, and aristocracy. And that may be just what Bell wants: In closing, he even advocates for a China led by a “symbolic monarch,” selected from Confucius’s present-day descendants.
+
+**A World Divided**
+
+Two very different books, then: one broaching the ideological merger between Bannonite MAGA-ism and Dugin-inflected Putinism, the other a defense of China’s illiberal system of governance, packaged as a light tale of bureaucratic woes at a provincial university. Can they tell us anything about our current geopolitical moment?
+
+Whatever the rest of the world might think about it, China is committed to all three elements of its ideological mélange—Confucianism, Marxism, and free-market capitalism. This seemingly self-contradictory yet socio-economically coherent and powerful system—a form of “Communist capitalism” with Confucian values—makes China the only real contender for present-day U.S. hegemony.
+
+Moreover, Trump’s ideological allies are eager to forge a union of far-right movements—not only with Putin’s Russia but also with other countries and continents—to remake the world in their image, which includes countering, even crushing, China. Bannon is far from the only MAGA ideologue to champion this position—see, for example, Peter Navarro’s [numerous](https://en.wikipedia.org/wiki/The_Coming_China_Wars) anti-China [screeds](https://en.wikipedia.org/wiki/Death_by_China). The wheels are being set in motion.
+
+Both books suggest—perhaps unintentionally—the very real possibility of an impending U.S.-China confrontation, already unfolding in the form of an escalating [trade war](https://www.ft.com/content/706b6281-1077-40b8-ad40-e11ee0f55f92), sparked by Trump’s recent tariffs. What makes this confrontation so dangerous—beyond the scale of people, weaponry, and productive capacity involved—is its fundamentally ideological, almost spiritual, nature. There’s no hatred like *odium theologicum*, the special animus directed at an opposing worldview.
+
+But while these systems of thought are inimical to one another, a “clash of civilizations” was never inevitable: It only appears unavoidable now because of the specific people who have risen to power and the ideologies they’ve developed and come to inhabit.
+
+**Whither Europe?**
+
+Quite where this leaves Europe is unclear. Unless the European continent manages to counter the rise of the far-right at home—worryingly, a recent poll [shows](https://www.reuters.com/world/europe/germanys-far-right-afd-tops-poll-first-time-blow-chancellor-in-waiting-merz-2025-04-09/) that the far-right Alternative für Deutschland (AfD) is now Germany’s most popular party—Europe risks being swept up in a U.S.-Russia “spiritual union” under Trump and Putin.
+
+Joining (economic) forces with China, as China itself has [suggested](https://www.politico.eu/article/spain-pedro-sanchez-champions-china-key-eu-partner-amid-donald-trump-trade-war/) in the wake of Trump’s tariffs, will be difficult given China’s professed “no-limits friendship” with Russia and its wider system of governance—though perhaps a pragmatist like von der Leyen will turn a blind eye to some of the issues and concentrate on trade and commerce instead; as *The Economist* [notes](https://www.economist.com/international/2025/03/25/europe-will-have-to-zip-its-lip-over-chinas-abuses), an EU-wide “rebalancing” may be in the works. Spain’s prime minister Pedro Sanchez’ [proposed](https://www.bloomberg.com/news/articles/2025-04-09/spain-is-pushing-for-eu-pivot-to-china-to-counter-trump-tariffs) “pivot to China,” as *Bloomberg* describes it, with a visit to Beijing in the wake of the Trump tariffs, is a hint in this direction.
+
+What seems clear is that we now inhabit a world of increasingly antagonistic ideological formations and geopolitical rivalries, with multiple possible configurations in the time ahead. The Fukuyamite hypothesis has most definitely been falsified: History is far from over, and a number of potential confrontations are now on the horizon. In this context, a Europe that (metaphorically) soldiers on alone—freed from a far-right “fifth column” at home, and managing to stave off Trump’s global MAGA machinations—seems increasingly like the sanest of outcomes. Whether that will be enough to sustain the better parts of liberal democracy in the long run remains to be seen.
