@@ -2,7 +2,9 @@
 title: "Harris’s 107 Days and the Missing Reckoning: Gaza"
 date: 2025-10-17
 draft: false
-dek: ""
+dek: Early coverage of Kamala Harris’s campaign memoir, 107 Days, has been
+  unfair. Yet Harris still won't adequately deal with the Biden administration's
+  complicity in the Gaza genocide, or her own role.
 image: /images/blog/85f7114b-f2fd-4605-93c1-35c9381ad212_1400x1827.webp
 summary: Early coverage of Kamala Harris’s campaign memoir, 107 Days, has been
   unfair. Yet Harris still won't adequately deal with the Biden administration's
