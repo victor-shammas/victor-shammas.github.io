@@ -10,7 +10,7 @@
 # in the browser. Only users with repo write access can log in.
 backend:
   name: github
-  repo: victor-shammas/victorshammas.com
+  repo: victor-shammas/victor-shammas.github.io
   branch: main
 
 # ── Media ────────────────────────────────────────────────────────
