@@ -2,16 +2,10 @@
 title: 'Review: Not Enough Fight'
 date: 2025-07-02
 draft: false
-dek: ''
-image: https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/69ab1a7638f9441c4d44d8fd/1772821225391/
-summary: 'Jonathan Allen and Amie Parnes (2025).Fight: Inside the Wildest Battle for the White House. William Morrow.'
+dek: "'Fight' by Jonathan Allen and Amie Parnes offers a gripping account of the 2024 presidential election, placing blame on both Biden and Harris for Trump's victory."
+image: /images/blog/acfae1fd-7116-418f-8d7a-34ab66d1e37c_350x532.jpg
+summary: "'Fight' by Jonathan Allen and Amie Parnes offers a gripping account of the 2024 presidential election, placing blame on both Biden and Harris for Trump's victory."
 ---
-
-```plain
-'Fight' by Jonathan Allen and Amie Parnes offers a gripping account of the 2024 presidential election, placing blame on both Biden and Harris for Trump's victory.
-```
-
-![](/images/blog/acfae1fd-7116-418f-8d7a-34ab66d1e37c_350x532.jpg)
 
 **Jonathan Allen and Amie Parnes (2025).** [**_Fight: Inside the Wildest Battle for the White House_**](https://www.harpercollins.com/products/fight-jonathan-allenamie-parnes?variant=43464319860770)**. William Morrow.**
 
