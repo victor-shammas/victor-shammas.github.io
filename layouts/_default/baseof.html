@@ -27,6 +27,7 @@
       <div class="content">
         {{- block "main" . -}}{{- end -}}
         {{ if ne .Section "blog" }}
+          {{ partial "substack-feed-footer.html" . }}
           {{ partial "bluesky-feed-footer.html" . }}
         {{ end }}
         <footer class="site-footer">
