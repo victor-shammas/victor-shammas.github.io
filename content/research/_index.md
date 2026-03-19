@@ -298,10 +298,12 @@ In: Kerley, K. (ed.), <span class="journal">Encyclopedia of Corrections</span>. 
 <li class="thesis-entry">
 <span class="label">PhD Thesis (2017)</span>
 <a href="/pdfs/Prisons-of-Welfare.pdf"><em>Prisons of Welfare: Incarceration, Social Democracy, and the Sociology of Punishment</em></a>
+</li>
 </div>
 
 <li class="thesis-entry">
 <span class="label">MPhil Thesis (2012)</span>
 <a href="/pdfs/The-Pains-of-Freedom.pdf"><em>The Pains of Freedom: Prison Island and the Making of Scandinavian Penal Exceptionalism</em></a>
+</li>
 </div>
 
