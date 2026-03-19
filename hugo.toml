@@ -24,7 +24,7 @@ canonicalifyURLs = false
 
 [menus]
   [[menus.main]]
-    name = "Research"
+    name = "About"
     url = "/"
     weight = 1
   [[menus.main]]
@@ -46,8 +46,8 @@ canonicalifyURLs = false
     url = "/norwegian/"
     weight = 5
   [[menus.main]]
-    name = "About"
-    url = "/about/"
+    name = "Research"
+    url = "/research/"
     weight = 6
 
 [markup]
