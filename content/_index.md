@@ -23,9 +23,6 @@ He writes a regular Substack newsletter and blog on global politics, culture, an
 <span class="contact-label">Email</span>
 <a href="mailto:contact@victorshammas.com">contact@victorshammas.com</a>
 
-<span class="contact-label">Phone</span>
-(+47) 48360509
-
 <span class="contact-label">Mail</span>
 Dr. Victor L. Shammas<br>
 Dept. of Sociology and Social Work<br>
