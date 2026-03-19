@@ -30,6 +30,8 @@
 
     {{- partial "sidebar.html" . -}}
 
+    {{ partial "bluesky-feed.html" . }}
+
     <main class="main">
       <div class="content">
         {{- block "main" . -}}{{- end -}}
