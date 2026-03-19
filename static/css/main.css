@@ -406,7 +406,17 @@ a:hover { color: var(--accent-light); }
   border-radius: 4px;
   margin-bottom: 2rem;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.about-photo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 .about-bio { font-size: 0.95rem; line-height: 1.8; }
 .about-bio p { margin-bottom: 1rem; }
