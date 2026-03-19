@@ -1,19 +1,14 @@
 ---
-title: "The Poverty of Abundance"
+title: The Poverty of Abundance
 date: 2025-09-22
 draft: false
-dek: ""
-image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/69ab1b049d676931b85be0f8/1772821361197/"
-summary: "Ezra Klein and Derek Thompson (2025).Abundance: How We Build a Better Future. Avid Reader Press."
+dek: "Considering Ezra Klein and Derek Thompson's Abundance carefully makes one
+  thing clear: Abundance liberalism won't defeat fascism."
+image: /images/blog/8259069d-594d-42e8-9606-eadd191c6464_596x900.webp
+summary: "Considering Ezra Klein and Derek Thompson's Abundance carefully makes
+  one thing clear: Abundance liberalism won't defeat fascism."
 ---
-
-```
-Considering Ezra Klein and Derek Thompson's Abundance carefully makes one thing clear: Abundance liberalism won't defeat fascism.
-```
-
-![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/a5af93c3-fb80-4a3d-a12c-194031294d7a/8259069d-594d-42e8-9606-eadd191c6464_596x900.webp)
-
-**Ezra Klein and Derek Thompson (2025).** [***Abundance: How We Build a Better Future***](https://www.simonandschuster.com/books/Abundance/Ezra-Klein/9781668023488)**. Avid Reader Press.**
+**Ezra Klein and Derek Thompson (2025).** ***[Abundance: How We Build a Better Future](https://www.simonandschuster.com/books/Abundance/Ezra-Klein/9781668023488)*. Avid Reader Press.**
 
 One way of thinking about *Abundance* might be to see it as a blueprint for a Democratic victory in 2028. Structured around five chapters, Klein and Thompson want to teach liberals how to *grow, build, govern, invent, and deploy*. At the core of their vision is the idea that the state needs to take on a more active role in helping build green energy or basic infrastructure and funding daring new scientific research.
 
