@@ -18,16 +18,18 @@ He writes a regular Substack newsletter and blog on global politics, culture, an
 <a href="/pdfs/Shammas-CV.pdf" class="cv-link">⤓ Curriculum Vitae (PDF)</a>
 
 <h2 class="section-heading">Contact</h2>
-
 <div class="contact-block">
-<span class="contact-label">Email</span>
-<a href="mailto:contact@victorshammas.com">contact@victorshammas.com</a>
-
-<span class="contact-label">Mail</span>
-Dr. Victor L. Shammas<br>
-Dept. of Sociology and Social Work<br>
-University of Agder<br>
-PO Box 422, 4604 Kristiansand, Norway
+  <div class="contact-item">
+    <span class="contact-label">Email</span>
+    <a href="mailto:contact@victorshammas.com">contact@victorshammas.com</a>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">Mail</span>
+    Dr. Victor L. Shammas<br>
+    Dept. of Sociology and Social Work<br>
+    University of Agder<br>
+    PO Box 422, 4604 Kristiansand, Norway
+  </div>
 </div>
 
 <h2 class="section-heading">Profiles</h2>
