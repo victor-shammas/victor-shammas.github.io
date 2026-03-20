@@ -429,6 +429,10 @@ a:hover { color: var(--accent-light); }
 }
 .contact-label:first-of-type { margin-top: 0; }
 
+.contact-item {
+  margin-bottom: 1.25rem;
+}
+
 .profile-links { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.5rem; }
 .profile-links a {
   display: inline-block; font-size: 0.82rem; font-weight: 500;
