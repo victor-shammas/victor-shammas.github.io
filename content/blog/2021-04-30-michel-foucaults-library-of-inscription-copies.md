@@ -71,7 +71,7 @@ In 1969, Foucault gave a lecture that pointedly asked, “What is an author?” 
 
 But perhaps there is no real contradiction with Foucault here. After all, in his essay on the author, Foucault develops what he calls the “author-function,” a figure—or perhaps entity—whose key characteristic is to produce “not only their own work, but the possibility and the rules of formation of other texts” (1977: 131); in short, like Marx and Freud (but these are only the most successful and exceptional examples), to have “established the endless possibility of discourse” (ibid.). The author-function is a nodal point who stands at the intersection of an amalgam of symbolic forces, pushing and provoking what we might call the “dividual” (rather than theindividual) to produce, while suspended in a shared field of influences. The work is always collective.
 
-**References**[The [full catalog is available in the Zotero reference manager file format here,](/s/Foucault.rdf) so that interested readers and researchers can study the collection in its entirety.]
+**References**
 
 Beinecke Rare Book & Manuscript Library (n.d.) “Modern European Books and Manuscripts.” <https://beinecke.library.yale.edu/collections/curatorial-areas/modern-european-books-and-manuscripts> (accessed 15 January 2021).
 
