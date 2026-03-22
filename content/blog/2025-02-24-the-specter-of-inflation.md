@@ -1,15 +1,11 @@
 ---
-title: "The Specter of Inflation"
+title: The Specter of Inflation
 date: 2025-02-24
 draft: false
-dek: ""
-image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/685bbc92f98594297c7109f5/1750843038597/"
-summary: "One frequently invoked explanation among progressives for the resurgence of far-right politics in recent times is inflation: Prices rise, food and energy costs go up, mortgages become more expensive, wages don’t keep up, and, so the story goes, as a consequence, working- and middle-class voters..."
+dek: The far right has weaponized the idea of inflation. We should critically examine how nationalist movements activate and manipulate ideas about economic hardship for political gain.
+image: /images/blog/4de036d9-1181-4292-81f4-24abd33b17ab_2560x1707.jpg
+summary: ''
 ---
-
-### The far right has weaponized the idea of inflation. We should critically examine how nationalist movements activate and manipulate ideas about economic hardship for political gain.
-
-![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/956f4e9f-ad9f-4df2-98c3-20003ef41fa2/4de036d9-1181-4292-81f4-24abd33b17ab_2560x1707.jpg)
 
 One frequently invoked explanation among progressives for the resurgence of far-right politics in recent times is inflation: Prices rise, food and energy costs go up, mortgages become more expensive, wages don’t keep up, and, so the story goes, as a consequence, working- and middle-class voters begin casting about for a scapegoat to blame for their economic woes. In short, economic pain pushes ordinary people into the arms of the radical right.
 
@@ -23,15 +19,15 @@ She was not alone in making this claim. The morning after the November election,
 
 But while we shouldn’t deny the economic hardships that many ordinary Americans face, inflation-centered accounts of Trump’s return to the White House suffer from multiple flaws. First, the [overall](https://www.investopedia.com/us-inflation-rate-by-president-8546447) estimated 5.2% inflation rate under Biden’s presidency was hardly Biden’s fault alone; it was the predictable outcome of the [trillions](https://pandemicoversight.gov/about-us/pandemic-relief-program-laws) of dollars in necessary government spending on much-needed pandemic relief programs, but also the [effects](https://www.marketplace.org/2024/11/05/heres-why-you-cant-blame-presidents-for-inflation/) of pandemic-related supply-chain disruptions, energy and food price shocks from external causes like the [Ukraine War](https://www.federalreserve.gov/econres/notes/feds-notes/the-effect-of-the-war-in-ukraine-on-global-activity-and-inflation-20220527.html), and the foreseeable result of a reopened world economy as the COVID-19 pandemic came to an end.
 
-Second, and more importantly, inflation was largely under control by the time the 2024 election had arrived. By October 2024, the month before the election, the all-items price index had risen 2.6% over the last 12 months, hardly an earth-shattering level; and the 12-month percentage change of food prices in the U.S. stood at 2.1%, almost *half* of what had been the case in October 2020, the month prior to Biden’s defeat of Trump at the polls.
+Second, and more importantly, inflation was largely under control by the time the 2024 election had arrived. By October 2024, the month before the election, the all-items price index had risen 2.6% over the last 12 months, hardly an earth-shattering level; and the 12-month percentage change of food prices in the U.S. stood at 2.1%, almost _half_ of what had been the case in October 2020, the month prior to Biden’s defeat of Trump at the polls.
 
 ![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/20df0f72-63fe-4d96-9f4c-37927d1a8ada/42260040-c695-46a4-ad27-48638425dd71_1390x1038-1.png)
 
-In 2024, U.S. voters had, of course, *been through* a period of high inflation under Biden, evidenced by the significant decline in real wages in the first half of his presidency; but by the end of 2024, real wages were [back](https://fred.stlouisfed.org/series/LES1252881600Q) at their pre-pandemic levels.
+In 2024, U.S. voters had, of course, _been through_ a period of high inflation under Biden, evidenced by the significant decline in real wages in the first half of his presidency; but by the end of 2024, real wages were [back](https://fred.stlouisfed.org/series/LES1252881600Q) at their pre-pandemic levels.
 
 ![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/51be0321-8df6-4623-bfe5-b2918191f403/0a919a8c-d1bd-4dcd-a649-c568d4c44159_2704x1124.png)
 
-In short, inflation wasn’t an “objective” reality that Trump could simply point to and allow to run its own course among the electorate. Instead, it was a *constructed, spectral presence,* which Trump skillfully repackaged along with other key elements of his politics, including anti-transgender attacks, nationalist nativism, and “culture-war” positioning, to snap up voters from the opposing side.As important as the “pure” economic effects of inflation may have been was the *political activation of inflation as a weaponized signifier* in the far-right’s battle against centrist neoliberalism. To claim that inflation was the “cause” of Trump’s rise, unadulterated by processes of communicative construction, would be to *accept uncritically the far right’s own problem-diagnosis,* falling prey to its propagandistic portrayals of social reality.
+In short, inflation wasn’t an “objective” reality that Trump could simply point to and allow to run its own course among the electorate. Instead, it was a _constructed, spectral presence,_ which Trump skillfully repackaged along with other key elements of his politics, including anti-transgender attacks, nationalist nativism, and “culture-war” positioning, to snap up voters from the opposing side.As important as the “pure” economic effects of inflation may have been was the _political activation of inflation as a weaponized signifier_ in the far-right’s battle against centrist neoliberalism. To claim that inflation was the “cause” of Trump’s rise, unadulterated by processes of communicative construction, would be to _accept uncritically the far right’s own problem-diagnosis,_ falling prey to its propagandistic portrayals of social reality.
 
 Again, this isn’t to say that ordinary people’s economic concerns shouldn’t be taken seriously nor that everything was rosy in the realm of the economy pre-November 2024. To take just one indicator: The top 10 percent of Americans controlled more than 70 percent of the country’s net wealth and nearly half of its pre-tax income in 2023, [according](https://wid.world/data/) to the World Income Database—an astonishing level of economic inequality that feeds into ongoing social pathologies. But even in the realm of “hard” economic inequalities, one could imagine a far-right movement tapping into and exploiting these differences for their own political gains; inequality is not in and of itself a “leftwing cause,” because it too can be weaponized by the right to devastating effect, as history has shown.
 
@@ -41,7 +37,7 @@ Returning to the recent German elections, there is a basic empirical issue with 
 
 ![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/fd5d5f95-ccd5-40bd-ac4d-a537e4a3daeb/fa43d23f-fa2a-4794-ada2-2876aba0c4fd_1920x1080.jpg)
 
-Furthermore, as the chart below shows, as in the United States pre-November 2024, Germany’s inflation is nowhere near its 2021-2022 peak. So again, an inflation-centered account must consider how the memory and sensation of inflation were *activated within political consciousness*.
+Furthermore, as the chart below shows, as in the United States pre-November 2024, Germany’s inflation is nowhere near its 2021-2022 peak. So again, an inflation-centered account must consider how the memory and sensation of inflation were _activated within political consciousness_.
 
 ![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/cb3a66b5-e73e-4179-8d0f-f50704bc8501/30ac7c67-a8a3-4dab-8405-9743d43bae11_1622x1118.png)
 
@@ -51,7 +47,7 @@ While it would be difficult to find clinching evidence for such mechanisms, econ
 
 And while that might seem like definite proof of the inflation-as-backdrop idea, this risks getting the ordering exactly wrong: For what if it isn’t inflation that’s driving nativism, but nativist provocations that are fueling fears about the economy?
 
-One suggestive piece of evidence in this direction is that while 48 percent of German voters were “very worried” that they wouldn’t be able to maintain their living standards, only 17 percent of voters were similarly worried that they would lose their job. Even more tellingly, while 83 percent of all voters [rated](https://www.surplusmagazin.de/bundestagswahl-afd-cdu-linke-wirtschaft/) the country’s economic situation as poor (*schlecht*), a whopping 67 percent of AfD voters [reported](https://www.tagesschau.de/wahl/archiv/2025-02-23-BT-DE/charts/umfrage-gruene/chart_1875029.shtml) that “My personal economic situation is good.”
+One suggestive piece of evidence in this direction is that while 48 percent of German voters were “very worried” that they wouldn’t be able to maintain their living standards, only 17 percent of voters were similarly worried that they would lose their job. Even more tellingly, while 83 percent of all voters [rated](https://www.surplusmagazin.de/bundestagswahl-afd-cdu-linke-wirtschaft/) the country’s economic situation as poor (_schlecht_), a whopping 67 percent of AfD voters [reported](https://www.tagesschau.de/wahl/archiv/2025-02-23-BT-DE/charts/umfrage-gruene/chart_1875029.shtml) that “My personal economic situation is good.”
 
 ![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/76974ff8-56a9-42e4-a33e-c8b2630bd1e5/73830077-be99-4f1d-9b10-ab5da86cf8bb_1920x1080.jpg)
 
