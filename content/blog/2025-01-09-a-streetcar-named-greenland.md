@@ -1,17 +1,11 @@
 ---
-title: "A Streetcar Named Greenland"
+title: A Streetcar Named Greenland
 date: 2025-01-09
 draft: false
-dek: ""
-image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/67a49a670355957816b2f937/1750840437159/"
-summary: "One of thestrangest episodes in the still-unfolding Trump saga is the 42nd/44th president’s growing interest in Greenland, a territory controlled by Denmark, which Trump has said he wants to incorporate into the United States."
+dek: Trump wants to wrest control of Greenland from Denmark. But replacing a former colonizer with a global hegemon is only a recipe for deeper subjugation, not authentic freedom.
+image: /images/blog/dc3f3b63-b98c-4677-b245-f05f2a03bbed_1015x1353.jpg
+summary: ''
 ---
-
-```
-Trump wants to wrest control of Greenland from Denmark. But replacing a former colonizer with a global hegemon is only a recipe for deeper subjugation, not authentic freedom.
-```
-
-![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/3b7e278d-5df3-4174-b331-1f266f523ce4/dc3f3b63-b98c-4677-b245-f05f2a03bbed_1015x1353.jpg)
 
 > “BLANCHE: What you are talking about is brutal desire—just—Desire!—the name of that rattle-trap street-car that bangs through the Quarter, up one old narrow street and down another...”
 
@@ -59,7 +53,7 @@ The purpose of the IUD policy was to “limit the number of Greenlandic children
 
 Racism also remains a problem for Greenlanders who move to mainland Denmark for study and work. A 2023 [report](https://menneskeret.dk/nyheder/flertallet-groenlandske-studerende-danmark-oplever-fordomme-eksklusion) from the Danish Institute for Human Rights documented discrimination faced by Greenlanders studying in mainland Denmark, with 73 percent reporting “having been met with prejudices” in the past 12 months, and one in five reported outright discrimination, “for example in connection with an internship or job search or by being excluded from group work” in the higher education system.
 
-Moreover, there has long been a perception on the right of Denmark’s political spectrum that Greenland’s population is backward, beset by social problems and incapable of self-governance. In 2022, the conservative politician Søren Pape Poulsen reportedly [described](https://www.altinget.dk/artikel/derfor-vil-groenland-er-afrika-paa-is-klaebe-til-pape-hvis-han-bliver-statsminister) Greenland as “Africa on ice,” presumably alluding to the African continent’s continued economic underdevelopment; the remarks were said to have fallen at a U.S. embassy reception in Copenhagen. While denying having made the comments in a later [interview](https://www.berlingske.dk/globalt/soeren-pape-poulsen-om-groenland-som-et-afrika-paa-is-jeg-er-en-politiker) with the newspaper *Berlingske Tidende*, Poulsen reiterated:
+Moreover, there has long been a perception on the right of Denmark’s political spectrum that Greenland’s population is backward, beset by social problems and incapable of self-governance. In 2022, the conservative politician Søren Pape Poulsen reportedly [described](https://www.altinget.dk/artikel/derfor-vil-groenland-er-afrika-paa-is-klaebe-til-pape-hvis-han-bliver-statsminister) Greenland as “Africa on ice,” presumably alluding to the African continent’s continued economic underdevelopment; the remarks were said to have fallen at a U.S. embassy reception in Copenhagen. While denying having made the comments in a later [interview](https://www.berlingske.dk/globalt/soeren-pape-poulsen-om-groenland-som-et-afrika-paa-is-jeg-er-en-politiker) with the newspaper _Berlingske Tidende_, Poulsen reiterated:
 
 > I’m not one to mince words…In some areas, Greenland resembles a developing country. When I say that, it’s about…violence, sex and drinking.
 
@@ -79,7 +73,7 @@ As Donald Jr. [said](https://www.newsweek.com/donald-trump-jr-greenland-visit-pu
 
 > They’re obviously part of Denmark, but Denmark doesn't allow them to utilize their natural resources. So many of these young kids coming up and telling us on a daily basis 'when we go to Denmark, we're treated like second and third-class citizens. They tell us to go home.' There seems to be quite a bit of racism there.
 
-This is rich coming from a political leader who has turned white supremacy and hard ethonationalism into fundamental pillars of the MAGA movement. And it is pure hypocrisy: There is no reason to believe that Greenland’s people would face better conditions under U.S. governance. For insight into how the country treats *its* territories, look no farther than to Puerto Rico, where the [power grid collapsed](https://edition.cnn.com/2025/01/01/us/puerto-rico-power-outage/index.html) on New Year’s Eve of 2024, a result of years-long neglect and underdevelopment.
+This is rich coming from a political leader who has turned white supremacy and hard ethonationalism into fundamental pillars of the MAGA movement. And it is pure hypocrisy: There is no reason to believe that Greenland’s people would face better conditions under U.S. governance. For insight into how the country treats _its_ territories, look no farther than to Puerto Rico, where the [power grid collapsed](https://edition.cnn.com/2025/01/01/us/puerto-rico-power-outage/index.html) on New Year’s Eve of 2024, a result of years-long neglect and underdevelopment.
 
 ![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/9dbda0ab-1a4b-444c-8011-245338156098/6b0884cf-7f73-4b61-941f-57b8755874b7_1240x828.png)
 
@@ -93,7 +87,7 @@ Of course, it would hardly be difficult for the U.S. to match and outspend the D
 
 There is, of course, something so fundamentally bizarre about the prospect of one NATO member state appropriating the terrain of another NATO member state. Didn’t the Western world just spend hundreds of billions of dollars funding a major war effort in Ukraine in support of the principle of territorial inviolability?
 
-It would be a mistake to reduce Trump’s desire for Greenland to purely rational geopolitical terms. This is not how his mind works or political instincts function. In [*Fear*](http://bob%20woodward%20recounts%20in/)*: Trump in the White House*, Bob Woodwardrecounts how Trump’s short attention span meant that advisors could routinely pull documents from his desk to distract him from irrational policy ideas, such as annulling the U.S.-South Korea free-trade agreement, KORUS, which most agreed was a terrible idea. Trump is at times a creature of such short-lived fixations and cravings.
+It would be a mistake to reduce Trump’s desire for Greenland to purely rational geopolitical terms. This is not how his mind works or political instincts function. In [_Fear_](http://bob%20woodward%20recounts%20in/)_: Trump in the White House_, Bob Woodwardrecounts how Trump’s short attention span meant that advisors could routinely pull documents from his desk to distract him from irrational policy ideas, such as annulling the U.S.-South Korea free-trade agreement, KORUS, which most agreed was a terrible idea. Trump is at times a creature of such short-lived fixations and cravings.
 
 Still, there is an element of functional performance to his ravings. Trump’s single greatest foreign policy influence is surely Nixon’s madman theory, by which the nuttier the performance, the greater the chance of success. To rationally maximize profits you sometimes have to play the lunatic king, on Nixon’s, and now Trump’s, view.
 
@@ -105,11 +99,11 @@ Imperialists build empires. If you have the world’s best-funded military force
 
 What is new is the appeal to the once-colonized population and the deployment of decolonial tropes. George Bush, too, spoke of conquering the “hearts and minds” of Iraqis—but they had, after all, been dominated by a decades-long brutal dictator, and so the rhetoric contained much more of a standard liberal-democratic emphasis on freedom over authoritarianism. What’s different here is that Trump and his envoys are deploying the language of decolonialism: As Donald Jr. said to Hannity, Greenlanders are purportedly treated as “second- and third-class citizens” by Denmark. At a Mar-a-Lago [press conference](https://www.youtube.com/watch?v=Sfsxz333dNI), President-Elect Trump questioned the legitimacy of Danish rule: “People really don’t even know if Denmark has any legal right to it.”
 
-This rhetorical strategy is similar to Putin’s recent appeals to countries in the Global South. Like Trump, Putin is a hardline conservative ethnonationalist; unlike Trump he has decades of experience as an authoritarian strongman, but he has also started branching out into what we might call a vaguely “solidaristic” discourse vis-à-vis the poorer, downtrodden elements of the global order: “The Kremlin has adopted this trend of misappropriating the [language of decolonization](https://saisreview.sais.jhu.edu/not-in-our-name-why-russia-is-not-a-decolonial-ally-or-the-dark-side-of-civilizational-communism-and-imperialism/) for its own colonial ends.” As Benjamin Young [wrote](https://foreignpolicy.com/2024/09/12/anti-colonialism-movement-global-south-russia-africa/?utm_content=gifting&tpcc=gifting_article&gifting_article=YW50aS1jb2xvbmlhbGlzbS1tb3ZlbWVudC1nbG9iYWwtc291dGgtcnVzc2lhLWFmcmljYQ==&pid=PNIIEQRnirhjrth) in *Foreign Policy*,
+This rhetorical strategy is similar to Putin’s recent appeals to countries in the Global South. Like Trump, Putin is a hardline conservative ethnonationalist; unlike Trump he has decades of experience as an authoritarian strongman, but he has also started branching out into what we might call a vaguely “solidaristic” discourse vis-à-vis the poorer, downtrodden elements of the global order: “The Kremlin has adopted this trend of misappropriating the [language of decolonization](https://saisreview.sais.jhu.edu/not-in-our-name-why-russia-is-not-a-decolonial-ally-or-the-dark-side-of-civilizational-communism-and-imperialism/) for its own colonial ends.” As Benjamin Young [wrote](https://foreignpolicy.com/2024/09/12/anti-colonialism-movement-global-south-russia-africa/?utm_content=gifting&tpcc=gifting_article&gifting_article=YW50aS1jb2xvbmlhbGlzbS1tb3ZlbWVudC1nbG9iYWwtc291dGgtcnVzc2lhLWFmcmljYQ==&pid=PNIIEQRnirhjrth) in _Foreign Policy_,
 
 > Unlike the decolonization movements of the Cold War era, this wave is being driven by opportunistic illiberal regimes that exploit anti-colonial rhetoric to advance their own geopolitical agendas.
 
-This *solidaristic diagonalism*—appropriating leftist decolonial tropes for the purposes of global imperial ambitions—is in many ways the new preferred language of late-modern imperialism. It shows the fundamental rhetorical malleability and strategic flexibility of both Putinism and Trumpism.
+This _solidaristic diagonalism_—appropriating leftist decolonial tropes for the purposes of global imperial ambitions—is in many ways the new preferred language of late-modern imperialism. It shows the fundamental rhetorical malleability and strategic flexibility of both Putinism and Trumpism.
 
 Clearly, the people of Greenland would be wise to rebuff Trump’s latest advances. After all, it’s just Trump’s desire, his brutal desire, to borrow the words of Arthur Miller’s Blanche, only this time dressed up in quasi-decolonial terms to appear to be looking out for their best interests. But Trump’s latest offensive is a simulacra of postcolonialism, pretending to take seriously Greenland’s real concerns about its future, while coveting its resources and geostrategic location.
 
