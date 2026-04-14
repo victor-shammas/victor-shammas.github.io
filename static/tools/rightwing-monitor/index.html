@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Transatlantic Right-Wing Media Monitor</title>
+        <meta
+            name="description"
+            content="A research monitoring tool tracking right-wing and far-right political actors across Europe and the United States. Presented for analytical observation, not endorsement."
+        />
+        <meta property="og:title" content="Transatlantic Right-Wing Media Monitor" />
+        <meta
+            property="og:description"
+            content="Research instrument. Analytical observation, not endorsement."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Transatlantic Right-Wing Media Monitor" />
+        <meta
+            name="twitter:description"
+            content="Research instrument. Analytical observation, not endorsement."
+        />
+        <style>
+            :root {
+                --bg: #f5f5f4;
+                --ink: #1c1917;
+                --mute: #78716c;
+                --line: #e7e5e4;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--ink);
+                font:
+                    15px/1.45 -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+            }
+            .wrap {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 16px;
+            }
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+            h1 {
+                margin: 0;
+                font-size: 22px;
+            }
+            .sub {
+                color: var(--mute);
+                font-size: 13px;
+                margin-top: 2px;
+            }
+            .framing {
+                background: #fff;
+                border: 1px solid var(--line);
+                border-left: 3px solid #1c1917;
+                border-radius: 6px;
+                padding: 14px 16px;
+                margin-bottom: 20px;
+                font-size: 13.5px;
+                line-height: 1.55;
+                color: #292524;
+            }
+            .framing p {
+                margin: 0 0 8px 0;
+            }
+            .framing p:last-child {
+                margin-bottom: 0;
+            }
+            .framing .byline {
+                color: var(--mute);
+                font-size: 12.5px;
+                margin-top: 10px;
+            }
+            .framing a {
+                color: #1c1917;
+            }
+            button {
+                font: inherit;
+                cursor: pointer;
+                border-radius: 8px;
+                border: 1px solid var(--line);
+                background: #fff;
+                padding: 8px 12px;
+            }
+            button.primary {
+                background: #1c1917;
+                color: #fff;
+                border-color: #1c1917;
+            }
+            button:disabled {
+                opacity: 0.5;
+                cursor: wait;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            @media (min-width: 720px) {
+                .grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+            .card {
+                background: #fff;
+                border: 2px solid var(--line);
+                border-radius: 12px;
+                padding: 14px;
+            }
+            .card.sd {
+                border-color: #fde68a;
+                background: #fefce8;
+            }
+            .card.rn {
+                border-color: #bfdbfe;
+                background: #eff6ff;
+            }
+            .card.fdi {
+                border-color: #bbf7d0;
+                background: #f0fdf4;
+            }
+            .card.fidesz {
+                border-color: #fecaca;
+                background: #fef2f2;
+            }
+            .card.smer {
+                border-color: #c7d2fe;
+                background: #eef2ff;
+            }
+            .card.reform {
+                border-color: #a5f3fc;
+                background: #ecfeff;
+            }
+            .card.dk {
+                border-color: #fecdd3;
+                background: #fff1f2;
+            }
+            .card.frp {
+                border-color: #fed7aa;
+                background: #fff7ed;
+            }
+            .card.maga {
+                border-color: #fde68a;
+                background: #fffbeb;
+            }
+            .card.general {
+                border-color: #d6d3d1;
+                background: #fafaf9;
+            }
+            @media (min-width: 720px) {
+                .card.general {
+                    grid-column: 1 / -1;
+                }
+                .card.general .body {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 0 20px;
+                }
+                .card.general .item:nth-child(-n + 3) {
+                    border-top: 0;
+                    padding-top: 0;
+                    margin-top: 0;
+                }
+            }
+            .head {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            .title {
+                font-weight: 700;
+                font-size: 15px;
+                line-height: 1.25;
+            }
+            .age {
+                color: var(--mute);
+                font-size: 12px;
+                margin-top: 2px;
+            }
+            .age.stale {
+                color: #a8a29e;
+            }
+            .item {
+                border-top: 1px solid rgba(0, 0, 0, 0.08);
+                padding-top: 8px;
+                margin-top: 8px;
+            }
+            .item:first-of-type {
+                border-top: 0;
+                padding-top: 0;
+                margin-top: 0;
+            }
+            .item a {
+                color: inherit;
+                text-decoration: none;
+                display: block;
+            }
+            .item h3 {
+                margin: 0;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1.3;
+            }
+            .meta {
+                color: var(--mute);
+                font-size: 12px;
+                margin-top: 2px;
+            }
+            .desc {
+                font-size: 12.5px;
+                color: #44403c;
+                margin-top: 4px;
+                line-height: 1.35;
+            }
+            .err {
+                color: #b91c1c;
+                background: #fef2f2;
+                padding: 8px;
+                border-radius: 6px;
+                font-size: 12px;
+                margin-top: 4px;
+            }
+            .empty {
+                color: var(--mute);
+                font-style: italic;
+                font-size: 13px;
+                padding: 6px 0;
+            }
+            .foot {
+                text-align: center;
+                color: var(--mute);
+                font-size: 12px;
+                margin-top: 20px;
+            }
+            .spin {
+                display: inline-block;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <header>
+                <div>
+                    <h1>
+                        Transatlantic Right-Wing Media Monitor
+                        <span
+                            style="
+                                font-size: 12px;
+                                color: var(--mute);
+                                font-weight: 400;
+                                vertical-align: middle;
+                            "
+                            >v0.2</span
+                        >
+                    </h1>
+                    <div class="sub">
+                        A research-oriented media monitoring tool focused on right-wing and
+                        far-right political actors across Europe and the U.S.
+                    </div>
+                </div>
+                <button class="primary" id="refreshAll">↻ Refresh all</button>
+            </header>
+
+            <div class="grid" id="grid"></div>
+            <div class="foot">Cached locally · stale after 3h · last 7 days · v0.2</div>
+        </div>
+
+        <script>
+            const PARTIES = [
+                {
+                    id: "maga",
+                    name: "MAGA / Trump",
+                    flag: "🇺🇸",
+                    q: '"Donald Trump" OR "Trump administration" OR MAGA',
+                    lang: "en",
+                    country: "US",
+                },
+                {
+                    id: "frp",
+                    name: "Fremskrittspartiet",
+                    flag: "🇳🇴",
+                    q: "Fremskrittspartiet OR FrP OR Listhaug",
+                    lang: "no",
+                    country: "NO",
+                },
+                {
+                    id: "sd",
+                    name: "Sverigedemokraterna",
+                    flag: "🇸🇪",
+                    q: "Sverigedemokraterna OR Åkesson",
+                    lang: "sv",
+                    country: "SE",
+                },
+                {
+                    id: "rn",
+                    name: "Rassemblement National",
+                    flag: "🇫🇷",
+                    q: '"Rassemblement National" OR "Marine Le Pen" OR Bardella',
+                    lang: "fr",
+                    country: "FR",
+                },
+                {
+                    id: "fdi",
+                    name: "Fratelli d'Italia / Lega",
+                    flag: "🇮🇹",
+                    q: 'Meloni OR Salvini OR "Fratelli d\'Italia"',
+                    lang: "it",
+                    country: "IT",
+                },
+                {
+                    id: "reform",
+                    name: "Reform UK (Farage)",
+                    flag: "🇬🇧",
+                    q: '"Reform UK" OR "Nigel Farage"',
+                    lang: "en",
+                    country: "GB",
+                },
+                {
+                    id: "general",
+                    name: "General Right-Wing News",
+                    flag: "🌍",
+                    q: '"far-right" OR "far right" OR "radical right" OR "right-wing populism" OR "national conservatism" OR "NatCon" OR "illiberal democracy" OR "fascism" OR "ethnonationalism" OR "white nationalism"',
+                    lang: "en",
+                    country: "US",
+                },
+            ];
+            const LS_KEY = "farright_tracker_v1";
+            const STALE_MS = 3 * 3600 * 1000;
+            const MAX = 8;
+            const MAX_GENERAL = 12;
+
+            const store = {
+                get: () => {
+                    try {
+                        return JSON.parse(localStorage.getItem(LS_KEY)) || {};
+                    } catch {
+                        return {};
+                    }
+                },
+                set: (v) => {
+                    try {
+                        localStorage.setItem(LS_KEY, JSON.stringify(v));
+                    } catch {}
+                },
+            };
+            let state = store.get();
+
+            const feedUrl = (p) => {
+                const g = `https://news.google.com/rss/search?q=${encodeURIComponent(p.q + " when:7d")}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
+                return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}`;
+            };
+            const strip = (h) => {
+                if (!h) return "";
+                const t = h
+                    .replace(/<[^>]+>/g, " ")
+                    .replace(/&nbsp;/g, " ")
+                    .replace(/&amp;/g, "&")
+                    .replace(/&quot;/g, '"')
+                    .replace(/&#39;/g, "'")
+                    .replace(/\s+/g, " ")
+                    .trim();
+                return t.length > 220 ? t.slice(0, 220) + "…" : t;
+            };
+            const srcOf = (t) => {
+                const m = t.match(/\s-\s([^-]+)$/);
+                return m ? m[1].trim() : "";
+            };
+            const fmtD = (iso) =>
+                iso
+                    ? new Date(iso).toLocaleDateString(undefined, {
+                          month: "short",
+                          day: "numeric",
+                      })
+                    : "";
+            const age = (ts) => {
+                if (!ts) return "never";
+                const h = Math.floor((Date.now() - ts) / 3600000);
+                if (h < 1) return "just now";
+                if (h < 24) return h + "h ago";
+                return Math.floor(h / 24) + "d ago";
+            };
+            const esc = (s) =>
+                (s || "").replace(
+                    /[&<>"']/g,
+                    (c) =>
+                        ({
+                            "&": "&amp;",
+                            "<": "&lt;",
+                            ">": "&gt;",
+                            '"': "&quot;",
+                            "'": "&#39;",
+                        })[c],
+                );
+
+            async function fetchParty(p) {
+                const card = document.querySelector(`[data-id="${p.id}"]`);
+                const btn = card.querySelector(".rbtn");
+                btn.innerHTML = '<span class="spin">↻</span>';
+                btn.disabled = true;
+                try {
+                    const r = await fetch(feedUrl(p));
+                    const j = await r.json();
+                    if (j.status !== "ok") throw new Error(j.message || "feed error");
+                    const limit = p.id === "general" ? MAX_GENERAL : MAX;
+                    let stories = (j.items || [])
+                        .slice()
+                        .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
+                        .slice(0, limit)
+                        .map((it) => ({
+                            title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
+                            url: it.link,
+                            source: srcOf(it.title),
+                            date: it.pubDate,
+                            summary: strip(it.description),
+                        }));
+                    if (p.id === "general") {
+                        stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
+                    }
+                    state[p.id] = { stories, fetchedAt: Date.now() };
+                    store.set(state);
+                    renderCard(p);
+                } catch (e) {
+                    card.querySelector(".body").innerHTML =
+                        `<div class="err">⚠ ${esc(e.message || "Failed")}</div>`;
+                    btn.innerHTML = "↻";
+                    btn.disabled = false;
+                }
+            }
+
+            function renderCard(p) {
+                const card = document.querySelector(`[data-id="${p.id}"]`);
+                const d = state[p.id];
+                const stale = !d || Date.now() - d.fetchedAt > STALE_MS;
+                card.querySelector(".age").className = "age" + (stale ? " stale" : "");
+                card.querySelector(".age").textContent =
+                    age(d?.fetchedAt) + (stale && d ? " · stale" : "");
+                const body = card.querySelector(".body");
+                const btn = card.querySelector(".rbtn");
+                btn.innerHTML = "↻";
+                btn.disabled = false;
+                if (!d) {
+                    body.innerHTML = '<div class="empty">Tap ↻ to load</div>';
+                    return;
+                }
+                body.innerHTML = d.stories
+                    .map(
+                        (s) => `
+    <div class="item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
+      <h3>${esc(s.title)} ↗</h3>
+      <div class="meta">${esc(s.source)}${s.source && s.date ? " · " : ""}${esc(fmtD(s.date))}</div>
+      ${s.summary ? `<div class="desc">${esc(s.summary)}</div>` : ""}
+    </a></div>`,
+                    )
+                    .join("");
+            }
+
+            function render() {
+                document.getElementById("grid").innerHTML = PARTIES.map(
+                    (p) => `
+    <div class="card ${p.id}" data-id="${p.id}">
+      <div class="head">
+        <div><div class="title">${p.flag} ${esc(p.name)}</div><div class="age">never</div></div>
+        <button class="rbtn">↻</button>
+      </div>
+      <div class="body"><div class="empty">Tap ↻ to load</div></div>
+    </div>`,
+                ).join("");
+                PARTIES.forEach((p) => {
+                    document
+                        .querySelector(`[data-id="${p.id}"] .rbtn`)
+                        .addEventListener("click", () => fetchParty(p));
+                    if (state[p.id]) renderCard(p);
+                });
+            }
+            document.getElementById("refreshAll").addEventListener("click", async (e) => {
+                e.target.disabled = true;
+                await Promise.all(PARTIES.map(fetchParty));
+                e.target.disabled = false;
+            });
+            render();
+        </script>
+    </body>
+</html>
