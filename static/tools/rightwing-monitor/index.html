@@ -160,16 +160,23 @@
                 border-color: #d6d3d1;
                 background: #fafaf9;
             }
+            .card.bluesky {
+                border-color: #bae0ff;
+                background: #f0f9ff;
+            }
             @media (min-width: 720px) {
-                .card.general {
+                .card.general,
+                .card.bluesky {
                     grid-column: 1 / -1;
                 }
-                .card.general .body {
+                .card.general .body,
+                .card.bluesky .body {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
                     gap: 0 20px;
                 }
-                .card.general .item:nth-child(-n + 3) {
+                .card.general .item:nth-child(-n + 3),
+                .card.bluesky .item:nth-child(-n + 3) {
                     border-top: 0;
                     padding-top: 0;
                     margin-top: 0;
@@ -271,20 +278,19 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.2</span
+                            >v0.3</span
                         >
                     </h1>
                     <div class="sub">
                         A research-oriented media monitoring tool focused on right-wing and
-                        far-right political actors across Europe and the U.S. (by Victor
-                        Shammas/Claude Opus 4.6)
+                        far-right political actors across Europe and the U.S.
                     </div>
                 </div>
                 <button class="primary" id="refreshAll">↻ Refresh all</button>
             </header>
 
             <div class="grid" id="grid"></div>
-            <div class="foot">Cached locally · stale after 3h · last 7 days · v0.2</div>
+            <div class="foot">Cached locally · stale after 3h · last 7 days · v0.3</div>
         </div>
 
         <script>
@@ -345,11 +351,20 @@
                     lang: "en",
                     country: "US",
                 },
+                {
+                    id: "bluesky",
+                    name: "TrumpNews (Bluesky)",
+                    flag: "🦋",
+                    type: "bluesky",
+                    handle: "victorshammas.com",
+                    feedKey: "trump-news",
+                },
             ];
             const LS_KEY = "farright_tracker_v1";
             const STALE_MS = 3 * 3600 * 1000;
             const MAX = 8;
             const MAX_GENERAL = 12;
+            const MAX_BLUESKY = 12;
 
             const store = {
                 get: () => {
@@ -414,29 +429,72 @@
                         })[c],
                 );
 
+            async function resolveDid(handle) {
+                state.__dids = state.__dids || {};
+                if (state.__dids[handle]) return state.__dids[handle];
+                const r = await fetch(
+                    `https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=${encodeURIComponent(handle)}`,
+                );
+                const j = await r.json();
+                if (!j.did) throw new Error("Could not resolve handle");
+                state.__dids[handle] = j.did;
+                store.set(state);
+                return j.did;
+            }
+
+            async function fetchBluesky(p) {
+                const did = await resolveDid(p.handle);
+                const feedUri = `at://${did}/app.bsky.feed.generator/${p.feedKey}`;
+                const url = `https://public.api.bsky.app/xrpc/app.bsky.feed.getFeed?feed=${encodeURIComponent(feedUri)}&limit=${MAX_BLUESKY}`;
+                const r = await fetch(url);
+                const j = await r.json();
+                if (!j.feed) throw new Error(j.message || "feed error");
+                return j.feed.slice(0, MAX_BLUESKY).map((entry) => {
+                    const post = entry.post;
+                    const rkey = post.uri.split("/").pop();
+                    const handle = post.author.handle;
+                    const text = (post.record?.text || "").trim();
+                    const title =
+                        text.length > 140 ? text.slice(0, 140) + "…" : text || "(no text)";
+                    const authorName = post.author.displayName || `@${handle}`;
+                    return {
+                        title,
+                        url: `https://bsky.app/profile/${handle}/post/${rkey}`,
+                        source: authorName,
+                        date: post.record?.createdAt,
+                        summary: "",
+                    };
+                });
+            }
+
             async function fetchParty(p) {
                 const card = document.querySelector(`[data-id="${p.id}"]`);
                 const btn = card.querySelector(".rbtn");
                 btn.innerHTML = '<span class="spin">↻</span>';
                 btn.disabled = true;
                 try {
-                    const r = await fetch(feedUrl(p));
-                    const j = await r.json();
-                    if (j.status !== "ok") throw new Error(j.message || "feed error");
-                    const limit = p.id === "general" ? MAX_GENERAL : MAX;
-                    let stories = (j.items || [])
-                        .slice()
-                        .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
-                        .slice(0, limit)
-                        .map((it) => ({
-                            title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
-                            url: it.link,
-                            source: srcOf(it.title),
-                            date: it.pubDate,
-                            summary: strip(it.description),
-                        }));
-                    if (p.id === "general") {
-                        stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
+                    let stories;
+                    if (p.type === "bluesky") {
+                        stories = await fetchBluesky(p);
+                    } else {
+                        const r = await fetch(feedUrl(p));
+                        const j = await r.json();
+                        if (j.status !== "ok") throw new Error(j.message || "feed error");
+                        const limit = p.id === "general" ? MAX_GENERAL : MAX;
+                        stories = (j.items || [])
+                            .slice()
+                            .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
+                            .slice(0, limit)
+                            .map((it) => ({
+                                title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
+                                url: it.link,
+                                source: srcOf(it.title),
+                                date: it.pubDate,
+                                summary: strip(it.description),
+                            }));
+                        if (p.id === "general") {
+                            stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
+                        }
                     }
                     state[p.id] = { stories, fetchedAt: Date.now() };
                     store.set(state);
