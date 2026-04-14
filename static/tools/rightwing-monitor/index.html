@@ -164,6 +164,9 @@
                 border-color: #bae0ff;
                 background: #f0f9ff;
             }
+            .card.bluesky .item .desc {
+                white-space: pre-wrap;
+            }
             @media (min-width: 720px) {
                 .card.general,
                 .card.bluesky {
@@ -454,15 +457,21 @@
                     const rkey = post.uri.split("/").pop();
                     const handle = post.author.handle;
                     const text = (post.record?.text || "").trim();
-                    const title =
-                        text.length > 140 ? text.slice(0, 140) + "…" : text || "(no text)";
-                    const authorName = post.author.displayName || `@${handle}`;
+                    // Prefer embedded external link (news article) as the headline + url.
+                    const embed = post.embed || post.record?.embed;
+                    const ext =
+                        embed?.external ||
+                        embed?.record?.embeds?.[0]?.external ||
+                        null;
+                    const postUrl = `https://bsky.app/profile/${handle}/post/${rkey}`;
+                    const title = (ext?.title || "").trim() || text.split("\n")[0].slice(0, 120) || "(no text)";
+                    const linkUrl = ext?.uri || postUrl;
                     return {
                         title,
-                        url: `https://bsky.app/profile/${handle}/post/${rkey}`,
-                        source: authorName,
+                        url: linkUrl,
+                        source: `@${handle}`,
                         date: post.record?.createdAt,
-                        summary: "",
+                        summary: text,
                     };
                 });
             }
