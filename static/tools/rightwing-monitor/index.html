@@ -160,6 +160,10 @@
                 border-color: #d6d3d1;
                 background: #fafaf9;
             }
+            .card.nodes {
+                border-color: #c7d2fe;
+                background: #eef2ff;
+            }
             .card.bluesky {
                 border-color: #bae0ff;
                 background: #f0f9ff;
@@ -169,16 +173,19 @@
             }
             @media (min-width: 720px) {
                 .card.general,
+                .card.nodes,
                 .card.bluesky {
                     grid-column: 1 / -1;
                 }
                 .card.general .body,
+                .card.nodes .body,
                 .card.bluesky .body {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
                     gap: 0 20px;
                 }
                 .card.general .item:nth-child(-n + 3),
+                .card.nodes .item:nth-child(-n + 3),
                 .card.bluesky .item:nth-child(-n + 3) {
                     border-top: 0;
                     padding-top: 0;
@@ -362,6 +369,20 @@
                     handle: "victorshammas.com",
                     feedKey: "trump-news",
                 },
+                {
+                    id: "nodes",
+                    name: "Transnational Network Infrastructure",
+                    flag: "🕸️",
+                    queries: [
+                        '"Heritage Foundation" OR "Project 2025" OR "American Enterprise Institute" OR "Claremont Institute" OR "Edmund Burke Foundation"',
+                        '"Danube Institute" OR "Mathias Corvinus Collegium" OR "MCC Budapest" OR "MCC Brussels"',
+                        '"National Conservatism" OR "NatCon" OR "Conservative Political Action Conference" OR "CPAC" OR "Turning Point USA" OR "Turning Point UK"',
+                        '"Institute of Economic Affairs" OR "Policy Exchange" OR "Centre for Policy Studies" OR "Alliance for Responsible Citizenship"',
+                    ],
+                    lang: "en",
+                    country: "US",
+                    window: "30d",
+                },
             ];
             const LS_KEY = "farright_tracker_v1";
             const STALE_MS = 3 * 3600 * 1000;
@@ -385,8 +406,10 @@
             };
             let state = store.get();
 
-            const feedUrl = (p) => {
-                const g = `https://news.google.com/rss/search?q=${encodeURIComponent(p.q + " when:7d")}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
+            const feedUrl = (p, query) => {
+                const win = p.window || "7d";
+                const q = query || p.q;
+                const g = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:" + win)}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
                 return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}`;
             };
             const strip = (h) => {
@@ -486,12 +509,33 @@
                     if (p.type === "bluesky") {
                         stories = await fetchBluesky(p);
                     } else {
-                        const r = await fetch(feedUrl(p));
-                        const j = await r.json();
-                        if (j.status !== "ok") throw new Error(j.message || "feed error");
-                        const limit = p.id === "general" ? MAX_GENERAL : MAX;
-                        stories = (j.items || [])
-                            .slice()
+                        const queries = p.queries || [p.q];
+                        const results = await Promise.all(
+                            queries.map(async (q) => {
+                                try {
+                                    const r = await fetch(feedUrl(p, q));
+                                    const j = await r.json();
+                                    if (j.status !== "ok") return [];
+                                    return j.items || [];
+                                } catch {
+                                    return [];
+                                }
+                            }),
+                        );
+                        const merged = [].concat(...results);
+                        const seen = new Set();
+                        const deduped = merged.filter((it) => {
+                            if (!it.link || seen.has(it.link)) return false;
+                            seen.add(it.link);
+                            return true;
+                        });
+                        const limit = p.id === "general" || p.id === "nodes" ? MAX_GENERAL : MAX;
+                        const cutoffMs = Date.now() - 30 * 24 * 3600 * 1000;
+                        stories = deduped
+                            .filter((it) => {
+                                const t = new Date(it.pubDate || 0).getTime();
+                                return t && t >= cutoffMs;
+                            })
                             .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
                             .slice(0, limit)
                             .map((it) => ({
