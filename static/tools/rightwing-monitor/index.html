@@ -469,9 +469,9 @@
                     return {
                         title,
                         url: linkUrl,
-                        source: `@${handle}`,
+                        source: post.author.displayName || `@${handle}`,
                         date: post.record?.createdAt,
-                        summary: text,
+                        summary: "",
                     };
                 });
             }
