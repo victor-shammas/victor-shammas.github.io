@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/6729d69acc145756c78f07d9/1750840621700/"
 summary: "Civil War(2024). Director/Writer: Alex Garland. Starring: Kirsten Dunst, Wagner Moura, Cailee Spaeny. A24 Films. (Rotten Tomatoes) (Imdb)"
+aliases:
+  - /blog/2024/11/5/the-madness-of-civil-war
 ---
 
 ```

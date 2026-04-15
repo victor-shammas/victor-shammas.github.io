@@ -5,6 +5,8 @@ draft: false
 dek: In our crisis-ridden world, could centralized economic planning, rather than the ideal of free markets, be the solution?
 image: /images/blog/a2d4af64-a9cd-4e00-93cd-544ca69d9eb2_427x650.jpg
 summary: ''
+aliases:
+  - /blog/2025/1/29/in-praise-of-planning
 ---
 
 **Leigh Phillips and Michael Rozworski (2019).** [**_The People's Republic of Walmart: How the World’s Biggest Corporations are Laying the Foundation for Socialism_**](https://www.versobooks.com/en-gb/products/636-the-people-s-republic-of-walmart)**. Verso Books.**

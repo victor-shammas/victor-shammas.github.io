@@ -5,6 +5,8 @@ draft: false
 dek: "Considering Ezra Klein and Derek Thompson's Abundance carefully makes one thing clear: Abundance liberalism won't defeat fascism."
 image: /images/blog/8259069d-594d-42e8-9606-eadd191c6464_596x900.webp
 summary: ''
+aliases:
+  - /blog/2026/3/6/the-poverty-of-abundance
 ---
 
 **Ezra Klein and Derek Thompson (2025).** [**_Abundance: How We Build a Better Future_**](https://www.simonandschuster.com/books/Abundance/Ezra-Klein/9781668023488)**. Avid Reader Press.**

@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/64db884d1e6b3d585dd9d6b1/1696933646923/"
 summary: "Asociodicyis astructuredattempt to justify the social order in spite of its manifold injustices. Its conceptual lineage can be traced back to the notion of theodicy, or the justification of God despite the existence of evil and suffering, a term that was appropriated and “sociologized” by Max..."
+aliases:
+  - /blog/2023/8/15/sociodicy-revisiting-a-key-sociological-concept
 ---
 
 [First published on [*Critical Legal Thinking*](https://criticallegalthinking.com/2023/09/06/sociodicy-notes-on-the-thought-of-pierre-bourdieu/).]

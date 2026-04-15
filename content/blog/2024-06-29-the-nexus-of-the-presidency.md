@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/667ff8d138a67823f53f4327/1738161361872/"
 summary: "Photo:CNN Presidential Debate, 27 June 2024 (WSJ.com/CNN)"
+aliases:
+  - /blog/2024/6/29/the-nexus-of-the-presidency
 ---
 
 ```

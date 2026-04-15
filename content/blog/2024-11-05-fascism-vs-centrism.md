@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/672a8c7549962c0039e75f86/1750840576858/"
 summary: "Today is Election Day in the United States, a defining moment not just for the U.S. but for the world as a whole."
+aliases:
+  - /blog/2024/11/5/fascism-vs-centrism
 ---
 
 ```

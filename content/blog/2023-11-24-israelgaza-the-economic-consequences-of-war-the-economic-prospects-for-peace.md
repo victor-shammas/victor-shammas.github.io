@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/656066b38f217e32e93e97d2/1700816851565/"
 summary: "Israel cannot continue its war on Gaza indefinitely—not so much owing to grueling moral quandaries or unbearable ethical qualms, but due to strictly fiscal and macroeconomic concerns, with all the political-economic consequences that an expensive war must have for both Israeli society and state in..."
+aliases:
+  - /blog/2023/11/24/israelgaza-the-economic-consequences-of-war-the-economic-prospects-for-peace
 ---
 
 Israel cannot continue its war on Gaza indefinitely—not so much owing to grueling moral quandaries or unbearable ethical qualms, but due to strictly fiscal and macroeconomic concerns, with all the political-economic consequences that an expensive war must have for both Israeli society and state in the coming year.

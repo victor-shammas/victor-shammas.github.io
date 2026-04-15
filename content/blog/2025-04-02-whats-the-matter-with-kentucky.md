@@ -5,6 +5,8 @@ draft: false
 dek: Are Trumpists found—or created? A ground-level report from eastern Kentucky by the renowned sociologist Arlie Hochschild only tells half the story of how Trump’s MAGA base came into being.
 image: /images/blog/b0d0a0b6-e6c0-4052-bc8f-6d9501fb91b4_1000x1500.jpg
 summary: ''
+aliases:
+  - /blog/2025/4/2/whats-the-matter-with-kentucky
 ---
 
 **Arlie Russell Hochschild (2024).** [**_Stolen Pride: Loss, Shame, and the Rise of the Right_**](https://thenewpress.com/books/stolen-pride)**. The New Press.**

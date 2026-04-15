@@ -5,6 +5,8 @@ draft: false
 dek: Trump's coalition is filled with contradictions that threaten its stability. The Left should highlight these weaknesses while advancing a bold vision of its own.
 image: /images/blog/bfab93d7-ba4a-4d3e-bb0e-c8f0e5233275_5821x3274.jpg
 summary: ''
+aliases:
+  - /blog/2025/2/8/highlight-the-contradictions
 ---
 
 There’s an old [adage](https://quoteinvestigator.com/2010/07/06/never-interfere/) attributed to Napoleon: “Never interrupt your enemy when he is making a mistake.”

@@ -5,6 +5,8 @@ draft: false
 dek: "'Fight' by Jonathan Allen and Amie Parnes offers a gripping account of the 2024 presidential election, placing blame on both Biden and Harris for Trump's victory."
 image: /images/blog/acfae1fd-7116-418f-8d7a-34ab66d1e37c_350x532.jpg
 summary: ''
+aliases:
+  - /blog/2026/3/6/review-not-enough-fight
 ---
 
 **Jonathan Allen and Amie Parnes (2025).** [**_Fight: Inside the Wildest Battle for the White House_**](https://www.harpercollins.com/products/fight-jonathan-allenamie-parnes?variant=43464319860770)**. William Morrow.**

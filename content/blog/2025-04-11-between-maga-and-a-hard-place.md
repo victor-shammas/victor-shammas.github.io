@@ -5,6 +5,8 @@ draft: false
 dek: Two books — one on Steve Bannon and the global far right, the other on life at a Chinese university — reveal a world increasingly riven by ideological contestation. Fukuyama's "end of history" is most definitely over.
 image: /images/blog/ebd6c3c7-2e73-4c5d-aa33-f64f4e1f0dc0_682x522.jpg
 summary: ''
+aliases:
+  - /blog/2025/4/11/between-maga-and-a-hard-place
 ---
 
 **Benjamin R. Teitelbaum (2020).** [**_War for Eternity: The Return of Traditionalism and the Rise of the Populist Right_**](https://www.penguin.co.uk/books/315812/war-for-eternity-by-teitelbaum-benjamin-r/9780141992037)**. Penguin Books.**

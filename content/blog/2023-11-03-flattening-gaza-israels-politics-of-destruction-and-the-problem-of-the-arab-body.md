@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/6544caf6966f3e0e4f7bf5af/1699627646301/"
 summary: "Since Hamas’s horrific October 7 attacks on Israel, Israel has responded by unleashing tremendous amounts of violence on the Gaza Strip. This violence, Israel claims, has been targeted at Hamas infrastructure, aimed at preventing a repeat of the October 7 attacks. But Israel’s warfare has come at a..."
+aliases:
+  - /blog/2023/11/3/flattening-gaza-israels-politics-of-destruction-and-the-problem-of-the-arab-body
 ---
 
 Since Hamas’s horrific October 7 attacks on Israel, Israel has responded by unleashing tremendous amounts of violence on the Gaza Strip. This violence, Israel claims, has been targeted at Hamas infrastructure, aimed at preventing a repeat of the October 7 attacks. But Israel’s warfare has come at a terrible, and untenable, human cost, with UN Secretary General António Guterres repeatedly calling for a ceasefire and determining that Israel was responsible for “clear violations of international humanitarian law” in Gaza.[1] After nearly a month of war, some 9,000 people have been reported killed in Gaza by Israeli attacks, largely involving a combination of airstrikes and mortar attacks, including white phosphorus artillery shells, according to Amnesty International, “which may be considered indiscriminate attacks and therefore unlawful.”[2]

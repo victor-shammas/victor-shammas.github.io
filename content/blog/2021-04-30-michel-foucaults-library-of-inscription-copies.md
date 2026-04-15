@@ -5,6 +5,8 @@ draft: false
 dek: What books were on Foucault’s bookshelves?
 image: /images/blog/foucault-bookshelves.jpg
 summary: ''
+aliases:
+  - /blog/2021/4/30/michel-foucaults-library-of-inscription-copies
 ---
 
 What books were on Foucault’s bookshelves? Thanks to the Beinecke Collection at Yale University, we can now access 1,440 records of books “[from the library of Michel Foucault](http://beinecke1.library.yale.edu/info/bookcataloging/foucault.htm)” Importantly, these are not all the books Foucault ever owned—they’re a subset of his library, consisting of books inscribed by their respective authors and gifted to Foucault. The Yale librarians have labeled it the “Michel Foucault Library of Inscription Copies.” It necessarily, then, skews heavily toward thinkers and writers contemporaneous with Foucault, who had some affinity for Foucault, and who for a variety of reasons wanted him to own a signed copy of their latest work.

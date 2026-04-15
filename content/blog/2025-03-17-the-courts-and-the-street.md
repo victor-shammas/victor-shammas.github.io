@@ -5,6 +5,8 @@ draft: false
 dek: Judges can serve as critical bulwarks against an authoritarian turn. But in the end, only grassroots organizing and a mass popular movement can truly withstand authoritarianism.
 image: /images/blog/72b76493-4078-4e3e-8432-875650e5e3b0_1179x653-1.jpg
 summary: ''
+aliases:
+  - /blog/2025/3/17/the-courts-and-the-street
 ---
 
 In mid-March, Trump surprised his political opponents by rejecting a series of last-minute presidential pardons signed by his predecessor Joe Biden, including those, in Trump’s menacing language, offered to “the Unselect Committee of Political Thugs, and many others.”

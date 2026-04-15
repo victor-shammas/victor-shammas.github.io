@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/654fb0037c9c6f48ac702008/1699721919868/"
 summary: "Jean-Pierre Dupuy (2023),The War That Must Not Occur(translated by Malcolm Debevoise). Stanford University Press."
+aliases:
+  - /blog/2023/11/11/review-jean-pierre-dupuy-2023-the-war-that-must-not-occur
 ---
 
 **Jean-Pierre Dupuy (2023),**[***The War That Must Not Occur***](https://www.sup.org/books/title/?id=36295&local_ref=new) **(translated by Malcolm Debevoise). Stanford University Press.**

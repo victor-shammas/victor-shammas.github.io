@@ -5,6 +5,8 @@ draft: false
 dek: A Q&A on outer space sociology. (By Victor L. Shammas and Tomas B. Holen)
 image: /images/blog/NASA-Apollo8-Dec24-Earthrise.jpg
 summary: ''
+aliases:
+  - /blog/2019/12/17/capitalism-and-outer-space
 ---
 
 **How did you decide to write about this topic?**

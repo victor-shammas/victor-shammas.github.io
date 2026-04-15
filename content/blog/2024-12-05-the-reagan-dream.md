@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/679a3b6456716e5a7cdf75d5/1750840532467/"
 summary: "Reagan(2024). Directed by: Sean McNamara. Starring: Dennis Quaid, Penelope Ann Miller, Jon Voight. (IMDb)"
+aliases:
+  - /blog/2025/1/29/the-reagan-dream
 ---
 
 ```

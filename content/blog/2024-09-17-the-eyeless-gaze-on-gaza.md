@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/66ec96cd07d8173e3145c141/1738161245023/"
 summary: "We live in ahyper-factualage, where we know more, with greater speed, about more things than ever before in history."
+aliases:
+  - /blog/2024/9/19/the-eyeless-gaze-on-gaza
 ---
 
 ```

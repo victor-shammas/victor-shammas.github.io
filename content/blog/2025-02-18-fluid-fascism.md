@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/1750840301391-Y48E9PAUFCI9NVY8JS4L/trump+-+bauman.jpg"
 summary: "Trump’s chosen ideology is what we might termfluid fascism, a remarkably flexible and adaptive ideological approach that cuts across the political spectrum and familiar divides, allowing the two-term president to engage inpolicy liquefaction: oozing from right to left and back again, fluid fascism..."
+aliases:
+  - /blog/2025/2/18/fluid-fascism
 ---
 
 ```

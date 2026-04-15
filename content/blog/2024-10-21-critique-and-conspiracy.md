@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/6729d667e679e96888a53d3d/1738161220305/"
 summary: "Has there ever been a more magnificently paranoid vision of intellectual activity than that offered by the Italian leftist thinker Pier Paolo Pasolini in one of his final texts, “Is this a Military Coup D’Etat? I Know…”?"
+aliases:
+  - /blog/2024/11/5/critique-and-conspiracy
 ---
 
 ```

@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/6523e20ef68c1346e1b2e2db/1699346434304/"
 summary: "Zachary Jonathan Jacobson (2023).On Nixon's Madness: An Emotional History. Johns Hopkins University Press.https://www.press.jhu.edu/books/title/12723/nixons-madness."
+aliases:
+  - /blog/2023/10/9/zachary-jonathan-jacobson-2023-on-nixons-madness-an-emotional-history
 ---
 
 **Zachary Jonathan Jacobson (2023). *On Nixon's Madness: An Emotional History*. Johns Hopkins University Press.** [**https://www.press.jhu.edu/books/title/12723/nixons-madness**](https://www.press.jhu.edu/books/title/12723/nixons-madness)**.**

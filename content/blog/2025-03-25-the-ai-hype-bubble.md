@@ -5,6 +5,8 @@ draft: false
 dek: And its cognitive, social, and financial risks.
 image: /images/blog/91309ca8-abb3-4fde-b7f4-a28272e1b470_2371x1581.jpg
 summary: ''
+aliases:
+  - /blog/2025/3/25/the-ai-hype-bubble
 ---
 
 The promise of Artificial (General) Intelligence is the greatest hype bubble this side of the new millennium.

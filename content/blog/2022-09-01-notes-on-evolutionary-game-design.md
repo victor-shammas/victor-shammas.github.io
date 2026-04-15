@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/63108769bd0daa7f17737cee/1662027840437/"
 summary: "The paradox of computer games is that the best of them offer a kind of limitless freedom to the player, but one which is, of course, tightly regulated by way of a predesigned architecture: all elements of subjective freedom have in fact been—in almost authoritarian, heavy-handed..."
+aliases:
+  - /blog/2022/9/1/notes-on-evolutionary-game-design
 ---
 
 The paradox of computer games is that the best of them offer a kind of limitless freedom to the player, but one which is, of course, tightly regulated by way of a predesigned architecture: all elements of subjective freedom have in fact been—in almost authoritarian, heavy-handed fashion—predetermined, hard-coded by a designer. It is a “very dependent, paradoxical kind of freedom” one enjoys in such games, as one commentator, Gabriel Winslow-Yost, has pointed out, where each “‘choice’ has to be coded in advance—each option something the designer wants you to do, to display this aspect of their creation” (August 18, 2022, NYRB, p. 44).

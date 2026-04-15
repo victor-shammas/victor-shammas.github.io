@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/6549f7d5e517351efc144e2c/1699346419096/"
 summary: "Joseph Vogl (2022),Capital and Ressentiment: A Brief Theory of the Present.Cambridge: Polity Press."
+aliases:
+  - /blog/2023/11/7/review-joseph-vogl-2022-capital-and-ressentiment-a-brief-theory-of-the-present
 ---
 
 **Joseph Vogl (2022),** [***Capital and Ressentiment: A Brief Theory of the Present***](https://www.politybooks.com/bookdetail?book_slug=capital-and-ressentiment-a-short-theory-of-the-present--9781509551811)***.* Cambridge: Polity Press.**

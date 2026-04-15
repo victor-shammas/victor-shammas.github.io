@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/6580220e3c730844ea279b90/1708506827985/"
 summary: "Dwight Garner (2023),The Upstairs Delicatessen: On Eating, Reading, Reading About Eating, and Eating While Reading. New York: Farrar, Strauss and Giroux."
+aliases:
+  - /blog/2023/12/18/book-review-the-gourmand-as-class-warrior
 ---
 
 **Dwight Garner (2023),** [***The Upstairs Delicatessen: On Eating, Reading, Reading About Eating, and Eating While Reading***](https://us.macmillan.com/books/9780374603427/theupstairsdelicatessen)**. New York: Farrar, Strauss and Giroux.**

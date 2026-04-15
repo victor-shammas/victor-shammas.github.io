@@ -5,6 +5,8 @@ draft: false
 dek: A growing club of far-right, hardline nationalist, and fascist political leaders is working hard to transform the world. They must be opposed.
 image: /images/blog/bd2a6301-cef5-4115-9bb0-be4b987d7df7_1920x1280.jpg
 summary: ''
+aliases:
+  - /blog/2025/2/05/the-new-fascist-international
 ---
 
 Is fascism today essentially internationalist—or is it made up of a series of discrete, nationally bounded projects?

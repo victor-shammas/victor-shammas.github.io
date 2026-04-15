@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/663f38c770f9226ee2a86793/1727219748675/"
 summary: "It is increasingly recognized that large language models (LLMs) are prone to erroneous outputs, a phenomenon known ashallucinations. As AI spreads ever wider into the technological substrate of late modernity—summarizing news stories, synthesizing search results, condensing research papers,..."
+aliases:
+  - /blog/2024/5/11/artificial-unintelligence-au-and-the-problem-of-perpetual-patchability
 ---
 
 It is increasingly recognized that large language models (LLMs) are prone to erroneous outputs, a phenomenon known as *hallucinations*. As AI spreads ever wider into the technological substrate of late modernity—summarizing news stories, synthesizing search results, condensing research papers, speeding up office worker productivity, and so on—the hallucinatory effectsof AI are only likely to grow more consequential.

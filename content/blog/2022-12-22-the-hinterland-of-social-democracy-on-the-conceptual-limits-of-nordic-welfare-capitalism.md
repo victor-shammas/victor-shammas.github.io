@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/63a398787f4f560e98865f6c/1672869386662/"
 summary: "ABSTRACT:Every instantiation of decommodifying welfare capitalism relies on ahinterland, an exterior space or world for which commodification remains the rule whose function is to service the interiority of social-democratic welfarism. Taking Norway as its case study, this article unfolds the..."
+aliases:
+  - /blog/2022/12/22/the-hinterland-of-social-democracy-on-the-conceptual-limits-of-nordic-welfare-capitalism
 ---
 
 **ABSTRACT:** Every instantiation of decommodifying welfare capitalism relies on a *hinterland*, an exterior space or world for which commodification remains the rule whose function is to service the interiority of social-democratic welfarism. Taking Norway as its case study, this article unfolds the notion of a protective “cupola,” following Žižek, and a “centaur state,” following Wacquant, as the preeminent political-economic innovations of late-modern social democracy. While extracting resources, cheap labor, goods, and financial profits from the global hinterland, the welfare-capitalist state privileges its national citizenry, and, despite significant neoliberal transformation, continues to protect the populace from the discomfiting effects and vagaries of the market, albeit at the expense of the world beyond its bounds. Social democracy, then, hinges on the preservation of *difference*, and fails to offer a truly global, universal solution to the commodifying effects of market capitalism.

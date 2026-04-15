@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/66ec96488ef67125e5bc4abc/1738161265983/"
 summary: "“We’ve had enough!” — “There’s no more room!” — “They’reto blame for the housing shortage!” — “They’ve taken all our jobs.” — “Our country isfull.”"
+aliases:
+  - /blog/2024/9/19/ethnonationalist-bloat-or-where-does-a-countrys-feeling-of-fullness-come-from
 ---
 
 ```

@@ -5,6 +5,8 @@ draft: false
 dek: Early coverage of Kamala Harris’s campaign memoir, 107 Days, has been unfair. Yet Harris still won't adequately deal with the Biden administration's complicity in the Gaza genocide, or her own role.
 image: /images/blog/85f7114b-f2fd-4605-93c1-35c9381ad212_1400x1827.webp
 summary: ''
+aliases:
+  - /blog/2026/3/17/harriss-107-days-and-the-missing-reckoning-gaza
 ---
 
 Much of the early media coverage of Kamala Harris’s campaign-trail memoir, [_107 Days_](https://107daysbook.com/), was essentially unfair. Political commentators and media outlets portrayed her book as divisive, splitting the Democratic camp at a time when unity against Trump 2.0 was the top priority. _USA Today_ [reported](https://eu.usatoday.com/story/news/politics/2025/09/19/kamala-harris-new-book-107-days-takeaways/86224505007/) that _107 Days_ was filled with “score-settling.” _Politico_ [claimed](https://www.politico.com/news/2025/09/19/kamala-harris-new-book-befuddles-dems-00574304) Harris’s book constituted an “ambush of fellow Democrats” because—shockingly!—Harris “used her new memoir to speak her mind”; four days later, the outlet [wrote](https://www.politico.com/news/2025/09/23/kamala-harris-democrats-book-tour-00576277), Harris was desperately trying to “unburn the bridges.” _The Hill_ [adopted](https://thehill.com/homenews/campaign/5516157-harris-memoir-democrats-divided/) a similar line, but outsourced the task of giving voice to it to Democratic strategists said to be “frustrated” with Harris over a book intent on “picking fights and causing divisions at the worst possible time for the party.”

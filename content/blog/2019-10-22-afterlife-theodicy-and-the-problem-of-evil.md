@@ -5,6 +5,8 @@ draft: false
 dek: ''
 image: /images/blog/Screenshot+2019-10-22+at+14.35.06.jpg
 summary: ''
+aliases:
+  - /blog/2019/10/22/afterlife-theodicy-and-the-problem-of-evil
 ---
 
 One of the most attractive theological solutions to the problem of evil is what has been termed _afterlife theodicy_,revolving around the extreme disjunction we may presume to exist between the _scale and scope of suffering_ on Earth and the _scale and scope of joy in Heaven_. By ‘scale’ I mean the quantity of suffering and joy, respectively, and by ‘scope’ I mean the quality and duration of suffering and joy. The problem of evil withers away once we frame earthly evils, plentiful as they may appear, within their proper context of a potentially limitless, eternal bliss in Heaven. Thus, I do not mind the momentary pain of the dentist’s drill when I know that it will rid me of the toothache that has been plaguing me for weeks. More to it, I do not mind very much the toil of an eight-hour working day on Friday morning when I know that a two-day weekend is right around the corner.

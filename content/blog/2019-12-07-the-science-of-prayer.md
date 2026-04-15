@@ -5,6 +5,8 @@ draft: false
 dek: ''
 image: /images/blog/low-angle-photography-of-dome-building-interior-2178698.jpg
 summary: ''
+aliases:
+  - /blog/2019/12/3/the-science-of-prayer
 ---
 
 Do intercessory prayers work? [Medical science has taken an interest in the power of prayer](https://www.ncbi.nlm.nih.gov/pubmed/16569567). One approach is to assign patients randomly to a control group that is to remain in an “unprayed” state; another randomly assigned group of patients then receives intercessory prayers over a set period of time by persons who sign on to pray for them. Unsurprisingly, most studies using this randomized controlled trial (RCT) method show no healing effects of prayer—I say “unsurprisingly” because this result cannot come as news to those with a modicum of knowledge of Christian thought and theology.

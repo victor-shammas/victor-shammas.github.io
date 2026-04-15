@@ -5,6 +5,8 @@ draft: false
 dek: Trump wants to wrest control of Greenland from Denmark. But replacing a former colonizer with a global hegemon is only a recipe for deeper subjugation, not authentic freedom.
 image: /images/blog/dc3f3b63-b98c-4677-b245-f05f2a03bbed_1015x1353.jpg
 summary: ''
+aliases:
+  - /blog/2025/2/6/a-streetcar-named-greenland
 ---
 
 > “BLANCHE: What you are talking about is brutal desire—just—Desire!—the name of that rattle-trap street-car that bangs through the Quarter, up one old narrow street and down another...”

@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/654a129b4533004e1148f2ea/1699353325546/"
 summary: "Shadi Bartsch (2023),Plato Goes to China: The Greek Classics and Chinese Nationalism. Princeton University Press."
+aliases:
+  - /blog/2023/11/7/review-shadi-bartsch-2023-plato-goes-to-china-the-greek-classics-and-chinese-nationalism
 ---
 
 **Shadi Bartsch (2023),** [***Plato Goes to China: The Greek Classics and Chinese Nationalism***](https://press.princeton.edu/books/hardcover/9780691229591/plato-goes-to-china)**. Princeton University Press.**

@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/65d5bdf7e4ef901c9c01d312/1708506974849/"
 summary: "I have just completed writing a chapter destined for an edited volume published by an academic press. Because the topic is a specialist one, unlikely to attract a general readership, I won’t delve into the details of the argument (though interested readers can consultthe draft here)[1], which is..."
+aliases:
+  - /blog/2024/2/21/post-politics-and-technocracy-taking-people-power-seriously-again
 ---
 
 I have just completed writing a chapter destined for an edited volume published by an academic press. Because the topic is a specialist one, unlikely to attract a general readership, I won’t delve into the details of the argument (though interested readers can consult [the draft here](https://www.dropbox.com/scl/fi/z1w74nkfmtxccyuxgtjk2/Shammas-Punishment-and-Technocracy-Penal-Populism-Elitism-and-the-Buffered-Ideal.pdf?rlkey=25mr5p882t9fsto3yorfin2ru&dl=0))[1], which is about how societies deal with crime and punishment, and how they structure the policymaking processes around crime control and imprisonmnet. That might not sound very abstruse, but, alas, it is (for substantially defensible reasons, I  claim).

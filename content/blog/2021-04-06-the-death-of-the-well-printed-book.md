@@ -5,6 +5,8 @@ draft: false
 dek: ''
 image: /images/blog/henry-be-TCsCykbwSJw-unsplash.jpg
 summary: ''
+aliases:
+  - /blog/2021/4/6/the-death-of-the-well-printed-book
 ---
 
 Every book I seem to pick up these days is poorly printed. By this I mean that the ink is decidedly weak. As a result, the book is difficult to read with ease and pleasure. The lettering is almost never a strong, striking black, but invariably a sort of washed-out grey, the weak ink already fading into mere nothingness, straining the eyes and heightening one’s sense of the ephemerality of all Being, the futility of all knowledge...This is surely, on the whole, a disservice to the republic of readers. My Penguin edition of John Barton’s _A History of the Bible_ (2019), besides betraying the terrible glue binding so characteristic of latter-day Penguins—which will probably dissolve within a decade—is not so much printed on the page as it is facsimiled: there is a kind of indistinct, digital-type, semi-pixellated placement of the whole page in blurry grayscale, rather than the stamping-out of individual letters in sharp, dark, inky typeface. Similarly, my hardcover copy of a P. G. Wodehouse novel from the Everyman’s Library series is washed-out and obscure. Black letters are never black any longer, it would seem, but so many shades of gray. Even though the binding is rugged and cover sturdy, the actual printed page is disappointingly weak. Everyman’s and Penguin produced quite decent books in the previous century, but no longer, apparently.

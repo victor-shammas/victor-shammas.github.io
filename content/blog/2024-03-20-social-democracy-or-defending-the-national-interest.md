@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/65faae47d0d8d90d2ec12c1b/1727219726281/"
 summary: "Social democracy may be the solution to the problems of some fortunate subset of individual nations, but it is not a solution for the world as such—that is, tocollective global problemsand to theproblems of poorer nations around the globetoday. Instead, social democracy—so Iargue in a forthcoming..."
+aliases:
+  - /blog/2024/3/20/social-democracy-or-defending-the-national-interest
 ---
 
 Social democracy may be the solution to the problems of some fortunate subset of individual nations, but it is not a solution for the world as such—that is, to *collective global problems* and to the *problems of poorer nations around the globe* *today*. Instead, social democracy—so I [argue in a forthcoming publication](https://www.victorshammas.com/s/Shammas-2024-The-Global-Hinterland-of-Social-Democracy.pdf)—fundamentally hinges on the *preservation of difference*, and in many cases the *active production and acceleration of differences between nations*, for internal, nationally-bounded ends.[1] Social democracy is, finally, about furthering the well-being of a nation’s own citizens—and by extension, a given state’s own national interests. If everyone were to become a high-functioning Nordic welfare-capitalist society, for instance, the difference-reliant components inherent to the social-democratic model of political economy would in short order begin to break down.

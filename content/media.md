@@ -3,6 +3,8 @@ title: "Media"
 subtitle: "Mentions, interviews, and appearances."
 layout: "single"
 type: media
+aliases:
+  - /media
 ---
 
 <h2 class="section-heading">Media Mentions, Interviews, and Appearances</h2>

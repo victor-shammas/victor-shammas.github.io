@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/1750840069850-RA6MMDF8FZO1CG6RRIPF/639f6051-de11-44ec-aa1a-42eada24b87c_6140x4093.jpg"
 summary: "We’re in the fourth week of the second Trump administration, and as many commentators have noted there is simply so much going on in U.S. politics—and therefore global politics: What happens on 1600 Pennsylvania Avenue in large measure shapes the world."
+aliases:
+  - /blog/2025/2/11/the-blitzkrieg-president
 ---
 
 ```

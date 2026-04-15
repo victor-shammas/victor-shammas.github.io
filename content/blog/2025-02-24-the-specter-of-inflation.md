@@ -5,6 +5,8 @@ draft: false
 dek: The far right has weaponized the idea of inflation. We should critically examine how nationalist movements activate and manipulate ideas about economic hardship for political gain.
 image: /images/blog/4de036d9-1181-4292-81f4-24abd33b17ab_2560x1707.jpg
 summary: ''
+aliases:
+  - /blog/2025/2/24/the-specter-of-inflation
 ---
 
 One frequently invoked explanation among progressives for the resurgence of far-right politics in recent times is inflation: Prices rise, food and energy costs go up, mortgages become more expensive, wages don’t keep up, and, so the story goes, as a consequence, working- and middle-class voters begin casting about for a scapegoat to blame for their economic woes. In short, economic pain pushes ordinary people into the arms of the radical right.

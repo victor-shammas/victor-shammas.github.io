@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/64aed3f3e8fced02faa317d6/1689179135925/"
 summary: "Lionel Barber (2020).The Powerful and the Damned. London: WH Allen."
+aliases:
+  - /blog/2023/7/12/covering-the-field-of-power-lionel-barbers-financial-times-diariesnbsp
 ---
 
 Lionel Barber (2020). *The Powerful and the Damned*. London: WH Allen.

@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/61e20f7b02b64d764326b52f/1772824954781/"
 summary: "F For Fake(1973). Director: Orson Welles. Runtime: 1h 35m. [Youtube]"
+aliases:
+  - /blog/2022/1/15/orson-welles-postmodernist
 ---
 
 ***F For Fake* (1973). Director: Orson Welles. Runtime: 1h 35m. [**[**Youtube**](https://www.youtube.com/watch?v=yB6GEfjNm7U&themeRefresh=1)**]**

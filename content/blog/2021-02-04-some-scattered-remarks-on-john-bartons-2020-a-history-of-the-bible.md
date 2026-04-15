@@ -5,6 +5,8 @@ draft: false
 dek: A review of John Barton's (2020) A History of the Bible (Penguin).
 image: /images/blog/9780141978505-jacket-large.webp
 summary: ''
+aliases:
+  - /blog/2021/4/10/some-scattered-remarks-on-john-bartons-2020-a-history-of-the-bible
 ---
 
 **John Barton (2020). _A History of the Bible_. London: Penguin.**
