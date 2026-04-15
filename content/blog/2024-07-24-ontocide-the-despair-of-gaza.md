@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/66b0da5e4eb9f71bbac0900c/1738161311283/"
 summary: "Gaza is being decimated. There are reports ofpolio virusfound in Gaza’s sewage by the World Health Organization (WHO).Mountains of garbageare piling up as basic services have collapsed. The UN reports thatclearing 40 million tons of rubblemay take 15 years, with housing stock not rebuilt until 2040..."
+aliases:
+  - /blog/2024/8/5/bg8btf8j5yn1yusvhyuuyu368ngpaw
 ---
 
 ```

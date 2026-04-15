@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/67238c20eb8e3e11be529c31/1730383487926/"
 summary: "In these troubling times, we should return to Stuart Hall, a remarkable political thinker and cultural analyst."
+aliases:
+  - /blog/2024/10/31/u7sl8q42uqxd5oy996esrmq7cw7ah8
 ---
 
 **In these troubling times, we should return to Stuart Hall, a remarkable political thinker and cultural analyst.**
