@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/672a8bbfb708140ef31fe0dc/1750840605142/"
 summary: "The Apprentice(2024). Director: Ali Abbasi. Writer: Gabriel Sherman. Starring: Sebastian Stan, Jeremy Strong, Maria Bakalova. (IMdb)"
+aliases:
+  - /blog/2024/11/5/trump-as-apprentice-or-master
 ---
 
 ```

@@ -5,6 +5,8 @@ draft: false
 dek: Taking a closer look at two books — Yanis Varoufakis's 'Technofeudalism' and Eva Dou's 'House of Huawei' — reveals the deep entanglement of technology and politics.
 image: /images/blog/662de90d-5043-4512-b5b6-ca81ad6205e9_524x400.jpg
 summary: ''
+aliases:
+  - /blog/2025/3/7/technofeudalism-telecoms-and-the-infrastructure-of-control
 ---
 
 **Yanis Varoufakis (2023),** [**_Technofeudalism: What Killed Capitalism_**](https://www.penguin.co.uk/books/451795/technofeudalism-by-varoufakis-yanis/9781529926095)**. Vintage.**

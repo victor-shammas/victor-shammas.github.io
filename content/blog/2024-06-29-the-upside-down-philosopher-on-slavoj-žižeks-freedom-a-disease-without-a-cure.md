@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/667fd1920155861778652814/1727219766031/"
 summary: "Slavoj Žižek.Freedom: A Disease Without a Cure. London: Bloomsbury, 2023. 320 s."
+aliases:
+  - /blog/2024/6/29/the-upside-down-philosopher-on-slavoj-ieks-freedom-a-disease-without-a-cure-2023
 ---
 
 [**Slavoj Žižek. *Freedom: A Disease Without a Cure*. London: Bloomsbury, 2023. 320 s.**](https://www.bloomsbury.com/us/freedom-9781350357129/)

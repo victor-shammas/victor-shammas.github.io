@@ -1,5 +1,7 @@
 ---
 title: "About"
+aliases:
+  - /about
 ---
 <img class="about-photo" src="/images/shammas-keynote-2023.jpg" alt="Victor Shammas delivering keynote address">
 

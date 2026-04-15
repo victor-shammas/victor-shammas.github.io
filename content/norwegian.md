@@ -3,6 +3,8 @@ title: "Norwegian"
 subtitle: "Essays, artikler og anmeldelser på norsk. // Essays, articles, and reviews in Norwegian."
 layout: "single"
 url: "/norwegian/"
+aliases:
+  - /norwegian-writings
 ---
 
 <h2 class="section-heading">Essays og artikler</h2>
