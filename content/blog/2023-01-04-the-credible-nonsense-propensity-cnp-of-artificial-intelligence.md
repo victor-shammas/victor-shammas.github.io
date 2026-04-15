@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/63b58e8cbc127a4990f0ae56/1672869342465/"
 summary: "OpenAI’s GPT-3.5 is one of theconsummate promulgators of apparently meaningful nonsense on the Web today. Roughly speaking, it generates output on the basis of a predictive model, where each next word is probabilistically produced on the basis of preceding words. It joins together words that seem..."
+aliases:
+  - /blog/2023/1/4/the-nonsense-propensity-np-of-artificial-intelligence
 ---
 
 OpenAI’s GPT-3.5 is one of theconsummate promulgators of apparently meaningful nonsense on the Web today. Roughly speaking, it generates output on the basis of a predictive model, where each next word is probabilistically produced on the basis of preceding words. It joins together words that seem like they would make sense together. The problem with this approach is that when it comes to *concrete things in reality*, such as titles of works, the AI sometimes produces lists of items that are merely plausible-soundingrather than really-existing. For the serious student or scholar, this means entering dangerous territory: Any number of creative works *could* exist, after all, but what matters more oftenis *whether they in fact exist.*

@@ -5,6 +5,8 @@ draft: false
 dek: ""
 image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/61aa365cd91c8a4a5747f07e/1638620199654/"
 summary: "From what I’ve been able to gather, Robert Mark Hargrave—his full name, so foreign to me—spent decades teaching philosophy at Oxford’s esteemed Balliol College, a cloistered environment of the British power elite that produced at once some of that country’s worst minds (Boris Johnson went there in..."
+aliases:
+  - /blog/2021/12/3/memories-of-bob-hargrave-philosopher-1949-2012
 ---
 
 From what I’ve been able to gather, Robert Mark Hargrave—his full name, so foreign to me—spent decades teaching philosophy at Oxford’s esteemed Balliol College, a cloistered environment of the British power elite that produced at once some of that country’s worst minds (Boris Johnson went there in the 1980s) and its finest (Adam Smith, Aldous Huxley; John Wycliffe was Master of Balliol way back in the 1360s; more recently, J. L. Austin, Harold Macmillan, Roy Bhaskar, Richard Dawkins...).
