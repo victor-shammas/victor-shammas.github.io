@@ -459,9 +459,9 @@
                     : "";
                 return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}${keyParam}`;
             };
-            const strip = (h) => {
+            const strip = (h, source) => {
                 if (!h) return "";
-                const t = h
+                let t = h
                     .replace(/<[^>]+>/g, " ")
                     .replace(/&nbsp;/g, " ")
                     .replace(/&amp;/g, "&")
@@ -469,6 +469,12 @@
                     .replace(/&#39;/g, "'")
                     .replace(/\s+/g, " ")
                     .trim();
+                // Google News RSS appends the outlet name to the description;
+                // trim it off so it doesn't show up as the last 2–3 words.
+                if (source) {
+                    const esc = source.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+                    t = t.replace(new RegExp("[\\s\\-–—]*" + esc + "\\s*$", "i"), "").trim();
+                }
                 return t.length > 220 ? t.slice(0, 220) + "…" : t;
             };
             const srcOf = (t) => {
@@ -608,13 +614,16 @@
                                 (a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0),
                             )
                             .slice(0, limit)
-                            .map((it) => ({
-                                title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
-                                url: it.link,
-                                source: srcOf(it.title),
-                                date: it.pubDate,
-                                summary: strip(it.description),
-                            }));
+                            .map((it) => {
+                                const source = srcOf(it.title);
+                                return {
+                                    title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
+                                    url: it.link,
+                                    source,
+                                    date: it.pubDate,
+                                    summary: strip(it.description, source),
+                                };
+                            });
                         if (p.id === "general") {
                             stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
                         }
