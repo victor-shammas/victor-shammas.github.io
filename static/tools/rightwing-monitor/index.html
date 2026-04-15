@@ -6,19 +6,19 @@
         <title>Transatlantic Right-Wing Media Monitor</title>
         <meta
             name="description"
-            content="A research monitoring tool tracking right-wing and far-right political actors across Europe and the United States. Presented for analytical observation, not endorsement."
+            content="A media monitoring tool tracking right-wing and far-right political actors across Europe and the United States for research purposes."
         />
         <meta property="og:title" content="Transatlantic Right-Wing Media Monitor" />
         <meta
             property="og:description"
-            content="Research instrument. Analytical observation, not endorsement."
+            content="Research instrument. Analytical observation of transatlantic right-wing and far-right actors."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Transatlantic Right-Wing Media Monitor" />
         <meta
             name="twitter:description"
-            content="Research instrument. Analytical observation, not endorsement."
+            content="Research instrument. Analytical observation."
         />
         <style>
             :root {
@@ -101,6 +101,32 @@
                 border-color: #1c1917;
             }
             button:disabled {
+                opacity: 0.5;
+                cursor: wait;
+            }
+            .head-btns {
+                display: flex;
+                gap: 6px;
+                flex-shrink: 0;
+            }
+            .tbtn {
+                font: inherit;
+                cursor: pointer;
+                border-radius: 8px;
+                border: 1px solid var(--line);
+                background: #fff;
+                padding: 6px 9px;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                color: #57534e;
+            }
+            .tbtn.active {
+                background: #1c1917;
+                color: #fff;
+                border-color: #1c1917;
+            }
+            .tbtn:disabled {
                 opacity: 0.5;
                 cursor: wait;
             }
@@ -288,7 +314,7 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.3</span
+                            >v0.31</span
                         >
                     </h1>
                     <div class="sub">
@@ -304,10 +330,28 @@
         </div>
 
         <script>
+            // ============================================================
+            // rss2json.com API key (free: 10,000 requests/day)
+            // Sign up at https://rss2json.com/sign-up to get one.
+            //
+            // Option A — paste inline (simple, but do NOT commit this file
+            // to a public repo afterwards):
+            const RSS2JSON_KEY_INLINE = "";
+            //
+            // Option B — keep the file clean, set once from browser console:
+            //   localStorage.setItem("rss2json_key", "YOUR_KEY_HERE")
+            // then refresh the page. This survives across sessions.
+            // ============================================================
+            const RSS2JSON_KEY =
+                (typeof localStorage !== "undefined" &&
+                    localStorage.getItem("rss2json_key")) ||
+                RSS2JSON_KEY_INLINE ||
+                "e3xqpmsfkaarzbksh1vd6cz0hatwotgdhk8skm6z";
+
             const PARTIES = [
                 {
                     id: "maga",
-                    name: "MAGA / Trump",
+                    name: "MAGA/Trump",
                     flag: "🇺🇸",
                     q: '"Donald Trump" OR "Trump administration" OR MAGA',
                     lang: "en",
@@ -317,7 +361,7 @@
                     id: "frp",
                     name: "Fremskrittspartiet",
                     flag: "🇳🇴",
-                    q: "Fremskrittspartiet OR FrP OR Listhaug",
+                    q: 'Fremskrittspartiet OR FrP OR "Sylvi Listhaug" OR "Norwegian Progress Party"',
                     lang: "no",
                     country: "NO",
                 },
@@ -325,7 +369,7 @@
                     id: "sd",
                     name: "Sverigedemokraterna",
                     flag: "🇸🇪",
-                    q: "Sverigedemokraterna OR Åkesson",
+                    q: 'Sverigedemokraterna OR "Jimmie Åkesson" OR "Sweden Democrats"',
                     lang: "sv",
                     country: "SE",
                 },
@@ -333,21 +377,21 @@
                     id: "rn",
                     name: "Rassemblement National",
                     flag: "🇫🇷",
-                    q: '"Rassemblement National" OR "Marine Le Pen" OR Bardella',
+                    q: '"Rassemblement National" OR "Marine Le Pen" OR "Le Pen" OR "Jordan Bardella" OR Bardella OR "National Rally"',
                     lang: "fr",
                     country: "FR",
                 },
                 {
                     id: "fdi",
-                    name: "Fratelli d'Italia / Lega",
+                    name: "Fratelli d'Italia/Lega",
                     flag: "🇮🇹",
-                    q: 'Meloni OR Salvini OR "Fratelli d\'Italia"',
+                    q: 'Meloni OR Salvini OR "Fratelli d\'Italia" OR "Lega per Salvini"',
                     lang: "it",
                     country: "IT",
                 },
                 {
                     id: "reform",
-                    name: "Reform UK (Farage)",
+                    name: "Reform UK",
                     flag: "🇬🇧",
                     q: '"Reform UK" OR "Nigel Farage"',
                     lang: "en",
@@ -357,7 +401,7 @@
                     id: "general",
                     name: "General Right-Wing News",
                     flag: "🌍",
-                    q: '"far-right" OR "far right" OR "radical right" OR "right-wing populism" OR "national conservatism" OR "NatCon" OR "illiberal democracy" OR "fascism" OR "ethnonationalism" OR "white nationalism"',
+                    q: '"far-right" OR "far right" OR "radical right" OR "right-wing populism" OR "national conservatism" OR "NatCon" OR "illiberal democracy" OR "fascism" OR "ethnonationalism" OR "ethnonationalist"',
                     lang: "en",
                     country: "US",
                 },
@@ -410,7 +454,10 @@
                 const win = p.window || "7d";
                 const q = query || p.q;
                 const g = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:" + win)}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
-                return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}`;
+                const keyParam = RSS2JSON_KEY
+                    ? `&api_key=${encodeURIComponent(RSS2JSON_KEY)}`
+                    : "";
+                return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}${keyParam}`;
             };
             const strip = (h) => {
                 if (!h) return "";
@@ -483,11 +530,12 @@
                     // Prefer embedded external link (news article) as the headline + url.
                     const embed = post.embed || post.record?.embed;
                     const ext =
-                        embed?.external ||
-                        embed?.record?.embeds?.[0]?.external ||
-                        null;
+                        embed?.external || embed?.record?.embeds?.[0]?.external || null;
                     const postUrl = `https://bsky.app/profile/${handle}/post/${rkey}`;
-                    const title = (ext?.title || "").trim() || text.split("\n")[0].slice(0, 120) || "(no text)";
+                    const title =
+                        (ext?.title || "").trim() ||
+                        text.split("\n")[0].slice(0, 120) ||
+                        "(no text)";
                     const linkUrl = ext?.uri || postUrl;
                     return {
                         title,
@@ -506,6 +554,7 @@
                 btn.disabled = true;
                 try {
                     let stories;
+                    let errors = [];
                     if (p.type === "bluesky") {
                         stories = await fetchBluesky(p);
                     } else {
@@ -515,9 +564,27 @@
                                 try {
                                     const r = await fetch(feedUrl(p, q));
                                     const j = await r.json();
-                                    if (j.status !== "ok") return [];
+                                    if (j.status !== "ok") {
+                                        const msg =
+                                            j.message || j.status || "unknown rss2json error";
+                                        console.warn(
+                                            `[${p.id}] rss2json error for query`,
+                                            q,
+                                            "→",
+                                            j,
+                                        );
+                                        errors.push(msg);
+                                        return [];
+                                    }
                                     return j.items || [];
-                                } catch {
+                                } catch (err) {
+                                    console.warn(
+                                        `[${p.id}] fetch exception for query`,
+                                        q,
+                                        "→",
+                                        err,
+                                    );
+                                    errors.push(err.message || "fetch failed");
                                     return [];
                                 }
                             }),
@@ -529,14 +596,17 @@
                             seen.add(it.link);
                             return true;
                         });
-                        const limit = p.id === "general" || p.id === "nodes" ? MAX_GENERAL : MAX;
+                        const limit =
+                            p.id === "general" || p.id === "nodes" ? MAX_GENERAL : MAX;
                         const cutoffMs = Date.now() - 30 * 24 * 3600 * 1000;
                         stories = deduped
                             .filter((it) => {
                                 const t = new Date(it.pubDate || 0).getTime();
                                 return t && t >= cutoffMs;
                             })
-                            .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
+                            .sort(
+                                (a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0),
+                            )
                             .slice(0, limit)
                             .map((it) => ({
                                 title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
@@ -549,7 +619,7 @@
                             stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
                         }
                     }
-                    state[p.id] = { stories, fetchedAt: Date.now() };
+                    state[p.id] = { stories, fetchedAt: Date.now(), errors };
                     store.set(state);
                     renderCard(p);
                 } catch (e) {
@@ -557,6 +627,83 @@
                         `<div class="err">⚠ ${esc(e.message || "Failed")}</div>`;
                     btn.innerHTML = "↻";
                     btn.disabled = false;
+                }
+            }
+
+            async function translateText(text, sourceLang) {
+                if (!text) return "";
+                const url =
+                    `https://translate.googleapis.com/translate_a/single?client=gtx` +
+                    `&sl=${encodeURIComponent(sourceLang || "auto")}&tl=en&dt=t&q=${encodeURIComponent(text)}`;
+                const r = await fetch(url);
+                if (!r.ok) throw new Error("translate HTTP " + r.status);
+                const j = await r.json();
+                // j[0] is an array of [translatedChunk, originalChunk, ...]
+                if (!Array.isArray(j) || !Array.isArray(j[0]))
+                    throw new Error("translate parse");
+                return j[0].map((chunk) => (chunk && chunk[0]) || "").join("");
+            }
+
+            async function translateCard(p) {
+                const card = document.querySelector(`[data-id="${p.id}"]`);
+                const tbtn = card.querySelector(".tbtn");
+                const d = state[p.id];
+                if (!d || !d.stories?.length) return;
+
+                // Toggle off if already translated
+                if (d.translated) {
+                    d.translated = false;
+                    store.set(state);
+                    renderCard(p);
+                    return;
+                }
+
+                // If we already have cached translations, just toggle on
+                const allCached = d.stories.every(
+                    (s) => s.titleEn !== undefined && s.summaryEn !== undefined,
+                );
+                if (allCached) {
+                    d.translated = true;
+                    store.set(state);
+                    renderCard(p);
+                    return;
+                }
+
+                tbtn.innerHTML = '<span class="spin">↻</span>';
+                tbtn.disabled = true;
+
+                try {
+                    // Translate title + summary for each story in parallel, caching on the object
+                    await Promise.all(
+                        d.stories.map(async (s) => {
+                            if (s.titleEn === undefined) {
+                                try {
+                                    s.titleEn = await translateText(s.title, p.lang);
+                                } catch {
+                                    s.titleEn = s.title;
+                                }
+                            }
+                            if (s.summaryEn === undefined) {
+                                try {
+                                    s.summaryEn = s.summary
+                                        ? await translateText(s.summary, p.lang)
+                                        : "";
+                                } catch {
+                                    s.summaryEn = s.summary || "";
+                                }
+                            }
+                        }),
+                    );
+                    d.translated = true;
+                    store.set(state);
+                    renderCard(p);
+                } catch (e) {
+                    tbtn.innerHTML = "EN";
+                    tbtn.disabled = false;
+                    card.querySelector(".body").insertAdjacentHTML(
+                        "afterbegin",
+                        `<div class="err">⚠ Translation failed: ${esc(e.message || "unknown")}</div>`,
+                    );
                 }
             }
 
@@ -571,37 +718,64 @@
                 const btn = card.querySelector(".rbtn");
                 btn.innerHTML = "↻";
                 btn.disabled = false;
+                const tbtn = card.querySelector(".tbtn");
+                if (tbtn) {
+                    tbtn.innerHTML = "EN";
+                    tbtn.disabled = false;
+                    tbtn.classList.toggle("active", !!d?.translated);
+                    tbtn.title = d?.translated ? "Show original" : "Translate to English";
+                }
                 if (!d) {
                     body.innerHTML = '<div class="empty">Tap ↻ to load</div>';
                     return;
                 }
-                body.innerHTML = d.stories
-                    .map(
-                        (s) => `
-    <div class="item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
-      <h3>${esc(s.title)} ↗</h3>
-      <div class="meta">${esc(s.source)}${s.source && s.date ? " · " : ""}${esc(fmtD(s.date))}</div>
-      ${s.summary ? `<div class="desc">${esc(s.summary)}</div>` : ""}
-    </a></div>`,
-                    )
-                    .join("");
+                const useEn = !!d.translated;
+                const errHtml =
+                    d.errors && d.errors.length
+                        ? `<div class="err">⚠ ${esc(d.errors[0])}${d.errors.length > 1 ? ` (+${d.errors.length - 1} more)` : ""}</div>`
+                        : "";
+                if (!d.stories || !d.stories.length) {
+                    body.innerHTML =
+                        errHtml || '<div class="empty">No results in the last 30 days</div>';
+                    return;
+                }
+                body.innerHTML =
+                    errHtml +
+                    d.stories
+                        .map((s) => {
+                            const title = useEn && s.titleEn ? s.titleEn : s.title;
+                            const summary =
+                                useEn && s.summaryEn !== undefined ? s.summaryEn : s.summary;
+                            return `
+            <div class="item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
+              <h3>${esc(title)} ↗</h3>
+              <div class="meta">${esc(s.source)}${s.source && s.date ? " · " : ""}${esc(fmtD(s.date))}</div>
+              ${summary ? `<div class="desc">${esc(summary)}</div>` : ""}
+            </a></div>`;
+                        })
+                        .join("");
             }
 
             function render() {
                 document.getElementById("grid").innerHTML = PARTIES.map(
                     (p) => `
-    <div class="card ${p.id}" data-id="${p.id}">
-      <div class="head">
-        <div><div class="title">${p.flag} ${esc(p.name)}</div><div class="age">never</div></div>
-        <button class="rbtn">↻</button>
-      </div>
-      <div class="body"><div class="empty">Tap ↻ to load</div></div>
-    </div>`,
+            <div class="card ${p.id}" data-id="${p.id}">
+              <div class="head">
+                <div><div class="title">${p.flag} ${esc(p.name)}</div><div class="age">never</div></div>
+                <div class="head-btns">
+                  ${p.lang && p.lang !== "en" && !p.type ? '<button class="tbtn" title="Translate to English">EN</button>' : ""}
+                  <button class="rbtn">↻</button>
+                </div>
+              </div>
+              <div class="body"><div class="empty">Tap ↻ to load</div></div>
+            </div>`,
                 ).join("");
                 PARTIES.forEach((p) => {
                     document
                         .querySelector(`[data-id="${p.id}"] .rbtn`)
                         .addEventListener("click", () => fetchParty(p));
+                    const tbtn = document.querySelector(`[data-id="${p.id}"] .tbtn`);
+                    if (tbtn) tbtn.addEventListener("click", () => translateCard(p));
                     if (state[p.id]) renderCard(p);
                 });
             }
