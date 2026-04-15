@@ -1,4 +1,4 @@
-baseURL = "https://victor-shammas.github.io/"
+baseURL = "https://victorshammas.com/"
 languageCode = "en-us"
 title = "Dr. Victor Shammas"
 
@@ -11,7 +11,6 @@ canonicalifyURLs = false
   description = "Sociologist — University of Agder, Norway"
   author = "Victor Lund Shammas"
   email = "contact@victorshammas.com"
-  phone = "(+47) 48360509"
 
 [params.social]
   googleScholar = "https://scholar.google.no/citations?user=FQgxhqkAAAAJ"
