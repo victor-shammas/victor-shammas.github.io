@@ -1,0 +1,1991 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Academic Journals Tracker</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --paper: #f3ede0;
+                --paper-deep: #ebe3d2;
+                --card: #fefdfa;
+                --card-hover: #f6f1e3;
+                --ink: #1a1612;
+                --ink-soft: #2d2820;
+                --muted: #6b6357;
+                --muted-soft: #8b8378;
+                --rule: #a8a094;
+                --accent: #a32021;
+                --accent-deep: #7d1718;
+                --highlight: #fbf3a6;
+                --shadow: rgba(26, 22, 18, 0.08);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                background: var(--paper);
+                color: var(--ink);
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 16px;
+                line-height: 1.6;
+                font-feature-settings: "cv11", "ss01", "ss03";
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+
+            ::selection {
+                background: var(--highlight);
+                color: var(--ink);
+            }
+
+            body {
+                background-image:
+                    radial-gradient(
+                        circle at 25% 10%,
+                        rgba(0, 0, 0, 0.015) 0%,
+                        transparent 40%
+                    ),
+                    radial-gradient(circle at 75% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+                min-height: 100vh;
+            }
+
+            /* MASTHEAD */
+            .masthead {
+                border-bottom: 3px double var(--ink);
+                padding: 28px 48px 20px;
+                position: relative;
+            }
+
+            .masthead-top {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: var(--muted);
+                margin-bottom: 18px;
+                border-bottom: 1px solid var(--rule);
+                padding-bottom: 14px;
+            }
+
+            .masthead-top .left {
+                display: flex;
+                gap: 24px;
+            }
+            .masthead-top .right {
+                display: flex;
+                gap: 16px;
+                align-items: center;
+            }
+
+            .vol {
+                color: var(--ink-soft);
+                font-weight: 500;
+            }
+
+            .icon-btn {
+                background: transparent;
+                border: 1px solid var(--ink);
+                color: var(--ink);
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                padding: 6px 12px;
+                cursor: pointer;
+                transition: all 0.15s ease;
+            }
+
+            .icon-btn:hover {
+                background: var(--ink);
+                color: var(--paper);
+            }
+
+            .icon-btn.refreshing {
+                background: var(--accent);
+                color: var(--paper);
+                border-color: var(--accent);
+            }
+
+            h1.title {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-weight: 900;
+                font-size: clamp(48px, 7vw, 96px);
+                line-height: 0.95;
+                letter-spacing: -0.035em;
+                font-variation-settings:
+                    "SOFT" 0,
+                    "opsz" 144;
+                text-align: center;
+                color: var(--ink);
+            }
+
+            .subtitle {
+                text-align: center;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: italic;
+                font-weight: 400;
+                font-size: 17px;
+                color: var(--muted);
+                margin-top: 8px;
+                letter-spacing: 0.01em;
+            }
+
+            /* NAV */
+            .domain-nav {
+                border-bottom: 1px solid var(--rule);
+                padding: 0 48px;
+                overflow-x: auto;
+                background: var(--paper);
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                box-shadow: 0 2px 8px var(--shadow);
+            }
+
+            .domain-nav-inner {
+                display: flex;
+                gap: 0;
+                align-items: stretch;
+                justify-content: safe center;
+                min-width: max-content;
+            }
+
+            .nav-btn {
+                background: transparent;
+                border: none;
+                border-right: 1px solid var(--rule);
+                padding: 14px 20px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: var(--muted);
+                cursor: pointer;
+                transition: all 0.15s ease;
+                position: relative;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .nav-btn:first-child {
+                border-left: 1px solid var(--rule);
+            }
+
+            .nav-btn:hover {
+                color: var(--ink);
+                background: var(--paper-deep);
+            }
+
+            .nav-btn.active {
+                color: var(--ink);
+                background: var(--paper-deep);
+                font-weight: 500;
+            }
+
+            .nav-btn.active::after {
+                content: "";
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: var(--accent);
+            }
+
+            .nav-count {
+                background: var(--ink);
+                color: var(--paper);
+                padding: 2px 6px;
+                font-size: 9px;
+                font-weight: 500;
+                min-width: 18px;
+                text-align: center;
+            }
+
+            .nav-btn.active .nav-count {
+                background: var(--accent);
+            }
+
+            /* MAIN LAYOUT */
+            main {
+                max-width: 1280px;
+                margin: 0 auto;
+                padding: 32px 48px 80px;
+            }
+
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 24px;
+                border-bottom: 2px solid var(--ink);
+                padding-bottom: 8px;
+            }
+
+            .section-title {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-weight: 700;
+                font-size: 28px;
+                letter-spacing: -0.02em;
+                font-variation-settings: "SOFT" 50;
+            }
+
+            .section-meta {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: var(--muted);
+            }
+
+            /* ARTICLES GRID */
+            .articles {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+                gap: 0;
+                border-top: 1px solid var(--rule);
+                border-left: 1px solid var(--rule);
+            }
+
+            .article {
+                border-right: 1px solid var(--rule);
+                border-bottom: 1px solid var(--rule);
+                padding: 24px 22px 20px;
+                background: var(--card);
+                transition: background 0.2s ease;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                opacity: 0;
+                animation: fadeUp 0.5s ease forwards;
+            }
+
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(8px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .article:hover {
+                background: var(--card-hover);
+            }
+
+            .article.saved {
+                background: linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    transparent 95%,
+                    var(--accent) 95%,
+                    var(--accent) 100%
+                );
+            }
+
+            .article-tag {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                color: var(--accent);
+                font-weight: 500;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .new-badge {
+                background: var(--accent);
+                color: var(--paper);
+                padding: 2px 6px;
+                font-size: 8px;
+                letter-spacing: 0.18em;
+                animation: pulse 2s ease-in-out infinite;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.6;
+                }
+            }
+
+            .article-title {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-weight: 600;
+                font-size: 21px;
+                line-height: 1.2;
+                letter-spacing: -0.015em;
+                color: var(--ink);
+                margin-bottom: 10px;
+                font-variation-settings: "SOFT" 30;
+            }
+
+            .article-title a {
+                color: inherit;
+                text-decoration: none;
+                background-image: linear-gradient(transparent 88%, var(--accent) 88%);
+                background-size: 0% 100%;
+                background-repeat: no-repeat;
+                transition: background-size 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+            }
+
+            .article-title a:hover {
+                background-size: 100% 100%;
+            }
+
+            .article-authors {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: italic;
+                font-size: 14px;
+                color: var(--muted);
+                margin-bottom: 12px;
+                line-height: 1.4;
+            }
+
+            .article-abstract {
+                font-size: 14px;
+                line-height: 1.55;
+                color: var(--ink-soft);
+                margin-bottom: 14px;
+                flex-grow: 1;
+            }
+
+            .article-abstract.collapsed {
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .expand-btn {
+                background: none;
+                border: none;
+                color: var(--accent);
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                cursor: pointer;
+                padding: 0;
+                margin-bottom: 12px;
+                align-self: flex-start;
+            }
+
+            .expand-btn:hover {
+                color: var(--accent-deep);
+            }
+
+            .article-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                border-top: 1px solid var(--rule);
+                padding-top: 12px;
+                gap: 12px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+            }
+
+            .article-journal {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: italic;
+                font-size: 13px;
+                text-transform: none;
+                letter-spacing: 0;
+                color: var(--ink-soft);
+                line-height: 1.3;
+                flex-grow: 1;
+            }
+
+            .article-actions {
+                display: flex;
+                gap: 8px;
+                flex-shrink: 0;
+            }
+
+            .action-btn {
+                background: transparent;
+                border: 1px solid var(--rule);
+                color: var(--muted);
+                width: 28px;
+                height: 28px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.15s ease;
+                font-size: 14px;
+            }
+
+            .action-btn:hover {
+                border-color: var(--ink);
+                color: var(--ink);
+            }
+
+            .action-btn.active {
+                background: var(--accent);
+                border-color: var(--accent);
+                color: var(--paper);
+            }
+
+            .article-date {
+                font-weight: 500;
+                color: var(--ink-soft);
+            }
+
+            /* LOADING */
+            .loading {
+                text-align: center;
+                padding: 80px 20px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: italic;
+                font-size: 18px;
+                color: var(--muted);
+            }
+
+            .loading-bar {
+                width: 280px;
+                height: 2px;
+                background: var(--paper-deep);
+                margin: 24px auto 0;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .loading-bar::after {
+                content: "";
+                position: absolute;
+                width: 40%;
+                height: 100%;
+                background: var(--accent);
+                animation: slide 1.4s ease-in-out infinite;
+            }
+
+            @keyframes slide {
+                0% {
+                    left: -40%;
+                }
+                100% {
+                    left: 100%;
+                }
+            }
+
+            .loading-detail {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: var(--muted-soft);
+                margin-top: 16px;
+                font-style: normal;
+            }
+
+            .empty {
+                text-align: center;
+                padding: 60px 20px;
+                color: var(--muted);
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: italic;
+                font-size: 17px;
+            }
+
+            /* SETTINGS PANEL */
+            .overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(26, 22, 18, 0.5);
+                backdrop-filter: blur(2px);
+                z-index: 100;
+                display: none;
+            }
+
+            .overlay.open {
+                display: block;
+            }
+
+            .settings-panel {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: min(560px, 100vw);
+                height: 100vh;
+                background: var(--paper);
+                border-left: 3px double var(--ink);
+                z-index: 101;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                overflow-y: auto;
+                padding: 32px 36px;
+            }
+
+            .settings-panel.open {
+                transform: translateX(0);
+            }
+
+            .settings-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid var(--ink);
+                padding-bottom: 12px;
+                margin-bottom: 24px;
+            }
+
+            .settings-title {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-weight: 700;
+                font-size: 28px;
+                letter-spacing: -0.02em;
+            }
+
+            .close-btn {
+                background: transparent;
+                border: 1px solid var(--ink);
+                width: 32px;
+                height: 32px;
+                cursor: pointer;
+                font-size: 16px;
+                color: var(--ink);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .close-btn:hover {
+                background: var(--ink);
+                color: var(--paper);
+            }
+
+            .settings-section {
+                margin-bottom: 32px;
+            }
+
+            .settings-section-title {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                color: var(--accent);
+                margin-bottom: 12px;
+                font-weight: 500;
+            }
+
+            .settings-group {
+                margin-bottom: 18px;
+            }
+
+            .domain-label {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: italic;
+                font-size: 14px;
+                color: var(--ink-soft);
+                margin-bottom: 6px;
+                border-bottom: 1px dotted var(--rule);
+                padding-bottom: 4px;
+            }
+
+            .item-list {
+                list-style: none;
+                margin-bottom: 8px;
+            }
+
+            .item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 6px 0;
+                font-size: 14px;
+                border-bottom: 1px solid var(--paper-deep);
+            }
+
+            .item-name {
+                flex-grow: 1;
+            }
+
+            .item-meta {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                color: var(--muted-soft);
+                margin-right: 12px;
+            }
+
+            .remove-btn {
+                background: transparent;
+                border: none;
+                color: var(--muted);
+                cursor: pointer;
+                font-size: 14px;
+                padding: 0 6px;
+            }
+
+            .remove-btn:hover {
+                color: var(--accent);
+            }
+
+            .add-form {
+                display: flex;
+                gap: 6px;
+                margin-top: 10px;
+            }
+
+            .add-form input {
+                flex-grow: 1;
+                background: var(--paper-deep);
+                border: 1px solid var(--rule);
+                padding: 8px 10px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 13px;
+                color: var(--ink);
+            }
+
+            .add-form input:focus {
+                outline: none;
+                border-color: var(--ink);
+            }
+
+            .add-form input.issn {
+                flex-grow: 0;
+                width: 110px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 11px;
+            }
+
+            .add-form select {
+                background: var(--paper-deep);
+                border: 1px solid var(--rule);
+                padding: 8px 10px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 13px;
+                color: var(--ink);
+            }
+
+            .add-btn {
+                background: var(--ink);
+                color: var(--paper);
+                border: none;
+                padding: 8px 14px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                cursor: pointer;
+            }
+
+            .add-btn:hover {
+                background: var(--accent);
+            }
+
+            .settings-input-block {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .settings-input-block label {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: var(--muted);
+            }
+
+            .settings-input-block input {
+                background: var(--paper-deep);
+                border: 1px solid var(--rule);
+                padding: 8px 10px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 14px;
+                color: var(--ink);
+            }
+
+            .settings-helper {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: italic;
+                font-size: 13px;
+                color: var(--muted);
+                line-height: 1.5;
+                margin-top: 8px;
+            }
+
+            /* ERROR */
+            .error-line {
+                background: rgba(163, 32, 33, 0.08);
+                border-left: 2px solid var(--accent);
+                padding: 8px 12px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 11px;
+                color: var(--accent-deep);
+                margin-bottom: 8px;
+            }
+
+            /* FOOTER */
+            footer {
+                text-align: center;
+                padding: 32px 20px;
+                border-top: 1px solid var(--rule);
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                color: var(--muted);
+            }
+
+            /* RESPONSIVE */
+            @media (max-width: 768px) {
+                .masthead {
+                    padding: 20px 20px 16px;
+                }
+                main {
+                    padding: 24px 20px 60px;
+                }
+                .domain-nav {
+                    padding: 0 20px;
+                }
+                .articles {
+                    grid-template-columns: 1fr;
+                }
+                .nav-btn {
+                    padding: 12px 14px;
+                    font-size: 10px;
+                }
+                .masthead-top {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="masthead">
+            <div class="masthead-top">
+                <div class="right">
+                    <span id="last-fetch"></span>
+                    <button class="icon-btn" id="refresh-btn">↻ Refresh</button>
+                    <button class="icon-btn" id="settings-btn">⚙ Settings</button>
+                </div>
+            </div>
+            <h1 class="title">Academic Journals Tracker</h1>
+        </header>
+
+        <nav class="domain-nav">
+            <div class="domain-nav-inner" id="nav-buttons"></div>
+        </nav>
+
+        <main>
+            <div id="content"></div>
+        </main>
+
+        <footer>
+            Developed by Dr. Victor Shammas, April 2026 /
+            <a href="https://www.theorybrief.com">theorybrief.com</a> /
+            <a href="https://www.victorshammas.com">victorshammas.com</a>
+        </footer>
+
+        <div class="overlay" id="overlay"></div>
+
+        <aside class="settings-panel" id="settings-panel">
+            <div class="settings-header">
+                <h2 class="settings-title">Settings</h2>
+                <button class="close-btn" id="close-settings">✕</button>
+            </div>
+
+            <div class="settings-section">
+                <div class="settings-section-title">Fetching</div>
+                <div class="settings-input-block">
+                    <label for="days-back">Days back to fetch</label>
+                    <input type="number" id="days-back" min="7" max="365" value="90" />
+                </div>
+                <div class="settings-input-block">
+                    <label for="email-input">Email (optional, for OpenAlex polite pool)</label>
+                    <input type="email" id="email-input" placeholder="you@example.com" />
+                </div>
+                <p class="settings-helper">
+                    Adding an email puts your requests in OpenAlex's polite pool — faster
+                    responses, no other effect.
+                </p>
+            </div>
+
+            <div class="settings-section">
+                <div class="settings-section-title">Journals</div>
+                <div id="journals-list"></div>
+                <div class="add-form">
+                    <input type="text" id="add-journal-name" placeholder="Journal name" />
+                    <input type="text" id="add-journal-issn" class="issn" placeholder="ISSN" />
+                    <select id="add-journal-domain"></select>
+                    <button class="add-btn" id="add-journal-btn">Add</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="settings-section-title">Keyword discovery searches</div>
+                <ul class="item-list" id="keywords-list"></ul>
+                <div class="add-form">
+                    <input type="text" id="add-keyword" placeholder="New keyword or phrase" />
+                    <button class="add-btn" id="add-keyword-btn">Add</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="settings-section-title">Data</div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                    <button class="icon-btn" id="reset-defaults-btn">Reset to defaults</button>
+                    <button class="icon-btn" id="clear-saved-btn">Clear saved articles</button>
+                </div>
+            </div>
+        </aside>
+
+        <script>
+            // ============================================================
+            // DEFAULTS
+            // ============================================================
+            const DEFAULT_JOURNALS = [
+                // Social theory
+                {
+                    name: "Theory, Culture & Society",
+                    issn: "0263-2764",
+                    domain: "Social theory",
+                },
+                { name: "Theory and Society", issn: "0304-2421", domain: "Social theory" },
+                {
+                    name: "European Journal of Social Theory",
+                    issn: "1368-4310",
+                    domain: "Social theory",
+                },
+                { name: "Constellations", issn: "1351-0487", domain: "Social theory" },
+                { name: "Thesis Eleven", issn: "0725-5136", domain: "Social theory" },
+                { name: "Distinktion", issn: "1600-910X", domain: "Social theory" },
+                { name: "Sociological Theory", issn: "0735-2751", domain: "Social theory" },
+                // Criminology
+                { name: "Theoretical Criminology", issn: "1362-4806", domain: "Criminology" },
+                { name: "Punishment & Society", issn: "1462-4745", domain: "Criminology" },
+                { name: "Critical Criminology", issn: "1205-8629", domain: "Criminology" },
+                {
+                    name: "British Journal of Criminology",
+                    issn: "0007-0955",
+                    domain: "Criminology",
+                },
+                { name: "Crime, Media, Culture", issn: "1741-6590", domain: "Criminology" },
+                { name: "Incarceration", issn: "2632-6663", domain: "Criminology" },
+                // Sociology (merged: critical sociology + Bourdieu-adjacent)
+                { name: "Critical Sociology", issn: "0896-9205", domain: "Sociology" },
+                { name: "New Left Review", issn: "0028-6060", domain: "Sociology" },
+                { name: "Catalyst", issn: "2475-7365", domain: "Sociology" },
+                { name: "Historical Materialism", issn: "1465-4466", domain: "Sociology" },
+                { name: "Sociology", issn: "0038-0385", domain: "Sociology" },
+                {
+                    name: "British Journal of Sociology",
+                    issn: "0007-1315",
+                    domain: "Sociology",
+                },
+                { name: "Acta Sociologica", issn: "0001-6993", domain: "Sociology" },
+                {
+                    name: "European Journal of Sociology",
+                    issn: "0003-9756",
+                    domain: "Sociology",
+                },
+                // Political economy
+                {
+                    name: "Review of Radical Political Economics",
+                    issn: "0486-6134",
+                    domain: "Political economy",
+                },
+                { name: "Capital & Class", issn: "0309-8168", domain: "Political economy" },
+                {
+                    name: "New Political Economy",
+                    issn: "1356-3467",
+                    domain: "Political economy",
+                },
+                {
+                    name: "Economy and Society",
+                    issn: "0308-5147",
+                    domain: "Political economy",
+                },
+                {
+                    name: "Review of International Political Economy",
+                    issn: "0969-2290",
+                    domain: "Political economy",
+                },
+                // Philosophy / critical theory (merged into Social theory)
+                {
+                    name: "Philosophy and Social Criticism",
+                    issn: "0191-4537",
+                    domain: "Social theory",
+                },
+                { name: "Radical Philosophy", issn: "0300-211X", domain: "Social theory" },
+                { name: "Telos", issn: "0090-6514", domain: "Social theory" },
+                { name: "Angelaki", issn: "0969-725X", domain: "Social theory" },
+                // Bourdieu-adjacent (merged into Sociology)
+                { name: "Cultural Sociology", issn: "1749-9755", domain: "Sociology" },
+                { name: "Poetics", issn: "0304-422X", domain: "Sociology" },
+                {
+                    name: "Actes de la recherche en sciences sociales",
+                    issn: "0335-5322",
+                    domain: "Sociology",
+                },
+                // Anthropology
+                { name: "Ethnography", issn: "1466-1381", domain: "Anthropology" },
+                {
+                    name: "HAU: Journal of Ethnographic Theory",
+                    issn: "2049-1115",
+                    domain: "Anthropology",
+                },
+                { name: "Social Anthropology", issn: "0964-0282", domain: "Anthropology" },
+                {
+                    name: "Dialectical Anthropology",
+                    issn: "0304-4092",
+                    domain: "Anthropology",
+                },
+                { name: "Cultural Anthropology", issn: "0886-7356", domain: "Anthropology" },
+                { name: "Anthropological Theory", issn: "1463-4996", domain: "Anthropology" },
+                {
+                    name: "Critique of Anthropology",
+                    issn: "0308-275X",
+                    domain: "Anthropology",
+                },
+                {
+                    name: "Focaal: Journal of Global and Historical Anthropology",
+                    issn: "0920-1297",
+                    domain: "Anthropology",
+                },
+                {
+                    name: "PoLAR: Political and Legal Anthropology Review",
+                    issn: "1081-6976",
+                    domain: "Anthropology",
+                },
+            ];
+
+            const DEFAULT_KEYWORDS = [
+                "right-wing populism",
+                "Trumpism",
+                "platform capitalism",
+                "racial capitalism",
+                "penal exceptionalism",
+                "carceral state",
+                "neoliberalism",
+                "hegemony",
+                "conjunctural analysis",
+                "authoritarian populism",
+                "authoritarianism",
+                "digital sociology",
+                "sociology of AI",
+                "welfare state",
+                "fascism",
+            ];
+
+            const DOMAINS = [
+                "Social Theory",
+                "Criminology",
+                "Sociology",
+                "Political Economy",
+                "Anthropology",
+            ];
+
+            // ============================================================
+            // STATE
+            // ============================================================
+            const STORAGE_KEYS = {
+                journals: "ajt_journals",
+                keywords: "ajt_keywords",
+                saved: "ajt_saved",
+                cache: "ajt_cache",
+                lastFetch: "ajt_last_fetch",
+                lastVisit: "ajt_last_visit",
+                daysBack: "ajt_days_back",
+                email: "ajt_email",
+            };
+
+            const state = {
+                journals: load(STORAGE_KEYS.journals, DEFAULT_JOURNALS),
+                keywords: load(STORAGE_KEYS.keywords, DEFAULT_KEYWORDS),
+                saved: new Set(load(STORAGE_KEYS.saved, [])),
+                daysBack: load(STORAGE_KEYS.daysBack, 90),
+                email: load(STORAGE_KEYS.email, ""),
+                articlesByDomain: {}, // { domain: [articles] }
+                keywordArticles: [], // [articles from keyword search]
+                errors: [], // fetch errors
+                activeView: "all",
+                lastFetch: load(STORAGE_KEYS.lastFetch, null),
+                lastVisit: load(STORAGE_KEYS.lastVisit, null),
+            };
+
+            function load(key, fallback) {
+                try {
+                    const v = localStorage.getItem(key);
+                    return v ? JSON.parse(v) : fallback;
+                } catch {
+                    return fallback;
+                }
+            }
+
+            function save(key, value) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } catch {}
+            }
+
+            // Migration: fold deprecated domain names into current ones
+            (function migrateDomains() {
+                const remap = {
+                    "Philosophy / critical theory": "Social theory",
+                    "Critical sociology": "Sociology",
+                    "Bourdieu-adjacent": "Sociology",
+                    "Critical criminology": "Criminology",
+                    "Radical political economy": "Political economy",
+                };
+                let changed = false;
+                state.journals = state.journals.map((j) => {
+                    if (remap[j.domain]) {
+                        changed = true;
+                        return { ...j, domain: remap[j.domain] };
+                    }
+                    return j;
+                });
+                if (changed) save(STORAGE_KEYS.journals, state.journals);
+            })();
+
+            // ============================================================
+            // API
+            // ============================================================
+            const OPENALEX_BASE = "https://api.openalex.org/works";
+
+            function buildOpenAlexUrl(params) {
+                const url = new URL(OPENALEX_BASE);
+                for (const [k, v] of Object.entries(params)) {
+                    if (v != null) url.searchParams.set(k, v);
+                }
+                if (state.email) url.searchParams.set("mailto", state.email);
+                return url.toString();
+            }
+
+            function fromDate(daysBack) {
+                const d = new Date();
+                d.setDate(d.getDate() - daysBack);
+                return d.toISOString().slice(0, 10);
+            }
+
+            function reconstructAbstract(idx) {
+                if (!idx) return "";
+                const positions = [];
+                for (const [word, posList] of Object.entries(idx)) {
+                    for (const pos of posList) positions[pos] = word;
+                }
+                return positions.filter(Boolean).join(" ");
+            }
+
+            function normalizeWork(work, sourceTag) {
+                const journalName =
+                    work.primary_location?.source?.display_name ||
+                    work.host_venue?.display_name ||
+                    "Unknown source";
+                const authors = (work.authorships || [])
+                    .slice(0, 6)
+                    .map((a) => a.author?.display_name)
+                    .filter(Boolean);
+                const moreAuthors = (work.authorships || []).length > 6 ? ` et al.` : "";
+                return {
+                    id: work.id,
+                    doi: work.doi,
+                    title: work.title || "[Untitled]",
+                    authors: authors.join(", ") + moreAuthors,
+                    journal: journalName,
+                    date: work.publication_date || "",
+                    abstract: reconstructAbstract(work.abstract_inverted_index),
+                    sourceTag, // domain or 'keyword:xyz'
+                    type: work.type,
+                };
+            }
+
+            async function fetchJournalArticles(journal, fromPubDate) {
+                const url = buildOpenAlexUrl({
+                    filter: `primary_location.source.issn:${journal.issn},from_publication_date:${fromPubDate},type:article`,
+                    sort: "publication_date:desc",
+                    "per-page": 10,
+                });
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                return (data.results || []).map((w) => normalizeWork(w, journal.domain));
+            }
+
+            async function fetchKeywordArticles(keyword, fromPubDate) {
+                const url = buildOpenAlexUrl({
+                    search: keyword,
+                    filter: `from_publication_date:${fromPubDate},type:article`,
+                    sort: "publication_date:desc",
+                    "per-page": 8,
+                });
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                return (data.results || []).map((w) => normalizeWork(w, `keyword:${keyword}`));
+            }
+
+            // ============================================================
+            // FETCH ORCHESTRATION
+            // ============================================================
+            async function fetchAll() {
+                const fromPubDate = fromDate(state.daysBack);
+                state.errors = [];
+                state.articlesByDomain = {};
+                state.keywordArticles = [];
+
+                showLoading();
+
+                // Journals — group results by domain
+                const journalPromises = state.journals.map(async (j) => {
+                    try {
+                        const articles = await fetchJournalArticles(j, fromPubDate);
+                        if (!state.articlesByDomain[j.domain])
+                            state.articlesByDomain[j.domain] = [];
+                        state.articlesByDomain[j.domain].push(...articles);
+                    } catch (err) {
+                        state.errors.push(`${j.name}: ${err.message}`);
+                    }
+                    updateLoadingProgress();
+                });
+
+                // Keywords — collect all in one bucket, dedupe by DOI
+                const keywordPromises = state.keywords.map(async (kw) => {
+                    try {
+                        const articles = await fetchKeywordArticles(kw, fromPubDate);
+                        state.keywordArticles.push(...articles);
+                    } catch (err) {
+                        state.errors.push(`Keyword "${kw}": ${err.message}`);
+                    }
+                    updateLoadingProgress();
+                });
+
+                await Promise.all([...journalPromises, ...keywordPromises]);
+
+                // Sort each domain bucket by date desc
+                for (const domain of Object.keys(state.articlesByDomain)) {
+                    state.articlesByDomain[domain].sort((a, b) =>
+                        (b.date || "").localeCompare(a.date || ""),
+                    );
+                }
+
+                // Dedupe keyword articles by DOI/id, then drop those whose journal is in our approved list (those already appear in domain feeds)
+                const journalNames = new Set(state.journals.map((j) => j.name.toLowerCase()));
+                const seen = new Set();
+                state.keywordArticles = state.keywordArticles.filter((a) => {
+                    const key = a.doi || a.id;
+                    if (seen.has(key)) return false;
+                    seen.add(key);
+                    return !journalNames.has((a.journal || "").toLowerCase());
+                });
+                state.keywordArticles.sort((a, b) =>
+                    (b.date || "").localeCompare(a.date || ""),
+                );
+
+                state.lastFetch = new Date().toISOString();
+                save(STORAGE_KEYS.lastFetch, state.lastFetch);
+
+                // Cache
+                save(STORAGE_KEYS.cache, {
+                    articlesByDomain: state.articlesByDomain,
+                    keywordArticles: state.keywordArticles,
+                    errors: state.errors,
+                    fetchedAt: state.lastFetch,
+                });
+
+                render();
+            }
+
+            let loadingProgress = 0;
+            let loadingTotal = 0;
+
+            function updateLoadingProgress() {
+                loadingProgress++;
+                const detail = document.getElementById("loading-detail");
+                if (detail) {
+                    detail.textContent = `Fetching · ${loadingProgress} / ${loadingTotal}`;
+                }
+            }
+
+            function showLoading() {
+                loadingProgress = 0;
+                loadingTotal = state.journals.length + state.keywords.length;
+                const content = document.getElementById("content");
+                content.innerHTML = `
+              <div class="loading">
+                <div>Reading the latest dispatches…</div>
+                <div class="loading-bar"></div>
+                <div class="loading-detail" id="loading-detail">Fetching · 0 / ${loadingTotal}</div>
+              </div>
+            `;
+                document.getElementById("refresh-btn").classList.add("refreshing");
+                document.getElementById("refresh-btn").textContent = "↻ Fetching…";
+            }
+
+            // ============================================================
+            // MARKDOWN EXPORT
+            // ============================================================
+            function articlesToMarkdown(articles, viewLabel) {
+                const today = new Date().toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                });
+                const lines = [];
+                lines.push(`# ${viewLabel}`);
+                lines.push("");
+                lines.push(
+                    `*Exported from Academic Journals Tracker · ${today} · ${articles.length} article${articles.length === 1 ? "" : "s"}*`,
+                );
+                lines.push("");
+                lines.push("---");
+                lines.push("");
+
+                // Group by domain (or by keyword tag for keyword view)
+                const grouped = {};
+                for (const a of articles) {
+                    const isKeyword = a.sourceTag.startsWith("keyword:");
+                    const groupKey = isKeyword
+                        ? `Keyword: "${a.sourceTag.slice(8)}"`
+                        : a.sourceTag;
+                    if (!grouped[groupKey]) grouped[groupKey] = [];
+                    grouped[groupKey].push(a);
+                }
+
+                // Stable group order: DOMAINS first, then keywords alphabetically
+                const groupOrder = [
+                    ...DOMAINS.filter((d) => grouped[d]),
+                    ...Object.keys(grouped)
+                        .filter((k) => !DOMAINS.includes(k))
+                        .sort(),
+                ];
+
+                for (const group of groupOrder) {
+                    lines.push(`## ${group}`);
+                    lines.push("");
+                    for (const a of grouped[group]) {
+                        const link = a.doi || a.id;
+                        const date = a.date ? formatDate(a.date) : "No date";
+                        lines.push(`### [${a.title}](${link})`);
+                        lines.push("");
+                        if (a.authors) lines.push(`*${a.authors}*`);
+                        lines.push(`**${a.journal}** · ${date}`);
+                        lines.push("");
+                        if (a.abstract) {
+                            // Wrap abstract as blockquote (handle line breaks)
+                            const wrapped = a.abstract
+                                .split("\n")
+                                .map((l) => `> ${l}`)
+                                .join("\n");
+                            lines.push(wrapped);
+                            lines.push("");
+                        }
+                        if (a.doi) {
+                            lines.push(`DOI: \`${a.doi.replace("https://doi.org/", "")}\``);
+                            lines.push("");
+                        }
+                        lines.push("---");
+                        lines.push("");
+                    }
+                }
+
+                return lines.join("\n");
+            }
+
+            function downloadMarkdown(content, filename) {
+                const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(() => URL.revokeObjectURL(url), 100);
+            }
+
+            function exportCurrentView(articles, viewTitle) {
+                if (!articles.length) {
+                    alert("Nothing to export in this view.");
+                    return;
+                }
+                const md = articlesToMarkdown(articles, viewTitle);
+                const slug = viewTitle
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "");
+                const date = new Date().toISOString().slice(0, 10);
+                downloadMarkdown(md, `journals-tracker-${slug}-${date}.md`);
+            }
+
+            // ============================================================
+            // RENDER
+            // ============================================================
+            function render() {
+                document.getElementById("refresh-btn").classList.remove("refreshing");
+                document.getElementById("refresh-btn").textContent = "↻ Refresh";
+
+                renderNav();
+                renderContent();
+                renderFetchInfo();
+            }
+
+            function renderFetchInfo() {
+                const last = state.lastFetch ? new Date(state.lastFetch) : null;
+                const lastEl = document.getElementById("last-fetch");
+                if (last) {
+                    const ago = formatAgo(last);
+                    lastEl.textContent = `Last fetched ${ago}`;
+                } else {
+                    lastEl.textContent = "Not yet fetched";
+                }
+            }
+
+            function formatAgo(date) {
+                const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+                if (seconds < 60) return "just now";
+                const minutes = Math.floor(seconds / 60);
+                if (minutes < 60) return `${minutes}m ago`;
+                const hours = Math.floor(minutes / 60);
+                if (hours < 24) return `${hours}h ago`;
+                const days = Math.floor(hours / 24);
+                return `${days}d ago`;
+            }
+
+            function totalCount() {
+                return Object.values(state.articlesByDomain).reduce((s, a) => s + a.length, 0);
+            }
+
+            function renderNav() {
+                const nav = document.getElementById("nav-buttons");
+                const counts = {};
+                for (const d of DOMAINS) counts[d] = (state.articlesByDomain[d] || []).length;
+
+                const buttons = [
+                    { key: "all", label: "All Recent", count: totalCount() },
+                    ...DOMAINS.map((d) => ({
+                        key: `domain:${d}`,
+                        label: d,
+                        count: counts[d],
+                    })),
+                    {
+                        key: "keywords",
+                        label: "Keyword Discoveries",
+                        count: state.keywordArticles.length,
+                    },
+                    { key: "saved", label: "★ Saved", count: state.saved.size },
+                ];
+
+                nav.innerHTML = buttons
+                    .map(
+                        (b) => `
+              <button class="nav-btn ${state.activeView === b.key ? "active" : ""}" data-view="${b.key}">
+                <span>${b.label}</span>
+                <span class="nav-count">${b.count}</span>
+              </button>
+            `,
+                    )
+                    .join("");
+
+                nav.querySelectorAll(".nav-btn").forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        state.activeView = btn.dataset.view;
+                        renderNav();
+                        renderContent();
+                    });
+                });
+            }
+
+            function renderContent() {
+                const content = document.getElementById("content");
+                let articles = [];
+                let title = "";
+                let meta = "";
+
+                if (state.activeView === "all") {
+                    title = "All Recent Articles";
+                    articles = Object.values(state.articlesByDomain).flat();
+                    articles.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+                    meta = `${articles.length} articles · last ${state.daysBack} days`;
+                } else if (state.activeView === "keywords") {
+                    title = "Keyword Discoveries";
+                    articles = state.keywordArticles;
+                    meta = `${articles.length} articles from outside the approved list`;
+                } else if (state.activeView === "saved") {
+                    title = "Saved Articles";
+                    const all = [
+                        ...Object.values(state.articlesByDomain).flat(),
+                        ...state.keywordArticles,
+                    ];
+                    const seen = new Set();
+                    articles = all.filter((a) => {
+                        const k = a.doi || a.id;
+                        if (!state.saved.has(k) || seen.has(k)) return false;
+                        seen.add(k);
+                        return true;
+                    });
+                    articles.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+                    meta = `${articles.length} saved`;
+                } else if (state.activeView.startsWith("domain:")) {
+                    const domain = state.activeView.slice(7);
+                    title = domain;
+                    articles = state.articlesByDomain[domain] || [];
+                    meta = `${articles.length} articles · last ${state.daysBack} days`;
+                }
+
+                let html = `
+              <div class="section-header">
+                <h2 class="section-title">${escapeHtml(title)}</h2>
+                <div style="display:flex;gap:14px;align-items:baseline;">
+                  <span class="section-meta">${escapeHtml(meta)}</span>
+                  <button class="icon-btn" id="export-btn" ${articles.length === 0 ? 'disabled style="opacity:0.4;cursor:not-allowed;"' : ""}>↓ Export MD</button>
+                </div>
+              </div>
+            `;
+
+                // Errors
+                if (
+                    state.errors.length > 0 &&
+                    (state.activeView === "all" || state.activeView === "keywords")
+                ) {
+                    html += state.errors
+                        .slice(0, 5)
+                        .map((e) => `<div class="error-line">⚠ ${escapeHtml(e)}</div>`)
+                        .join("");
+                    if (state.errors.length > 5) {
+                        html += `<div class="error-line">…and ${state.errors.length - 5} more errors</div>`;
+                    }
+                }
+
+                if (articles.length === 0) {
+                    html += `<div class="empty">No articles to show. ${state.lastFetch ? "Try a wider date range or different journals." : "Click <strong>Refresh</strong> to fetch the latest."}</div>`;
+                } else {
+                    html += `<div class="articles">`;
+                    html += articles.map((a, i) => renderArticle(a, i)).join("");
+                    html += `</div>`;
+                }
+
+                content.innerHTML = html;
+                attachArticleHandlers();
+
+                // Export button
+                const exportBtn = document.getElementById("export-btn");
+                if (exportBtn && articles.length) {
+                    exportBtn.addEventListener("click", () =>
+                        exportCurrentView(articles, title),
+                    );
+                }
+            }
+
+            function renderArticle(a, index) {
+                const key = a.doi || a.id;
+                const isSaved = state.saved.has(key);
+                const isNew =
+                    state.lastVisit && a.date && a.date > state.lastVisit.slice(0, 10);
+                const link = a.doi || a.id;
+
+                let tag;
+                if (a.sourceTag.startsWith("keyword:")) {
+                    tag = `↳ matched "${a.sourceTag.slice(8)}"`;
+                } else {
+                    tag = a.sourceTag;
+                }
+
+                const dateFormatted = a.date ? formatDate(a.date) : "No date";
+                const delay = Math.min(index * 25, 600);
+
+                return `
+              <article class="article ${isSaved ? "saved" : ""}" style="animation-delay: ${delay}ms;" data-key="${escapeHtml(key)}">
+                <div class="article-tag">
+                  <span>${escapeHtml(tag)}</span>
+                  ${isNew ? '<span class="new-badge">NEW</span>' : ""}
+                </div>
+                <h3 class="article-title">
+                  <a href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(a.title)}</a>
+                </h3>
+                ${a.authors ? `<div class="article-authors">${escapeHtml(a.authors)}</div>` : ""}
+                ${
+                    a.abstract
+                        ? `
+                  <div class="article-abstract collapsed">${escapeHtml(a.abstract)}</div>
+                  ${a.abstract.length > 280 ? '<button class="expand-btn" data-action="expand">Read more →</button>' : ""}
+                `
+                        : '<div class="article-abstract" style="color:var(--muted-soft);font-style:italic;">No abstract available.</div>'
+                }
+                <div class="article-footer">
+                  <div class="article-journal">${escapeHtml(a.journal)}<br><span class="article-date">${escapeHtml(dateFormatted)}</span></div>
+                  <div class="article-actions">
+                    <button class="action-btn ${isSaved ? "active" : ""}" data-action="save" title="Save">★</button>
+                  </div>
+                </div>
+              </article>
+            `;
+            }
+
+            function attachArticleHandlers() {
+                document.querySelectorAll(".article").forEach((el) => {
+                    const key = el.dataset.key;
+                    el.querySelectorAll("button[data-action]").forEach((btn) => {
+                        btn.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            const action = btn.dataset.action;
+                            if (action === "save") {
+                                if (state.saved.has(key)) state.saved.delete(key);
+                                else state.saved.add(key);
+                                save(STORAGE_KEYS.saved, [...state.saved]);
+                                btn.classList.toggle("active");
+                                el.classList.toggle("saved");
+                                renderNav();
+                            } else if (action === "expand") {
+                                const abs = el.querySelector(".article-abstract");
+                                abs.classList.toggle("collapsed");
+                                btn.textContent = abs.classList.contains("collapsed")
+                                    ? "Read more →"
+                                    : "← Collapse";
+                            }
+                        });
+                    });
+                });
+            }
+
+            function formatDate(s) {
+                try {
+                    const d = new Date(s);
+                    return d.toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                    });
+                } catch {
+                    return s;
+                }
+            }
+
+            function escapeHtml(s) {
+                if (s == null) return "";
+                return String(s)
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll('"', "&quot;")
+                    .replaceAll("'", "&#39;");
+            }
+
+            // ============================================================
+            // SETTINGS PANEL
+            // ============================================================
+            function openSettings() {
+                document.getElementById("overlay").classList.add("open");
+                document.getElementById("settings-panel").classList.add("open");
+                renderSettings();
+            }
+
+            function closeSettings() {
+                document.getElementById("overlay").classList.remove("open");
+                document.getElementById("settings-panel").classList.remove("open");
+            }
+
+            function renderSettings() {
+                // Days back & email
+                document.getElementById("days-back").value = state.daysBack;
+                document.getElementById("email-input").value = state.email;
+
+                // Domain select
+                const sel = document.getElementById("add-journal-domain");
+                sel.innerHTML = DOMAINS.map(
+                    (d) => `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`,
+                ).join("");
+
+                // Journals list
+                const grouped = {};
+                for (const j of state.journals) {
+                    if (!grouped[j.domain]) grouped[j.domain] = [];
+                    grouped[j.domain].push(j);
+                }
+                const journalsList = document.getElementById("journals-list");
+                journalsList.innerHTML = DOMAINS.map((d) => {
+                    const items = (grouped[d] || [])
+                        .map(
+                            (j) => `
+                <li class="item" data-journal-name="${escapeHtml(j.name)}">
+                  <span class="item-name">${escapeHtml(j.name)}</span>
+                  <span class="item-meta">${escapeHtml(j.issn)}</span>
+                  <button class="remove-btn" data-action="remove-journal" title="Remove">✕</button>
+                </li>
+              `,
+                        )
+                        .join("");
+                    return `
+                <div class="settings-group" data-domain="${escapeHtml(d)}">
+                  <div class="domain-label">${escapeHtml(d)}</div>
+                  <ul class="item-list">${items || '<li class="item empty-placeholder"><em style="color:var(--muted-soft)">none</em></li>'}</ul>
+                </div>
+              `;
+                }).join("");
+
+                // Keywords list
+                const keywordsList = document.getElementById("keywords-list");
+                keywordsList.innerHTML =
+                    state.keywords
+                        .map(
+                            (k) => `
+              <li class="item" data-keyword="${escapeHtml(k)}">
+                <span class="item-name">${escapeHtml(k)}</span>
+                <button class="remove-btn" data-action="remove-keyword" title="Remove">✕</button>
+              </li>
+            `,
+                        )
+                        .join("") ||
+                    '<li class="item empty-placeholder"><em style="color:var(--muted-soft)">none</em></li>';
+            }
+
+            // One-time event delegation setup. Called once at init, never again.
+            function wireSettingsDelegation() {
+                const journalsList = document.getElementById("journals-list");
+                const keywordsList = document.getElementById("keywords-list");
+
+                journalsList.addEventListener("click", (e) => {
+                    const btn = e.target.closest('[data-action="remove-journal"]');
+                    if (!btn) return;
+                    const li = btn.closest("li[data-journal-name]");
+                    if (!li) return;
+                    const name = li.dataset.journalName;
+                    state.journals = state.journals.filter((j) => j.name !== name);
+                    save(STORAGE_KEYS.journals, state.journals);
+                    // Surgical removal — find the parent group, remove the li, add placeholder if empty
+                    const ul = li.parentElement;
+                    li.remove();
+                    if (ul.children.length === 0) {
+                        ul.innerHTML =
+                            '<li class="item empty-placeholder"><em style="color:var(--muted-soft)">none</em></li>';
+                    }
+                });
+
+                keywordsList.addEventListener("click", (e) => {
+                    const btn = e.target.closest('[data-action="remove-keyword"]');
+                    if (!btn) return;
+                    const li = btn.closest("li[data-keyword]");
+                    if (!li) return;
+                    const keyword = li.dataset.keyword;
+                    state.keywords = state.keywords.filter((k) => k !== keyword);
+                    save(STORAGE_KEYS.keywords, state.keywords);
+                    li.remove();
+                    if (keywordsList.children.length === 0) {
+                        keywordsList.innerHTML =
+                            '<li class="item empty-placeholder"><em style="color:var(--muted-soft)">none</em></li>';
+                    }
+                });
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            function init() {
+                // Settings handlers
+                document
+                    .getElementById("settings-btn")
+                    .addEventListener("click", openSettings);
+                document
+                    .getElementById("close-settings")
+                    .addEventListener("click", closeSettings);
+                document.getElementById("overlay").addEventListener("click", closeSettings);
+
+                document.getElementById("days-back").addEventListener("change", (e) => {
+                    state.daysBack = Math.max(
+                        7,
+                        Math.min(365, parseInt(e.target.value) || 90),
+                    );
+                    save(STORAGE_KEYS.daysBack, state.daysBack);
+                });
+                document.getElementById("email-input").addEventListener("change", (e) => {
+                    state.email = e.target.value.trim();
+                    save(STORAGE_KEYS.email, state.email);
+                });
+
+                document.getElementById("add-journal-btn").addEventListener("click", () => {
+                    const nameInput = document.getElementById("add-journal-name");
+                    const issnInput = document.getElementById("add-journal-issn");
+                    const name = nameInput.value.trim();
+                    const issn = issnInput.value.trim();
+                    const domain = document.getElementById("add-journal-domain").value;
+                    if (!name || !issn) return;
+                    state.journals.push({ name, issn, domain });
+                    save(STORAGE_KEYS.journals, state.journals);
+                    nameInput.value = "";
+                    issnInput.value = "";
+                    // Surgical insert into the right domain group
+                    const group = document.querySelector(
+                        `#journals-list [data-domain="${CSS.escape(domain)}"] ul`,
+                    );
+                    if (group) {
+                        // Remove "none" placeholder if present
+                        const placeholder = group.querySelector(".empty-placeholder");
+                        if (placeholder) placeholder.remove();
+                        const li = document.createElement("li");
+                        li.className = "item";
+                        li.dataset.journalName = name;
+                        li.innerHTML = `
+                  <span class="item-name">${escapeHtml(name)}</span>
+                  <span class="item-meta">${escapeHtml(issn)}</span>
+                  <button class="remove-btn" data-action="remove-journal" title="Remove">✕</button>
+                `;
+                        group.appendChild(li);
+                    }
+                });
+
+                document.getElementById("add-keyword-btn").addEventListener("click", () => {
+                    const input = document.getElementById("add-keyword");
+                    const kw = input.value.trim();
+                    if (!kw) return;
+                    if (state.keywords.includes(kw)) {
+                        input.value = "";
+                        return;
+                    }
+                    state.keywords.push(kw);
+                    save(STORAGE_KEYS.keywords, state.keywords);
+                    input.value = "";
+                    const list = document.getElementById("keywords-list");
+                    const placeholder = list.querySelector(".empty-placeholder");
+                    if (placeholder) placeholder.remove();
+                    const li = document.createElement("li");
+                    li.className = "item";
+                    li.dataset.keyword = kw;
+                    li.innerHTML = `
+                <span class="item-name">${escapeHtml(kw)}</span>
+                <button class="remove-btn" data-action="remove-keyword" title="Remove">✕</button>
+              `;
+                    list.appendChild(li);
+                });
+                document.getElementById("add-keyword").addEventListener("keypress", (e) => {
+                    if (e.key === "Enter") document.getElementById("add-keyword-btn").click();
+                });
+
+                document.getElementById("reset-defaults-btn").addEventListener("click", () => {
+                    if (!confirm("Reset journals and keywords to defaults?")) return;
+                    state.journals = [...DEFAULT_JOURNALS];
+                    state.keywords = [...DEFAULT_KEYWORDS];
+                    save(STORAGE_KEYS.journals, state.journals);
+                    save(STORAGE_KEYS.keywords, state.keywords);
+                    renderSettings();
+                });
+
+                document.getElementById("clear-saved-btn").addEventListener("click", () => {
+                    if (!confirm("Clear all saved articles?")) return;
+                    state.saved.clear();
+                    save(STORAGE_KEYS.saved, []);
+                    render();
+                });
+
+                document.getElementById("refresh-btn").addEventListener("click", fetchAll);
+
+                // Wire settings event delegation once — never reattaches
+                wireSettingsDelegation();
+
+                // Load from cache if present
+                const cache = load(STORAGE_KEYS.cache, null);
+                if (cache && cache.articlesByDomain) {
+                    state.articlesByDomain = cache.articlesByDomain;
+                    state.keywordArticles = cache.keywordArticles || [];
+                    state.errors = cache.errors || [];
+                    render();
+                    // Auto-refresh if cache is more than 6 hours old
+                    const cacheAge = Date.now() - new Date(cache.fetchedAt).getTime();
+                    if (cacheAge > 6 * 60 * 60 * 1000) {
+                        fetchAll();
+                    }
+                } else {
+                    fetchAll();
+                }
+
+                // Save current visit timestamp so next visit's "NEW" badges compare against this moment.
+                // The OLD lastVisit was already loaded into state at startup and used for this render.
+                setTimeout(() => {
+                    const now = new Date().toISOString();
+                    save(STORAGE_KEYS.lastVisit, now);
+                }, 100);
+
+                // Refresh "X ago" every minute
+                setInterval(renderFetchInfo, 60_000);
+            }
+
+            init();
+        </script>
+    </body>
+</html>
