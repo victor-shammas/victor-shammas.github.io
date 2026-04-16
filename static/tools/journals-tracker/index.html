@@ -1678,7 +1678,7 @@
                   ${isNew ? '<span class="new-badge">NEW</span>' : ""}
                 </div>
                 <h3 class="article-title">
-                  <a href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(a.title)}</a>
+                  <a href="${escapeHtml(link)}" target="_blank" rel="noopener">${formatHtmlText(a.title)}</a>
                 </h3>
                 ${a.authors ? `<div class="article-authors">${escapeHtml(a.authors)}</div>` : ""}
                 ${
@@ -1746,6 +1746,17 @@
                     .replaceAll(">", "&gt;")
                     .replaceAll('"', "&quot;")
                     .replaceAll("'", "&#39;");
+            }
+
+            function formatHtmlText(s) {
+                if (s == null) return "";
+                // First, escape everything for safety using your existing function
+                let escaped = escapeHtml(s);
+                // Then, restore ONLY the <i> and </i> tags
+                escaped = escaped
+                    .replaceAll("&lt;i&gt;", "<i>")
+                    .replaceAll("&lt;/i&gt;", "</i>");
+                return escaped;
             }
 
             // ============================================================
