@@ -7,7 +7,8 @@ aliases:
   - /norwegian-writings
 ---
 
-<h2 class="section-heading">Essays og artikler</h2>
+## Essays og artikler
+
 «[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (*Agora*, 2026; under utgivelse)
 
 «[Opp-ned-filosofen](/pdfs/shammas-2025-opp-ned-filosofen.pdf)» (*Agora*, 2024)
@@ -122,6 +123,6 @@ aliases:
 
 [Klasse over etnisitet](/pdfs/Shammas-Klasse-over-etnisitet.pdf) (*Klassekampen*, 2010)
 
-<h2 class="section-heading">Foredrag</h2>
+## Foredrag
 
 [Om *Kapitalen* av Marx](https://www.youtube.com/watch?v=N3dlPAoXSVA) (Stortinget, januar 2018) | YouTube (video)
