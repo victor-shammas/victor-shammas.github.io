@@ -8,7 +8,7 @@ aliases:
 ---
 
 <h2 class="section-heading">Essays og artikler</h2>
-«[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (Agora, 2026; under utgivelse)
+«[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (*Agora*, 2026; under utgivelse)
 
 «[Opp-ned-filosofen](/pdfs/shammas-2025-opp-ned-filosofen.pdf)» (*Agora*, 2024)
 
@@ -16,9 +16,9 @@ aliases:
 
 «Straffen: Kriminalomsorg mellom soning og forsoning.» I: Kloster et al. (red.), [*Hellig makt: Studier i politisk teologi*](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm, 2024.
 
-«Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell». I: Øversveen et al. (red.), [*Sosiologisk teori*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025.
+«Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell». I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025.
 
-«Kritisk teori». I: Øversveen et al. (red.), [*Sosiologisk teori*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025 (m/ Emil Øversveen).
+«Kritisk teori». I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025 (m/ E. Øversveen).
 
 [Brød eller sirkus?](/pdfs/Shammas-Klassekampen-Brod-eller-sirkus.pdf) (*Klassekampen*, juni 2024)
 
@@ -30,11 +30,11 @@ aliases:
 
 [Den heterodokse insider: Om Loïc Wacquants forfatterskap](/pdfs/Shammas-Den-heterodokse-insider.pdf) (*Nytt Norsk Tidsskrift*, 2022)
 
-[Bokanmeldelse: Yngve Hammerlin, *Hard mot de harde*](/pdfs/sosiologenno-Hard-mot-de-harde.pdf) (Sosiologen.no, juni 2022)
+[Bokanmeldelse: Yngve Hammerlin, *Hard mot de harde*](/pdfs/sosiologenno-Hard-mot-de-harde.pdf) (*Sosiologen.no*, juni 2022)
 
 [Juristenes begrensninger](/pdfs/fvnno-Juristenes-begrensninger.pdf) (*Fædrelandsvennen*, mars 2022)
 
-[Propagandaens viktighet, tross alt](/pdfs/sosiologenno-Propagandaens-viktighet.pdf) (Sosiologen.no, mars 2022)
+[Propagandaens viktighet, tross alt](/pdfs/sosiologenno-Propagandaens-viktighet.pdf) (*Sosiologen.no*, mars 2022)
 
 [Oljefondets naivitet](/pdfs/klassekampenno-Oljefondets-naivitet.pdf) (*Klassekampen*, mars 2022)
 
@@ -80,7 +80,7 @@ aliases:
 
 [Kongeriket Norwegian](/pdfs/Shammas-Kongeriket-Norwegian.pdf) (*Manifest Tidsskrift*, 2017)
 
-[Forsvar for fatalismen](/pdfs/Shammas-Forsvar-for-fatalismen.pdf) (Salongen.no, 2017)
+[Forsvar for fatalismen](/pdfs/Shammas-Forsvar-for-fatalismen.pdf) (*Salongen.no*, 2017)
 
 [Hellas er ikke ferdig](/pdfs/Shammas-Hellas-er-ikke-ferdig.pdf) (*Manifest Tidsskrift*, 2015)
 
