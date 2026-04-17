@@ -8,6 +8,7 @@ aliases:
 ---
 
 <h2 class="section-heading">Essays og artikler</h2>
+«[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (Agora, 2026; under utgivelse)
 
 «[Opp-ned-filosofen](/pdfs/shammas-2025-opp-ned-filosofen.pdf)» (*Agora*, 2024)
 
