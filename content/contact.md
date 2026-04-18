@@ -6,7 +6,9 @@ menu:
     weight: 70
 ---
 
-Feel free to reach out with questions about my research, media inquiries, speaking invitations, or collaboration proposals.
+Feel free to reach out with questions about my research, media inquiries, speaking invitations, or collaboration proposals. 
+
+E-mail: contact@victorshammas.com.
 
 <form action="https://formsubmit.co/82d2495ef1b1b3fe25d52380ffc75a16" method="POST" class="contact-form">
 
