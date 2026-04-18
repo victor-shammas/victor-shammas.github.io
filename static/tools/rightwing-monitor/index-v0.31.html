@@ -162,10 +162,6 @@
                 border-color: #fecaca;
                 background: #fef2f2;
             }
-            .card.hungary {
-                border-color: #fdba74;
-                background: #fff7ed;
-            }
             .card.smer {
                 border-color: #c7d2fe;
                 background: #eef2ff;
@@ -204,22 +200,19 @@
             @media (min-width: 720px) {
                 .card.general,
                 .card.nodes,
-                .card.bluesky,
-                .card.hungary {
+                .card.bluesky {
                     grid-column: 1 / -1;
                 }
                 .card.general .body,
                 .card.nodes .body,
-                .card.bluesky .body,
-                .card.hungary .body {
+                .card.bluesky .body {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
                     gap: 0 20px;
                 }
                 .card.general .item:nth-child(-n + 3),
                 .card.nodes .item:nth-child(-n + 3),
-                .card.bluesky .item:nth-child(-n + 3),
-                .card.hungary .item:nth-child(-n + 3) {
+                .card.bluesky .item:nth-child(-n + 3) {
                     border-top: 0;
                     padding-top: 0;
                     margin-top: 0;
@@ -321,7 +314,7 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.32</span
+                            >v0.31</span
                         >
                     </h1>
                     <div class="sub">
@@ -434,15 +427,6 @@
                         '"National Conservatism" OR "NatCon" OR "Conservative Political Action Conference" OR "CPAC" OR "Turning Point USA" OR "Turning Point UK"',
                         '"Institute of Economic Affairs" OR "Policy Exchange" OR "Centre for Policy Studies" OR "Alliance for Responsible Citizenship"',
                     ],
-                    lang: "en",
-                    country: "US",
-                    window: "30d",
-                },
-                {
-                    id: "hungary",
-                    name: "Hungary (Fidesz / Tisza)",
-                    flag: "🇭🇺",
-                    q: '"Viktor Orban" OR "Peter Magyar" OR "Fidesz" OR "Tisza"',
                     lang: "en",
                     country: "US",
                     window: "30d",
@@ -623,7 +607,7 @@
                             return true;
                         });
                         const limit =
-                            p.id === "general" || p.id === "nodes" ? MAX_GENERAL : p.id === "hungary" ? 9 : MAX;
+                            p.id === "general" || p.id === "nodes" ? MAX_GENERAL : MAX;
                         const cutoffMs = Date.now() - 30 * 24 * 3600 * 1000;
                         stories = deduped
                             .filter((it) => {
@@ -644,7 +628,7 @@
                                     summary: strip(it.description, source),
                                 };
                             });
-                        if (p.id === "general" || p.id === "hungary") {
+                        if (p.id === "general") {
                             stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
                         }
                     }
