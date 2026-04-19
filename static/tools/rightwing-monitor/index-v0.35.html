@@ -340,7 +340,7 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.36</span
+                            >v0.35</span
                         >
                     </h1>
                     <div class="sub">
@@ -443,9 +443,9 @@
                     id: "hungary",
                     name: "Hungary (Fidesz / Tisza)",
                     flag: "🇭🇺",
-                    q: '"Orbán Viktor" OR "Magyar Péter" OR "Fidesz" OR "Tisza"',
-                    lang: "hu",
-                    country: "HU",
+                    q: '"Viktor Orbán" OR "Peter Magyar" OR "Fidesz" OR "Tisza"',
+                    lang: "en",
+                    country: "US",
                 },
                 {
                     id: "vox",
@@ -498,7 +498,6 @@
             const STALE_MS = 3 * 3600 * 1000;
             const MAX = 8;
             const MAX_GENERAL = 16;
-            const MAX_NODES = 9;
             const MAX_BLUESKY = 12;
 
             const store = {
@@ -670,11 +669,9 @@
                             return true;
                         });
                         const limit =
-                            p.id === "general"
+                            p.id === "general" || p.id === "nodes"
                                 ? MAX_GENERAL
-                                : p.id === "nodes"
-                                  ? MAX_NODES
-                                  : MAX;
+                                : MAX;
                         const cutoffMs = Date.now() - 30 * 24 * 3600 * 1000;
                         stories = deduped
                             .filter((it) => {
@@ -697,9 +694,6 @@
                             });
                         if (p.id === "general") {
                             stories = stories.slice(0, Math.floor(stories.length / 2) * 2);
-                        }
-                        if (p.id === "nodes") {
-                            stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
                         }
                     }
                     state[p.id] = { stories, fetchedAt: Date.now(), errors };
