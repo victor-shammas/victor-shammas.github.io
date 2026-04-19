@@ -170,6 +170,14 @@
                 border-color: #fdba74;
                 background: #fff7ed;
             }
+            .card.vox {
+                border-color: #86efac;
+                background: #f0fdf4;
+            }
+            .card.pis {
+                border-color: #fca5a5;
+                background: #fff1f2;
+            }
             .card.smer {
                 border-color: #c7d2fe;
                 background: #eef2ff;
@@ -206,27 +214,31 @@
                 white-space: pre-wrap;
             }
             @media (min-width: 720px) {
-                .card.general,
+                .card.general {
+                    grid-column: span 2;
+                }
+                .card.general .body {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 0 20px;
+                }
+                .card.general .item:nth-child(-n + 2) {
+                    border-top: 0;
+                    padding-top: 0;
+                    margin-top: 0;
+                }
                 .card.nodes,
-                .card.bluesky,
-                .card.afd,
-                .card.hungary {
+                .card.bluesky {
                     grid-column: 1 / -1;
                 }
-                .card.general .body,
                 .card.nodes .body,
-                .card.bluesky .body,
-                .card.afd .body,
-                .card.hungary .body {
+                .card.bluesky .body {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
                     gap: 0 20px;
                 }
-                .card.general .item:nth-child(-n + 3),
                 .card.nodes .item:nth-child(-n + 3),
-                .card.bluesky .item:nth-child(-n + 3),
-                .card.afd .item:nth-child(-n + 3),
-                .card.hungary .item:nth-child(-n + 3) {
+                .card.bluesky .item:nth-child(-n + 3) {
                     border-top: 0;
                     padding-top: 0;
                     margin-top: 0;
@@ -328,7 +340,7 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.33</span
+                            >v0.35</span
                         >
                     </h1>
                     <div class="sub">
@@ -345,6 +357,9 @@
                 Gemini 3 Pro /
                 <a href="https://www.theorybrief.com">theorybrief.com</a> /
                 <a href="https://www.victorshammas.com">victorshammas.com</a>
+            </div>
+            <div class="foot" style="margin-top: 6px; color: #a8a29e; font-size: 11px;">
+                All links are automatically aggregated via Google News RSS. Errors and irrelevant results may occur.
             </div>
         </div>
 
@@ -417,6 +432,38 @@
                     country: "GB",
                 },
                 {
+                    id: "afd",
+                    name: "AfD (Germany)",
+                    flag: "🇩🇪",
+                    q: '"Alternative fur Deutschland" OR AfD OR "Tino Chrupalla" OR "Alice Weidel"',
+                    lang: "de",
+                    country: "DE",
+                },
+                {
+                    id: "hungary",
+                    name: "Hungary (Fidesz / Tisza)",
+                    flag: "🇭🇺",
+                    q: '"Viktor Orbán" OR "Peter Magyar" OR "Fidesz" OR "Tisza"',
+                    lang: "en",
+                    country: "US",
+                },
+                {
+                    id: "vox",
+                    name: "Vox (Spain)",
+                    flag: "🇪🇸",
+                    q: '"Vox" OR "Santiago Abascal" OR "Ignacio Garriga" OR "Javier Ortega Smith" OR "Rocío Monasterio" OR "Kiko Méndez-Monasterio"',
+                    lang: "es",
+                    country: "ES",
+                },
+                {
+                    id: "pis",
+                    name: "PiS (Poland)",
+                    flag: "🇵🇱",
+                    q: '"Prawo i Sprawiedliwość" OR "PiS" OR "Jarosław Kaczyński" OR "Mateusz Morawiecki" OR "Karol Nawrocki" OR "Law and Justice"',
+                    lang: "pl",
+                    country: "PL",
+                },
+                {
                     id: "general",
                     name: "General Right-Wing News",
                     flag: "🌍",
@@ -446,27 +493,11 @@
                     country: "US",
                     window: "30d",
                 },
-                {
-                    id: "afd",
-                    name: "Germany (AfD)",
-                    flag: "🇩🇪",
-                    q: '"Alternative fur Deutschland" OR AfD OR "Tino Chrupalla" OR "Alice Weidel"',
-                    lang: "de",
-                    country: "DE",
-                },
-                {
-                    id: "hungary",
-                    name: "Hungary (Fidesz / Tisza)",
-                    flag: "🇭🇺",
-                    q: '"Viktor Orban" OR "Peter Magyar" OR "Fidesz" OR "Tisza"',
-                    lang: "en",
-                    country: "US",
-                },
             ];
             const LS_KEY = "farright_tracker_v1";
             const STALE_MS = 3 * 3600 * 1000;
             const MAX = 8;
-            const MAX_GENERAL = 12;
+            const MAX_GENERAL = 16;
             const MAX_BLUESKY = 12;
 
             const store = {
@@ -640,9 +671,7 @@
                         const limit =
                             p.id === "general" || p.id === "nodes"
                                 ? MAX_GENERAL
-                                : p.id === "hungary" || p.id === "afd"
-                                  ? 9
-                                  : MAX;
+                                : MAX;
                         const cutoffMs = Date.now() - 30 * 24 * 3600 * 1000;
                         stories = deduped
                             .filter((it) => {
@@ -663,8 +692,8 @@
                                     summary: strip(it.description, source),
                                 };
                             });
-                        if (p.id === "general" || p.id === "hungary" || p.id === "afd") {
-                            stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
+                        if (p.id === "general") {
+                            stories = stories.slice(0, Math.floor(stories.length / 2) * 2);
                         }
                     }
                     state[p.id] = { stories, fetchedAt: Date.now(), errors };
