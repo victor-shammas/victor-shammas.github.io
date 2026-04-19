@@ -340,7 +340,7 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.39</span
+                            >v0.37</span
                         >
                     </h1>
                     <div class="sub">
@@ -348,10 +348,7 @@
                         far-right political actors across Europe and the U.S.
                     </div>
                 </div>
-                <div style="display:flex;gap:6px;flex-shrink:0">
-                    <button id="translateAll" style="font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:#fff;padding:8px 12px;font-weight:700;font-size:12px;letter-spacing:0.3px;color:#57534e;transition:all .15s ease">EN</button>
-                    <button class="primary" id="refreshAll">↻ Refresh all</button>
-                </div>
+                <button class="primary" id="refreshAll">↻ Refresh all</button>
             </header>
 
             <div class="grid" id="grid"></div>
@@ -470,11 +467,7 @@
                     id: "general",
                     name: "General Right-Wing News",
                     flag: "🌍",
-                    queries: [
-                        '"far right" OR "alt-right" OR "right-wing extremist" OR "fascism"',
-                        '"ethnonationalism" OR "white nationalism" OR "Christian nationalism" OR "manosphere"',
-                        '"national conservatism" OR "illiberal democracy" OR "techno-fascism"',
-                    ],
+                    q: '"far right" OR "alt-right" OR "techno-fascism" OR "manosphere" OR "right-wing extremist" OR "national conservatism" OR "illiberal democracy" OR "fascism" OR "ethnonationalism" OR "white nationalism" OR "Christian nationalism"',
                     lang: "en",
                     country: "US",
                 },
@@ -877,71 +870,6 @@
                     if (state[p.id]) renderCard(p);
                 });
             }
-            document.getElementById("translateAll").addEventListener("click", async (e) => {
-                const btn = e.target;
-                const translatable = PARTIES.filter((p) => p.lang && p.lang !== "en" && !p.type);
-                const loaded = translatable.filter((p) => state[p.id]?.stories?.length);
-                if (!loaded.length) return;
-
-                const allTranslated = loaded.every((p) => state[p.id]?.translated);
-
-                if (allTranslated) {
-                    // Toggle off
-                    loaded.forEach((p) => {
-                        state[p.id].translated = false;
-                    });
-                    store.set(state);
-                    loaded.forEach((p) => renderCard(p));
-                    btn.style.background = "#fff";
-                    btn.style.color = "#57534e";
-                    btn.style.borderColor = "var(--line)";
-                    return;
-                }
-
-                btn.innerHTML = '<span class="spin">↻</span>';
-                btn.disabled = true;
-
-                // Translate all that aren't already translated
-                const toTranslate = loaded.filter((p) => !state[p.id]?.translated);
-                await Promise.all(
-                    toTranslate.map(async (p) => {
-                        const d = state[p.id];
-                        const card = document.querySelector(`[data-id="${p.id}"]`);
-                        const tbtn = card?.querySelector(".tbtn");
-                        if (tbtn) {
-                            tbtn.innerHTML = '<span class="spin">↻</span>';
-                            tbtn.disabled = true;
-                        }
-
-                        const needsTranslation = d.stories.some(
-                            (s) => s.titleEn === undefined || s.summaryEn === undefined,
-                        );
-                        if (needsTranslation) {
-                            await Promise.all(
-                                d.stories.map(async (s) => {
-                                    if (s.titleEn === undefined) {
-                                        try { s.titleEn = await translateText(s.title, p.lang); }
-                                        catch { s.titleEn = s.title; }
-                                    }
-                                    if (s.summaryEn === undefined) {
-                                        try { s.summaryEn = s.summary ? await translateText(s.summary, p.lang) : ""; }
-                                        catch { s.summaryEn = s.summary || ""; }
-                                    }
-                                }),
-                            );
-                        }
-                        d.translated = true;
-                        renderCard(p);
-                    }),
-                );
-
-                store.set(state);
-                btn.innerHTML = "EN";
-                btn.disabled = false;
-                btn.style.background = "var(--ink)";
-                btn.style.color = "#fff";
-                btn.style.borderColor = "var(--ink)";
-            });
             document.getElementById("refreshAll").addEventListener("click", async (e) => {
                 e.target.disabled = true;
                 await Promise.all(PARTIES.map(fetchParty));
