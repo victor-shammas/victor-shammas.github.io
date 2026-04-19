@@ -340,7 +340,7 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.37</span
+                            >v0.36</span
                         >
                     </h1>
                     <div class="sub">
@@ -610,20 +610,12 @@
                         text.split("\n")[0].slice(0, 120) ||
                         "(no text)";
                     const linkUrl = ext?.uri || postUrl;
-                    // Use post text as summary; if title came from text's first line, skip it
-                    let summary = text;
-                    if (!ext?.title && text.split("\n").length > 1) {
-                        summary = text.split("\n").slice(1).join("\n").trim();
-                    } else if (!ext?.title) {
-                        summary = "";
-                    }
-                    if (summary.length > 300) summary = summary.slice(0, 300) + "…";
                     return {
                         title,
                         url: linkUrl,
                         source: post.author.displayName || `@${handle}`,
                         date: post.record?.createdAt,
-                        summary,
+                        summary: "",
                     };
                 });
             }
@@ -700,7 +692,7 @@
                                     url: it.link,
                                     source,
                                     date: it.pubDate,
-                                    summary: "",
+                                    summary: strip(it.description, source),
                                 };
                             });
                         if (p.id === "general") {
