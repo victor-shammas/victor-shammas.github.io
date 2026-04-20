@@ -340,7 +340,7 @@
                                 font-weight: 400;
                                 vertical-align: middle;
                             "
-                            >v0.40</span
+                            >v0.39</span
                         >
                     </h1>
                     <div class="sub">
@@ -498,6 +498,7 @@
                     ],
                     lang: "en",
                     country: "US",
+                    window: "30d",
                 },
             ];
             const LS_KEY = "farright_tracker_v1";
@@ -524,7 +525,7 @@
             let state = store.get();
 
             const feedUrl = (p, query) => {
-                const win = p.window || "5d"; // 5-day limit across the board
+                const win = p.window || "7d";
                 const q = query || p.q;
                 const g = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:" + win)}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
                 const keyParam = RSS2JSON_KEY
@@ -542,6 +543,8 @@
                     .replace(/&#39;/g, "'")
                     .replace(/\s+/g, " ")
                     .trim();
+                // Google News RSS appends the outlet name to the description;
+                // trim it off so it doesn't show up as the last 2–3 words.
                 if (source) {
                     const esc = source.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
                     t = t.replace(new RegExp("[\\s\\-–—]*" + esc + "\\s*$", "i"), "").trim();
@@ -604,6 +607,7 @@
                     const rkey = post.uri.split("/").pop();
                     const handle = post.author.handle;
                     const text = (post.record?.text || "").trim();
+                    // Prefer embedded external link (news article) as the headline + url.
                     const embed = post.embed || post.record?.embed;
                     const ext =
                         embed?.external || embed?.record?.embeds?.[0]?.external || null;
@@ -613,6 +617,7 @@
                         text.split("\n")[0].slice(0, 120) ||
                         "(no text)";
                     const linkUrl = ext?.uri || postUrl;
+                    // Use post text as summary; if title came from text's first line, skip it
                     let summary = text;
                     if (!ext?.title && text.split("\n").length > 1) {
                         summary = text.split("\n").slice(1).join("\n").trim();
@@ -685,8 +690,7 @@
                                 : p.id === "nodes"
                                   ? MAX_NODES
                                   : MAX;
-                        // 5-day hard cutoff locally to match API request
-                        const cutoffMs = Date.now() - 5 * 24 * 3600 * 1000; 
+                        const cutoffMs = Date.now() - 30 * 24 * 3600 * 1000;
                         stories = deduped
                             .filter((it) => {
                                 const t = new Date(it.pubDate || 0).getTime();
@@ -732,6 +736,7 @@
                 const r = await fetch(url);
                 if (!r.ok) throw new Error("translate HTTP " + r.status);
                 const j = await r.json();
+                // j[0] is an array of [translatedChunk, originalChunk, ...]
                 if (!Array.isArray(j) || !Array.isArray(j[0]))
                     throw new Error("translate parse");
                 return j[0].map((chunk) => (chunk && chunk[0]) || "").join("");
@@ -743,6 +748,7 @@
                 const d = state[p.id];
                 if (!d || !d.stories?.length) return;
 
+                // Toggle off if already translated
                 if (d.translated) {
                     d.translated = false;
                     store.set(state);
@@ -750,6 +756,7 @@
                     return;
                 }
 
+                // If we already have cached translations, just toggle on
                 const allCached = d.stories.every(
                     (s) => s.titleEn !== undefined && s.summaryEn !== undefined,
                 );
@@ -764,6 +771,7 @@
                 tbtn.disabled = true;
 
                 try {
+                    // Translate title + summary for each story in parallel, caching on the object
                     await Promise.all(
                         d.stories.map(async (s) => {
                             if (s.titleEn === undefined) {
@@ -825,9 +833,8 @@
                         ? `<div class="err">⚠ ${esc(d.errors[0])}${d.errors.length > 1 ? ` (+${d.errors.length - 1} more)` : ""}</div>`
                         : "";
                 if (!d.stories || !d.stories.length) {
-                    // Updated the fallback text here to reflect the 5-day limit
                     body.innerHTML =
-                        errHtml || '<div class="empty">No results in the last 5 days</div>';
+                        errHtml || '<div class="empty">No results in the last 30 days</div>';
                     return;
                 }
                 body.innerHTML =
@@ -861,25 +868,13 @@
               <div class="body"><div class="empty">Tap ↻ to load</div></div>
             </div>`,
                 ).join("");
-                
-                // Implemented auto-fetch logic here
                 PARTIES.forEach((p) => {
                     document
                         .querySelector(`[data-id="${p.id}"] .rbtn`)
                         .addEventListener("click", () => fetchParty(p));
                     const tbtn = document.querySelector(`[data-id="${p.id}"] .tbtn`);
                     if (tbtn) tbtn.addEventListener("click", () => translateCard(p));
-                    
-                    if (state[p.id]) {
-                        renderCard(p);
-                        // Auto-fetch if cached data is older than STALE_MS (3 hours)
-                        if (Date.now() - state[p.id].fetchedAt > STALE_MS) {
-                            fetchParty(p);
-                        }
-                    } else {
-                        // Auto-fetch immediately if no cache exists
-                        fetchParty(p);
-                    }
+                    if (state[p.id]) renderCard(p);
                 });
             }
             document.getElementById("translateAll").addEventListener("click", async (e) => {
@@ -891,6 +886,7 @@
                 const allTranslated = loaded.every((p) => state[p.id]?.translated);
 
                 if (allTranslated) {
+                    // Toggle off
                     loaded.forEach((p) => {
                         state[p.id].translated = false;
                     });
@@ -905,6 +901,7 @@
                 btn.innerHTML = '<span class="spin">↻</span>';
                 btn.disabled = true;
 
+                // Translate all that aren't already translated
                 const toTranslate = loaded.filter((p) => !state[p.id]?.translated);
                 await Promise.all(
                     toTranslate.map(async (p) => {
