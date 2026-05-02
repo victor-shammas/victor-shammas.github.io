@@ -217,7 +217,8 @@
   }
 
   function postUrl(uri) {
-    return "https://bsky.app/profile/" + BSKY_HANDLE + "/post/" + uri.split("/").pop();
+    var parts = uri.split("/");
+    return "https://bsky.app/profile/" + parts[2] + "/post/" + parts[parts.length - 1];
   }
 
   function escapeHtml(str) {
