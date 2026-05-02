@@ -190,8 +190,13 @@
   }
   if (aside) aside.style.display = "";
 
-  var FEED_URL = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.theorybrief.com%2Ffeed";
+  var ARCHIVE_URL = "https://www.theorybrief.com/api/v1/archive";
+  var FALLBACK_FEED_URL = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.theorybrief.com%2Ffeed";
+  var PAGE_SIZE = 50;
+  var MAX_POSTS = 1000;
   var POST_LIMIT = 5;
+  var CACHE_KEY = "theorybrief.archive.v1";
+  var CACHE_TTL_MS = 6 * 60 * 60 * 1000;
   var container = document.getElementById("stk-footer-posts");
 
   function escapeHtml(str) {
@@ -222,18 +227,102 @@
       '</a>';
   }
 
-  fetch(FEED_URL)
-    .then(function (res) {
-      if (!res.ok) throw new Error("HTTP " + res.status);
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function readCache() {
+    try {
+      var raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (!obj || !obj.t || !Array.isArray(obj.posts)) return null;
+      if (Date.now() - obj.t > CACHE_TTL_MS) return null;
+      return obj.posts;
+    } catch (e) { return null; }
+  }
+
+  function writeCache(posts) {
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), posts: posts })); } catch (e) {}
+  }
+
+  function normalizeArchiveItem(p) {
+    return {
+      title: p.title,
+      link: p.canonical_url,
+      description: p.subtitle || p.description || p.search_engine_description || "",
+      pubDate: p.post_date
+    };
+  }
+
+  function normalizeRssItem(it) {
+    return {
+      title: it.title,
+      link: it.link,
+      description: it.description || it.content || "",
+      pubDate: it.pubDate
+    };
+  }
+
+  function fetchArchivePage(offset) {
+    var url = ARCHIVE_URL + "?sort=new&limit=" + PAGE_SIZE + "&offset=" + offset;
+    return fetch(url).then(function (res) {
+      if (!res.ok) throw new Error("archive HTTP " + res.status);
       return res.json();
-    })
-    .then(function (data) {
-      if (!data.items || data.items.length === 0) {
+    });
+  }
+
+  function fetchAllArchive() {
+    var collected = [];
+    function next(offset) {
+      if (offset >= MAX_POSTS) return collected;
+      return fetchArchivePage(offset).then(function (batch) {
+        if (!Array.isArray(batch) || batch.length === 0) return collected;
+        collected = collected.concat(batch);
+        if (batch.length < PAGE_SIZE) return collected;
+        return next(offset + PAGE_SIZE);
+      });
+    }
+    return next(0);
+  }
+
+  function fetchFallback() {
+    return fetch(FALLBACK_FEED_URL)
+      .then(function (res) {
+        if (!res.ok) throw new Error("fallback HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) { return (data.items || []).map(normalizeRssItem); });
+  }
+
+  function loadPool() {
+    var cached = readCache();
+    if (cached && cached.length) return Promise.resolve(cached);
+    return fetchAllArchive()
+      .then(function (raw) {
+        var posts = raw.map(normalizeArchiveItem).filter(function (p) { return p.title && p.link; });
+        if (posts.length) writeCache(posts);
+        return posts;
+      })
+      .catch(function (err) {
+        console.warn("Theory Brief archive unavailable, falling back to RSS:", err);
+        return fetchFallback();
+      });
+  }
+
+  loadPool()
+    .then(function (pool) {
+      if (!pool || pool.length === 0) {
         container.innerHTML = '<div class="stk-footer__loading">No posts yet.</div>';
         return;
       }
-      var posts = data.items.slice(0, POST_LIMIT);
-      container.innerHTML = posts.map(renderPost).join("");
+      var picked = shuffle(pool).slice(0, POST_LIMIT);
+      container.innerHTML = picked.map(renderPost).join("");
     })
     .catch(function (err) {
       console.error("Substack feed error:", err);
