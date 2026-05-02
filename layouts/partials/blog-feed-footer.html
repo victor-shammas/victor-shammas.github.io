@@ -35,7 +35,7 @@
   </a>
 </aside>
 
-<script id="blog-footer-data" type="application/json">{{ $data | jsonify }}</script>
+<script>window.__blogPosts = {{ $data | jsonify | safeJS }};</script>
 
 <style>
   .blog-footer {
@@ -202,11 +202,9 @@
   if (aside) aside.style.display = "";
 
   var POST_LIMIT = 5;
-  var dataEl = document.getElementById("blog-footer-data");
   var container = document.getElementById("blog-footer-posts");
 
-  var posts = [];
-  try { posts = JSON.parse((dataEl && dataEl.textContent) || "[]"); } catch (e) { posts = []; }
+  var posts = Array.isArray(window.__blogPosts) ? window.__blogPosts : [];
 
   function escapeHtml(str) {
     var div = document.createElement("div");
