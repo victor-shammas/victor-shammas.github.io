@@ -27,9 +27,15 @@
       <div class="content">
         {{- block "main" . -}}{{- end -}}
         {{ if ne .Section "blog" }}
-          <script>window.__feedPick = Math.random() < 0.5 ? "substack" : "bluesky";</script>
+          <script>
+            (function () {
+              var r = Math.random();
+              window.__feedPick = r < 1/3 ? "substack" : r < 2/3 ? "bluesky" : "blog";
+            })();
+          </script>
           {{ partial "substack-feed-footer.html" . }}
           {{ partial "bluesky-feed-footer.html" . }}
+          {{ partial "blog-feed-footer.html" . }}
         {{ end }}
         <footer class="site-footer">
           &copy; {{ now.Year }} Victor Shammas
