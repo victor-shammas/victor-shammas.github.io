@@ -216,8 +216,9 @@
     return new Date(dateStr).toLocaleDateString("en-US", { month: "short", day: "numeric" });
   }
 
-  function postUrl(uri, handle) {
-    return "https://bsky.app/profile/" + handle + "/post/" + uri.split("/").pop();
+  function postUrl(uri) {
+    var parts = uri.split("/");
+    return "https://bsky.app/profile/" + parts[2] + "/post/" + parts[parts.length - 1];
   }
 
   function escapeHtml(str) {
@@ -236,7 +237,7 @@
       '<span class="bsky-ft-post__handle">@' + escapeHtml(author.handle) + '</span>' +
       (isRepost ? ' <span class="bsky-ft-post__repost-label">&#x21BB; reposted</span>' : '') +
       '</div>';
-    return '<a class="bsky-ft-post" href="' + escapeHtml(postUrl(post.uri, author.handle)) + '" target="_blank" rel="noopener noreferrer">' +
+    return '<a class="bsky-ft-post" href="' + escapeHtml(postUrl(post.uri)) + '" target="_blank" rel="noopener noreferrer">' +
       authorLine +
       '<p class="bsky-ft-post__text">' + escapeHtml(record.text) + "</p>" +
       '<div class="bsky-ft-post__meta">' +
