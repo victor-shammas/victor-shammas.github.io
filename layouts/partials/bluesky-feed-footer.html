@@ -96,17 +96,17 @@
     justify-content: space-between;
     min-width: 0;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .bsky-ft-post:hover {
+    border-color: #0085ff;
   }
   .bsky-ft-post__author {
     margin-bottom: 0.35rem;
-  }
-  .bsky-ft-post__author a {
     color: #1a1a1a;
-    text-decoration: none;
     font-size: 0.78rem;
-  }
-  .bsky-ft-post__author a:hover {
-    text-decoration: underline;
   }
   .bsky-ft-post__handle {
     color: #888;
@@ -129,13 +129,6 @@
     overflow: hidden;
     flex-grow: 1;
   }
-  .bsky-ft-post__text a {
-    color: #0085ff;
-    text-decoration: none;
-  }
-  .bsky-ft-post__text a:hover {
-    text-decoration: underline;
-  }
   .bsky-ft-post__meta {
     display: flex;
     align-items: center;
@@ -145,13 +138,6 @@
     margin-top: 0.35rem;
     padding-top: 0.35rem;
     border-top: 1px solid #eee;
-  }
-  .bsky-ft-post__meta a {
-    color: #888;
-    text-decoration: none;
-  }
-  .bsky-ft-post__meta a:hover {
-    color: #0085ff;
   }
   .bsky-ft-post__stat {
     display: flex;
@@ -193,7 +179,7 @@
       background: #1a1a1a;
       border-color: #333;
     }
-    .bsky-ft-post__author a {
+    .bsky-ft-post__author {
       color: #e0e0e0;
     }
     .bsky-ft-post__text {
@@ -240,56 +226,24 @@
     return div.innerHTML;
   }
 
-  function linkify(text, facets) {
-    if (!facets || facets.length === 0) return escapeHtml(text);
-    var encoder = new TextEncoder();
-    var bytes = encoder.encode(text);
-    var sorted = [].concat(facets).sort(function (a, b) { return a.index.byteStart - b.index.byteStart; });
-    var result = "";
-    var lastByte = 0;
-    for (var i = 0; i < sorted.length; i++) {
-      var facet = sorted[i];
-      var start = facet.index.byteStart;
-      var end = facet.index.byteEnd;
-      var decoder = new TextDecoder();
-      result += escapeHtml(decoder.decode(bytes.slice(lastByte, start)));
-      var segment = new TextDecoder().decode(bytes.slice(start, end));
-      var feature = facet.features[0];
-      if (feature && feature.$type === "app.bsky.richtext.facet#link") {
-        result += '<a href="' + escapeHtml(feature.uri) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(segment) + "</a>";
-      } else if (feature && feature.$type === "app.bsky.richtext.facet#mention") {
-        result += '<a href="https://bsky.app/profile/' + escapeHtml(feature.did) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(segment) + "</a>";
-      } else if (feature && feature.$type === "app.bsky.richtext.facet#tag") {
-        result += '<a href="https://bsky.app/hashtag/' + encodeURIComponent(feature.tag) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(segment) + "</a>";
-      } else {
-        result += escapeHtml(segment);
-      }
-      lastByte = end;
-    }
-    result += escapeHtml(new TextDecoder().decode(bytes.slice(lastByte)));
-    return result;
-  }
-
   function renderPost(item) {
     var post = item.post;
     var record = post.record;
     var author = post.author;
     var isRepost = item.reason && item.reason.$type === "app.bsky.feed.defs#reasonRepost";
     var authorLine = '<div class="bsky-ft-post__author">' +
-      '<a href="https://bsky.app/profile/' + escapeHtml(author.handle) + '" target="_blank" rel="noopener noreferrer">' +
       '<strong>' + escapeHtml(author.displayName || author.handle) + '</strong> ' +
       '<span class="bsky-ft-post__handle">@' + escapeHtml(author.handle) + '</span>' +
-      '</a>' +
       (isRepost ? ' <span class="bsky-ft-post__repost-label">&#x21BB; reposted</span>' : '') +
       '</div>';
-    return '<div class="bsky-ft-post">' +
+    return '<a class="bsky-ft-post" href="' + escapeHtml(postUrl(post.uri)) + '" target="_blank" rel="noopener noreferrer">' +
       authorLine +
-      '<p class="bsky-ft-post__text">' + linkify(record.text, record.facets) + "</p>" +
+      '<p class="bsky-ft-post__text">' + escapeHtml(record.text) + "</p>" +
       '<div class="bsky-ft-post__meta">' +
-      '<a href="' + postUrl(post.uri) + '" target="_blank" rel="noopener noreferrer">' + timeAgo(record.createdAt) + "</a>" +
+      '<span>' + escapeHtml(timeAgo(record.createdAt)) + '</span>' +
       '<span class="bsky-ft-post__stat">&hearts; ' + (post.likeCount || 0) + "</span>" +
       '<span class="bsky-ft-post__stat">&#x21BB; ' + (post.repostCount || 0) + "</span>" +
-      "</div></div>";
+      "</div></a>";
   }
 
   fetch(API_URL + "?actor=" + encodeURIComponent(BSKY_HANDLE) + "&limit=" + POST_LIMIT + "&filter=posts_no_replies")
