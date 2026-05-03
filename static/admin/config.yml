@@ -1,4 +1,4 @@
-# ================================================================
+2# ================================================================
 # Sveltia CMS Configuration
 # Docs: https://github.com/sveltia/sveltia-cms
 # (compatible with Decap/Netlify CMS config format)
@@ -12,6 +12,8 @@ backend:
   name: github
   repo: victor-shammas/victor-shammas.github.io
   branch: main
+  auth_type: pkce
+  app_id: Ov23liCDHA1ry6zsV3Pg
 
 # ── Media ────────────────────────────────────────────────────────
 # Where uploaded images (e.g. blog post feature images) are stored.
