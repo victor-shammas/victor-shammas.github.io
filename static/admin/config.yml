@@ -12,7 +12,8 @@ backend:
   name: github
   repo: victor-shammas/victor-shammas.github.io
   branch: main
-
+  base_url: https://sveltia-cms-auth.victor-shammas.workers.dev
+  
 # ── Media ────────────────────────────────────────────────────────
 # Where uploaded images (e.g. blog post feature images) are stored.
 media_folder: "static/images/blog"
