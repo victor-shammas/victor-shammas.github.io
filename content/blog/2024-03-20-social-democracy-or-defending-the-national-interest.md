@@ -3,7 +3,7 @@ title: Social Democracy, or Defending the National Interest
 date: 2024-03-20
 draft: false
 dek: ''
-image: ''
+image: /images/blog/f974c619-767b-4284-836a-0ff3ff88f5cc_600x403.jpg
 summary: ''
 aliases:
   - /blog/2024/3/20/social-democracy-or-defending-the-national-interest
