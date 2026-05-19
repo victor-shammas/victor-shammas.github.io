@@ -1,19 +1,13 @@
 ---
-title: "Fascism vs. Centrism"
+title: Fascism vs. Centrism
 date: 2024-11-05
 draft: false
-dek: ""
-image: "https://static1.squarespace.com/static/5a8d8d5c80bd5e24bc0797f6/5ca5b39c4e17b66a2a79b834/672a8c7549962c0039e75f86/1750840576858/"
-summary: "Today is Election Day in the United States, a defining moment not just for the U.S. but for the world as a whole."
+dek: The stakes have seldom been higher. Enabling the rise of neofascism would be a historic mistake for the left.
+image: /images/blog/9c00240b-cb39-468d-b94d-81d44fa306d8_1080x1080.jpg
+summary: ''
 aliases:
   - /blog/2024/11/5/fascism-vs-centrism
 ---
-
-```
-The stakes have seldom been higher. Enabling the rise of neofascism would be a historic mistake for the left.
-```
-
-![](https://images.squarespace-cdn.com/content/v1/5a8d8d5c80bd5e24bc0797f6/bbe8e0fc-5af2-45af-9c7f-f40a73c5515b/9c00240b-cb39-468d-b94d-81d44fa306d8_1080x1080.jpg)
 
 Today is Election Day in the United States, a defining moment not just for the U.S. but for the world as a whole.
 
@@ -25,11 +19,11 @@ Trump’s comedy, however, is for a narrow set: His is not a universalist playfu
 
 Behind Trump’s jokey facade is the beating heart of a fascist. On Rogan’s podcast, Trump spoke of Kamala as a “low-IQ person,” an “imbecile, literally,” the kind of pseudoscientific discourse about intelligence typifying the far right and playing on racist, misogynist ideas about successful Black woman—and made all the more absurd in light of Harris’s considerable credentials. Trump also evidenced a weird obsession with his Air Force One pilots, which he likened to “perfect specimens,” a strangely clinical term, with one pilot said to be a “perfect-looking human being,” a fethishization of military aesthetics familiar to viewers of Leni Riefenstahl’s cinematography.
 
-More centrally, Trump repeatedly invoked an image of foreign and/or criminal Others set on destabilizing the American social fabric, a classic fascist move, with “hundreds of thousands of criminals” said to be overrunning American communities, including “convicted rapists, drug dealers, drug lords.” Trump claimed that Springfield had “32,000 migrants dropped in,” all of them Haitians, and, surprisingly, “they speak no language.” Rogan corrected him: “No English, you mean?” But Trump doubled down on his claim. The idea that Haitians possess “no language”—a smear that has deep historical roots, involving the denigration of Haitian Creole—was likely intentional, reducing a vulnerable, hard-working immigrant community to language-less animality. Portraying minorities as barbaric (literally, those who, from the ancient Greeks’ perspective could only say *bar bar*, or meaningless, guttural sounds) is straight out of the far-right’s playbook.
+More centrally, Trump repeatedly invoked an image of foreign and/or criminal Others set on destabilizing the American social fabric, a classic fascist move, with “hundreds of thousands of criminals” said to be overrunning American communities, including “convicted rapists, drug dealers, drug lords.” Trump claimed that Springfield had “32,000 migrants dropped in,” all of them Haitians, and, surprisingly, “they speak no language.” Rogan corrected him: “No English, you mean?” But Trump doubled down on his claim. The idea that Haitians possess “no language”—a smear that has deep historical roots, involving the denigration of Haitian Creole—was likely intentional, reducing a vulnerable, hard-working immigrant community to language-less animality. Portraying minorities as barbaric (literally, those who, from the ancient Greeks’ perspective could only say _bar bar_, or meaningless, guttural sounds) is straight out of the far-right’s playbook.
 
 Unsurprisingly, one of Trump’s crucial final rallies took place at Madison Square Garden, perhaps referencing the [1939 Nazi rally](https://en.m.wikipedia.org/wiki/1939_Nazi_rally_at_Madison_Square_Garden) in the same location. [Back in 1939](https://anightatthegarden.com/), more than 20,000 people gathered to participate in a “Pro America Rally,” sing “The Star-Spangled Banner,” give the Hitler salute, and listen to speakers talking of “job-taking Jewish refugees.” In the 2024 rally, meanwhile, Trump invoked the alleged need to “stop the invasion of criminals coming into our country” and claimed “30,000 illegal migrants were put into a town of 50,000 people” and that “no place can withstand that.” The comedian Hinchcliffe, meanwhile, evoked the idea of an overly fertile domestic enemy, in the crudest, most repugnant terms: “These Latinos, they love making babies too, just know that. They do. They do. There’s no pulling out. They don’t do that. They come inside, just like they did to our country.”
 
-In [*How Fascism Works*](https://www.penguinrandomhouse.com/books/586030/how-fascism-works-by-jason-stanley/), the philosopher Jason Stanley rightly warns against how dangerous all of this rhetoric—and potential, implied policy—is:
+In [_How Fascism Works_](https://www.penguinrandomhouse.com/books/586030/how-fascism-works-by-jason-stanley/), the philosopher Jason Stanley rightly warns against how dangerous all of this rhetoric—and potential, implied policy—is:
 
 > The dangers of fascist politics come from the particular way in which it dehumanizes segments of the population. By excluding these groups, it limits the capacity for empathy among other citizens, leading to the justification of inhumane treatment, from repression of freedom, mass imprisonment, and expulsion to, in extreme cases, mass extermination.
 
@@ -47,7 +41,7 @@ The crucial difference between Harris and Trump is that Harris remains a centris
 
 **Strategic Timing**
 
-In this context, the left must learn the hard lessons of *kairos*, of “the right time,” which is to say *strategic timing*: The situation is not right for a third-party vote. For activists eager to punish Biden, the right response in the long term is to build a mass movement capable of pulling Democrats leftwards. For the near term, the leftist activist and writer Joe Mayall has produced an [exemplary analysis](https://www.joewrote.com/p/im-unconvinced-by-the-leftist-arguments) of the concrete situation facing progressive voters. His analysis comes down to one basic insight: Harris and Trump are not the same; in total, Trump is far worse: “Domestically, the boilerplate Democratic politics of Harris are preferable to the MAGA agenda.” Given the grievous threats of Trumpism, Mayall argues that compromise is the order of the day:
+In this context, the left must learn the hard lessons of _kairos_, of “the right time,” which is to say _strategic timing_: The situation is not right for a third-party vote. For activists eager to punish Biden, the right response in the long term is to build a mass movement capable of pulling Democrats leftwards. For the near term, the leftist activist and writer Joe Mayall has produced an [exemplary analysis](https://www.joewrote.com/p/im-unconvinced-by-the-leftist-arguments) of the concrete situation facing progressive voters. His analysis comes down to one basic insight: Harris and Trump are not the same; in total, Trump is far worse: “Domestically, the boilerplate Democratic politics of Harris are preferable to the MAGA agenda.” Given the grievous threats of Trumpism, Mayall argues that compromise is the order of the day:
 
 > This “compromise” is leftist voters casting ballots for Harris, so that we are not “hurled into battle” against the army of Donald Trump, who wants to “use the military to handle the radical left. I’m not sure what Trump means by “handle,” but I know none of us will be able to advocate for Palestine, abortion rights, or socialism from a jail cell, camp, or grave.
 
