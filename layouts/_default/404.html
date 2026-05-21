@@ -17,6 +17,14 @@
 <script>
 (function() {
   var path = window.location.pathname;
+  var overrides = {
+    '/s/Shammas-Penal-Populism-Elitism-and-the-Buffered-Ideal.pdf':
+      'https://www.elgaronline.com/edcollchap/book/9781035308538/chapter5.xml'
+  };
+  if (overrides[path]) {
+    window.location.replace(overrides[path]);
+    return;
+  }
   if (path.indexOf('/s/') === 0) {
     var newPath = '/pdfs/' + path.substring(3);
     window.location.replace(newPath);
