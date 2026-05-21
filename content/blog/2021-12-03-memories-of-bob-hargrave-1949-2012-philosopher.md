@@ -3,7 +3,7 @@ title: Memories of Bob Hargrave (1949-2012), philosopher
 date: 2021-12-03
 draft: false
 dek: ''
-image: ''
+image: /images/blog/Screenshot 2026-05-21 at 09.25.34.png
 summary: ''
 aliases:
   - /blog/2021/12/3/memories-of-bob-hargrave-philosopher-1949-2012
