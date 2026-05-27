@@ -17,7 +17,7 @@ aliases:
 
 «Straffen: Kriminalomsorg mellom soning og forsoning.» I: Kloster et al. (red.), [*Hellig makt: Studier i politisk teologi*](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm, 2024.
 
-«Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell». I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025.
+[«Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell»](/pdfs/Shammas-Stuart-Hall-Sosiologisk-analyse.pdf). I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025.
 
 «Kritisk teori». I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025 (m/ E. Øversveen).
 
