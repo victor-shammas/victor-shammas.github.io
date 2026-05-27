@@ -48,9 +48,14 @@ weight = 5
 external = true
 
 [[menus.main]]
+name = "Tools"
+url = "/tools/"
+weight = 6
+
+[[menus.main]]
 name = "Norwegian"
 url = "/norwegian/"
-weight = 6
+weight = 7
 
 [markup]
   [markup.goldmark]
