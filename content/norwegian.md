@@ -9,15 +9,15 @@ aliases:
 
 ## Essays og artikler
 
-«[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (*Agora*, 2026; under utgivelse)
+«[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (*Agora*, 2026, nr. 1-2)
 
 «[Opp-ned-filosofen](/pdfs/shammas-2025-opp-ned-filosofen.pdf)» (*Agora*, 2024)
 
 «[Noe er råttent i kongeriket Danmark](/pdfs/Shammas-Noe-er-rattent-Klassekampen-2025.pdf)» (Klassekampen, august 2025)
 
-«Straffen: Kriminalomsorg mellom soning og forsoning.» I: Kloster et al. (red.), [*Hellig makt: Studier i politisk teologi*](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm, 2024.
+«[Straffen: Kriminalomsorg mellom soning og forsoning](/pdfs/Shammas-Straffen-politisk-teologi.pdf)». I: Kloster et al. (red.), [*Hellig makt: Studier i politisk teologi*](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm, 2024.
 
-[«Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell»](/pdfs/Shammas-Stuart-Hall-Sosiologisk-analyse.pdf). I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025.
+«[Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell](/pdfs/Shammas-Stuart-Hall-Sosiologisk-analyse.pdf)». I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025.
 
 «Kritisk teori». I: Øversveen et al. (red.), [*Sosiologisk teori: Klassikere, modernitet og samtid*](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025 (m/ E. Øversveen).
 
