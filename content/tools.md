@@ -7,7 +7,7 @@ url: "/tools/"
 
 <h2 class="section-heading">Tools</h2>
 
-[**Transatlantic Right-Wing Media Monitor**](https://victorshammas.com/tools/rightwing-monitor/) — News dashboard focused on right-wing populist actors.
+[**Right-Wing NewsTracker**](https://victorshammas.com/tools/rightwing-monitor/) — News dashboard focused on right-wing populist actors.
 
 [**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
 
