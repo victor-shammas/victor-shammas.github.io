@@ -1,6 +1,6 @@
 ---
 title: "Research"
-subtitle: "Articles, essays, reviews, and theses in English."
+subtitle: "Articles, essays, reviews, and theses."
 ---
 
 <h2 class="section-heading">Articles</h2>
