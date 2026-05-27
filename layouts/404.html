@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — {{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Site.Params.description }}">
+  {{/*
+    Redirect old Squarespace /s/ PDF URLs.
+    In <head> so it fires before any rendering. Specific overrides
+    redirect to external URLs; everything else under /s/ falls back
+    to the matching /pdfs/ file.
+  */}}
+  <script>
+  (function() {
+    var path = window.location.pathname;
+    var overrides = {
+      '/s/Shammas-Penal-Populism-Elitism-and-the-Buffered-Ideal.pdf':
+        'https://www.elgaronline.com/edcollchap/book/9781035308538/chapter5.xml'
+    };
+    if (overrides[path]) {
+      window.location.replace(overrides[path]);
+      return;
+    }
+    if (path.indexOf('/s/') === 0) {
+      window.location.replace('/pdfs/' + path.substring(3));
+    }
+  })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "css/main.css" | absURL }}">
+</head>
+<body>
+  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  <div class="overlay" onclick="toggleMenu()"></div>
+  <div class="site">
+    <aside class="sidebar" id="sidebar">
+      <a href="{{ "" | absURL }}" class="sidebar__name">Victor Shammas</a>
+      <div class="sidebar__title">Sociologist</div>
+      <ul class="sidebar__nav">
+        {{- range .Site.Menus.main -}}
+          <li>
+            <a href="{{ if .Params.external }}{{ .URL }}{{ else }}{{ .URL | absURL }}{{ end }}"
+               {{- if .Params.external }} class="external" target="_blank" rel="noopener"{{ end -}}>
+              {{ .Name }}
+            </a>
+          </li>
+        {{- end -}}
+      </ul>
+      <div class="sidebar__footer">
+        <div>Dept. of Sociology &amp; Social Work<br>University of Agder, Norway</div>
+        <div class="sidebar__links">
+          <a href="{{ .Site.Params.social.googleScholar }}" target="_blank">Google Scholar</a>
+          <a href="{{ .Site.Params.social.academia }}" target="_blank">Academia</a>
+          <a href="{{ .Site.Params.social.researchGate }}" target="_blank">ResearchGate</a>
+          <a href="{{ .Site.Params.social.linkedIn }}" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="content">
+        <header class="page-header">
+          <h1>Page Not Found</h1>
+          <p>The page you're looking for doesn't exist.</p>
+        </header>
+        <div class="prose">
+          <p>You may have followed an outdated link. Try navigating from the <a href="{{ "" | absURL }}">homepage</a>.</p>
+        </div>
+        <footer class="site-footer">
+          &copy; {{ now.Year }} Victor Shammas
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script>
+  function toggleMenu() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.querySelector('.overlay').classList.toggle('open');
+  }
+  </script>
+</body>
+</html>
