@@ -91,7 +91,7 @@ a:hover { color: var(--accent-light); }
 .sidebar__nav a {
   color: var(--sidebar-text);
   text-decoration: none;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 400;
   padding: 0.45rem 0.75rem;
   display: block;
@@ -525,6 +525,7 @@ a:hover { color: var(--accent-light); }
   }
   .sidebar.open { transform: translateX(0); }
   .menu-toggle { display: flex; }
+  .sidebar__nav a { font-size: var(--text-sm); }
   .main { margin-left: 0; }
   .content { padding: 4.5rem 1.5rem 3rem; }
   .page-header h1 { font-size: var(--text-2xl); }
