@@ -1,13 +1,13 @@
 ---
 title: 'Dan Wang''s "Breakneck": A Lesson in Disavowed Hawkishness'
 date: 2025-11-04
-draft: true
+draft: false
 dek: Like Klein and Thompson's Abundance, Dan Wang wants the U.S. to build. But Breakneck isn't about raising living standards—it's about preparing for war.
 image: /images/blog/726b0405-1365-4d98-985d-30df5c0099a8_988x1500.webp
 summary: ''
 ---
 
-\*\*Dan Wang,\*\* [**_Breakneck: China’s Quest to Engineer the Future_**](https://wwnorton.com/books/9781324106036) \*\*(New York: W. W. Norton, 2025).\*\*
+**Dan Wang,** [**_Breakneck: China’s Quest to Engineer the Future_**](https://wwnorton.com/books/9781324106036) **(New York: W. W. Norton, 2025).**
 
 _Breakneck_ can be read as the center-right counterpart to Ezra Klein and Derek Thompson’s center-left [_Abundance_](https://www.theorybrief.com/p/the-poverty-of-abundance). Where Klein and Thompson largely focused on California to make the case for an American “liberalism that builds”—a greener capitalism aiming to deliver higher living standards—Wang pivots to China to make the case for U.S. manufacturing renewal, now from a less progressive, more security-motivated angle.
 
