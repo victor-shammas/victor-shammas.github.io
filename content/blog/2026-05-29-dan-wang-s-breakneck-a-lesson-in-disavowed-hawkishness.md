@@ -7,7 +7,7 @@ image: /images/blog/726b0405-1365-4d98-985d-30df5c0099a8_988x1500.webp
 summary: ''
 ---
 
-**Dan Wang,** [**_Breakneck: China’s Quest to Engineer the Future_**](https://wwnorton.com/books/9781324106036) **(New York: W. W. Norton, 2025).**
+\*\*Dan Wang,\*\* [**_Breakneck: China’s Quest to Engineer the Future_**](https://wwnorton.com/books/9781324106036) \*\*(New York: W. W. Norton, 2025).\*\*
 
 _Breakneck_ can be read as the center-right counterpart to Ezra Klein and Derek Thompson’s center-left [_Abundance_](https://www.theorybrief.com/p/the-poverty-of-abundance). Where Klein and Thompson largely focused on California to make the case for an American “liberalism that builds”—a greener capitalism aiming to deliver higher living standards—Wang pivots to China to make the case for U.S. manufacturing renewal, now from a less progressive, more security-motivated angle.
 
@@ -44,5 +44,3 @@ And yet Wang ignores the fact that the U.S. has spent [$4.4 trillion on defense
 Its disavowals allow _Breakneck_ to function all the more effectively to advocate for the United States to “build,” not with the essentially civilian purpose of raising living standards—Klein and Thompson’s liberal-centrist aim—but to bolster geopolitical power. In this respect, Wang’s work merges, in multiple ways, with the Trump 2.0 agenda, though without the author having to acknowledge as much. Wang instead gets to play the role of the coolly analytic moderate, not quite concealing the security story but not making it the book’s centerpiece either.
 
 So what would an _Abundance_–_Breakneck_ part-alternative, part-synthesis look like? _Abundance_ doesn’t go [far enough](https://www.theorybrief.com/p/the-poverty-of-abundance) in its progressivism, but at least it keeps societal well-being in focus. Against _Breakneck_’s narrow nationalism and securitized tenor, collective welfare and mutually beneficial development should be centered. That will be difficult given the nature of the regimes currently involved—on both sides. But simply adding more production power to a state with a trillion-dollar military is not in itself a pathway to stability.
-
-[](https://substackcdn.com/image/fetch/$s_!MRO-!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0ae9f5b1-749c-4de3-96f8-ea1cf282fb9d_1596x1188.png)
