@@ -287,7 +287,7 @@ a:hover { color: var(--link-hover); }
   line-height: 1.25;
   margin-bottom: 0.6rem;
 }
-.blog-post__title a { color: var(--link); text-decoration: none; }
+.blog-post__title a { color: var(--text); text-decoration: none; }
 .blog-post__title a:hover { color: var(--link-hover); }
 
 .blog-post__dek {
