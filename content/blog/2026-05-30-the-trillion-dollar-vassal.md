@@ -1,7 +1,7 @@
 ---
 title: The Trillion-Dollar Vassal
 date: 2025-11-14
-draft: true
+draft: false
 dek: How Trump 2.0, Israel’s Gaza war, and Norway's two-trillion-dollar sovereign wealth fund converged in a firestorm of finance, geopolitics, and genocide.
 image: /images/blog/1b31fb45-c23a-453f-9937-d2c95d5c5f46_1200x800.webp
 summary: ''
