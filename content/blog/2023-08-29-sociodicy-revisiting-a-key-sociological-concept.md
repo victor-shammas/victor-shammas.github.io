@@ -9,8 +9,6 @@ aliases:
   - /blog/2023/8/15/sociodicy-revisiting-a-key-sociological-concept
 ---
 
-[First published on [_Critical Legal Thinking_](https://criticallegalthinking.com/2023/09/06/sociodicy-notes-on-the-thought-of-pierre-bourdieu/).]
-
 **Introduction**
 
 A _sociodicy_ is a _structured_ _attempt to justify the social order in spite of its manifold injustices_. Its conceptual lineage can be traced back to the notion of theodicy, or the justification of God despite the existence of evil and suffering, a term that was appropriated and “sociologized” by Max Weber; it was the French mid-20th century sociologist Raymond Aron who expressly coined the term _sociodicy_, even though it was his student and collaborator Pierre Bourdieu who became its most famous and frequent exponent. On Bourdieu’s usage, sociodicies are narratives that try to shield dominant social strata from criticism over inequalities, hierarchy, domination, and social suffering (that is, pain and distress originating from the social order rather than individual pathology). To take just one example: The idea of _social mobility_ has functioned as a powerful sociodicy in U.S. society, as Bourdieu and Wacquant (1999: 51) point out, justifying the existence of significant inequalities on the grounds that any one individual has the (theoretical) possibility of climbing up the social ladder—even if this possibility is, in reality, largely illusory.
@@ -108,3 +106,7 @@ Van Inwagen, P. (2006) _The Problem of Evil (The Gifford Lectures Delivered in t
 Wacquant, L. (2023) Carnal concepts in action: The diagonal sociology of Loïc Wacquant. _Thesis Eleven_ [DOI:10.1177/07255136221149782](https://doi.org/10.1177/07255136221149782).
 
 Weber, M. (1946) The social psychology of the world religions. In: H. H. Gerth, & C. Wright Mills (Eds.), _From Max Weber: Essays in Sociology_ (pp. 267-301). New York: Oxford University Press.
+
+***
+
+[First published on [_Critical Legal Thinking_](https://criticallegalthinking.com/2023/09/06/sociodicy-notes-on-the-thought-of-pierre-bourdieu/).]
