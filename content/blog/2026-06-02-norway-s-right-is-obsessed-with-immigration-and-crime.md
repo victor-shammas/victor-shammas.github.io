@@ -23,7 +23,7 @@ The right has been remarkably successful at taking charge of the public conversa
 
 Throughout the election season, the Conservative Party has run social media ads advocating “tightening immigration” and, borrowing from the populist right’s playbook, has pushed a mock-ironic anti-immigration slogan: “No slogans. Just less immigration.”
 
-[![](/images/blog/4f6c9831-cae2-4f0e-835f-7a53661e9f72_1170x1562.webp)](https://substackcdn.com/image/fetch/$s_!J10M!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4f6c9831-cae2-4f0e-835f-7a53661e9f72_1170x1562.jpeg)
+![](/images/blog/4f6c9831-cae2-4f0e-835f-7a53661e9f72_1170x1562.webp)
 
 A Conservative Party ad on social media claiming that “high immigration and too poor integration are fertile ground for crime.”
 
@@ -31,19 +31,19 @@ The Progress Party in particular has worked hard to link crime and immigration i
 
 For a full year leading up to the election, the Progress Party’s leader, Sylvi Listhaug, has hammered on her party’s signature theme: opposition to immigration. “If immigration is not dramatically slowed down now,” she [said](https://www.aftenposten.no/norge/politikk/i/mPvalO/listhaug-vil-stramme-kraftig-til-i-innvandringspolitikken-hvis-de-kommer-i-regjering-i-2025) in November, “we risk that in a few years we will not be able to afford to take care of our own citizens.” Listhaug—a kind of Nordicized Trump or Meloni of the North—has [worked](https://www.vg.no/nyheter/i/Xj918g/listhaug-og-wiborg-paa-groenland-jeg-ville-ikke-gaatt-her-paa-kvelden-alene) indefatigably to portray crime as a widespread and growing social problem, rooted in immigration and centered on young, urban (ethnic-minority) men.
 
-[![](/images/blog/759376bd-dfc9-49be-8c53-b48215b9b4f8_1920x1538.webp)](https://substackcdn.com/image/fetch/$s_!Xj0a!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F759376bd-dfc9-49be-8c53-b48215b9b4f8_1920x1538.jpeg)
+![](/images/blog/759376bd-dfc9-49be-8c53-b48215b9b4f8_1920x1538.webp)
 
 The Progress Party’s leader, Sylvi Listhaug told the newspaper VG earlier this year that “it’s time to call a spade, a spade” and drew a connecting line between “youth crime” and “immigrants.”
 
 The fact that both the Progress Party and the Conservative Party have been able to do so, almost unimpeded, is peculiar, given the fact that Norway remains one of the safest countries in the world. If anything, immigration is in many ways the solution to some of Norway’s problems, including a looming demographic crisis—an aging population amidst declining birthrates—and potential labor shortages, especially in the country’s welfare state.
 
-[![](/images/blog/4bb8b63d-d385-4fc2-b02e-63df2cef85f3_1254x1250.webp)](https://substackcdn.com/image/fetch/$s_!hHWH!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4bb8b63d-d385-4fc2-b02e-63df2cef85f3_1254x1250.png)
+![](/images/blog/4bb8b63d-d385-4fc2-b02e-63df2cef85f3_1254x1250.webp)
 
 Screenshot from the Progress Party’s 2025 campaign platform’s section on “Safety”—note the dog-whistle, ethnicized, urban youths depicted on the right-hand side, portrayed as the source of criminal insecurity.
 
 The manufactured nature of the crime issue is only compounded by the fact that Norway’s overall crime rate has declined steadily over the last few decades. Since the early 2000s, the rate of police-reported crimes (shown below) has dropped by nearly a third from over 90 crimes per 1,000 inhabitants to just above 60 crimes per 1,000 by 2024. There are categories of crime that are an exception, such as a moderate uptick in police-reported violence—from 6.9 cases per 1,000 in 2003 to 8.2 cases in 2024—but crime in general is trending downward, and the slight uptick in specific categories hardly warrants the kind of bombastic societal discourse the Norwegian right has been pushing.
 
-[![](/images/blog/6b03b684-98e6-488f-9c87-45a15d1bf8cb_770x768.webp)](https://substackcdn.com/image/fetch/$s_!35h_!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b03b684-98e6-488f-9c87-45a15d1bf8cb_770x768.png)
+![](/images/blog/6b03b684-98e6-488f-9c87-45a15d1bf8cb_770x768.webp)
 
 Interestingly, this great Norwegian crime decline has coincided with a significant expansion in immigration. Some may be surprised to learn that Norway has become a diverse, multicultural society. The idea of a nation of blonde, blue-eyed Vikings is a tourist stereotype—or an ethnonationalist fantasy cultivated by the far right. In the capital, Oslo, immigrants and their descendants [make up](https://bydelsfakta.oslo.kommune.no/bydel/01-02-03-04-05-06-07-08-09-10-11-12-13-14-15/innvandrerbefolkningen) more than a third of the population; in the country as a whole, these groups make up more than [20 percent](https://www.imdi.no/tall-og-fakta/tall-om-integreringen-i-norge/hvordan-gar-det-med-integreringen-i-norge-status-og-utviklingstrekk-i-2024/befolkningen-med-innvandrerbakgrunn-i-norge/) of the population. Immigrants have enriched Norway.
 
@@ -51,7 +51,7 @@ But if immigration has gone up while crime has fallen, the supposedly tight conn
 
 One potent measure of how safe Norway remains can be found in the country’s homicide statistics. The absolute number of homicides has remained stable since the 1990s, hovering at around 30-40 victims per year; in the same period, the population grew, meaning that the per-capita homicide rate in reality declined over the period. Norway’s homicide level is far [lower](http://and%20wales/) than that of the United States, England, and even neighboring Sweden.
 
-[![](/images/blog/dadc789f-b415-4637-bd17-b676cce00e32_1318x824.webp)](https://substackcdn.com/image/fetch/$s_!jGKd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdadc789f-b415-4637-bd17-b676cce00e32_1318x824.png)
+![](/images/blog/dadc789f-b415-4637-bd17-b676cce00e32_1318x824.webp)
 
 The total number of murder cases (968 cases) and murder victims (1,123 individuals) in Norway, 1990-2023. Source: [Kripos](https://www.politiet.no/globalassets/tall-og-fakta/drap/nasjonal-drapsoversikt-2024.pdf).
 
@@ -69,7 +69,7 @@ That makes the right’s narrative all the more unreal and fantastical. Unlike i
 
 With just over two weeks until the election, Norwegians were once again reminded of the threat of right-wing extremism to public safety. A 34-year-old Ethiopian-Norwegian social worker, Tamima Nibras Juhar, was murdered in her Oslo workplace, a child welfare institution, by a young man with far-right views.
 
-[![](/images/blog/31b98ed3-1b8b-49ea-8ef7-06c84d9bae36_2114x1200.webp)](https://substackcdn.com/image/fetch/$s_!Q6a0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F31b98ed3-1b8b-49ea-8ef7-06c84d9bae36_2114x1200.png)
+![](/images/blog/31b98ed3-1b8b-49ea-8ef7-06c84d9bae36_2114x1200.webp)
 
 Tamima Nibras Juhar, a social worker in Oslo, was murdered on August 24, 2025 by a young man with far-right extremist views.
 
@@ -77,7 +77,7 @@ While the public condemnation of the murder was swift, most commentators and pol
 
 A week prior to the attack, a radical far-right party, the [Norway Democrats](https://en.wikipedia.org/wiki/Norway_Democrats) (ND), had organized a so-called “remigration conference”—one of the most high-profile events for far-right activists the country had seen in years. Among the participants were the German Alternative für Deutschland politician Lena Kotré and the French far-right ideologue Renaud Camus, originator of the white-nationalist, conspiratorial [notion](https://en.wikipedia.org/wiki/Great_Replacement_conspiracy_theory) of a “Great Replacement.”
 
-[![](/images/blog/48269434-0bc4-429e-a1d0-5ca1eb5eb257_950x1486.webp)](https://substackcdn.com/image/fetch/$s_!Zevy!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F48269434-0bc4-429e-a1d0-5ca1eb5eb257_950x1486.jpeg)
+![](/images/blog/48269434-0bc4-429e-a1d0-5ca1eb5eb257_950x1486.webp)
 
 The week following, a former (respected) correspondent for Norway’s public broadcasting corporation, Anders Magnus, penned [an op-ed](https://www.aftenposten.no/meninger/debatt/i/kwkomj/er-norsk-velferd-truet-av-innvandring-fra-muslimske-klansamfunn) in the newspaper Aftenposten claiming that “the welfare state [is] threatened, primarily due to immigration from clan-based, Islamic countries in the Middle East, Africa and Asia”—an unsubstantiated and deeply Islamophobic claim.
 
