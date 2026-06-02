@@ -3,7 +3,7 @@ title: The Reagan Dream
 date: 2024-12-05
 draft: false
 dek: 'Trump is no Reagan: While conservatives aim to conserve, extremists want to push against all limits, venturing into the great beyond — a potentially abyssal, violent beyond.'
-image: /images/blog/9781350357129.jpg
+image: /images/blog/b54e7436-88c6-4c3d-9bfb-97e5d26c35a6_452x678.jpg
 summary: ''
 aliases:
   - /blog/2025/1/29/the-reagan-dream
