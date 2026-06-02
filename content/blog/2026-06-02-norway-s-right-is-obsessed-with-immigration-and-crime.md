@@ -3,7 +3,7 @@ title: Norway's Right is Obsessed With Immigration and Crime
 date: 2025-05-28
 draft: false
 dek: Norway is a safe, prosperous, and diverse society. So why can't the right stop talking about immigration and crime?
-image: ''
+image: /images/blog/759376bd-dfc9-49be-8c53-b48215b9b4f8_1920x1538.jpg
 summary: ''
 ---
 
@@ -31,13 +31,13 @@ The Progress Party in particular has worked hard to link crime and immigration i
 
 For a full year leading up to the election, the Progress Party’s leader, Sylvi Listhaug, has hammered on her party’s signature theme: opposition to immigration. “If immigration is not dramatically slowed down now,” she [said](https://www.aftenposten.no/norge/politikk/i/mPvalO/listhaug-vil-stramme-kraftig-til-i-innvandringspolitikken-hvis-de-kommer-i-regjering-i-2025) in November, “we risk that in a few years we will not be able to afford to take care of our own citizens.” Listhaug—a kind of Nordicized Trump or Meloni of the North—has [worked](https://www.vg.no/nyheter/i/Xj918g/listhaug-og-wiborg-paa-groenland-jeg-ville-ikke-gaatt-her-paa-kvelden-alene) indefatigably to portray crime as a widespread and growing social problem, rooted in immigration and centered on young, urban (ethnic-minority) men.
 
-![](/images/blog/759376bd-dfc9-49be-8c53-b48215b9b4f8_1920x1538.webp)
+![The Progress Party’s leader, Sylvi Listhaug told the newspaper VG earlier this year that “it’s time to call a spade, a spade” and drew a connecting line between “youth crime” and “immigrants.”](/images/blog/759376bd-dfc9-49be-8c53-b48215b9b4f8_1920x1538.webp)
 
 The Progress Party’s leader, Sylvi Listhaug told the newspaper VG earlier this year that “it’s time to call a spade, a spade” and drew a connecting line between “youth crime” and “immigrants.”
 
 The fact that both the Progress Party and the Conservative Party have been able to do so, almost unimpeded, is peculiar, given the fact that Norway remains one of the safest countries in the world. If anything, immigration is in many ways the solution to some of Norway’s problems, including a looming demographic crisis—an aging population amidst declining birthrates—and potential labor shortages, especially in the country’s welfare state.
 
-![](/images/blog/4bb8b63d-d385-4fc2-b02e-63df2cef85f3_1254x1250.webp)
+![Screenshot from the Progress Party’s 2025 campaign platform’s section on “Safety”—note the dog-whistle, ethnicized, urban youths depicted on the right-hand side, portrayed as the source of criminal insecurity.](/images/blog/4bb8b63d-d385-4fc2-b02e-63df2cef85f3_1254x1250.webp)
 
 Screenshot from the Progress Party’s 2025 campaign platform’s section on “Safety”—note the dog-whistle, ethnicized, urban youths depicted on the right-hand side, portrayed as the source of criminal insecurity.
 
@@ -51,7 +51,7 @@ But if immigration has gone up while crime has fallen, the supposedly tight conn
 
 One potent measure of how safe Norway remains can be found in the country’s homicide statistics. The absolute number of homicides has remained stable since the 1990s, hovering at around 30-40 victims per year; in the same period, the population grew, meaning that the per-capita homicide rate in reality declined over the period. Norway’s homicide level is far [lower](http://and%20wales/) than that of the United States, England, and even neighboring Sweden.
 
-![](/images/blog/dadc789f-b415-4637-bd17-b676cce00e32_1318x824.webp)
+![The total number of murder cases (968 cases) and murder victims (1,123 individuals) in Norway, 1990-2023. Source: Kripos.](/images/blog/dadc789f-b415-4637-bd17-b676cce00e32_1318x824.webp)
 
 The total number of murder cases (968 cases) and murder victims (1,123 individuals) in Norway, 1990-2023. Source: [Kripos](https://www.politiet.no/globalassets/tall-og-fakta/drap/nasjonal-drapsoversikt-2024.pdf).
 
@@ -69,7 +69,7 @@ That makes the right’s narrative all the more unreal and fantastical. Unlike i
 
 With just over two weeks until the election, Norwegians were once again reminded of the threat of right-wing extremism to public safety. A 34-year-old Ethiopian-Norwegian social worker, Tamima Nibras Juhar, was murdered in her Oslo workplace, a child welfare institution, by a young man with far-right views.
 
-![](/images/blog/31b98ed3-1b8b-49ea-8ef7-06c84d9bae36_2114x1200.webp)
+![Tamima Nibras Juhar, a social worker in Oslo, was murdered on August 24, 2025 by a young man with far-right extremist views.](/images/blog/31b98ed3-1b8b-49ea-8ef7-06c84d9bae36_2114x1200.webp)
 
 Tamima Nibras Juhar, a social worker in Oslo, was murdered on August 24, 2025 by a young man with far-right extremist views.
 
