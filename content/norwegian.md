@@ -9,7 +9,7 @@ aliases:
 
 ## Essays og artikler
 
-«[En kort innføring i Loïc Wacquants sosiologi](https://sosiologen.no/ideer/roffguide/en-kort-innforing-i-loic-wacquants-sosiologi/)» (*Sosiologen.no*, juni 2026)
+«[En kort innføring i Loïc Wacquants sosiologi](https://sosiologen.no/ideer/roffguide/en-kort-innforing-i-loic-wacquants-sosiologi/)» (*Sosiologen.no*, juni 2026) [[PDF](/pdfs/Shammas-Wacquant-innforing.pdf)]
 
 «[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (*Agora*, 2026, nr. 1-2)
 
