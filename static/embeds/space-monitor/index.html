@@ -285,13 +285,13 @@ const PANELS = [
     q: 'Starlink OR Starshield OR "Project Kuiper" OR OneWeb OR "direct-to-cell satellite" OR "satellite constellation"' },
   { id: 'bluorigin', name: 'Blue Origin',
     q: '"Blue Origin" OR "New Glenn" OR "New Shepard" OR "Blue Moon lander" OR "Blue Ring"' },
-  { id: 'military', name: 'Space Militarization',
+  { id: 'military', name: 'Space Militarization', lookbackDays: 10,
     q: '"Space Force" OR "space weapon" OR "anti-satellite" OR ASAT OR "space warfare" OR "space militarization" OR "Space Command" OR "space domain" OR "spy satellite" OR "reconnaissance satellite" OR "intelligence satellite" OR "Maxar"' },
-  { id: 'governance', name: 'Space Governance & Law',
+  { id: 'governance', name: 'Space Governance & Law', lookbackDays: 10,
     q: '"Outer Space Treaty" OR "Artemis Accords" OR COPUOS OR "space debris" OR "space regulation" OR "space law" OR "orbital debris" OR "space sustainability" OR "Kessler syndrome"' },
   { id: 'economy', name: 'Space Economy',
-    q: '"Rocket Lab" OR "Virgin Galactic" OR "Sierra Space" OR "Axiom Space" OR "Relativity Space" OR "Firefly Aerospace" OR "United Launch Alliance" OR "Vulcan Centaur" OR Starliner OR "space startup" OR "space funding" OR "space IPO" OR "space SPAC" OR "space venture capital" OR "space investment" OR "space M&A" OR "Space Capital" OR "AST SpaceMobile"' },
-  { id: 'geopolitics', name: 'Space Geopolitics', wide: true,
+    q: '"Rocket Lab" OR "Virgin Galactic" OR "Axiom Space" OR "Firefly Aerospace" OR "United Launch Alliance" OR "Vulcan Centaur" OR Starliner OR "space startup" OR "space funding" OR "space IPO" OR "space venture capital" OR "space investment" OR "Space Capital"' },
+  { id: 'geopolitics', name: 'Space Geopolitics', wide: true, lookbackDays: 10,
     queries: [
       '"China space program" OR CNSA OR Tiangong OR "Long March rocket"',
       'Roscosmos OR ISRO OR Chandrayaan OR Gaganyaan OR "Russian space"',
@@ -376,7 +376,8 @@ function srcOf(title) {
 // ── RSS Fetch ──
 function feedUrl(panel, query) {
   const q = query || panel.q;
-  const gnews = `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:' + LOOKBACK_DAYS + 'd')}&hl=en&gl=US&ceid=US:en&_cb=${Date.now()}`;
+  const days = panel.lookbackDays || LOOKBACK_DAYS;
+  const gnews = `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:' + days + 'd')}&hl=en&gl=US&ceid=US:en&_cb=${Date.now()}`;
   const key = RSS2JSON_KEY;
   const keyParam = key ? `&api_key=${encodeURIComponent(key)}` : '';
   return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(gnews)}${keyParam}`;
@@ -411,7 +412,7 @@ async function fetchPanel(panel) {
     });
 
     const limit = panel.maxItems || (panel.wide ? MAX_WIDE : MAX_ITEMS);
-    const cutoff = Date.now() - LOOKBACK_DAYS * 24 * 3600 * 1000;
+    const cutoff = Date.now() - (panel.lookbackDays || LOOKBACK_DAYS) * 24 * 3600 * 1000;
     let stories = deduped
       .filter(it => { const t = new Date(it.pubDate || 0).getTime(); return t && t >= cutoff; })
       .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
@@ -464,7 +465,7 @@ function renderCard(panel) {
     : '';
 
   if (!d.stories?.length) {
-    body.innerHTML = errHtml || `<div class="om-empty">No results in the last ${LOOKBACK_DAYS} days</div>`;
+    body.innerHTML = errHtml || `<div class="om-empty">No results in the last ${panel.lookbackDays || LOOKBACK_DAYS} days</div>`;
     return;
   }
 
