@@ -13,6 +13,8 @@ url: "/tools/"
 
 [**Space Monitor**](/tools/space-monitor/) — Minimalist RSS news monitor: space commercialization and orbital infrastructure.
 
+[**AI Monitor**](/tools/ai-monitor/) — Minimalist RSS news monitor: politics of artificial intelligence, AI commercialization, and compute infrastructure.
+
 [**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
 
 [**URL-to-Notes**](https://github.com/victor-shammas/url-to-notes) — A Google Chrome extension for saving links to Apple Notes.
