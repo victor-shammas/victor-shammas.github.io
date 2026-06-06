@@ -9,7 +9,7 @@ url: "/tools/"
 
 [**Transatlantic Right-Wing Media Monitor**](https://victorshammas.com/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
 
-[**Right-Wing News Tracker**](/tools/rightwing-monitor/) — Minimalist RSS news dashboard focused on right-wing populist actors.
+[**Right-Wing Monitor**](/tools/rightwing-monitor/) — Minimalist RSS news dashboard focused on right-wing populist actors.
 
 [**Space Monitor**](/tools/space-monitor/) — Minimalist RSS news monitor: space commercialization and orbital infrastructure.
 
