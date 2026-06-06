@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 <style>
 :root {
   --bg-void: #f5f3ef;
@@ -110,13 +111,18 @@ header {
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 .om-card.wide { grid-column: 1 / -1; }
+.om-card-ghost { opacity: 0.35; }
+.om-card-drag { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
 
 .om-card-head {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.7rem 0.85rem;
   border-bottom: 1px solid var(--border-dim);
   min-height: 48px;
+  cursor: grab;
+  user-select: none;
 }
+.om-card-head:active { cursor: grabbing; }
 
 .om-card-head-left { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
 
@@ -260,6 +266,7 @@ header {
     </div>
   </div>
   <div class="hdr-actions">
+    <button class="hdr-btn" id="reset-order" title="Restore default card order">↺ Reset Order</button>
     <button class="hdr-btn" id="refresh-all">↻ Refresh All</button>
   </div>
 </header>
@@ -469,8 +476,80 @@ function renderCard(panel) {
   ).join('');
 }
 
+// ── Drag-to-reorder ──
+const ORDER_KEY = 'orbital_monitor_order_v1';
+
+function loadOrder() {
+  try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || null; } catch { return null; }
+}
+function saveOrder(ids) {
+  try { localStorage.setItem(ORDER_KEY, JSON.stringify(ids)); } catch {}
+}
+function clearOrder() {
+  try { localStorage.removeItem(ORDER_KEY); } catch {}
+}
+
+function applySavedOrder() {
+  const saved = loadOrder();
+  if (!saved || !Array.isArray(saved)) return;
+  PANELS.sort((a, b) => {
+    const ai = saved.indexOf(a.id);
+    const bi = saved.indexOf(b.id);
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+}
+
+// Row-boundary rule: a wide card may only sit where the narrow cards
+// before it (since the last wide / start of grid) form a complete row.
+// Trailing partial rows of narrows are fine.
+function isValidLayout(ids) {
+  const wideSet = new Set(PANELS.filter(p => p.wide).map(p => p.id));
+  let narrowRun = 0;
+  for (const id of ids) {
+    if (wideSet.has(id)) {
+      if (narrowRun % 3 !== 0) return false;
+      narrowRun = 0;
+    } else {
+      narrowRun++;
+    }
+  }
+  return true;
+}
+
+function initSortable() {
+  const grid = document.getElementById('grid');
+  if (typeof Sortable === 'undefined') return;
+  Sortable.create(grid, {
+    handle: '.om-card-head',
+    filter: '.om-btn',
+    preventOnFilter: false,
+    animation: 150,
+    ghostClass: 'om-card-ghost',
+    dragClass: 'om-card-drag',
+    onMove(evt) {
+      const ids = [...grid.children].map(el => el.dataset.id);
+      const draggedId = evt.dragged.dataset.id;
+      const relatedId = evt.related.dataset.id;
+      const fromIdx = ids.indexOf(draggedId);
+      let toIdx = ids.indexOf(relatedId);
+      if (evt.willInsertAfter) toIdx++;
+      const proposed = ids.slice();
+      proposed.splice(fromIdx, 1);
+      proposed.splice(toIdx > fromIdx ? toIdx - 1 : toIdx, 0, draggedId);
+      return isValidLayout(proposed);
+    },
+    onEnd() {
+      saveOrder([...grid.children].map(el => el.dataset.id));
+    },
+  });
+}
+
 // ── Build Grid ──
 function init() {
+  applySavedOrder();
   document.getElementById('grid').innerHTML = PANELS.map(p =>
     `<div class="om-card${p.wide ? ' wide' : ''}" data-id="${p.id}">
       <div class="om-card-head">
@@ -509,6 +588,13 @@ function init() {
     e.target.disabled = false;
   });
 
+  // Reset card order to defaults
+  document.getElementById('reset-order').addEventListener('click', () => {
+    clearOrder();
+    location.reload();
+  });
+
+  initSortable();
 }
 
 init();
