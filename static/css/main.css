@@ -26,7 +26,7 @@
   --text-2xl: 1.75rem;   /* 28px — post/blog titles, sidebar name */
   --text-3xl: 2.2rem;    /* 35px — page/post h1 */
   --max-content: 720px;
-  --sidebar-width: 280px;
+  --sidebar-width: 230px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
