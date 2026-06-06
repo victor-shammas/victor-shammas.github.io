@@ -8,8 +8,9 @@ subtitle: "Articles, essays, reviews, and theses."
 
 <li class="pub-entry">
 <span class="authors">Shammas, V. L.</span> <span class="year">(2026; in press)</span>
-"Punishment and technocracy: Penal populism, elitism, and the 'buffered ideal' in the sociology of punishment."
+<a href="/pdfs/Shammas-2026-Punishment-and-Technocracy.pdf" class="title-link">"Punishment and technocracy: Penal populism, elitism, and the 'buffered ideal' in the sociology of punishment."</a>
 In: Corda, A. (ed.), <span class="journal"><a href="https://www.e-elgar.com/shop/gbp/research-handbook-on-penal-policy-9781035308521.html">Research Handbook on Penal Policy</a></span>. Edward Elgar Publishing.
+<a href="/pdfs/Shammas-2026-Punishment-and-Technocracy.pdf" class="pdf-link">PDF</a>
 </li>
 
 <li class="pub-entry">
