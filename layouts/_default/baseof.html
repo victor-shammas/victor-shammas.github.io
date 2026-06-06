@@ -48,6 +48,42 @@
     document.getElementById('sidebar').classList.toggle('open');
     document.querySelector('.overlay').classList.toggle('open');
   }
+  (function () {
+    var KEY = 'sidebar_width_px';
+    var MIN = 200, MAX = 480;
+    var saved = parseInt(localStorage.getItem(KEY), 10);
+    if (saved && saved >= MIN && saved <= MAX) {
+      document.documentElement.style.setProperty('--sidebar-width', saved + 'px');
+    }
+    function init() {
+      var handle = document.getElementById('sidebar-resizer');
+      if (!handle || !window.matchMedia('(min-width: 769px)').matches) return;
+      handle.addEventListener('pointerdown', function (e) {
+        e.preventDefault();
+        handle.setPointerCapture(e.pointerId);
+        handle.classList.add('dragging');
+        document.body.classList.add('is-resizing-sidebar');
+        function onMove(ev) {
+          var w = Math.max(MIN, Math.min(MAX, ev.clientX));
+          document.documentElement.style.setProperty('--sidebar-width', w + 'px');
+        }
+        function onUp(ev) {
+          handle.releasePointerCapture(e.pointerId);
+          handle.classList.remove('dragging');
+          document.body.classList.remove('is-resizing-sidebar');
+          handle.removeEventListener('pointermove', onMove);
+          handle.removeEventListener('pointerup', onUp);
+          var cs = getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width').trim();
+          var px = parseInt(cs, 10);
+          if (px) try { localStorage.setItem(KEY, String(px)); } catch (_) {}
+        }
+        handle.addEventListener('pointermove', onMove);
+        handle.addEventListener('pointerup', onUp);
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
   </script>
 </body>
 </html>

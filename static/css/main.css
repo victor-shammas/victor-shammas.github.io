@@ -26,7 +26,7 @@
   --text-2xl: 1.75rem;   /* 28px — post/blog titles, sidebar name */
   --text-3xl: 2.2rem;    /* 35px — page/post h1 */
   --max-content: 720px;
-  --sidebar-width: 230px;
+  --sidebar-width: 280px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -70,8 +70,25 @@ a:hover { color: var(--link-hover); }
   top: 0; left: 0;
   height: 100vh;
   z-index: 100;
-  overflow-y: auto;
+  overflow: hidden;
 }
+
+.sidebar__resizer {
+  position: absolute;
+  top: 0; right: 0;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+  background: transparent;
+  transition: background 0.15s;
+  z-index: 101;
+}
+.sidebar__resizer:hover,
+.sidebar__resizer.dragging {
+  background: rgba(255,255,255,0.06);
+}
+body.is-resizing-sidebar { cursor: ew-resize; user-select: none; }
+body.is-resizing-sidebar * { user-select: none !important; }
 
 .sidebar__name {
   font-family: var(--font-display);
