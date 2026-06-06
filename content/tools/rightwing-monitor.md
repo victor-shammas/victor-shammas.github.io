@@ -1,5 +1,5 @@
 ---
-title: "Right-Wing News Tracker"
+title: "Right-Wing Monitor"
 layout: "embed"
 embed_src: "/embeds/rightwing-monitor/"
 ---

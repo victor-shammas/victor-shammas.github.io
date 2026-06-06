@@ -3,19 +3,19 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Right-Wing News Tracker</title>
+        <title>Right-Wing Monitor</title>
         <meta
             name="description"
             content="A media monitoring tool tracking right-wing and far-right political actors across Europe and the United States for research purposes."
         />
-        <meta property="og:title" content="Right-Wing News Tracker" />
+        <meta property="og:title" content="Right-Wing Monitor" />
         <meta
             property="og:description"
             content="Research instrument. Analytical observation of transatlantic right-wing and far-right actors."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Right-Wing News Tracker" />
+        <meta name="twitter:title" content="Right-Wing Monitor" />
         <meta
             name="twitter:description"
             content="Research instrument. Analytical observation."
@@ -142,74 +142,24 @@
             }
             .card {
                 background: #fff;
-                border: 2px solid var(--line);
-                border-radius: 12px;
+                border: 1px solid var(--line);
+                border-top: 2px solid var(--line);
+                border-radius: 6px;
                 padding: 14px;
             }
-            .card.sd {
-                border-color: #fde68a;
-                background: #fefce8;
-            }
-            .card.rn {
-                border-color: #bfdbfe;
-                background: #eff6ff;
-            }
-            .card.fdi {
-                border-color: #bbf7d0;
-                background: #f0fdf4;
-            }
-            .card.fidesz {
-                border-color: #fecaca;
-                background: #fef2f2;
-            }
-            .card.afd {
-                border-color: #fca5a5;
-                background: #fef2f2;
-            }
-            .card.hungary {
-                border-color: #fdba74;
-                background: #fff7ed;
-            }
-            .card.vox {
-                border-color: #86efac;
-                background: #f0fdf4;
-            }
-            .card.pis {
-                border-color: #fca5a5;
-                background: #fff1f2;
-            }
-            .card.smer {
-                border-color: #c7d2fe;
-                background: #eef2ff;
-            }
-            .card.reform {
-                border-color: #a5f3fc;
-                background: #ecfeff;
-            }
-            .card.dk {
-                border-color: #fecdd3;
-                background: #fff1f2;
-            }
-            .card.frp {
-                border-color: #fed7aa;
-                background: #fff7ed;
-            }
-            .card.maga {
-                border-color: #fde68a;
-                background: #fffbeb;
-            }
-            .card.general {
-                border-color: #d6d3d1;
-                background: #fafaf9;
-            }
-            .card.nodes {
-                border-color: #c7d2fe;
-                background: #eef2ff;
-            }
-            .card.bluesky {
-                border-color: #bae0ff;
-                background: #f0f9ff;
-            }
+            .card.maga    { border-top-color: #a07030; }
+            .card.frp     { border-top-color: #4a7a9e; }
+            .card.sd      { border-top-color: #8a7040; }
+            .card.rn      { border-top-color: #5078a0; }
+            .card.fdi     { border-top-color: #3a8a7a; }
+            .card.reform  { border-top-color: #30808e; }
+            .card.afd     { border-top-color: #a04a3a; }
+            .card.hungary { border-top-color: #a05c20; }
+            .card.vox     { border-top-color: #5e8a3a; }
+            .card.pis     { border-top-color: #804a48; }
+            .card.general { border-top-color: #6a7080; }
+            .card.nodes   { border-top-color: #6e52a0; }
+            .card.bluesky { border-top-color: #4a7a9e; }
             .card.bluesky .item .desc {
                 white-space: pre-wrap;
             }
@@ -331,18 +281,7 @@
         <div class="wrap">
             <header>
                 <div>
-                    <h1>
-                        Right-Wing News Tracker
-                        <span
-                            style="
-                                font-size: 12px;
-                                color: var(--mute);
-                                font-weight: 400;
-                                vertical-align: middle;
-                            "
-                            >v0.40</span
-                        >
-                    </h1>
+                    <h1>Right-Wing Monitor</h1>
                     <div class="sub">
                         A research-oriented media monitoring tool focused on right-wing and
                         far-right political actors across Europe and the U.S.
