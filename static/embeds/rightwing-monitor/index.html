@@ -275,7 +275,12 @@
                     transform: rotate(360deg);
                 }
             }
+            .head { cursor: grab; user-select: none; }
+            .head:active { cursor: grabbing; }
+            .card-ghost { opacity: 0.35; }
+            .card-drag { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
         </style>
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
     </head>
     <body>
         <div class="wrap">
@@ -289,6 +294,7 @@
                 </div>
                 <div style="display:flex;gap:6px;flex-shrink:0">
                     <button id="translateAll" style="font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:#fff;padding:8px 12px;font-weight:700;font-size:12px;letter-spacing:0.3px;color:#57534e;transition:all .15s ease">EN</button>
+                    <button id="resetOrder" title="Restore default card order" style="font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:#fff;padding:8px 12px">↺ Reset</button>
                     <button class="primary" id="refreshAll">↻ Refresh all</button>
                 </div>
             </header>
@@ -780,7 +786,75 @@
                         .join("");
             }
 
+            // ── Drag-to-reorder ──
+            // Column span per card id on the 3-col desktop grid; default 1.
+            const SPANS = { general: 2, nodes: 3, bluesky: 3 };
+            const ORDER_KEY = "farright_tracker_order_v1";
+            const loadOrder = () => { try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || null; } catch { return null; } };
+            const saveOrderIds = (ids) => { try { localStorage.setItem(ORDER_KEY, JSON.stringify(ids)); } catch {} };
+            const clearOrderKey = () => { try { localStorage.removeItem(ORDER_KEY); } catch {} };
+
+            function applySavedOrder() {
+                const saved = loadOrder();
+                if (!saved || !Array.isArray(saved)) return;
+                PARTIES.sort((a, b) => {
+                    const ai = saved.indexOf(a.id);
+                    const bi = saved.indexOf(b.id);
+                    if (ai === -1 && bi === -1) return 0;
+                    if (ai === -1) return 1;
+                    if (bi === -1) return -1;
+                    return ai - bi;
+                });
+            }
+
+            // A multi-column card must fit in the current row; a 3-col card
+            // must start at column 0. Trailing partial rows are OK.
+            function isValidLayout(ids) {
+                let col = 0;
+                for (const id of ids) {
+                    const s = SPANS[id] || 1;
+                    if (s === 1) {
+                        col = (col + 1) % 3;
+                    } else if (s === 2) {
+                        if (3 - col < 2) return false;
+                        col = (col + 2) % 3;
+                    } else {
+                        if (col !== 0) return false;
+                    }
+                }
+                return true;
+            }
+
+            function initSortable() {
+                const grid = document.getElementById("grid");
+                if (typeof Sortable === "undefined") return;
+                Sortable.create(grid, {
+                    handle: ".head",
+                    filter: ".rbtn, .tbtn",
+                    preventOnFilter: false,
+                    animation: 150,
+                    ghostClass: "card-ghost",
+                    dragClass: "card-drag",
+                    onMove(evt) {
+                        const ids = [...grid.children].map((el) => el.dataset.id);
+                        const draggedId = evt.dragged.dataset.id;
+                        const relatedId = evt.related.dataset.id;
+                        const fromIdx = ids.indexOf(draggedId);
+                        let toIdx = ids.indexOf(relatedId);
+                        if (evt.willInsertAfter) toIdx++;
+                        const proposed = ids.slice();
+                        proposed.splice(fromIdx, 1);
+                        proposed.splice(toIdx > fromIdx ? toIdx - 1 : toIdx, 0, draggedId);
+                        return isValidLayout(proposed);
+                    },
+                    onEnd() {
+                        saveOrderIds([...grid.children].map((el) => el.dataset.id));
+                    },
+                });
+            }
+
             function render() {
+                applySavedOrder();
                 document.getElementById("grid").innerHTML = PARTIES.map(
                     (p) => `
             <div class="card ${p.id}" data-id="${p.id}">
@@ -883,7 +957,12 @@
                 await Promise.all(PARTIES.map(fetchParty));
                 e.target.disabled = false;
             });
+            document.getElementById("resetOrder").addEventListener("click", () => {
+                clearOrderKey();
+                location.reload();
+            });
             render();
+            initSortable();
         </script>
     </body>
 </html>
