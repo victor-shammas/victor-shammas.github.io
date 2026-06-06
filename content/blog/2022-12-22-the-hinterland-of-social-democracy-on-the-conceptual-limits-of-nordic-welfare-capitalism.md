@@ -1,5 +1,5 @@
 ---
-title: 'The hinterland of social democracy: On the conceptual limits of Nordic welfare capitalism'
+title: 'The Hinterland of Social Democracy: On the Conceptual Limits of Nordic Welfare Capitalism'
 date: 2022-12-22
 draft: false
 dek: Every instantiation of decommodifying welfare capitalism relies on a hinterland, an exterior space or world for which commodification remains the rule whose function is to service the interiority of social-democratic welfarism.
