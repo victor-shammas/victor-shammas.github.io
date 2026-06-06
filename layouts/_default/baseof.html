@@ -26,7 +26,7 @@
     <main class="main">
       <div class="content">
         {{- block "main" . -}}{{- end -}}
-        {{ if ne .Section "blog" }}
+        {{ if and (ne .Section "blog") (ne .Layout "embed") }}
           <script>
             (function () {
               var r = Math.random();

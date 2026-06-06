@@ -467,7 +467,7 @@ function renderCard(panel) {
 
   body.innerHTML = errHtml + d.stories.map(s =>
     `<div class="om-item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
-      <h3>${esc(s.title)} ↗</h3>
+      <h3>${esc(s.title)}</h3>
       <div class="om-item-meta">${esc(s.source)}${s.source && s.date ? ' · ' : ''}${esc(fmtDate(s.date))}</div>
     </a></div>`
   ).join('');
