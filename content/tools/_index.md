@@ -5,14 +5,17 @@ layout: "single"
 url: "/tools/"
 ---
 
-<p><strong>RSS News Monitors:</strong></p>
+<h2 class="section-heading">RSS News Monitors</h2>
 
-<div class="indented-list">
-<p><a href="/tools/ai-monitor/"><strong>AI Monitor</strong></a> — politics of artificial intelligence, AI commercialization, and compute infrastructure.</p>
-<p><a href="/tools/space-monitor/"><strong>Space Monitor</strong></a> — space commercialization and orbital infrastructure.</p>
-<p><a href="/tools/tech-monitor/"><strong>Tech Monitor</strong></a> — Silicon Valley entities: platform companies, AI labs, chips, enterprise/cloud, key individuals (plus curated newsletter sources).</p>
-<p><a href="/tools/rightwing-monitor/"><strong>Right-Wing Politics Monitor</strong></a> — right-wing populist actors across Europe and the U.S.</p>
-</div>
+[**AI Monitor**](/tools/ai-monitor/) — Politics of artificial intelligence, AI commercialization, and compute infrastructure.
+
+[**Space Monitor**](/tools/space-monitor/) — Space commercialization and orbital infrastructure.
+
+[**Tech Monitor**](/tools/tech-monitor/) — Silicon Valley: platform companies, AI labs, chips, enterprise/cloud, key individuals, and commentary.
+
+[**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Right-wing populist actors across Europe and the U.S.
+
+<h2 class="section-heading">Other Tools</h2>
 
 [**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
 

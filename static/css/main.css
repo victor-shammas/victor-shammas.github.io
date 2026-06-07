@@ -189,15 +189,6 @@ body.is-resizing-sidebar * { user-select: none !important; }
   overflow: visible;
 }
 
-/* ── Indented list (used on Tools page for the RSS Monitors group) ── */
-.indented-list {
-  padding-left: 2rem;
-  margin: 0 0 0.5rem;
-}
-.indented-list p {
-  margin: 0.4rem 0;
-}
-
 .tool-embed {
   display: block;
   width: 100%;
