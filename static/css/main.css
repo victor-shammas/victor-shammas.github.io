@@ -182,7 +182,8 @@ body.is-resizing-sidebar * { user-select: none !important; }
   overflow: hidden;
 }
 
-.content:has(> .tool-embed) {
+.content:has(> .tool-embed),
+.content:has(> .tool-shell) {
   max-width: none;
   padding: 0;
   overflow: visible;
@@ -194,6 +195,58 @@ body.is-resizing-sidebar * { user-select: none !important; }
   height: 100vh;
   border: 0;
   background: var(--paper);
+}
+
+/* ── Monitor tab bar (Manila-folder style) ─────────────────── */
+
+.tool-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--warm);
+}
+
+.tool-tabs {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.55rem 1.25rem 0;
+  background: var(--warm);
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+
+.tool-tab {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: 0.5rem 1rem 0.55rem;
+  color: var(--muted);
+  background: #D8D2C6;
+  border: 1px solid var(--rule);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  margin-bottom: -1px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tool-tab:hover {
+  background: #E5DFD2;
+  color: var(--text);
+}
+
+.tool-tab.active {
+  background: var(--paper);
+  color: var(--text);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.tool-shell .tool-embed {
+  flex: 1;
+  height: auto;
 }
 
 /* ── Page Header ─────────────────────────────────────────────── */
