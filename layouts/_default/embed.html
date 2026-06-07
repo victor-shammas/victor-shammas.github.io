@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ $slug := "" }}
 {{ with .File }}{{ $slug = .BaseFileName }}{{ end }}
-{{ $monitorSlugs := slice "ai-monitor" "space-monitor" "rightwing-monitor" }}
+{{ $monitorSlugs := slice "ai-monitor" "space-monitor" "rightwing-monitor" "tech-monitor" }}
 {{ $isMonitor := and (eq .Section "tools") (in $monitorSlugs $slug) }}
 {{ if $isMonitor }}
 <div class="tool-shell">
@@ -9,6 +9,7 @@
     <a href="{{ "/tools/ai-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "ai-monitor" }} active{{ end }}">AI</a>
     <a href="{{ "/tools/space-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "space-monitor" }} active{{ end }}">Space</a>
     <a href="{{ "/tools/rightwing-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "rightwing-monitor" }} active{{ end }}">Right-Wing Politics</a>
+    <a href="{{ "/tools/tech-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "tech-monitor" }} active{{ end }}">Tech</a>
   </nav>
   <iframe
     class="tool-embed"

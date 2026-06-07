@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<style>
+:root {
+  --bg-void: #f5f3ef;
+  --bg-deep: #edeae5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9f8f6;
+  --border-dim: #e0dcd6;
+  --border-mid: #c8c2b8;
+  --text-primary: #2c2822;
+  --text-secondary: #6e665c;
+  --text-muted: #9e958a;
+  --text-bright: #1a1610;
+  --accent-antitrust:    #b45309;
+  --accent-acquisitions: #be123c;
+  --accent-cloud:        #0d9488;
+  --accent-social:       #c2410c;
+  --accent-labor:        #7c3aed;
+  --accent-regulation:   #0369a1;
+  --accent-geo:          #30808e;
+  --accent-sources:      #4b5563;
+  --accent-general:      #6a7080;
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-body: 'Be Vietnam Pro', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 17px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ── Header ── */
+header {
+  position: relative; z-index: 1;
+  padding: 2rem 2rem 1.2rem;
+  border-bottom: 1px solid var(--border-dim);
+  background: var(--bg-card);
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+
+.hdr-left { display: flex; align-items: center; gap: 1rem; }
+
+.hdr-icon svg { width: 36px; height: 36px; }
+
+.hdr-title {
+  font-family: var(--font-display);
+  font-size: 1.65rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.hdr-sub {
+  font-size: 0.78rem; color: var(--text-muted);
+  letter-spacing: 0.04em; margin-top: 0.15rem;
+}
+
+.hdr-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+.hdr-btn {
+  font-family: var(--font-display);
+  font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--bg-void); color: var(--text-secondary);
+  border: 1px solid var(--border-dim);
+  padding: 0.45rem 0.9rem; border-radius: 4px;
+  cursor: pointer; transition: all 0.15s;
+}
+.hdr-btn:hover { border-color: var(--border-mid); color: var(--text-primary); background: var(--bg-deep); }
+.hdr-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* ── Grid ── */
+#grid {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.2rem 2rem 3rem;
+  max-width: 1470px; margin: 0 auto;
+}
+
+@media (max-width: 1100px) { #grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) {
+  #grid { grid-template-columns: 1fr; padding: 0.8rem; gap: 0.8rem; }
+  header { padding: 1.2rem 0.8rem 0.8rem; }
+  .hdr-title { font-size: 1.2rem; }
+}
+
+/* ── Cards ── */
+.om-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.om-card.wide { grid-column: 1 / -1; }
+.om-card-ghost { opacity: 0.35; }
+.om-card-drag { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+.om-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--border-dim);
+  min-height: 48px;
+  cursor: grab;
+  user-select: none;
+}
+.om-card-head:active { cursor: grabbing; }
+
+.om-card-head-left { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
+
+.om-card-icon svg { width: 22px; height: 22px; flex-shrink: 0; display: block; }
+
+.om-card-name {
+  font-family: var(--font-display);
+  font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-bright);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.om-card-age {
+  font-size: 0.65rem; color: var(--text-muted);
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+.om-card-age.stale { color: #b06830; }
+
+.om-card-head-right { display: flex; gap: 0.3rem; flex-shrink: 0; }
+
+.om-btn {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--border-dim);
+  color: var(--text-secondary); border-radius: 4px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.15s;
+}
+.om-btn:hover { border-color: var(--border-mid); color: var(--text-primary); }
+.om-btn:disabled { opacity: 0.35; cursor: default; }
+
+@keyframes om-spin { to { transform: rotate(360deg); } }
+.om-spin { display: inline-block; animation: om-spin 0.8s linear infinite; }
+
+.om-card-body {
+  flex: 1;
+  padding: 0;
+}
+
+.om-card.wide .om-card-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1100px) { .om-card.wide .om-card-body { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) { .om-card.wide .om-card-body { grid-template-columns: 1fr; } }
+
+/* ── Items ── */
+.om-item { border-bottom: 1px solid var(--border-dim); }
+.om-item:last-child { border-bottom: none; }
+
+.om-item a {
+  display: block; padding: 0.6rem 0.85rem;
+  text-decoration: none; color: inherit;
+  transition: background 0.12s;
+}
+.om-item a:hover { background: var(--bg-card-hover); }
+
+.om-item h3 {
+  font-family: var(--font-body);
+  font-size: 0.82rem; font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.om-item-meta {
+  font-size: 0.68rem; color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.om-empty {
+  padding: 1.8rem 1rem;
+  text-align: center;
+  font-size: 0.78rem; color: var(--text-muted);
+}
+
+.om-err {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.7rem; color: #a06030;
+  background: rgba(180,120,60,0.06);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.om-foot {
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 1rem 2rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── Accent top-borders per panel ── */
+.om-card[data-id="antitrust"]    .om-card-head { border-top: 2px solid var(--accent-antitrust); }
+.om-card[data-id="acquisitions"] .om-card-head { border-top: 2px solid var(--accent-acquisitions); }
+.om-card[data-id="cloud"]        .om-card-head { border-top: 2px solid var(--accent-cloud); }
+.om-card[data-id="social"]       .om-card-head { border-top: 2px solid var(--accent-social); }
+.om-card[data-id="labor"]        .om-card-head { border-top: 2px solid var(--accent-labor); }
+.om-card[data-id="regulation"]   .om-card-head { border-top: 2px solid var(--accent-regulation); }
+.om-card[data-id="geo"]          .om-card-head { border-top: 2px solid var(--accent-geo); }
+.om-card[data-id="sources"]      .om-card-head { border-top: 2px solid var(--accent-sources); }
+.om-card[data-id="general"]      .om-card-head { border-top: 2px solid var(--accent-general); }
+
+.om-card[data-id="antitrust"]    .om-card-name { color: var(--accent-antitrust); }
+.om-card[data-id="acquisitions"] .om-card-name { color: var(--accent-acquisitions); }
+.om-card[data-id="cloud"]        .om-card-name { color: var(--accent-cloud); }
+.om-card[data-id="social"]       .om-card-name { color: var(--accent-social); }
+.om-card[data-id="labor"]        .om-card-name { color: var(--accent-labor); }
+.om-card[data-id="regulation"]   .om-card-name { color: var(--accent-regulation); }
+.om-card[data-id="geo"]          .om-card-name { color: var(--accent-geo); }
+.om-card[data-id="sources"]      .om-card-name { color: var(--accent-sources); }
+.om-card[data-id="general"]      .om-card-name { color: var(--accent-general); }
+
+.om-card[data-id="antitrust"]    .om-item h3:hover { color: var(--accent-antitrust); }
+.om-card[data-id="acquisitions"] .om-item h3:hover { color: var(--accent-acquisitions); }
+.om-card[data-id="cloud"]        .om-item h3:hover { color: var(--accent-cloud); }
+.om-card[data-id="social"]       .om-item h3:hover { color: var(--accent-social); }
+.om-card[data-id="labor"]        .om-item h3:hover { color: var(--accent-labor); }
+.om-card[data-id="regulation"]   .om-item h3:hover { color: var(--accent-regulation); }
+.om-card[data-id="geo"]          .om-item h3:hover { color: var(--accent-geo); }
+.om-card[data-id="sources"]      .om-item h3:hover { color: var(--accent-sources); }
+.om-card[data-id="general"]      .om-item h3:hover { color: var(--accent-general); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-left">
+    <div class="hdr-icon">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6"  y="6"  width="10" height="10" rx="1.5" stroke="#8a8278" stroke-width="1" fill="none" opacity="0.55"/>
+        <rect x="20" y="6"  width="10" height="10" rx="1.5" stroke="#8a8278" stroke-width="1" fill="none" opacity="0.55"/>
+        <rect x="6"  y="20" width="10" height="10" rx="1.5" stroke="#8a8278" stroke-width="1" fill="none" opacity="0.55"/>
+        <rect x="20" y="20" width="10" height="10" rx="1.5" fill="#2c2822" opacity="0.85"/>
+        <circle cx="11" cy="11" r="1.2" fill="#8a8278" opacity="0.7"/>
+        <circle cx="25" cy="11" r="1.2" fill="#8a8278" opacity="0.7"/>
+        <circle cx="11" cy="25" r="1.2" fill="#8a8278" opacity="0.7"/>
+        <line x1="16" y1="11" x2="20" y2="11" stroke="#8a8278" stroke-width="0.7" opacity="0.5"/>
+        <line x1="11" y1="16" x2="11" y2="20" stroke="#8a8278" stroke-width="0.7" opacity="0.5"/>
+        <line x1="25" y1="16" x2="25" y2="20" stroke="#8a8278" stroke-width="0.7" opacity="0.5"/>
+        <line x1="16" y1="25" x2="20" y2="25" stroke="#8a8278" stroke-width="0.7" opacity="0.5"/>
+      </svg>
+    </div>
+    <div>
+      <div class="hdr-title">Tech Monitor</div>
+      <div class="hdr-sub">Platform power · Tech regulation · Digital infrastructure</div>
+    </div>
+  </div>
+  <div class="hdr-actions">
+    <button class="hdr-btn" id="reset-order" title="Restore default card order">↺ Reset Order</button>
+    <button class="hdr-btn" id="refresh-all">↻ Refresh All</button>
+  </div>
+</header>
+
+<div id="grid"></div>
+
+<div class="om-foot">All links are automatically aggregated via Google News RSS. Errors and irrelevant results may occur.</div>
+
+<script>
+// ── Tech Monitor ──
+
+const PANELS = [
+  { id: 'antitrust', name: 'Big Tech Antitrust', lookbackDays: 10,
+    q: '"Big Tech" antitrust OR "DOJ antitrust" OR "FTC antitrust" OR "EU antitrust" OR "tech monopoly" OR "DMA enforcement"' },
+  { id: 'acquisitions', name: 'Big Tech Acquisitions',
+    q: '"Big Tech" acquisition OR "tech merger" OR "FTC merger" OR "antitrust merger review" OR "tech acquisition" OR "competition review"' },
+  { id: 'cloud', name: 'Cloud & Infrastructure',
+    q: '"cloud computing" OR AWS OR "Microsoft Azure" OR "Google Cloud" OR "cloud infrastructure" OR "cloud market share"' },
+  { id: 'social', name: 'Social Media Policy',
+    q: '"social media regulation" OR "content moderation" OR "deplatforming" OR "algorithmic transparency" OR "Section 230" OR "platform accountability"' },
+  { id: 'labor', name: 'Platform Labor',
+    q: '"gig economy" OR "gig workers" OR "Uber drivers" OR "worker classification" OR "platform labor" OR "Amazon warehouse workers" OR "delivery rider"' },
+  { id: 'regulation', name: 'Tech Regulation', lookbackDays: 10,
+    q: '"tech regulation" OR "Digital Markets Act" OR "Digital Services Act" OR "app store regulation" OR "data privacy law" OR "online safety bill"' },
+  { id: 'geo', name: 'Tech Geopolitics', wide: true, lookbackDays: 10,
+    queries: [
+      '"US tech policy" OR "White House tech" OR "Congress tech" OR "DOJ Google" OR "DOJ Apple"',
+      '"EU tech" OR "European Commission tech" OR "DMA" OR "DSA" OR "Ofcom" OR "UK tech regulation"',
+      '"India tech regulation" OR "China tech crackdown" OR "Japan tech policy" OR "Korea tech" OR "Australia tech regulation"',
+    ] },
+  { id: 'sources', name: 'Critical Sources', wide: true, type: 'feeds', maxItems: 9, lookbackDays: 30,
+    feeds: [
+      { name: 'BIG (Matt Stoller)',     url: 'https://mattstoller.substack.com/feed' },
+      { name: 'Open Markets Institute', url: 'https://www.openmarketsinstitute.org/feed' },
+      { name: 'Pluralistic (Doctorow)', url: 'https://pluralistic.net/feed/' },
+      { name: 'The Markup',             url: 'https://themarkup.org/feeds/rss.xml' },
+      { name: 'Platformer',             url: 'https://www.platformer.news/rss/' },
+      { name: 'EFF Deeplinks',          url: 'https://www.eff.org/rss/updates.xml' },
+      { name: 'Stratechery',            url: 'https://stratechery.com/feed/' },
+    ] },
+  { id: 'general', name: 'General Tech News', wide: true,
+    queries: [
+      '"tech layoffs" OR "tech restructuring" OR "Big Tech earnings"',
+      '"data breach" OR "ransomware" OR "cybersecurity" OR "tech privacy"',
+      '"crypto regulation" OR "stablecoin" OR "SEC crypto" OR "Bitcoin ETF"',
+    ] },
+];
+
+const ICONS = {
+  antitrust: '<svg viewBox="0 0 22 22" fill="none"><line x1="11" y1="3" x2="11" y2="17" stroke="currentColor" stroke-width="1.4"/><line x1="4" y1="6" x2="18" y2="6" stroke="currentColor" stroke-width="1.2"/><path d="M4 6 L1 12 L7 12 Z" stroke="currentColor" stroke-width="0.9" fill="currentColor" fill-opacity="0.12"/><path d="M18 6 L15 12 L21 12 Z" stroke="currentColor" stroke-width="0.9" fill="currentColor" fill-opacity="0.12"/><rect x="7.5" y="17" width="7" height="2" rx="0.4" fill="currentColor" opacity="0.7"/></svg>',
+  acquisitions: '<svg viewBox="0 0 22 22" fill="none"><circle cx="7" cy="11" r="4" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.15"/><circle cx="14" cy="11" r="4" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.15"/></svg>',
+  cloud: '<svg viewBox="0 0 22 22" fill="none"><path d="M6 14 C3 14 3 10 6 10 C6 7 11 6 12 9 C15 8 17 11 16 13 C18 13 18 15 16 15 L6 15 Z" stroke="currentColor" stroke-width="1.1" fill="currentColor" fill-opacity="0.15"/></svg>',
+  social: '<svg viewBox="0 0 22 22" fill="none"><path d="M4 6 L18 6 L18 14 L11 14 L7 18 L7 14 L4 14 Z" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.12"/><circle cx="8" cy="10" r="0.8" fill="currentColor"/><circle cx="11" cy="10" r="0.8" fill="currentColor"/><circle cx="14" cy="10" r="0.8" fill="currentColor"/></svg>',
+  labor: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="6.5" r="2.5" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.15"/><path d="M5 19 Q5 13 11 13 Q17 13 17 19" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.12"/></svg>',
+  regulation: '<svg viewBox="0 0 22 22" fill="none"><rect x="6" y="3" width="10" height="14" rx="1" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.12"/><line x1="8" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="0.9"/><line x1="8" y1="10" x2="14" y2="10" stroke="currentColor" stroke-width="0.9"/><line x1="8" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="0.9"/></svg>',
+  geo: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/><ellipse cx="11" cy="11" rx="4" ry="8" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/><line x1="3" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="0.6" opacity="0.4"/><path d="M4 7 Q11 9 18 7" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/><path d="M4 15 Q11 13 18 15" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/></svg>',
+  sources: '<svg viewBox="0 0 22 22" fill="none"><rect x="4" y="4" width="14" height="14" rx="1.2" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.1"/><line x1="6" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="0.9"/><line x1="6" y1="11" x2="16" y2="11" stroke="currentColor" stroke-width="0.9"/><line x1="6" y1="14" x2="13" y2="14" stroke="currentColor" stroke-width="0.9"/></svg>',
+  general: '<svg viewBox="0 0 22 22" fill="none"><circle cx="6" cy="6" r="1.5" fill="currentColor" opacity="0.7"/><circle cx="16" cy="5" r="1" fill="currentColor" opacity="0.5"/><circle cx="11" cy="11" r="2" fill="currentColor" opacity="0.8"/><circle cx="5" cy="16" r="1" fill="currentColor" opacity="0.4"/><circle cx="17" cy="15" r="1.5" fill="currentColor" opacity="0.6"/><line x1="6" y1="6" x2="11" y2="11" stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="16" y1="5" x2="11" y2="11" stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="11" y1="11" x2="17" y2="15" stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="11" y1="11" x2="5" y2="16" stroke="currentColor" stroke-width="0.5" opacity="0.3"/></svg>',
+};
+
+// ── Config ──
+const LS_KEY = 'tech_monitor_v1';
+const STALE_MS = 3 * 3600 * 1000;
+const MAX_ITEMS = 8;
+const MAX_WIDE = 15;
+const LOOKBACK_DAYS = 5;
+
+// ── rss2json.com API key ──
+// Option A — paste inline:
+const RSS2JSON_KEY_INLINE = '';
+// Option B — set from browser console:
+//   localStorage.setItem('rss2json_key', 'YOUR_KEY_HERE')
+const RSS2JSON_KEY =
+  (typeof localStorage !== 'undefined' && localStorage.getItem('rss2json_key')) ||
+  RSS2JSON_KEY_INLINE ||
+  'e3xqpmsfkaarzbksh1vd6cz0hatwotgdhk8skm6z';
+
+// ── Storage ──
+const store = {
+  get: () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { return {}; } },
+  set: v => { try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch {} },
+};
+let state = store.get();
+
+// ── Helpers ──
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function fmtAgo(ts) {
+  const s = Math.floor((Date.now() - ts) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s / 60) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  return Math.floor(s / 86400) + 'd ago';
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+
+function srcOf(title) {
+  const m = title.match(/\s-\s([^-]+)$/);
+  return m ? m[1].trim() : '';
+}
+
+// ── RSS Fetch ──
+function feedUrl(panel, query) {
+  const q = query || panel.q;
+  const days = panel.lookbackDays || LOOKBACK_DAYS;
+  const gnews = `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:' + days + 'd')}&hl=en&gl=US&ceid=US:en&_cb=${Date.now()}`;
+  const key = RSS2JSON_KEY;
+  const keyParam = key ? `&api_key=${encodeURIComponent(key)}` : '';
+  return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(gnews)}${keyParam}`;
+}
+
+function directFeedUrl(url) {
+  const key = RSS2JSON_KEY;
+  const keyParam = key ? `&api_key=${encodeURIComponent(key)}` : '';
+  return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}${keyParam}&_cb=${Date.now()}`;
+}
+
+async function fetchPanel(panel) {
+  const card = document.querySelector(`#grid [data-id="${panel.id}"]`);
+  if (!card) return;
+  const btn = card.querySelector('.om-rbtn');
+  btn.innerHTML = '<span class="om-spin">↻</span>';
+  btn.disabled = true;
+
+  try {
+    const errors = [];
+    let raw = [];
+
+    if (panel.type === 'feeds') {
+      const results = await Promise.all((panel.feeds || []).map(async f => {
+        try {
+          const r = await fetch(directFeedUrl(f.url));
+          const j = await r.json();
+          if (j.status !== 'ok') { errors.push(`${f.name}: ${j.message || j.status}`); return []; }
+          return (j.items || []).map(it => ({ ...it, _sourceName: f.name }));
+        } catch (err) { errors.push(`${f.name}: ${err.message || 'fetch failed'}`); return []; }
+      }));
+      raw = [].concat(...results);
+    } else {
+      const queries = panel.queries || [panel.q];
+      const results = await Promise.all(queries.map(async q => {
+        try {
+          const r = await fetch(feedUrl(panel, q));
+          const j = await r.json();
+          if (j.status !== 'ok') { errors.push(j.message || j.status || 'rss2json error'); return []; }
+          return j.items || [];
+        } catch (err) { errors.push(err.message || 'fetch failed'); return []; }
+      }));
+      raw = [].concat(...results);
+    }
+
+    const seen = new Set();
+    const deduped = raw.filter(it => {
+      if (!it.link || seen.has(it.link)) return false;
+      seen.add(it.link);
+      return true;
+    });
+
+    const limit = panel.maxItems || (panel.wide ? MAX_WIDE : MAX_ITEMS);
+    const cutoff = Date.now() - (panel.lookbackDays || LOOKBACK_DAYS) * 24 * 3600 * 1000;
+    let stories = deduped
+      .filter(it => { const t = new Date(it.pubDate || 0).getTime(); return t && t >= cutoff; })
+      .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
+      .slice(0, limit)
+      .map(it => panel.type === 'feeds' ? {
+        title: (it.title || '').trim(),
+        url: it.link,
+        source: it._sourceName,
+        date: it.pubDate,
+      } : {
+        title: it.title.replace(/\s-\s[^-]+$/, '').trim(),
+        url: it.link,
+        source: srcOf(it.title),
+        date: it.pubDate,
+      });
+
+    // For wide panels, trim to multiple of 3 for clean grid
+    if (panel.wide) {
+      stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
+    }
+
+    state[panel.id] = { stories, fetchedAt: Date.now(), errors };
+    store.set(state);
+    renderCard(panel);
+  } catch (e) {
+    card.querySelector('.om-card-body').innerHTML = `<div class="om-err">⚠ ${esc(e.message || 'Failed')}</div>`;
+    btn.innerHTML = '↻';
+    btn.disabled = false;
+  }
+}
+
+// ── Render ──
+function renderCard(panel) {
+  const card = document.querySelector(`#grid [data-id="${panel.id}"]`);
+  if (!card) return;
+  const d = state[panel.id];
+  const stale = !d || Date.now() - d.fetchedAt > STALE_MS;
+
+  const ageEl = card.querySelector('.om-card-age');
+  ageEl.className = 'om-card-age' + (stale ? ' stale' : '');
+  ageEl.textContent = (d ? fmtAgo(d.fetchedAt) : 'never') + (stale && d ? ' · stale' : '');
+
+  const body = card.querySelector('.om-card-body');
+  const btn = card.querySelector('.om-rbtn');
+  btn.innerHTML = '↻';
+  btn.disabled = false;
+
+  if (!d) {
+    body.innerHTML = '<div class="om-empty">Tap ↻ to load</div>';
+    return;
+  }
+
+  const errHtml = d.errors?.length
+    ? `<div class="om-err">⚠ ${esc(d.errors[0])}${d.errors.length > 1 ? ` (+${d.errors.length - 1} more)` : ''}</div>`
+    : '';
+
+  if (!d.stories?.length) {
+    body.innerHTML = errHtml || `<div class="om-empty">No results in the last ${panel.lookbackDays || LOOKBACK_DAYS} days</div>`;
+    return;
+  }
+
+  body.innerHTML = errHtml + d.stories.map(s =>
+    `<div class="om-item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
+      <h3>${esc(s.title)}</h3>
+      <div class="om-item-meta">${esc(s.source)}${s.source && s.date ? ' · ' : ''}${esc(fmtDate(s.date))}</div>
+    </a></div>`
+  ).join('');
+}
+
+// ── Drag-to-reorder ──
+const ORDER_KEY = 'tech_monitor_order_v1';
+
+function loadOrder() {
+  try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || null; } catch { return null; }
+}
+function saveOrder(ids) {
+  try { localStorage.setItem(ORDER_KEY, JSON.stringify(ids)); } catch {}
+}
+function clearOrder() {
+  try { localStorage.removeItem(ORDER_KEY); } catch {}
+}
+
+function applySavedOrder() {
+  const saved = loadOrder();
+  if (!saved || !Array.isArray(saved)) return;
+  PANELS.sort((a, b) => {
+    const ai = saved.indexOf(a.id);
+    const bi = saved.indexOf(b.id);
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+}
+
+// Row-boundary rule: a wide card may only sit where the narrow cards
+// before it (since the last wide / start of grid) form a complete row.
+// Trailing partial rows of narrows are fine.
+function isValidLayout(ids) {
+  const wideSet = new Set(PANELS.filter(p => p.wide).map(p => p.id));
+  let narrowRun = 0;
+  for (const id of ids) {
+    if (wideSet.has(id)) {
+      if (narrowRun % 3 !== 0) return false;
+      narrowRun = 0;
+    } else {
+      narrowRun++;
+    }
+  }
+  return true;
+}
+
+function initSortable() {
+  const grid = document.getElementById('grid');
+  if (typeof Sortable === 'undefined') return;
+  Sortable.create(grid, {
+    handle: '.om-card-head',
+    filter: '.om-btn',
+    preventOnFilter: false,
+    animation: 150,
+    ghostClass: 'om-card-ghost',
+    dragClass: 'om-card-drag',
+    onMove(evt) {
+      const ids = [...grid.children].map(el => el.dataset.id);
+      const draggedId = evt.dragged.dataset.id;
+      const relatedId = evt.related.dataset.id;
+      const fromIdx = ids.indexOf(draggedId);
+      let toIdx = ids.indexOf(relatedId);
+      if (evt.willInsertAfter) toIdx++;
+      const proposed = ids.slice();
+      proposed.splice(fromIdx, 1);
+      proposed.splice(toIdx > fromIdx ? toIdx - 1 : toIdx, 0, draggedId);
+      return isValidLayout(proposed);
+    },
+    onEnd() {
+      saveOrder([...grid.children].map(el => el.dataset.id));
+    },
+  });
+}
+
+// ── Build Grid ──
+function init() {
+  applySavedOrder();
+  document.getElementById('grid').innerHTML = PANELS.map(p =>
+    `<div class="om-card${p.wide ? ' wide' : ''}" data-id="${p.id}">
+      <div class="om-card-head">
+        <div class="om-card-head-left">
+          <div class="om-card-icon" style="color: var(--accent-${p.id})">${ICONS[p.id] || ''}</div>
+          <div>
+            <div class="om-card-name">${esc(p.name)}</div>
+            <div class="om-card-age">never</div>
+          </div>
+        </div>
+        <div class="om-card-head-right">
+          <button class="om-btn om-rbtn" title="Refresh">↻</button>
+        </div>
+      </div>
+      <div class="om-card-body"><div class="om-empty">Tap ↻ to load</div></div>
+    </div>`
+  ).join('');
+
+  // Bind events
+  PANELS.forEach(p => {
+    document.querySelector(`#grid [data-id="${p.id}"] .om-rbtn`)
+      .addEventListener('click', () => fetchPanel(p));
+
+    if (state[p.id]) {
+      renderCard(p);
+      if (Date.now() - state[p.id].fetchedAt > STALE_MS) fetchPanel(p);
+    } else {
+      fetchPanel(p);
+    }
+  });
+
+  // Refresh all
+  document.getElementById('refresh-all').addEventListener('click', async e => {
+    e.target.disabled = true;
+    await Promise.all(PANELS.map(fetchPanel));
+    e.target.disabled = false;
+  });
+
+  // Reset card order to defaults
+  document.getElementById('reset-order').addEventListener('click', () => {
+    clearOrder();
+    location.reload();
+  });
+
+  initSortable();
+}
+
+init();
+</script>
+</body>
+</html>
