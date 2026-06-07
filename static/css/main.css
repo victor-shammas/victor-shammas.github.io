@@ -203,15 +203,15 @@ body.is-resizing-sidebar * { user-select: none !important; }
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #C9C0AE;
+  background: var(--warm);
 }
 
 .tool-tabs {
   display: flex;
-  gap: 4px;
-  padding: 0.75rem 1rem 0;
-  background: #C9C0AE;
-  border-bottom: 1px solid #8E8369;
+  gap: 3px;
+  padding: 0.45rem 1rem 0;
+  background: var(--warm);
+  border-bottom: 1px solid var(--rule);
   flex-shrink: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -219,38 +219,36 @@ body.is-resizing-sidebar * { user-select: none !important; }
 .tool-tabs::-webkit-scrollbar { display: none; }
 
 .tool-tab {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.65rem 1.4rem 0.7rem;
-  color: #5A5142;
-  background: #B6AC95;
-  border: 1px solid #8E8369;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 1rem 0.4rem;
+  color: var(--muted);
+  background: var(--warm);
+  border: 1px solid var(--rule);
   border-bottom: 0;
-  border-radius: 8px 8px 0 0;
+  border-radius: 6px 6px 0 0;
   margin-bottom: -1px;
   text-decoration: none;
   white-space: nowrap;
   position: relative;
-  top: 3px;
+  top: 2px;
   transition: top 0.15s, background 0.15s, color 0.15s;
 }
 
 .tool-tab:hover {
-  background: #C2B89F;
-  color: #3A3326;
+  background: var(--paper);
+  color: var(--text);
   top: 1px;
 }
 
 .tool-tab.active {
   background: var(--paper);
   color: var(--text);
+  font-weight: 600;
   top: 0;
   z-index: 1;
-  padding-top: 0.75rem;
-  padding-bottom: 0.8rem;
   box-shadow: 0 -1px 0 var(--paper) inset;
 }
 
@@ -260,14 +258,15 @@ body.is-resizing-sidebar * { user-select: none !important; }
   background: var(--paper);
 }
 
+@media (max-width: 768px) {
+  .tool-tabs { padding-left: calc(1rem + 44px + 0.6rem); }
+}
+
 @media (max-width: 600px) {
-  .tool-tabs { padding: 0.5rem 0.5rem 0; }
   .tool-tab {
     font-size: 0.78rem;
-    padding: 0.55rem 0.9rem 0.6rem;
-    letter-spacing: 0.06em;
+    padding: 0.3rem 0.75rem 0.35rem;
   }
-  .tool-tab.active { padding-top: 0.65rem; padding-bottom: 0.7rem; }
 }
 
 /* ── Page Header ─────────────────────────────────────────────── */
