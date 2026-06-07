@@ -7,15 +7,18 @@ url: "/tools/"
 
 <h2 class="section-heading">Tools</h2>
 
+<div class="monitor-group">
+  <h3 class="monitor-group__title">Research Monitors</h3>
+  <p class="monitor-group__intro">A unified suite of minimalist RSS news dashboards. Folder tabs at the top of each let you switch between them.</p>
+  <ul class="monitor-group__list">
+    <li><a href="/tools/ai-monitor/"><strong>AI Monitor</strong></a> — politics of artificial intelligence, AI commercialization, and compute infrastructure.</li>
+    <li><a href="/tools/space-monitor/"><strong>Space Monitor</strong></a> — space commercialization and orbital infrastructure.</li>
+    <li><a href="/tools/tech-monitor/"><strong>Tech Monitor</strong></a> — Silicon Valley entities: platform companies, AI labs, chips, enterprise/cloud, key individuals (plus curated newsletter sources).</li>
+    <li><a href="/tools/rightwing-monitor/"><strong>Right-Wing Politics Monitor</strong></a> — right-wing populist actors across Europe and the U.S.</li>
+  </ul>
+</div>
+
 [**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
-
-[**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Minimalist RSS news dashboard focused on right-wing populist actors.
-
-[**Space Monitor**](/tools/space-monitor/) — Minimalist RSS news monitor: space commercialization and orbital infrastructure.
-
-[**AI Monitor**](/tools/ai-monitor/) — Minimalist RSS news monitor: politics of artificial intelligence, AI commercialization, and compute infrastructure.
-
-[**Tech Monitor**](/tools/tech-monitor/) — Minimalist RSS news monitor: platform power, tech regulation, and digital infrastructure (plus curated newsletter sources).
 
 [**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
 
