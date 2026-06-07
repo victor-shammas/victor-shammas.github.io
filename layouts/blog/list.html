@@ -1,0 +1,50 @@
+{{ define "main" }}
+
+<header class="page-header">
+  <h1>Blog</h1>
+  <p>Essays and book reviews on sociology, politics, and culture.</p>
+</header>
+
+{{ range .Paginator.Pages }}
+<article class="blog-post">
+  <div class="blog-post__date">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+  </div>
+  <h2 class="blog-post__title">
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+  </h2>
+  {{ with .Params.dek }}
+    <p class="blog-post__dek">{{ . }}</p>
+  {{ end }}
+  {{ with .Params.image }}
+    <img class="blog-post__image" src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+  {{ end }}
+  {{ if .Params.summary }}
+    <div class="blog-post__excerpt">
+      <p>{{ .Params.summary }}</p>
+    </div>
+  {{ else }}
+    <div class="blog-post__excerpt">
+      <p>{{ .Summary }}</p>
+    </div>
+  {{ end }}
+  <a href="{{ .Permalink }}" class="blog-post__readmore">Continue reading</a>
+</article>
+{{ end }}
+
+{{/* Pagination */}}
+{{ $paginator := .Paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+<nav class="pagination">
+  {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}">← Newer Posts</a>
+  {{ else }}
+    <span></span>
+  {{ end }}
+  {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}">Older Posts →</a>
+  {{ end }}
+</nav>
+{{ end }}
+
+{{ end }}

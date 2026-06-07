@@ -1,0 +1,36 @@
+---
+title: Social Democracy, or Defending the National Interest
+date: 2024-03-20
+draft: false
+dek: ''
+image: /images/blog/f974c619-767b-4284-836a-0ff3ff88f5cc_600x403.jpg
+summary: ''
+aliases:
+  - /blog/2024/3/20/social-democracy-or-defending-the-national-interest
+---
+
+Social democracy may be the solution to the problems of some fortunate subset of individual nations, but it is not a solution for the world as such—that is, to _collective global problems_ and to the _problems of poorer nations around the globe_ _today_. Instead, social democracy—so I [argue in a forthcoming publication](https://www.victorshammas.com/s/Shammas-2024-The-Global-Hinterland-of-Social-Democracy.pdf)—fundamentally hinges on the _preservation of difference_, and in many cases the _active production and acceleration of differences between nations_, for internal, nationally-bounded ends.[1] Social democracy is, finally, about furthering the well-being of a nation’s own citizens—and by extension, a given state’s own national interests. If everyone were to become a high-functioning Nordic welfare-capitalist society, for instance, the difference-reliant components inherent to the social-democratic model of political economy would in short order begin to break down.
+
+Briefly restated: No social democracy without global _hierarchies_—of wealth and poverty, of power and dispossession, of capital and labor, of financial rentier and client-tenants. In this sense, social democracy fails Kant’s categorical imperative: Social democracy can never become a solution for the entire universe of states in the world today, can never become _generalizable to the world as such_.
+
+Why is this important? Because social democracy, and the countries most commonly associated with this reformist vision of market capitalism, the Nordic countries, are often held up as exemplars for the rest of the world to follow. (The examples are too many to enumerate, but for one example, see George Lakey’s [_Viking Economics: How the Scandinavians Got It Right_](https://www.amazon.com/Viking-Economics-How-Scandinavians-Right/dp/1612195369)_—and How We Can, Too_.)
+
+But as I argue in my paper, “The global hinterland of social democracy,” this is strictly speaking an impossible promise to the world, especially those parts of the world riddled with poverty and positioned at the lower ends of global political-economic hierarchies. Social democracy needs what I call a _global hinterland_ to meet its specific national needs and relies upon global hierarchies to feed its national populations. Social democracy is, we might say, great for those who can get it; but so few can—and largely for structural reasons. While social democracy is often redescribed as _welfare capitalism_, in practice this usually ends up meaning _welfare for those on the inside_ of the social-democratic national polity (including social security and free public healthcare and education), and _capitalism for everyone else._
+
+So what are some of the things this global hinterland supplies a nationally-bounded social democracy like Norway with? In the _specific case_ of Norway—and we sociologists should always be careful to ground our analyses in “concrete analyses of a concrete situation,” [in Lenin’s famous phrase](https://www.marxists.org/archive/lenin/works/1920/jun/12.htm)—the big factors are cheap labor from geographically peripheral zones (mainly Eastern Europe), cheap imported goods (from the industrial heartland of the world in East and Southeast Asia), and accessible financial markets across the world, to revalorize its pension funds and world’s largest sovereign wealth fund, the Norwegian government’s “Oil Fund.” Meanwhile, Norwegian corporations—including a booming weapons industry—are increasingly present and engaged in profit-extracting activities around the world .
+
+Without labor, goods, profits, and financial value pulled in from the global hinterland—that is, from those less privileged zones of the globe not fortunate enough to be ensconced at the top of political-economic hierarchies, whose citizens are largely not protected by the welfarist side of “welfare capitalism”—social democracy in Norway would be that much harder to sustain. While it might be tempting for reformist progressives to ask, “What can we learn from Norway?”, as Senator [Bernie Sanders did in an interview with Norway](https://www.youtube.com/watch?v=dNXdLxrwYU4)’[s Washington DC ambassador in a 45-minute long webcast](https://www.youtube.com/watch?v=dNXdLxrwYU4) in 2022,[2] it is equally important to follow up and ask: What must social democracies do in and to the world in order to remain identifiably social-democratic? And is this is a trully _universalizable_ model of political-economic transformation?
+
+Does my paper, then, tell a story about social democracy in general or Norway in all its messy empirical specificities? A bit of both. In the company of the Nordics, the Oil Fund is a highly specific Norwegian institution to be sure, but Sweden and Denmark’s large state-owned pension funds are key pillars in their respective welfare states as well, with deep reliance upon profit-extraction from global financial markets. Norway has also been enormously fortunate to be able to export oil and gas for decades, making it less exposed to international market competition, unlike, say, Sweden’s manufacturing industrial base, which has been ravaged by competition from countries like China, without the soft cushioning effects of vast oil resources to act as a shock absorber for the welfare state.
+
+But if anything, the vast wealth generated by the commodification of these natural resources demonstrates even more clearly the basic logic at the core of the social-democratic project: This is a _national, not internationalist, system of market-capitalist reform_, primarily intended for the benefit of the nation and its people.The trillions in natural resource revenues over the years have not to any significant degree—development aid notwithstanding, which has always consumed a paltry proportion of state budgets—been devoted to amelioriating the life chances of the world’s poor, or redressing global power imbalances, but rather to bolstering the nation-state and its privileged citizenry.
+
+Yet again, welfare capitalism tends to mean welfare for those on the inside, and capitalism for all the rest. To truly attend to the world’s problems would mean abandoning the parochial, nation-centered vision of social democracy for something like a true internationalism.
+
+**Notes**
+
+[1] For a fuller elucidation of this argument, see: Shammas, V. L. (2024) “[The global hinterland of social democracy: On the limitations of Norwegian welfare capitalism](https://www.victorshammas.com/s/Shammas-2024-The-Global-Hinterland-of-Social-Democracy.pdf).” _Nordic Welfare Research/Nordisk välfärdsforskning_.
+
+[2] Sanders, a self-described democratic socialist, which in some ways is but an American synonym to the more European-inflected term social democracy, is similarly laudatory of Norway in his 2023 book, _It's OK to Be Angry About Capitalism_—understandably so, since social democracy does tend to offer tangible benefits to its citizens.
+
+[Originally published on [Substack: _The Theory Brief_](https://victorshammas.substack.com/p/social-democracy-or-defending-the).]
