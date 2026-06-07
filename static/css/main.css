@@ -189,6 +189,46 @@ body.is-resizing-sidebar * { user-select: none !important; }
   overflow: visible;
 }
 
+/* ── Monitor group card on Tools page ──────────────────────── */
+.monitor-group {
+  background: var(--warm);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  margin: 0 0 1.75rem;
+}
+.monitor-group__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.01em;
+}
+.monitor-group__intro {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin: 0 0 0.85rem;
+  line-height: 1.55;
+}
+.monitor-group__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.monitor-group__list li {
+  margin: 0.45rem 0;
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+.monitor-group__list a strong { font-weight: 600; }
+.monitor-group__list a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.monitor-group__list a:hover { color: var(--link-hover); text-decoration: underline; }
+
 .tool-embed {
   display: block;
   width: 100%;
