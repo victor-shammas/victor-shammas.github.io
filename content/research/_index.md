@@ -188,6 +188,13 @@ In: Ugelvik, T. and Smith, P. S. (eds.) <span class="journal">Scandinavian Penal
 <ul class="pub-list">
 
 <li class="pub-entry">
+<span class="authors">Shammas, V. L.</span> <span class="year">(2026)</span>
+<a href="https://daftar.squarespace.com/articles/the-figure-of-the-arab-body" class="title-link">"The figure of the Arab body."</a>
+<span class="journal">Daftar</span>.
+<a href="/pdfs/Shammas-2026-Figure-of-the-Arab-Body.pdf" class="pdf-link">PDF</a>
+</li>
+
+<li class="pub-entry">
 <span class="authors">Shammas, V. L.</span> <span class="year">(2023)</span>
 <a href="/pdfs/Shammas-Sociodicy.pdf" class="title-link">"Sociodicy."</a>
 <span class="journal">Critical Legal Thinking</span>.
