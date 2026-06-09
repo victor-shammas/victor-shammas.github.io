@@ -720,7 +720,6 @@ function initVResize(card) {
     const panel = PANELS.find(p => p.id === card.dataset.id);
     if (!panel) return;
     const body = card.querySelector('.om-card-body');
-    const head = card.querySelector('.om-card-head');
 
     // Estimate per-row item height from current render; fall back to 64px.
     const span = parseInt(card.dataset.span || '1', 10);
@@ -730,23 +729,34 @@ function initVResize(card) {
       const visibleRows = Math.max(1, Math.ceil(items.length / span));
       itemH = body.getBoundingClientRect().height / visibleRows;
     }
-    const headBottom = head.getBoundingClientRect().bottom - card.getBoundingClientRect().top;
 
     try { handle.setPointerCapture(e.pointerId); } catch {}
     handle.classList.add('om-resizing');
     document.body.style.userSelect = 'none';
 
-    let lastRows = getRows(card.dataset.id);
+    const startY = e.clientY;
+    const startRows = getRows(card.dataset.id);
+    let lastRows = startRows;
+    let pendingRows = startRows;
+    let rafId = 0;
 
-    function onMove(ev) {
-      const r = card.getBoundingClientRect();
-      const y = ev.clientY - r.top - headBottom;
-      let rows = Math.round(y / itemH);
-      rows = Math.max(1, Math.min(MAX_ROWS, rows));
-      if (rows !== lastRows) {
-        setRowsPref(card.dataset.id, rows);
+    function commit() {
+      rafId = 0;
+      if (pendingRows !== lastRows) {
+        setRowsPref(card.dataset.id, pendingRows);
         renderCard(panel);
-        lastRows = rows;
+        lastRows = pendingRows;
+      }
+    }
+    function onMove(ev) {
+      const dy = ev.clientY - startY;
+      // 30% hysteresis: don't flip until you've moved past 80% of the way to the next row.
+      // Using floor((dy + 0.2*itemH) / itemH) shifts the snap point inward, dampening jitter.
+      const delta = Math.floor((dy + itemH * 0.2) / itemH);
+      let rows = Math.max(1, Math.min(MAX_ROWS, startRows + delta));
+      if (rows !== pendingRows) {
+        pendingRows = rows;
+        if (!rafId) rafId = requestAnimationFrame(commit);
       }
     }
     function onUp() {
@@ -755,6 +765,7 @@ function initVResize(card) {
       handle.removeEventListener('pointercancel', onUp);
       handle.classList.remove('om-resizing');
       document.body.style.userSelect = '';
+      if (rafId) { cancelAnimationFrame(rafId); commit(); }
     }
     handle.addEventListener('pointermove', onMove);
     handle.addEventListener('pointerup', onUp);
