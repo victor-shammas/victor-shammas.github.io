@@ -391,7 +391,7 @@ const ROW_KEY = 'tech_monitor_rows_v1';
 const STALE_MS = 3 * 3600 * 1000;
 const MAX_CACHED = 50;
 const MAX_ROWS = 12;
-const LOOKBACK_DAYS = 5;
+const LOOKBACK_DAYS = 10;
 
 // ── rss2json.com API key ──
 // Option A — paste inline:
@@ -492,7 +492,7 @@ function srcOf(title) {
 // ── RSS Fetch ──
 function feedUrl(panel, query) {
   const q = query || panel.q;
-  const days = panel.lookbackDays || LOOKBACK_DAYS;
+  const days = Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS);
   const gnews = `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:' + days + 'd')}&hl=en&gl=US&ceid=US:en&_cb=${Date.now()}`;
   const key = RSS2JSON_KEY;
   const keyParam = key ? `&api_key=${encodeURIComponent(key)}` : '';
@@ -546,7 +546,7 @@ async function fetchPanel(panel) {
       return true;
     });
 
-    const cutoff = Date.now() - (panel.lookbackDays || LOOKBACK_DAYS) * 24 * 3600 * 1000;
+    const cutoff = Date.now() - (Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS)) * 24 * 3600 * 1000;
     const stories = deduped
       .filter(it => { const t = new Date(it.pubDate || 0).getTime(); return t && t >= cutoff; })
       .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
@@ -599,7 +599,7 @@ function renderCard(panel) {
     : '';
 
   if (!d.stories?.length) {
-    body.innerHTML = errHtml || `<div class="om-empty">No results in the last ${panel.lookbackDays || LOOKBACK_DAYS} days</div>`;
+    body.innerHTML = errHtml || `<div class="om-empty">No results in the last ${Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS)} days</div>`;
     return;
   }
 
