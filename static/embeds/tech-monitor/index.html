@@ -101,6 +101,7 @@ header {
 
 /* ── Cards ── */
 .om-card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border-dim);
   border-radius: 6px;
@@ -108,9 +109,61 @@ header {
   display: flex; flex-direction: column;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.om-card.wide { grid-column: 1 / -1; }
 .om-card-ghost { opacity: 0.35; }
 .om-card-drag { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+/* ── Resize handles ── */
+.om-resize {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 10px;
+  cursor: col-resize;
+  z-index: 3;
+  touch-action: none;
+}
+.om-resize::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: 3px;
+  width: 2px; height: 36px;
+  margin-top: -18px;
+  background: var(--border-mid);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.om-card:hover .om-resize::after { opacity: 0.45; }
+.om-resize:hover::after,
+.om-resize.om-resizing::after { opacity: 0.85; }
+
+.om-vresize {
+  position: absolute;
+  left: 0; right: 10px; bottom: 0;
+  height: 10px;
+  cursor: row-resize;
+  z-index: 3;
+  touch-action: none;
+}
+.om-vresize::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 3px;
+  width: 36px; height: 2px;
+  margin-left: -18px;
+  background: var(--border-mid);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.om-card:hover .om-vresize::after { opacity: 0.45; }
+.om-vresize:hover::after,
+.om-vresize.om-resizing::after { opacity: 0.85; }
+
+@media (max-width: 700px) {
+  .om-resize { display: none; }
+  .om-vresize { right: 0; height: 14px; }
+  .om-vresize::after { opacity: 0.4; width: 48px; height: 3px; }
+}
 
 .om-card-head {
   display: flex; align-items: center; justify-content: space-between;
@@ -160,12 +213,21 @@ header {
   padding: 0;
 }
 
-.om-card.wide .om-card-body {
+.om-card[data-span="2"] .om-card-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.om-card[data-span="3"] .om-card-body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-@media (max-width: 1100px) { .om-card.wide .om-card-body { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 700px) { .om-card.wide .om-card-body { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) {
+  .om-card[data-span="3"] .om-card-body { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .om-card[data-span="2"] .om-card-body,
+  .om-card[data-span="3"] .om-card-body { grid-template-columns: 1fr; }
+}
 
 /* ── Items ── */
 .om-item { border-bottom: 1px solid var(--border-dim); }
@@ -264,7 +326,7 @@ header {
     </div>
   </div>
   <div class="hdr-actions">
-    <button class="hdr-btn" id="reset-order" title="Restore default card order">↺ Reset Order</button>
+    <button class="hdr-btn" id="reset-order" title="Restore default card order and sizes">↺ Reset Layout</button>
     <button class="hdr-btn" id="refresh-all">↻ Refresh All</button>
   </div>
 </header>
@@ -322,9 +384,11 @@ const ICONS = {
 
 // ── Config ──
 const LS_KEY = 'tech_monitor_v1';
+const SPAN_KEY = 'tech_monitor_spans_v1';
+const ROW_KEY = 'tech_monitor_rows_v1';
 const STALE_MS = 3 * 3600 * 1000;
-const MAX_ITEMS = 8;
-const MAX_WIDE = 15;
+const MAX_CACHED = 50;
+const MAX_ROWS = 12;
 const LOOKBACK_DAYS = 5;
 
 // ── rss2json.com API key ──
@@ -343,6 +407,59 @@ const store = {
   set: v => { try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch {} },
 };
 let state = store.get();
+
+const spanStore = {
+  get: () => { try { return JSON.parse(localStorage.getItem(SPAN_KEY)) || {}; } catch { return {}; } },
+  set: v => { try { localStorage.setItem(SPAN_KEY, JSON.stringify(v)); } catch {} },
+  clear: () => { try { localStorage.removeItem(SPAN_KEY); } catch {} },
+};
+const rowStore = {
+  get: () => { try { return JSON.parse(localStorage.getItem(ROW_KEY)) || {}; } catch { return {}; } },
+  set: v => { try { localStorage.setItem(ROW_KEY, JSON.stringify(v)); } catch {} },
+  clear: () => { try { localStorage.removeItem(ROW_KEY); } catch {} },
+};
+
+function defaultSpan(panel) {
+  return panel.defaultSpan || (panel.wide ? 3 : 1);
+}
+function defaultRows(panel) {
+  if (panel.maxItems && panel.wide) return Math.max(1, Math.ceil(panel.maxItems / 3));
+  return panel.wide ? 5 : 8;
+}
+function getSpan(id) {
+  const spans = spanStore.get();
+  if (spans[id]) return spans[id];
+  const p = PANELS.find(x => x.id === id);
+  return p ? defaultSpan(p) : 1;
+}
+function getRows(id) {
+  const rows = rowStore.get();
+  if (rows[id]) return rows[id];
+  const p = PANELS.find(x => x.id === id);
+  return p ? defaultRows(p) : 8;
+}
+function setSpanPref(id, span) {
+  const spans = spanStore.get();
+  spans[id] = span;
+  spanStore.set(spans);
+}
+function setRowsPref(id, n) {
+  const rows = rowStore.get();
+  rows[id] = n;
+  rowStore.set(rows);
+}
+function gridColCount() {
+  const cs = getComputedStyle(document.getElementById('grid'));
+  return cs.gridTemplateColumns.split(' ').filter(Boolean).length;
+}
+function applyLayout(card) {
+  const id = card.dataset.id;
+  const pref = getSpan(id);
+  const cols = gridColCount();
+  const eff = Math.max(1, Math.min(pref, cols));
+  card.style.gridColumn = `span ${eff}`;
+  card.dataset.span = String(eff);
+}
 
 // ── Helpers ──
 function esc(s) {
@@ -427,12 +544,11 @@ async function fetchPanel(panel) {
       return true;
     });
 
-    const limit = panel.maxItems || (panel.wide ? MAX_WIDE : MAX_ITEMS);
     const cutoff = Date.now() - (panel.lookbackDays || LOOKBACK_DAYS) * 24 * 3600 * 1000;
-    let stories = deduped
+    const stories = deduped
       .filter(it => { const t = new Date(it.pubDate || 0).getTime(); return t && t >= cutoff; })
       .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
-      .slice(0, limit)
+      .slice(0, MAX_CACHED)
       .map(it => panel.type === 'feeds' ? {
         title: (it.title || '').trim(),
         url: it.link,
@@ -444,11 +560,6 @@ async function fetchPanel(panel) {
         source: srcOf(it.title),
         date: it.pubDate,
       });
-
-    // For wide panels, trim to multiple of 3 for clean grid
-    if (panel.wide) {
-      stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
-    }
 
     state[panel.id] = { stories, fetchedAt: Date.now(), errors };
     store.set(state);
@@ -490,7 +601,14 @@ function renderCard(panel) {
     return;
   }
 
-  body.innerHTML = errHtml + d.stories.map(s =>
+  const span = parseInt(card.dataset.span || '1', 10);
+  const rows = getRows(panel.id);
+  let shown = d.stories.slice(0, span * rows);
+  if (span > 1 && shown.length < span * rows && shown.length >= span) {
+    shown = shown.slice(0, Math.floor(shown.length / span) * span);
+  }
+
+  body.innerHTML = errHtml + shown.map(s =>
     `<div class="om-item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
       <h3>${esc(s.title)}</h3>
       <div class="om-item-meta">${esc(s.source)}${s.source && s.date ? ' · ' : ''}${esc(fmtDate(s.date))}</div>
@@ -524,48 +642,135 @@ function applySavedOrder() {
   });
 }
 
-// Row-boundary rule: a wide card may only sit where the narrow cards
-// before it (since the last wide / start of grid) form a complete row.
-// Trailing partial rows of narrows are fine.
-function isValidLayout(ids) {
-  const wideSet = new Set(PANELS.filter(p => p.wide).map(p => p.id));
-  let narrowRun = 0;
-  for (const id of ids) {
-    if (wideSet.has(id)) {
-      if (narrowRun % 3 !== 0) return false;
-      narrowRun = 0;
-    } else {
-      narrowRun++;
-    }
-  }
-  return true;
-}
-
 function initSortable() {
   const grid = document.getElementById('grid');
   if (typeof Sortable === 'undefined') return;
   Sortable.create(grid, {
     handle: '.om-card-head',
-    filter: '.om-btn',
+    filter: '.om-btn, .om-resize, .om-vresize',
     preventOnFilter: false,
     animation: 150,
     ghostClass: 'om-card-ghost',
     dragClass: 'om-card-drag',
-    onMove(evt) {
-      const ids = [...grid.children].map(el => el.dataset.id);
-      const draggedId = evt.dragged.dataset.id;
-      const relatedId = evt.related.dataset.id;
-      const fromIdx = ids.indexOf(draggedId);
-      let toIdx = ids.indexOf(relatedId);
-      if (evt.willInsertAfter) toIdx++;
-      const proposed = ids.slice();
-      proposed.splice(fromIdx, 1);
-      proposed.splice(toIdx > fromIdx ? toIdx - 1 : toIdx, 0, draggedId);
-      return isValidLayout(proposed);
-    },
     onEnd() {
       saveOrder([...grid.children].map(el => el.dataset.id));
     },
+  });
+}
+
+// ── Resize ──
+function initResize(card) {
+  const handle = card.querySelector('.om-resize');
+  if (!handle) return;
+  handle.addEventListener('pointerdown', e => {
+    if (e.button !== undefined && e.button !== 0) return;
+    const cols = gridColCount();
+    if (cols < 2) return;
+    e.preventDefault();
+
+    const grid = document.getElementById('grid');
+    const gridRect = grid.getBoundingClientRect();
+    const cs = getComputedStyle(grid);
+    const gap = parseFloat(cs.columnGap || cs.gap) || 0;
+    const colW = (gridRect.width
+      - (parseFloat(cs.paddingLeft) || 0)
+      - (parseFloat(cs.paddingRight) || 0)
+      - gap * (cols - 1)) / cols;
+    const cardLeft = card.getBoundingClientRect().left - gridRect.left;
+    const panel = PANELS.find(p => p.id === card.dataset.id);
+
+    try { handle.setPointerCapture(e.pointerId); } catch {}
+    handle.classList.add('om-resizing');
+    document.body.style.userSelect = 'none';
+
+    let lastSpan = parseInt(card.dataset.span || '1', 10);
+
+    function onMove(ev) {
+      const x = ev.clientX - gridRect.left - cardLeft;
+      let span = Math.round((x + gap) / (colW + gap));
+      span = Math.max(1, Math.min(cols, span));
+      if (span !== lastSpan) {
+        card.style.gridColumn = `span ${span}`;
+        card.dataset.span = String(span);
+        lastSpan = span;
+      }
+    }
+    function onUp() {
+      handle.removeEventListener('pointermove', onMove);
+      handle.removeEventListener('pointerup', onUp);
+      handle.removeEventListener('pointercancel', onUp);
+      handle.classList.remove('om-resizing');
+      document.body.style.userSelect = '';
+      const span = parseInt(card.dataset.span, 10);
+      setSpanPref(card.dataset.id, span);
+      if (panel) renderCard(panel);
+    }
+    handle.addEventListener('pointermove', onMove);
+    handle.addEventListener('pointerup', onUp);
+    handle.addEventListener('pointercancel', onUp);
+  });
+}
+
+function initVResize(card) {
+  const handle = card.querySelector('.om-vresize');
+  if (!handle) return;
+  handle.addEventListener('pointerdown', e => {
+    if (e.button !== undefined && e.button !== 0) return;
+    e.preventDefault();
+
+    const panel = PANELS.find(p => p.id === card.dataset.id);
+    if (!panel) return;
+    const body = card.querySelector('.om-card-body');
+
+    // Estimate per-row item height from current render; fall back to 64px.
+    const span = parseInt(card.dataset.span || '1', 10);
+    let itemH = 64;
+    const items = body.querySelectorAll('.om-item');
+    if (items.length > 0) {
+      const visibleRows = Math.max(1, Math.ceil(items.length / span));
+      itemH = body.getBoundingClientRect().height / visibleRows;
+    }
+
+    try { handle.setPointerCapture(e.pointerId); } catch {}
+    handle.classList.add('om-resizing');
+    document.body.style.userSelect = 'none';
+
+    const startY = e.clientY;
+    const startRows = getRows(card.dataset.id);
+    let lastRows = startRows;
+    let pendingRows = startRows;
+    let rafId = 0;
+
+    function commit() {
+      rafId = 0;
+      if (pendingRows !== lastRows) {
+        setRowsPref(card.dataset.id, pendingRows);
+        renderCard(panel);
+        lastRows = pendingRows;
+      }
+    }
+    function onMove(ev) {
+      const dy = ev.clientY - startY;
+      // 30% hysteresis: don't flip until you've moved past 80% of the way to the next row.
+      // Using floor((dy + 0.2*itemH) / itemH) shifts the snap point inward, dampening jitter.
+      const delta = Math.floor((dy + itemH * 0.2) / itemH);
+      let rows = Math.max(1, Math.min(MAX_ROWS, startRows + delta));
+      if (rows !== pendingRows) {
+        pendingRows = rows;
+        if (!rafId) rafId = requestAnimationFrame(commit);
+      }
+    }
+    function onUp() {
+      handle.removeEventListener('pointermove', onMove);
+      handle.removeEventListener('pointerup', onUp);
+      handle.removeEventListener('pointercancel', onUp);
+      handle.classList.remove('om-resizing');
+      document.body.style.userSelect = '';
+      if (rafId) { cancelAnimationFrame(rafId); commit(); }
+    }
+    handle.addEventListener('pointermove', onMove);
+    handle.addEventListener('pointerup', onUp);
+    handle.addEventListener('pointercancel', onUp);
   });
 }
 
@@ -573,7 +778,7 @@ function initSortable() {
 function init() {
   applySavedOrder();
   document.getElementById('grid').innerHTML = PANELS.map(p =>
-    `<div class="om-card${p.wide ? ' wide' : ''}" data-id="${p.id}">
+    `<div class="om-card" data-id="${p.id}" data-span="1">
       <div class="om-card-head">
         <div class="om-card-head-left">
           <div class="om-card-icon" style="color: var(--accent-${p.id})">${ICONS[p.id] || ''}</div>
@@ -587,8 +792,16 @@ function init() {
         </div>
       </div>
       <div class="om-card-body"><div class="om-empty">Tap ↻ to load</div></div>
+      <div class="om-resize" title="Drag to resize width"></div>
+      <div class="om-vresize" title="Drag to resize height"></div>
     </div>`
   ).join('');
+
+  document.querySelectorAll('#grid .om-card').forEach(card => {
+    applyLayout(card);
+    initResize(card);
+    initVResize(card);
+  });
 
   // Bind events
   PANELS.forEach(p => {
@@ -610,13 +823,26 @@ function init() {
     e.target.disabled = false;
   });
 
-  // Reset card order to defaults
+  // Reset card layout (order + spans + rows) to defaults
   document.getElementById('reset-order').addEventListener('click', () => {
     clearOrder();
+    spanStore.clear();
+    rowStore.clear();
     location.reload();
   });
 
   initSortable();
+
+  // Re-apply layout when crossing viewport breakpoints
+  let lastCols = gridColCount();
+  window.addEventListener('resize', () => {
+    const cols = gridColCount();
+    if (cols !== lastCols) {
+      lastCols = cols;
+      document.querySelectorAll('#grid .om-card').forEach(applyLayout);
+      PANELS.forEach(p => { if (state[p.id]) renderCard(p); });
+    }
+  });
 }
 
 init();
