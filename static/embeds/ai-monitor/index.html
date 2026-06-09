@@ -866,7 +866,8 @@ function init() {
         try {
           const data = JSON.parse(reader.result);
           if (data.monitor && data.monitor !== 'ai-monitor') {
-            if (!confirm(`This layout was exported from "${data.monitor}". Apply to AI Monitor anyway?`)) return;
+            alert(`This layout is for "${data.monitor}" and can't be applied here — the cards are different. Load it into that monitor instead.`);
+            return;
           }
           if (Array.isArray(data.order)) saveOrder(data.order); else clearOrder();
           if (data.spans && typeof data.spans === 'object') spanStore.set(data.spans); else spanStore.clear();

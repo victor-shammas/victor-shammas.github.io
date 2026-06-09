@@ -1222,7 +1222,8 @@
                         try {
                             const data = JSON.parse(reader.result);
                             if (data.monitor && data.monitor !== "rightwing-monitor") {
-                                if (!confirm(`This layout was exported from "${data.monitor}". Apply to Right-Wing Monitor anyway?`)) return;
+                                alert(`This layout is for "${data.monitor}" and can't be applied here — the cards are different. Load it into that monitor instead.`);
+                                return;
                             }
                             if (Array.isArray(data.order)) saveOrderIds(data.order); else clearOrderKey();
                             if (data.spans && typeof data.spans === "object") spanStore.set(data.spans); else spanStore.clear();
