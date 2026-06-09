@@ -380,6 +380,8 @@
             <div class="hdr-actions">
                 <button class="hdr-btn" id="translateAll" title="Translate all loaded cards to English">EN</button>
                 <button class="hdr-btn" id="resetOrder" title="Restore default card order and sizes">↺ Reset Layout</button>
+                <button class="hdr-btn" id="exportLayout" title="Download current layout as JSON">↓ Export</button>
+                <button class="hdr-btn" id="importLayout" title="Load layout from JSON file">↑ Import</button>
                 <button class="hdr-btn" id="refreshAll">↻ Refresh All</button>
             </div>
         </header>
@@ -1185,6 +1187,56 @@
                 rowStore.clear();
                 location.reload();
             });
+
+            // Export current layout to a JSON file
+            document.getElementById("exportLayout").addEventListener("click", () => {
+                const data = {
+                    monitor: "rightwing-monitor",
+                    version: 1,
+                    exportedAt: new Date().toISOString(),
+                    order: loadOrder(),
+                    spans: spanStore.get(),
+                    rows: rowStore.get(),
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `rightwing-monitor-${new Date().toISOString().slice(0, 10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+
+            // Import layout from a JSON file
+            document.getElementById("importLayout").addEventListener("click", () => {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "application/json,.json";
+                input.addEventListener("change", (e) => {
+                    const file = e.target.files && e.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        try {
+                            const data = JSON.parse(reader.result);
+                            if (data.monitor && data.monitor !== "rightwing-monitor") {
+                                if (!confirm(`This layout was exported from "${data.monitor}". Apply to Right-Wing Monitor anyway?`)) return;
+                            }
+                            if (Array.isArray(data.order)) saveOrderIds(data.order); else clearOrderKey();
+                            if (data.spans && typeof data.spans === "object") spanStore.set(data.spans); else spanStore.clear();
+                            if (data.rows && typeof data.rows === "object") rowStore.set(data.rows); else rowStore.clear();
+                            location.reload();
+                        } catch (err) {
+                            alert("Could not parse layout file: " + err.message);
+                        }
+                    };
+                    reader.readAsText(file);
+                });
+                input.click();
+            });
+
             render();
             initSortable();
 

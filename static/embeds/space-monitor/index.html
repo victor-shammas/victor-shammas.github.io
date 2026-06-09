@@ -329,6 +329,8 @@ header {
   </div>
   <div class="hdr-actions">
     <button class="hdr-btn" id="reset-order" title="Restore default card order and sizes">↺ Reset Layout</button>
+    <button class="hdr-btn" id="export-layout" title="Download current layout as JSON">↓ Export</button>
+    <button class="hdr-btn" id="import-layout" title="Load layout from JSON file">↑ Import</button>
     <button class="hdr-btn" id="refresh-all">↻ Refresh All</button>
   </div>
 </header>
@@ -808,6 +810,55 @@ function init() {
     spanStore.clear();
     rowStore.clear();
     location.reload();
+  });
+
+  // Export current layout to a JSON file
+  document.getElementById('export-layout').addEventListener('click', () => {
+    const data = {
+      monitor: 'space-monitor',
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      order: loadOrder(),
+      spans: spanStore.get(),
+      rows: rowStore.get(),
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `space-monitor-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  // Import layout from a JSON file
+  document.getElementById('import-layout').addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+    input.addEventListener('change', e => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          if (data.monitor && data.monitor !== 'space-monitor') {
+            if (!confirm(`This layout was exported from "${data.monitor}". Apply to Space Monitor anyway?`)) return;
+          }
+          if (Array.isArray(data.order)) saveOrder(data.order); else clearOrder();
+          if (data.spans && typeof data.spans === 'object') spanStore.set(data.spans); else spanStore.clear();
+          if (data.rows && typeof data.rows === 'object') rowStore.set(data.rows); else rowStore.clear();
+          location.reload();
+        } catch (err) {
+          alert('Could not parse layout file: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    });
+    input.click();
   });
 
   initSortable();
