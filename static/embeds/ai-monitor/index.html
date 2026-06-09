@@ -115,7 +115,7 @@ header {
 .om-card-ghost { opacity: 0.35; }
 .om-card-drag { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
 
-/* ── Resize handle ── */
+/* ── Resize handles ── */
 .om-resize {
   position: absolute;
   top: 0; right: 0; bottom: 0;
@@ -138,7 +138,35 @@ header {
 .om-card:hover .om-resize::after { opacity: 0.45; }
 .om-resize:hover::after,
 .om-resize.om-resizing::after { opacity: 0.85; }
-@media (max-width: 700px) { .om-resize { display: none; } }
+
+.om-vresize {
+  position: absolute;
+  left: 0; right: 10px; bottom: 0;
+  height: 10px;
+  cursor: row-resize;
+  z-index: 3;
+  touch-action: none;
+}
+.om-vresize::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 3px;
+  width: 36px; height: 2px;
+  margin-left: -18px;
+  background: var(--border-mid);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.om-card:hover .om-vresize::after { opacity: 0.45; }
+.om-vresize:hover::after,
+.om-vresize.om-resizing::after { opacity: 0.85; }
+
+@media (max-width: 700px) {
+  .om-resize { display: none; }
+  .om-vresize { right: 0; height: 14px; }
+  .om-vresize::after { opacity: 0.4; width: 48px; height: 3px; }
+}
 
 .om-card-head {
   display: flex; align-items: center; justify-content: space-between;
@@ -380,10 +408,10 @@ const ICONS = {
 // ── Config ──
 const LS_KEY = 'ai_monitor_v1';
 const SPAN_KEY = 'ai_monitor_spans_v1';
+const ROW_KEY = 'ai_monitor_rows_v1';
 const STALE_MS = 3 * 3600 * 1000;
-const MAX_ITEMS = 8;
-const MAX_CACHED = 30;
-const SPAN_LIMITS = { 1: 8, 2: 12, 3: 15 };
+const MAX_CACHED = 50;
+const MAX_ROWS = 12;
 const LOOKBACK_DAYS = 5;
 
 // ── rss2json.com API key ──
@@ -408,9 +436,18 @@ const spanStore = {
   set: v => { try { localStorage.setItem(SPAN_KEY, JSON.stringify(v)); } catch {} },
   clear: () => { try { localStorage.removeItem(SPAN_KEY); } catch {} },
 };
+const rowStore = {
+  get: () => { try { return JSON.parse(localStorage.getItem(ROW_KEY)) || {}; } catch { return {}; } },
+  set: v => { try { localStorage.setItem(ROW_KEY, JSON.stringify(v)); } catch {} },
+  clear: () => { try { localStorage.removeItem(ROW_KEY); } catch {} },
+};
 
 function defaultSpan(panel) {
   return panel.defaultSpan || (panel.wide ? 3 : 1);
+}
+function defaultRows(panel) {
+  if (panel.maxItems && panel.wide) return Math.max(1, Math.ceil(panel.maxItems / 3));
+  return panel.wide ? 5 : 8;
 }
 function getSpan(id) {
   const spans = spanStore.get();
@@ -418,10 +455,21 @@ function getSpan(id) {
   const p = PANELS.find(x => x.id === id);
   return p ? defaultSpan(p) : 1;
 }
+function getRows(id) {
+  const rows = rowStore.get();
+  if (rows[id]) return rows[id];
+  const p = PANELS.find(x => x.id === id);
+  return p ? defaultRows(p) : 8;
+}
 function setSpanPref(id, span) {
   const spans = spanStore.get();
   spans[id] = span;
   spanStore.set(spans);
+}
+function setRowsPref(id, n) {
+  const rows = rowStore.get();
+  rows[id] = n;
+  rowStore.set(rows);
 }
 function gridColCount() {
   const cs = getComputedStyle(document.getElementById('grid'));
@@ -553,9 +601,9 @@ function renderCard(panel) {
   }
 
   const span = parseInt(card.dataset.span || '1', 10);
-  const limit = panel.maxItems || SPAN_LIMITS[span] || MAX_ITEMS;
-  let shown = d.stories.slice(0, limit);
-  if (span > 1 && shown.length >= span) {
+  const rows = getRows(panel.id);
+  let shown = d.stories.slice(0, span * rows);
+  if (span > 1 && shown.length < span * rows && shown.length >= span) {
     shown = shown.slice(0, Math.floor(shown.length / span) * span);
   }
 
@@ -598,7 +646,7 @@ function initSortable() {
   if (typeof Sortable === 'undefined') return;
   Sortable.create(grid, {
     handle: '.om-card-head',
-    filter: '.om-btn, .om-resize',
+    filter: '.om-btn, .om-resize, .om-vresize',
     preventOnFilter: false,
     animation: 150,
     ghostClass: 'om-card-ghost',
@@ -662,6 +710,58 @@ function initResize(card) {
   });
 }
 
+function initVResize(card) {
+  const handle = card.querySelector('.om-vresize');
+  if (!handle) return;
+  handle.addEventListener('pointerdown', e => {
+    if (e.button !== undefined && e.button !== 0) return;
+    e.preventDefault();
+
+    const panel = PANELS.find(p => p.id === card.dataset.id);
+    if (!panel) return;
+    const body = card.querySelector('.om-card-body');
+    const head = card.querySelector('.om-card-head');
+
+    // Estimate per-row item height from current render; fall back to 64px.
+    const span = parseInt(card.dataset.span || '1', 10);
+    let itemH = 64;
+    const items = body.querySelectorAll('.om-item');
+    if (items.length > 0) {
+      const visibleRows = Math.max(1, Math.ceil(items.length / span));
+      itemH = body.getBoundingClientRect().height / visibleRows;
+    }
+    const headBottom = head.getBoundingClientRect().bottom - card.getBoundingClientRect().top;
+
+    try { handle.setPointerCapture(e.pointerId); } catch {}
+    handle.classList.add('om-resizing');
+    document.body.style.userSelect = 'none';
+
+    let lastRows = getRows(card.dataset.id);
+
+    function onMove(ev) {
+      const r = card.getBoundingClientRect();
+      const y = ev.clientY - r.top - headBottom;
+      let rows = Math.round(y / itemH);
+      rows = Math.max(1, Math.min(MAX_ROWS, rows));
+      if (rows !== lastRows) {
+        setRowsPref(card.dataset.id, rows);
+        renderCard(panel);
+        lastRows = rows;
+      }
+    }
+    function onUp() {
+      handle.removeEventListener('pointermove', onMove);
+      handle.removeEventListener('pointerup', onUp);
+      handle.removeEventListener('pointercancel', onUp);
+      handle.classList.remove('om-resizing');
+      document.body.style.userSelect = '';
+    }
+    handle.addEventListener('pointermove', onMove);
+    handle.addEventListener('pointerup', onUp);
+    handle.addEventListener('pointercancel', onUp);
+  });
+}
+
 // ── Build Grid ──
 function init() {
   applySavedOrder();
@@ -680,13 +780,15 @@ function init() {
         </div>
       </div>
       <div class="om-card-body"><div class="om-empty">Tap ↻ to load</div></div>
-      <div class="om-resize" title="Drag to resize"></div>
+      <div class="om-resize" title="Drag to resize width"></div>
+      <div class="om-vresize" title="Drag to resize height"></div>
     </div>`
   ).join('');
 
   document.querySelectorAll('#grid .om-card').forEach(card => {
     applyLayout(card);
     initResize(card);
+    initVResize(card);
   });
 
   // Bind events
@@ -709,10 +811,11 @@ function init() {
     e.target.disabled = false;
   });
 
-  // Reset card layout (order + spans) to defaults
+  // Reset card layout (order + spans + rows) to defaults
   document.getElementById('reset-order').addEventListener('click', () => {
     clearOrder();
     spanStore.clear();
+    rowStore.clear();
     location.reload();
   });
 
