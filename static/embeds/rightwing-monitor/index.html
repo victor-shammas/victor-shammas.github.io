@@ -126,6 +126,7 @@
 
             /* ── Cards ── */
             .card {
+                position: relative;
                 background: var(--bg-card);
                 border: 1px solid var(--border-dim);
                 border-top: 2px solid var(--border-dim);
@@ -133,6 +134,59 @@
                 overflow: hidden;
                 display: flex; flex-direction: column;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            }
+
+            /* ── Resize handles ── */
+            .resize {
+                position: absolute;
+                top: 0; right: 0; bottom: 0;
+                width: 10px;
+                cursor: col-resize;
+                z-index: 3;
+                touch-action: none;
+            }
+            .resize::after {
+                content: '';
+                position: absolute;
+                top: 50%; right: 3px;
+                width: 2px; height: 36px;
+                margin-top: -18px;
+                background: var(--border-mid);
+                border-radius: 1px;
+                opacity: 0;
+                transition: opacity 0.15s;
+            }
+            .card:hover .resize::after { opacity: 0.45; }
+            .resize:hover::after,
+            .resize.resizing::after { opacity: 0.85; }
+
+            .vresize {
+                position: absolute;
+                left: 0; right: 10px; bottom: 0;
+                height: 10px;
+                cursor: row-resize;
+                z-index: 3;
+                touch-action: none;
+            }
+            .vresize::after {
+                content: '';
+                position: absolute;
+                left: 50%; bottom: 3px;
+                width: 36px; height: 2px;
+                margin-left: -18px;
+                background: var(--border-mid);
+                border-radius: 1px;
+                opacity: 0;
+                transition: opacity 0.15s;
+            }
+            .card:hover .vresize::after { opacity: 0.45; }
+            .vresize:hover::after,
+            .vresize.resizing::after { opacity: 0.85; }
+
+            @media (max-width: 700px) {
+                .resize { display: none; }
+                .vresize { right: 0; height: 14px; }
+                .vresize::after { opacity: 0.4; width: 48px; height: 3px; }
             }
             .card.maga    { border-top-color: var(--accent-maga); }
             .card.frp     { border-top-color: var(--accent-frp); }
@@ -288,18 +342,21 @@
                 letter-spacing: 0.02em;
             }
 
-            /* ── Wide-card sub-layouts ── */
-            @media (min-width: 1100px) {
-                .card.general { grid-column: span 2; }
-                .card.general .body {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                .card.nodes, .card.bluesky { grid-column: 1 / -1; }
-                .card.nodes .body, .card.bluesky .body {
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                }
+            /* ── Wide-card sub-layouts (driven by data-span) ── */
+            .card[data-span="2"] .body {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card[data-span="3"] .body {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @media (max-width: 1099px) {
+                .card[data-span="3"] .body { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 719px) {
+                .card[data-span="2"] .body,
+                .card[data-span="3"] .body { grid-template-columns: 1fr; }
             }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
@@ -322,7 +379,7 @@
             </div>
             <div class="hdr-actions">
                 <button class="hdr-btn" id="translateAll" title="Translate all loaded cards to English">EN</button>
-                <button class="hdr-btn" id="resetOrder" title="Restore default card order">↺ Reset Order</button>
+                <button class="hdr-btn" id="resetOrder" title="Restore default card order and sizes">↺ Reset Layout</button>
                 <button class="hdr-btn" id="refreshAll">↻ Refresh All</button>
             </div>
         </header>
@@ -487,11 +544,12 @@
             };
 
             const LS_KEY = "farright_tracker_v1";
+            const SPAN_KEY = "farright_tracker_spans_v1";
+            const ROW_KEY = "farright_tracker_rows_v1";
             const STALE_MS = 3 * 3600 * 1000;
-            const MAX = 8;
-            const MAX_GENERAL = 16;
-            const MAX_NODES = 9;
-            const MAX_BLUESKY = 12;
+            const MAX_CACHED = 50;
+            const MAX_ROWS = 12;
+            const MAX_BLUESKY = 36;
 
             const store = {
                 get: () => {
@@ -508,6 +566,47 @@
                 },
             };
             let state = store.get();
+
+            // ── Per-card layout (span/rows) ──
+            const spanStore = {
+                get: () => { try { return JSON.parse(localStorage.getItem(SPAN_KEY)) || {}; } catch { return {}; } },
+                set: (v) => { try { localStorage.setItem(SPAN_KEY, JSON.stringify(v)); } catch {} },
+                clear: () => { try { localStorage.removeItem(SPAN_KEY); } catch {} },
+            };
+            const rowStore = {
+                get: () => { try { return JSON.parse(localStorage.getItem(ROW_KEY)) || {}; } catch { return {}; } },
+                set: (v) => { try { localStorage.setItem(ROW_KEY, JSON.stringify(v)); } catch {} },
+                clear: () => { try { localStorage.removeItem(ROW_KEY); } catch {} },
+            };
+
+            // Default sizes preserve prior per-card layout:
+            //  general → 2×8, nodes → 3×3, bluesky → 3×4, others → 1×8.
+            const DEFAULT_SPAN = { general: 2, nodes: 3, bluesky: 3 };
+            const DEFAULT_ROWS = { general: 8, nodes: 3, bluesky: 4 };
+            const defaultSpan = (id) => DEFAULT_SPAN[id] || 1;
+            const defaultRows = (id) => DEFAULT_ROWS[id] || 8;
+            function getSpan(id) {
+                const s = spanStore.get();
+                return s[id] || defaultSpan(id);
+            }
+            function getRows(id) {
+                const r = rowStore.get();
+                return r[id] || defaultRows(id);
+            }
+            function setSpanPref(id, n) { const s = spanStore.get(); s[id] = n; spanStore.set(s); }
+            function setRowsPref(id, n) { const r = rowStore.get(); r[id] = n; rowStore.set(r); }
+            function gridColCount() {
+                const cs = getComputedStyle(document.getElementById("grid"));
+                return cs.gridTemplateColumns.split(" ").filter(Boolean).length;
+            }
+            function applyLayout(card) {
+                const id = card.dataset.id;
+                const pref = getSpan(id);
+                const cols = gridColCount();
+                const eff = Math.max(1, Math.min(pref, cols));
+                card.style.gridColumn = `span ${eff}`;
+                card.dataset.span = String(eff);
+            }
 
             const feedUrl = (p, query) => {
                 const win = p.window || "5d"; // 5-day limit across the board
@@ -665,14 +764,8 @@
                             seen.add(it.link);
                             return true;
                         });
-                        const limit =
-                            p.id === "general"
-                                ? MAX_GENERAL
-                                : p.id === "nodes"
-                                  ? MAX_NODES
-                                  : MAX;
                         // 5-day hard cutoff locally to match API request
-                        const cutoffMs = Date.now() - 5 * 24 * 3600 * 1000; 
+                        const cutoffMs = Date.now() - 5 * 24 * 3600 * 1000;
                         stories = deduped
                             .filter((it) => {
                                 const t = new Date(it.pubDate || 0).getTime();
@@ -681,7 +774,7 @@
                             .sort(
                                 (a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0),
                             )
-                            .slice(0, limit)
+                            .slice(0, MAX_CACHED)
                             .map((it) => {
                                 const source = srcOf(it.title);
                                 return {
@@ -692,12 +785,6 @@
                                     summary: "",
                                 };
                             });
-                        if (p.id === "general") {
-                            stories = stories.slice(0, Math.floor(stories.length / 2) * 2);
-                        }
-                        if (p.id === "nodes") {
-                            stories = stories.slice(0, Math.floor(stories.length / 3) * 3);
-                        }
                     }
                     state[p.id] = { stories, fetchedAt: Date.now(), errors };
                     store.set(state);
@@ -816,9 +903,15 @@
                         errHtml || '<div class="empty">No results in the last 5 days</div>';
                     return;
                 }
+                const span = parseInt(card.dataset.span || "1", 10);
+                const rows = getRows(p.id);
+                let shown = d.stories.slice(0, span * rows);
+                if (span > 1 && shown.length < span * rows && shown.length >= span) {
+                    shown = shown.slice(0, Math.floor(shown.length / span) * span);
+                }
                 body.innerHTML =
                     errHtml +
-                    d.stories
+                    shown
                         .map((s) => {
                             const title = useEn && s.titleEn ? s.titleEn : s.title;
                             const summary =
@@ -834,8 +927,6 @@
             }
 
             // ── Drag-to-reorder ──
-            // Column span per card id on the 3-col desktop grid; default 1.
-            const SPANS = { general: 2, nodes: 3, bluesky: 3 };
             const ORDER_KEY = "farright_tracker_order_v1";
             const loadOrder = () => { try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || null; } catch { return null; } };
             const saveOrderIds = (ids) => { try { localStorage.setItem(ORDER_KEY, JSON.stringify(ids)); } catch {} };
@@ -854,49 +945,123 @@
                 });
             }
 
-            // A multi-column card must fit in the current row; a 3-col card
-            // must start at column 0. Trailing partial rows are OK.
-            function isValidLayout(ids) {
-                let col = 0;
-                for (const id of ids) {
-                    const s = SPANS[id] || 1;
-                    if (s === 1) {
-                        col = (col + 1) % 3;
-                    } else if (s === 2) {
-                        if (3 - col < 2) return false;
-                        col = (col + 2) % 3;
-                    } else {
-                        if (col !== 0) return false;
-                    }
-                }
-                return true;
-            }
-
             function initSortable() {
                 const grid = document.getElementById("grid");
                 if (typeof Sortable === "undefined") return;
                 Sortable.create(grid, {
                     handle: ".head",
-                    filter: ".rbtn, .tbtn",
+                    filter: ".rbtn, .tbtn, .resize, .vresize",
                     preventOnFilter: false,
                     animation: 150,
                     ghostClass: "card-ghost",
                     dragClass: "card-drag",
-                    onMove(evt) {
-                        const ids = [...grid.children].map((el) => el.dataset.id);
-                        const draggedId = evt.dragged.dataset.id;
-                        const relatedId = evt.related.dataset.id;
-                        const fromIdx = ids.indexOf(draggedId);
-                        let toIdx = ids.indexOf(relatedId);
-                        if (evt.willInsertAfter) toIdx++;
-                        const proposed = ids.slice();
-                        proposed.splice(fromIdx, 1);
-                        proposed.splice(toIdx > fromIdx ? toIdx - 1 : toIdx, 0, draggedId);
-                        return isValidLayout(proposed);
-                    },
                     onEnd() {
                         saveOrderIds([...grid.children].map((el) => el.dataset.id));
                     },
+                });
+            }
+
+            // ── Resize handles ──
+            function initResize(card) {
+                const handle = card.querySelector(".resize");
+                if (!handle) return;
+                handle.addEventListener("pointerdown", (e) => {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    const cols = gridColCount();
+                    if (cols < 2) return;
+                    e.preventDefault();
+                    const grid = document.getElementById("grid");
+                    const gridRect = grid.getBoundingClientRect();
+                    const cs = getComputedStyle(grid);
+                    const gap = parseFloat(cs.columnGap || cs.gap) || 0;
+                    const colW =
+                        (gridRect.width -
+                            (parseFloat(cs.paddingLeft) || 0) -
+                            (parseFloat(cs.paddingRight) || 0) -
+                            gap * (cols - 1)) / cols;
+                    const cardLeft = card.getBoundingClientRect().left - gridRect.left;
+                    const party = PARTIES.find((p) => p.id === card.dataset.id);
+                    try { handle.setPointerCapture(e.pointerId); } catch {}
+                    handle.classList.add("resizing");
+                    document.body.style.userSelect = "none";
+                    let lastSpan = parseInt(card.dataset.span || "1", 10);
+                    function onMove(ev) {
+                        const x = ev.clientX - gridRect.left - cardLeft;
+                        let span = Math.round((x + gap) / (colW + gap));
+                        span = Math.max(1, Math.min(cols, span));
+                        if (span !== lastSpan) {
+                            card.style.gridColumn = `span ${span}`;
+                            card.dataset.span = String(span);
+                            lastSpan = span;
+                        }
+                    }
+                    function onUp() {
+                        handle.removeEventListener("pointermove", onMove);
+                        handle.removeEventListener("pointerup", onUp);
+                        handle.removeEventListener("pointercancel", onUp);
+                        handle.classList.remove("resizing");
+                        document.body.style.userSelect = "";
+                        setSpanPref(card.dataset.id, parseInt(card.dataset.span, 10));
+                        if (party) renderCard(party);
+                    }
+                    handle.addEventListener("pointermove", onMove);
+                    handle.addEventListener("pointerup", onUp);
+                    handle.addEventListener("pointercancel", onUp);
+                });
+            }
+
+            function initVResize(card) {
+                const handle = card.querySelector(".vresize");
+                if (!handle) return;
+                handle.addEventListener("pointerdown", (e) => {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    e.preventDefault();
+                    const party = PARTIES.find((p) => p.id === card.dataset.id);
+                    if (!party) return;
+                    const body = card.querySelector(".body");
+                    const span = parseInt(card.dataset.span || "1", 10);
+                    let itemH = 80; // Right-wing items can have descriptions, so estimate a bit taller.
+                    const items = body.querySelectorAll(".item");
+                    if (items.length > 0) {
+                        const visibleRows = Math.max(1, Math.ceil(items.length / span));
+                        itemH = body.getBoundingClientRect().height / visibleRows;
+                    }
+                    try { handle.setPointerCapture(e.pointerId); } catch {}
+                    handle.classList.add("resizing");
+                    document.body.style.userSelect = "none";
+                    const startY = e.clientY;
+                    const startRows = getRows(card.dataset.id);
+                    let lastRows = startRows;
+                    let pendingRows = startRows;
+                    let rafId = 0;
+                    function commit() {
+                        rafId = 0;
+                        if (pendingRows !== lastRows) {
+                            setRowsPref(card.dataset.id, pendingRows);
+                            renderCard(party);
+                            lastRows = pendingRows;
+                        }
+                    }
+                    function onMove(ev) {
+                        const dy = ev.clientY - startY;
+                        const delta = Math.floor((dy + itemH * 0.2) / itemH);
+                        let rows = Math.max(1, Math.min(MAX_ROWS, startRows + delta));
+                        if (rows !== pendingRows) {
+                            pendingRows = rows;
+                            if (!rafId) rafId = requestAnimationFrame(commit);
+                        }
+                    }
+                    function onUp() {
+                        handle.removeEventListener("pointermove", onMove);
+                        handle.removeEventListener("pointerup", onUp);
+                        handle.removeEventListener("pointercancel", onUp);
+                        handle.classList.remove("resizing");
+                        document.body.style.userSelect = "";
+                        if (rafId) { cancelAnimationFrame(rafId); commit(); }
+                    }
+                    handle.addEventListener("pointermove", onMove);
+                    handle.addEventListener("pointerup", onUp);
+                    handle.addEventListener("pointercancel", onUp);
                 });
             }
 
@@ -904,7 +1069,7 @@
                 applySavedOrder();
                 document.getElementById("grid").innerHTML = PARTIES.map(
                     (p) => `
-            <div class="card ${p.id}" data-id="${p.id}">
+            <div class="card ${p.id}" data-id="${p.id}" data-span="1">
               <div class="head">
                 <div class="head-left">
                   <div class="card-icon">${ICONS[p.id] || ""}</div>
@@ -919,9 +1084,17 @@
                 </div>
               </div>
               <div class="body"><div class="empty">Tap ↻ to load</div></div>
+              <div class="resize" title="Drag to resize width"></div>
+              <div class="vresize" title="Drag to resize height"></div>
             </div>`,
                 ).join("");
-                
+
+                document.querySelectorAll("#grid .card").forEach((card) => {
+                    applyLayout(card);
+                    initResize(card);
+                    initVResize(card);
+                });
+
                 // Implemented auto-fetch logic here
                 PARTIES.forEach((p) => {
                     document
@@ -1008,10 +1181,23 @@
             });
             document.getElementById("resetOrder").addEventListener("click", () => {
                 clearOrderKey();
+                spanStore.clear();
+                rowStore.clear();
                 location.reload();
             });
             render();
             initSortable();
+
+            // Re-apply layout when crossing viewport breakpoints
+            let lastCols = gridColCount();
+            window.addEventListener("resize", () => {
+                const cols = gridColCount();
+                if (cols !== lastCols) {
+                    lastCols = cols;
+                    document.querySelectorAll("#grid .card").forEach(applyLayout);
+                    PARTIES.forEach((p) => { if (state[p.id]) renderCard(p); });
+                }
+            });
         </script>
     </body>
 </html>
