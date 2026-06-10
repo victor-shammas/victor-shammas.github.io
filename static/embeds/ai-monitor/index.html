@@ -519,7 +519,7 @@ function feedUrl(panel, query) {
   const gnews = `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:' + days + 'd')}&hl=en&gl=US&ceid=US:en&_cb=${Date.now()}`;
   const key = RSS2JSON_KEY;
   const keyParam = key ? `&api_key=${encodeURIComponent(key)}` : '';
-  return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(gnews)}${keyParam}`;
+  return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(gnews)}&count=50${keyParam}`;
 }
 
 async function fetchPanel(panel) {
