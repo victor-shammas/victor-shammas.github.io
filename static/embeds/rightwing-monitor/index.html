@@ -617,7 +617,7 @@
                 const keyParam = RSS2JSON_KEY
                     ? `&api_key=${encodeURIComponent(RSS2JSON_KEY)}`
                     : "";
-                return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}${keyParam}`;
+                return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}&count=50${keyParam}`;
             };
             const strip = (h, source) => {
                 if (!h) return "";
