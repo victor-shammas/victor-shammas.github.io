@@ -611,7 +611,7 @@
             }
 
             const feedUrl = (p, query) => {
-                const win = p.window || "10d"; // 10-day window — gives expanded cards enough items to fill while staying recent
+                const win = p.window || "3d"; // 3-day window — concentrates Google News' sampling on the freshest items
                 const q = query || p.q;
                 const g = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:" + win)}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
                 const keyParam = RSS2JSON_KEY
@@ -767,7 +767,7 @@
                             return true;
                         });
                         // Local cutoff matches the API window
-                        const cutoffMs = Date.now() - 10 * 24 * 3600 * 1000;
+                        const cutoffMs = Date.now() - 3 * 24 * 3600 * 1000;
                         stories = deduped
                             .filter((it) => {
                                 const t = new Date(it.pubDate || 0).getTime();
@@ -902,7 +902,7 @@
                 if (!d.stories || !d.stories.length) {
                     // Updated the fallback text here to reflect the 5-day limit
                     body.innerHTML =
-                        errHtml || '<div class="empty">No results in the last 10 days</div>';
+                        errHtml || '<div class="empty">No results in the last 3 days</div>';
                     return;
                 }
                 const span = parseInt(card.dataset.span || "1", 10);
