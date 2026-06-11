@@ -22,3 +22,5 @@ url: "/tools/"
 [**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
 
 [**URL-to-Notes**](https://github.com/victor-shammas/url-to-notes) — A Google Chrome extension for saving links to Apple Notes.
+
+[**Claude Usage Menubar**](https://github.com/victor-shammas/claude-usage-menubar) — macOS menu bar widget showing Claude usage quotas (5-hour and weekly windows).
