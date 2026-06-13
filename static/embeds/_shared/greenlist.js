@@ -72,8 +72,14 @@
     'cnbc',
   ];
 
+  // Lowercase + trim only. We intentionally do NOT strip a leading
+  // "the " here: substring containment already handles it ("The New
+  // York Times" → "the new york times" contains "new york times"), and
+  // stripping would break outlets whose canonical name *is* "The X" —
+  // e.g., The Hill, The Information, The Intercept — when the greenlist
+  // entry itself contains "the ".
   function normalize(s) {
-    return (s || '').toLowerCase().trim().replace(/^the\s+/, '');
+    return (s || '').toLowerCase().trim();
   }
 
   function isGreenlisted(source) {
