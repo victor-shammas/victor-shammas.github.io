@@ -360,6 +360,7 @@
             }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+        <script src="/embeds/_shared/greenlist.js"></script>
     </head>
     <body>
         <header>
@@ -768,15 +769,11 @@
                         });
                         // Local cutoff matches the API window
                         const cutoffMs = Date.now() - 3 * 24 * 3600 * 1000;
-                        stories = deduped
+                        const mapped = deduped
                             .filter((it) => {
                                 const t = new Date(it.pubDate || 0).getTime();
                                 return t && t >= cutoffMs;
                             })
-                            .sort(
-                                (a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0),
-                            )
-                            .slice(0, MAX_CACHED)
                             .map((it) => {
                                 const source = srcOf(it.title);
                                 return {
@@ -787,6 +784,9 @@
                                     summary: "",
                                 };
                             });
+                        stories = (window.MonitorCanon && window.MonitorCanon.rankByCanon)
+                            ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, "date")
+                            : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
                     }
                     state[p.id] = { stories, fetchedAt: Date.now(), errors };
                     store.set(state);

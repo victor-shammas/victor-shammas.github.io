@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<script src="/embeds/_shared/greenlist.js"></script>
 <style>
 :root {
   --bg-void: #f5f3ef;
@@ -551,16 +552,17 @@ async function fetchPanel(panel) {
     });
 
     const cutoff = Date.now() - (Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS)) * 24 * 3600 * 1000;
-    const stories = deduped
+    const mapped = deduped
       .filter(it => { const t = new Date(it.pubDate || 0).getTime(); return t && t >= cutoff; })
-      .sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
-      .slice(0, MAX_CACHED)
       .map(it => ({
         title: it.title.replace(/\s-\s[^-]+$/, '').trim(),
         url: it.link,
         source: srcOf(it.title),
         date: it.pubDate,
       }));
+    const stories = (window.MonitorCanon && window.MonitorCanon.rankByCanon)
+      ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, 'date')
+      : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
 
     state[panel.id] = { stories, fetchedAt: Date.now(), errors };
     store.set(state);
