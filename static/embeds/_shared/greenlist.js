@@ -84,24 +84,39 @@
   }
 
   /**
-   * Two-tier sort: greenlisted items (by date desc) first, others (by
-   * date desc) after. Then slice to `limit`. Caller is responsible for
-   * any further post-processing (e.g., trim to multiple of 3 for wide
-   * card 3-col grid).
+   * Time-decay promotion: each greenlisted item gets PROMOTION_HOURS of
+   * synthetic age reduction. Effective score is `(now - pubDate) - boost`;
+   * lower = ranked higher. Plain recency still drives the order; canonical
+   * sources get a thumb on the scale.
+   *
+   * Examples (PROMOTION_HOURS = 12):
+   *  - 30-min-old non-canonical scoop still beats a 6-hour-old NYT story
+   *    (0.5 h vs effective -6 h... wait, -6 < 0.5, so NYT wins. Right —
+   *    NYT's effective age is *negative* relative to 6h ago, ranking
+   *    ahead of the 30-min scoop). Concretely: NYT at 6h old has score
+   *    6 - 12 = -6; scoop at 0.5h has score 0.5. NYT wins.
+   *  - 30-min-old scoop vs 24h-old NYT: scores 0.5 vs 12. Scoop wins.
+   *  - 6-hour-old scoop vs 18-hour-old NYT: scores 6 vs 6. Tie → NYT
+   *    wins by stable-sort source order (canonical first by insertion).
+   *
+   * Tune PROMOTION_HOURS up for more canonical-leaning, down for more
+   * surprise from niche outlets. 0 = pure recency. Infinity = strict tier.
    */
+  const PROMOTION_HOURS = 12;
+  const PROMOTION_MS = PROMOTION_HOURS * 3600 * 1000;
+
   function rankByCanon(items, limit, dateKey) {
     dateKey = dateKey || 'pubDate';
-    const ts = it => new Date(it[dateKey] || 0).getTime();
-    const byDateDesc = (a, b) => ts(b) - ts(a);
-    const green = [];
-    const rest = [];
-    for (const it of items) {
-      (isGreenlisted(it.source || it._sourceName) ? green : rest).push(it);
-    }
-    green.sort(byDateDesc);
-    rest.sort(byDateDesc);
-    return [...green, ...rest].slice(0, limit);
+    const now = Date.now();
+    const scored = items.map(it => {
+      const t = new Date(it[dateKey] || 0).getTime();
+      const age = now - (t || 0);
+      const boost = isGreenlisted(it.source || it._sourceName) ? PROMOTION_MS : 0;
+      return { it, score: age - boost };
+    });
+    scored.sort((a, b) => a.score - b.score);
+    return scored.slice(0, limit).map(s => s.it);
   }
 
-  window.MonitorCanon = { GREENLIST, normalize, isGreenlisted, rankByCanon };
+  window.MonitorCanon = { GREENLIST, PROMOTION_HOURS, normalize, isGreenlisted, rankByCanon };
 })();
