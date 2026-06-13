@@ -17,7 +17,7 @@ url: "/tools/"
 
 <h2 class="section-heading">Audio Briefings</h2>
 
-[**Shammas Space & Tech Briefing**](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
+[**Shammas Space & Tech Briefing**](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) (Spotify) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
 
 <h2 class="section-heading">Other Tools</h2>
 
