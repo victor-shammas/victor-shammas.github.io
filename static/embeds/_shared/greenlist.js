@@ -1,0 +1,128 @@
+/*
+ * Shared canonical-outlet greenlist for the four RSS monitors.
+ * Used to preferentially rank stories from the listed outlets ahead of
+ * less-known sources before slicing to maxItems. Lower-tier outlets are
+ * only kept if greenlisted items don't fill the card.
+ *
+ * Each entry is a lowercase substring matched against the normalized
+ * source name. Normalization strips a leading "the " and lowercases.
+ * The list intentionally includes a few aliases (NYT, WSJ, AP, etc.)
+ * since Google News varies on how it labels outlets.
+ */
+(function () {
+  const GREENLIST = [
+    // English-language wires & majors
+    'new york times', 'nytimes',
+    'washington post',
+    'wall street journal', 'wsj',
+    'financial times', 'ft.com',
+    'bloomberg',
+    'guardian',
+    'reuters',
+    'associated press', 'ap news',
+    'bbc news', 'bbc.com', 'bbc.co.uk',
+
+    // European broadsheets
+    'le monde diplomatique',
+    'le monde',
+    'der spiegel', 'spiegel',
+
+    // Magazines & long-form
+    'economist',
+    'atlantic',
+    'new yorker',
+    'harper',                // matches "Harper's Magazine"
+    'new york review',       // NYRB
+    'london review',         // LRB
+    'n+1',
+    'jacobin',
+
+    // Foreign-affairs / policy
+    'foreign affairs',
+    'foreign policy',
+
+    // Investigative & long-form
+    'propublica',
+    'intercept',
+
+    // Tech-press majors
+    'mit technology review',
+    'mit tech review',
+    'the information',
+    'wired',
+
+    // Norwegian (sociologist's home market)
+    'klassekampen',
+    'morgenbladet',
+    'aftenposten',
+    'nrk',
+
+    // Space-press
+    'spacenews', 'space news',
+
+    // Global English
+    'al jazeera', 'aljazeera',
+
+    // US politics & legal
+    'the hill',
+    'politico',
+    'lawfare',
+
+    // Business / markets
+    'cnbc',
+  ];
+
+  // Lowercase + trim only. We intentionally do NOT strip a leading
+  // "the " here: substring containment already handles it ("The New
+  // York Times" → "the new york times" contains "new york times"), and
+  // stripping would break outlets whose canonical name *is* "The X" —
+  // e.g., The Hill, The Information, The Intercept — when the greenlist
+  // entry itself contains "the ".
+  function normalize(s) {
+    return (s || '').toLowerCase().trim();
+  }
+
+  function isGreenlisted(source) {
+    if (!source) return false;
+    const n = normalize(source);
+    if (!n) return false;
+    return GREENLIST.some(g => n === g || n.includes(g));
+  }
+
+  /**
+   * Time-decay promotion: each greenlisted item gets PROMOTION_HOURS of
+   * synthetic age reduction. Effective score is `(now - pubDate) - boost`;
+   * lower = ranked higher. Plain recency still drives the order; canonical
+   * sources get a thumb on the scale.
+   *
+   * Examples (PROMOTION_HOURS = 12):
+   *  - 30-min-old non-canonical scoop still beats a 6-hour-old NYT story
+   *    (0.5 h vs effective -6 h... wait, -6 < 0.5, so NYT wins. Right —
+   *    NYT's effective age is *negative* relative to 6h ago, ranking
+   *    ahead of the 30-min scoop). Concretely: NYT at 6h old has score
+   *    6 - 12 = -6; scoop at 0.5h has score 0.5. NYT wins.
+   *  - 30-min-old scoop vs 24h-old NYT: scores 0.5 vs 12. Scoop wins.
+   *  - 6-hour-old scoop vs 18-hour-old NYT: scores 6 vs 6. Tie → NYT
+   *    wins by stable-sort source order (canonical first by insertion).
+   *
+   * Tune PROMOTION_HOURS up for more canonical-leaning, down for more
+   * surprise from niche outlets. 0 = pure recency. Infinity = strict tier.
+   */
+  const PROMOTION_HOURS = 12;
+  const PROMOTION_MS = PROMOTION_HOURS * 3600 * 1000;
+
+  function rankByCanon(items, limit, dateKey) {
+    dateKey = dateKey || 'pubDate';
+    const now = Date.now();
+    const scored = items.map(it => {
+      const t = new Date(it[dateKey] || 0).getTime();
+      const age = now - (t || 0);
+      const boost = isGreenlisted(it.source || it._sourceName) ? PROMOTION_MS : 0;
+      return { it, score: age - boost };
+    });
+    scored.sort((a, b) => a.score - b.score);
+    return scored.slice(0, limit).map(s => s.it);
+  }
+
+  window.MonitorCanon = { GREENLIST, PROMOTION_HOURS, normalize, isGreenlisted, rankByCanon };
+})();

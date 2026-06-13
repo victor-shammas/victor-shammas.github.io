@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{ $slug := "" }}
+{{ with .File }}{{ $slug = .BaseFileName }}{{ end }}
+{{ $monitorSlugs := slice "ai-monitor" "space-monitor" "rightwing-monitor" "tech-monitor" }}
+{{ $isMonitor := and (eq .Section "tools") (in $monitorSlugs $slug) }}
+{{ if $isMonitor }}
+<div class="tool-shell">
+  <nav class="tool-tabs" aria-label="Monitor tabs">
+    <a href="{{ "/tools/ai-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "ai-monitor" }} active{{ end }}">AI</a>
+    <a href="{{ "/tools/space-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "space-monitor" }} active{{ end }}">Space</a>
+    <a href="{{ "/tools/tech-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "tech-monitor" }} active{{ end }}">Tech</a>
+    <a href="{{ "/tools/rightwing-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "rightwing-monitor" }} active{{ end }}">Right-Wing Politics</a>
+  </nav>
+  <iframe
+    class="tool-embed"
+    src="{{ .Params.embed_src }}"
+    title="{{ .Title }}"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+{{ else }}
+<iframe
+  class="tool-embed"
+  src="{{ .Params.embed_src }}"
+  title="{{ .Title }}"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"></iframe>
+{{ end }}
+{{ end }}

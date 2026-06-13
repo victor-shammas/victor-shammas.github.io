@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<script src="/embeds/_shared/greenlist.js"></script>
+<style>
+:root {
+  --bg-void: #f5f3ef;
+  --bg-deep: #edeae5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f9f8f6;
+  --border-dim: #e0dcd6;
+  --border-mid: #c8c2b8;
+  --text-primary: #2c2822;
+  --text-secondary: #6e665c;
+  --text-muted: #9e958a;
+  --text-bright: #1a1610;
+  --accent-spacex: #4a7a9e;
+  --accent-starlink: #3a8a7a;
+  --accent-bluorigin: #5078a0;
+  --accent-military: #6e52a0;
+  --accent-governance: #8a7040;
+  --accent-geopolitics: #30808e;
+  --accent-general: #6a7080;
+  --accent-economy: #9e7a3a;
+  --accent-humandeep: #804a78;
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-body: 'Be Vietnam Pro', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 17px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ── Header ── */
+header {
+  position: relative; z-index: 1;
+  padding: 2rem 2rem 1.2rem;
+  border-bottom: 1px solid var(--border-dim);
+  background: var(--bg-card);
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+
+.hdr-left { display: flex; align-items: center; gap: 1rem; }
+
+.hdr-icon svg { width: 36px; height: 36px; }
+
+.hdr-title {
+  font-family: var(--font-display);
+  font-size: 1.65rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.hdr-sub {
+  font-size: 0.78rem; color: var(--text-muted);
+  letter-spacing: 0.04em; margin-top: 0.15rem;
+}
+
+.hdr-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+.hdr-btn {
+  font-family: var(--font-display);
+  font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--bg-void); color: var(--text-secondary);
+  border: 1px solid var(--border-dim);
+  padding: 0.45rem 0.9rem; border-radius: 4px;
+  cursor: pointer; transition: all 0.15s;
+}
+.hdr-btn:hover { border-color: var(--border-mid); color: var(--text-primary); background: var(--bg-deep); }
+.hdr-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* ── Grid ── */
+#grid {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.2rem 2rem 3rem;
+  max-width: 1470px; margin: 0 auto;
+}
+
+@media (max-width: 1100px) { #grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) {
+  #grid { grid-template-columns: 1fr; padding: 0.8rem; gap: 0.8rem; }
+  header { padding: 1.2rem 0.8rem 0.8rem; }
+  .hdr-title { font-size: 1.2rem; }
+}
+
+/* ── Cards ── */
+.om-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.om-card-ghost { opacity: 0.35; }
+.om-card-drag { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+/* ── Resize handles ── */
+.om-resize {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 10px;
+  cursor: col-resize;
+  z-index: 3;
+  touch-action: none;
+}
+.om-resize::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: 3px;
+  width: 2px; height: 36px;
+  margin-top: -18px;
+  background: var(--border-mid);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.om-card:hover .om-resize::after { opacity: 0.45; }
+.om-resize:hover::after,
+.om-resize.om-resizing::after { opacity: 0.85; }
+
+.om-vresize {
+  position: absolute;
+  left: 0; right: 10px; bottom: 0;
+  height: 10px;
+  cursor: row-resize;
+  z-index: 3;
+  touch-action: none;
+}
+.om-vresize::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 3px;
+  width: 36px; height: 2px;
+  margin-left: -18px;
+  background: var(--border-mid);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.om-card:hover .om-vresize::after { opacity: 0.45; }
+.om-vresize:hover::after,
+.om-vresize.om-resizing::after { opacity: 0.85; }
+
+@media (max-width: 700px) {
+  .om-resize { display: none; }
+  .om-vresize { right: 0; height: 14px; }
+  .om-vresize::after { opacity: 0.4; width: 48px; height: 3px; }
+}
+
+.om-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--border-dim);
+  min-height: 48px;
+  cursor: grab;
+  user-select: none;
+}
+.om-card-head:active { cursor: grabbing; }
+
+.om-card-head-left { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
+
+.om-card-icon svg { width: 22px; height: 22px; flex-shrink: 0; display: block; }
+
+.om-card-name {
+  font-family: var(--font-display);
+  font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-bright);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.om-card-age {
+  font-size: 0.65rem; color: var(--text-muted);
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+.om-card-age.stale { color: #b06830; }
+
+.om-card-head-right { display: flex; gap: 0.3rem; flex-shrink: 0; }
+
+.om-btn {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--border-dim);
+  color: var(--text-secondary); border-radius: 4px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.15s;
+}
+.om-btn:hover { border-color: var(--border-mid); color: var(--text-primary); }
+.om-btn:disabled { opacity: 0.35; cursor: default; }
+
+@keyframes om-spin { to { transform: rotate(360deg); } }
+.om-spin { display: inline-block; animation: om-spin 0.8s linear infinite; }
+
+.om-card-body {
+  flex: 1;
+  padding: 0;
+}
+
+.om-card[data-span="2"] .om-card-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.om-card[data-span="3"] .om-card-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1100px) {
+  .om-card[data-span="3"] .om-card-body { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .om-card[data-span="2"] .om-card-body,
+  .om-card[data-span="3"] .om-card-body { grid-template-columns: 1fr; }
+}
+
+/* ── Items ── */
+.om-item { border-bottom: 1px solid var(--border-dim); }
+.om-item:last-child { border-bottom: none; }
+
+.om-item a {
+  display: block; padding: 0.6rem 0.85rem;
+  text-decoration: none; color: inherit;
+  transition: background 0.12s;
+}
+.om-item a:hover { background: var(--bg-card-hover); }
+
+.om-item h3 {
+  font-family: var(--font-body);
+  font-size: 0.82rem; font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.om-item-meta {
+  font-size: 0.68rem; color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.om-empty {
+  padding: 1.8rem 1rem;
+  text-align: center;
+  font-size: 0.78rem; color: var(--text-muted);
+}
+
+.om-err {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.7rem; color: #a06030;
+  background: rgba(180,120,60,0.06);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.om-foot {
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 1rem 2rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── Accent top-borders per panel ── */
+.om-card[data-id="spacex"]     .om-card-head { border-top: 2px solid var(--accent-spacex); }
+.om-card[data-id="starlink"]   .om-card-head { border-top: 2px solid var(--accent-starlink); }
+.om-card[data-id="bluorigin"]  .om-card-head { border-top: 2px solid var(--accent-bluorigin); }
+.om-card[data-id="military"]   .om-card-head { border-top: 2px solid var(--accent-military); }
+.om-card[data-id="governance"] .om-card-head { border-top: 2px solid var(--accent-governance); }
+.om-card[data-id="geopolitics"] .om-card-head { border-top: 2px solid var(--accent-geopolitics); }
+.om-card[data-id="general"]   .om-card-head { border-top: 2px solid var(--accent-general); }
+.om-card[data-id="economy"]   .om-card-head { border-top: 2px solid var(--accent-economy); }
+.om-card[data-id="humandeep"] .om-card-head { border-top: 2px solid var(--accent-humandeep); }
+
+.om-card[data-id="spacex"]     .om-card-name { color: var(--accent-spacex); }
+.om-card[data-id="starlink"]   .om-card-name { color: var(--accent-starlink); }
+.om-card[data-id="bluorigin"]  .om-card-name { color: var(--accent-bluorigin); }
+.om-card[data-id="military"]   .om-card-name { color: var(--accent-military); }
+.om-card[data-id="governance"] .om-card-name { color: var(--accent-governance); }
+.om-card[data-id="geopolitics"] .om-card-name { color: var(--accent-geopolitics); }
+.om-card[data-id="general"]   .om-card-name { color: var(--accent-general); }
+.om-card[data-id="economy"]   .om-card-name { color: var(--accent-economy); }
+.om-card[data-id="humandeep"] .om-card-name { color: var(--accent-humandeep); }
+
+.om-card[data-id="spacex"]     .om-item h3:hover { color: var(--accent-spacex); }
+.om-card[data-id="starlink"]   .om-item h3:hover { color: var(--accent-starlink); }
+.om-card[data-id="bluorigin"]  .om-item h3:hover { color: var(--accent-bluorigin); }
+.om-card[data-id="military"]   .om-item h3:hover { color: var(--accent-military); }
+.om-card[data-id="governance"] .om-item h3:hover { color: var(--accent-governance); }
+.om-card[data-id="geopolitics"] .om-item h3:hover { color: var(--accent-geopolitics); }
+.om-card[data-id="general"]   .om-item h3:hover { color: var(--accent-general); }
+.om-card[data-id="economy"]   .om-item h3:hover { color: var(--accent-economy); }
+.om-card[data-id="humandeep"] .om-item h3:hover { color: var(--accent-humandeep); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-left">
+    <div class="hdr-icon">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="15" stroke="#8a8278" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="18" cy="18" rx="15" ry="6" stroke="#8a8278" stroke-width="0.8" fill="none" opacity="0.3" transform="rotate(-25 18 18)"/>
+        <ellipse cx="18" cy="18" rx="15" ry="6" stroke="#8a8278" stroke-width="0.8" fill="none" opacity="0.3" transform="rotate(25 18 18)"/>
+        <circle cx="18" cy="18" r="3" fill="#4a7a9e" opacity="0.7"/>
+        <circle cx="18" cy="18" r="1.5" fill="#2c2822"/>
+      </svg>
+    </div>
+    <div>
+      <div class="hdr-title">Space Monitor</div>
+      <div class="hdr-sub">Politics of outer space · Space commercialization · Orbital infrastructure</div>
+    </div>
+  </div>
+  <div class="hdr-actions">
+    <button class="hdr-btn" id="reset-order" title="Restore default card order and sizes">↺ Reset Layout</button>
+    <button class="hdr-btn" id="export-layout" title="Save current layout as a JSON file">↓ Save</button>
+    <button class="hdr-btn" id="import-layout" title="Load layout from a JSON file">↑ Load</button>
+    <button class="hdr-btn" id="refresh-all">↻ Refresh All</button>
+  </div>
+</header>
+
+<div id="grid"></div>
+
+<div class="om-foot">All links are automatically aggregated via Google News RSS. Errors and irrelevant results may occur.</div>
+
+<script>
+// ── Space Monitor ──
+
+const PANELS = [
+  { id: 'spacex', name: 'SpaceX',
+    q: 'SpaceX OR "Falcon 9" OR "Falcon Heavy" OR Starship OR "Crew Dragon" OR "Super Heavy" OR "Raptor engine"' },
+  { id: 'starlink', name: 'Starlink & Satellites',
+    q: 'Starlink OR Starshield OR "Project Kuiper" OR OneWeb OR "direct-to-cell satellite" OR "satellite constellation"' },
+  { id: 'bluorigin', name: 'Blue Origin',
+    q: '"Blue Origin" OR "New Glenn" OR "New Shepard" OR "Blue Moon lander" OR "Blue Ring"' },
+  { id: 'military', name: 'Space Militarization', lookbackDays: 10,
+    q: '"Space Force" OR "space weapon" OR "anti-satellite" OR ASAT OR "space warfare" OR "space militarization" OR "Space Command" OR "space domain" OR "spy satellite" OR "reconnaissance satellite" OR "intelligence satellite" OR "Maxar"' },
+  { id: 'governance', name: 'Space Governance & Law', lookbackDays: 10,
+    q: '"Outer Space Treaty" OR "Artemis Accords" OR COPUOS OR "space debris" OR "space regulation" OR "space law" OR "orbital debris" OR "space sustainability" OR "Kessler syndrome"' },
+  { id: 'economy', name: 'Space Economy',
+    q: '"Rocket Lab" OR "Virgin Galactic" OR "Axiom Space" OR "Firefly Aerospace" OR "United Launch Alliance" OR "Vulcan Centaur" OR Starliner OR "space startup" OR "space funding" OR "space IPO" OR "space venture capital" OR "space investment" OR "Space Capital"' },
+  { id: 'geopolitics', name: 'Space Geopolitics', wide: true, lookbackDays: 10,
+    queries: [
+      '"China space program" OR CNSA OR Tiangong OR "Long March rocket"',
+      'Roscosmos OR ISRO OR Chandrayaan OR Gaganyaan OR "Russian space"',
+      '"European Space Agency" OR ESA OR JAXA OR "Ariane 6" OR Arianespace',
+    ] },
+  { id: 'humandeep', name: 'NASA, Human Spaceflight & Deep Space', wide: true, maxItems: 9,
+    queries: [
+      'NASA OR "Artemis program" OR "Space Launch System" OR "Orion spacecraft" OR "Lunar Gateway" OR "Human Landing System"',
+      'astronaut OR spacewalk OR "human spaceflight" OR "ISS crew" OR "private astronaut" OR "Axiom mission"',
+      '"Mars mission" OR "Mars Sample Return" OR Perseverance OR "Curiosity rover" OR "deep space" OR "interplanetary" OR "Europa Clipper" OR Dragonfly OR Voyager',
+    ] },
+  { id: 'general', name: 'General Space News', wide: true,
+    queries: [
+      '"space commercialization" OR "space economy" OR NewSpace OR "space industry"',
+      '"space privatization" OR "space mining" OR "asteroid mining" OR "cislunar economy"',
+      '"Earth observation" OR "remote sensing" OR "Planet Labs" OR "climate satellite" OR "International Space Station" OR "in-space manufacturing"',
+    ] },
+];
+
+const ICONS = {
+  spacex: '<svg viewBox="0 0 22 22" fill="none"><path d="M11 2 L13.5 8 L12 9 L14 18 L11 15 L8 18 L10 9 L8.5 8 Z" fill="currentColor" opacity="0.85"/><path d="M7 18.5 L8.5 14.5 L11 17 L13.5 14.5 L15 18.5" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/></svg>',
+  starlink: '<svg viewBox="0 0 22 22" fill="none"><rect x="8" y="9" width="6" height="4" rx="1" fill="currentColor" opacity="0.8"/><line x1="3" y1="11" x2="8" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="14" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="1.2"/><path d="M5 6 Q11 3 17 6" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/><path d="M6 4 Q11 1 16 4" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/></svg>',
+  bluorigin: '<svg viewBox="0 0 22 22" fill="none"><path d="M11 3 C11 3 14 8 14 13 C14 16 12.5 19 11 19 C9.5 19 8 16 8 13 C8 8 11 3 11 3Z" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.15"/><path d="M9 15 Q11 17 13 15" stroke="currentColor" stroke-width="0.8" fill="none"/></svg>',
+  military: '<svg viewBox="0 0 22 22" fill="none"><path d="M11 3 L18 8 L18 14 L11 19 L4 14 L4 8 Z" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.1"/><circle cx="11" cy="11" r="2" fill="currentColor" opacity="0.7"/></svg>',
+  governance: '<svg viewBox="0 0 22 22" fill="none"><line x1="11" y1="3" x2="11" y2="12" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="14.5" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/><line x1="6" y1="3" x2="16" y2="3" stroke="currentColor" stroke-width="1.2"/><line x1="6" y1="3" x2="11" y2="7" stroke="currentColor" stroke-width="0.8" opacity="0.5"/><line x1="16" y1="3" x2="11" y2="7" stroke="currentColor" stroke-width="0.8" opacity="0.5"/></svg>',
+  geopolitics: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4"/><ellipse cx="11" cy="11" rx="4" ry="8" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/><line x1="3" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="0.6" opacity="0.4"/><path d="M4 7 Q11 9 18 7" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/><path d="M4 15 Q11 13 18 15" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/></svg>',
+  economy: '<svg viewBox="0 0 22 22" fill="none"><polyline points="3,16 8,11 12,14 19,5" stroke="currentColor" stroke-width="1.5" fill="none"/><polyline points="14,5 19,5 19,10" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="8" cy="11" r="1.2" fill="currentColor" opacity="0.7"/><circle cx="12" cy="14" r="1.2" fill="currentColor" opacity="0.7"/></svg>',
+  humandeep: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="9" r="4.5" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity="0.1"/><rect x="8.5" y="7.5" width="5" height="3" rx="0.6" fill="currentColor" opacity="0.5"/><path d="M3 18 Q11 12 19 18" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.5"/><circle cx="3" cy="18" r="0.8" fill="currentColor" opacity="0.6"/><circle cx="19" cy="18" r="0.8" fill="currentColor" opacity="0.6"/></svg>',
+  general: '<svg viewBox="0 0 22 22" fill="none"><circle cx="6" cy="6" r="1.5" fill="currentColor" opacity="0.7"/><circle cx="16" cy="5" r="1" fill="currentColor" opacity="0.5"/><circle cx="11" cy="11" r="2" fill="currentColor" opacity="0.8"/><circle cx="5" cy="16" r="1" fill="currentColor" opacity="0.4"/><circle cx="17" cy="15" r="1.5" fill="currentColor" opacity="0.6"/><line x1="6" y1="6" x2="11" y2="11" stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="16" y1="5" x2="11" y2="11" stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="11" y1="11" x2="17" y2="15" stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="11" y1="11" x2="5" y2="16" stroke="currentColor" stroke-width="0.5" opacity="0.3"/></svg>',
+};
+
+// ── Config ──
+const LS_KEY = 'orbital_monitor_v1';
+const SPAN_KEY = 'orbital_monitor_spans_v1';
+const ROW_KEY = 'orbital_monitor_rows_v1';
+const STALE_MS = 3 * 3600 * 1000;
+const MAX_CACHED = 50;
+const MAX_ROWS = 12;
+const LOOKBACK_DAYS = 3;
+
+// ── rss2json.com API key ──
+// Option A — paste inline:
+const RSS2JSON_KEY_INLINE = '';
+// Option B — set from browser console:
+//   localStorage.setItem('rss2json_key', 'YOUR_KEY_HERE')
+const RSS2JSON_KEY =
+  (typeof localStorage !== 'undefined' && localStorage.getItem('rss2json_key')) ||
+  RSS2JSON_KEY_INLINE ||
+  'e3xqpmsfkaarzbksh1vd6cz0hatwotgdhk8skm6z';
+
+// ── Storage ──
+const store = {
+  get: () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { return {}; } },
+  set: v => { try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch {} },
+};
+let state = store.get();
+
+const spanStore = {
+  get: () => { try { return JSON.parse(localStorage.getItem(SPAN_KEY)) || {}; } catch { return {}; } },
+  set: v => { try { localStorage.setItem(SPAN_KEY, JSON.stringify(v)); } catch {} },
+  clear: () => { try { localStorage.removeItem(SPAN_KEY); } catch {} },
+};
+const rowStore = {
+  get: () => { try { return JSON.parse(localStorage.getItem(ROW_KEY)) || {}; } catch { return {}; } },
+  set: v => { try { localStorage.setItem(ROW_KEY, JSON.stringify(v)); } catch {} },
+  clear: () => { try { localStorage.removeItem(ROW_KEY); } catch {} },
+};
+
+function defaultSpan(panel) {
+  return panel.defaultSpan || (panel.wide ? 3 : 1);
+}
+function defaultRows(panel) {
+  if (panel.maxItems && panel.wide) return Math.max(1, Math.ceil(panel.maxItems / 3));
+  return panel.wide ? 5 : 8;
+}
+function getSpan(id) {
+  const spans = spanStore.get();
+  if (spans[id]) return spans[id];
+  const p = PANELS.find(x => x.id === id);
+  return p ? defaultSpan(p) : 1;
+}
+function getRows(id) {
+  const rows = rowStore.get();
+  if (rows[id]) return rows[id];
+  const p = PANELS.find(x => x.id === id);
+  return p ? defaultRows(p) : 8;
+}
+function setSpanPref(id, span) {
+  const spans = spanStore.get();
+  spans[id] = span;
+  spanStore.set(spans);
+}
+function setRowsPref(id, n) {
+  const rows = rowStore.get();
+  rows[id] = n;
+  rowStore.set(rows);
+}
+function gridColCount() {
+  const cs = getComputedStyle(document.getElementById('grid'));
+  return cs.gridTemplateColumns.split(' ').filter(Boolean).length;
+}
+function applyLayout(card) {
+  const id = card.dataset.id;
+  const pref = getSpan(id);
+  const cols = gridColCount();
+  const eff = Math.max(1, Math.min(pref, cols));
+  card.style.gridColumn = `span ${eff}`;
+  card.dataset.span = String(eff);
+}
+
+// ── Helpers ──
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function fmtAgo(ts) {
+  const s = Math.floor((Date.now() - ts) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s / 60) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  return Math.floor(s / 86400) + 'd ago';
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+
+function srcOf(title) {
+  const m = title.match(/\s-\s([^-]+)$/);
+  return m ? m[1].trim() : '';
+}
+
+// ── RSS Fetch ──
+function feedUrl(panel, query) {
+  const q = query || panel.q;
+  const days = Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS);
+  const gnews = `https://news.google.com/rss/search?q=${encodeURIComponent(q + ' when:' + days + 'd')}&hl=en&gl=US&ceid=US:en&_cb=${Date.now()}`;
+  const key = RSS2JSON_KEY;
+  const keyParam = key ? `&api_key=${encodeURIComponent(key)}` : '';
+  return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(gnews)}&count=50${keyParam}`;
+}
+
+async function fetchPanel(panel) {
+  const card = document.querySelector(`#grid [data-id="${panel.id}"]`);
+  if (!card) return;
+  const btn = card.querySelector('.om-rbtn');
+  btn.innerHTML = '<span class="om-spin">↻</span>';
+  btn.disabled = true;
+
+  try {
+    const queries = panel.queries || [panel.q];
+    const errors = [];
+
+    const results = await Promise.all(queries.map(async q => {
+      try {
+        const r = await fetch(feedUrl(panel, q));
+        const j = await r.json();
+        if (j.status !== 'ok') { errors.push(j.message || j.status || 'rss2json error'); return []; }
+        return j.items || [];
+      } catch (err) { errors.push(err.message || 'fetch failed'); return []; }
+    }));
+
+    const merged = [].concat(...results);
+    const seen = new Set();
+    const deduped = merged.filter(it => {
+      if (!it.link || seen.has(it.link)) return false;
+      seen.add(it.link);
+      return true;
+    });
+
+    const cutoff = Date.now() - (Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS)) * 24 * 3600 * 1000;
+    const mapped = deduped
+      .filter(it => { const t = new Date(it.pubDate || 0).getTime(); return t && t >= cutoff; })
+      .map(it => ({
+        title: it.title.replace(/\s-\s[^-]+$/, '').trim(),
+        url: it.link,
+        source: srcOf(it.title),
+        date: it.pubDate,
+      }));
+    const stories = (window.MonitorCanon && window.MonitorCanon.rankByCanon)
+      ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, 'date')
+      : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
+
+    state[panel.id] = { stories, fetchedAt: Date.now(), errors };
+    store.set(state);
+    renderCard(panel);
+  } catch (e) {
+    card.querySelector('.om-card-body').innerHTML = `<div class="om-err">⚠ ${esc(e.message || 'Failed')}</div>`;
+    btn.innerHTML = '↻';
+    btn.disabled = false;
+  }
+}
+
+// ── Render ──
+function renderCard(panel) {
+  const card = document.querySelector(`#grid [data-id="${panel.id}"]`);
+  if (!card) return;
+  const d = state[panel.id];
+  const stale = !d || Date.now() - d.fetchedAt > STALE_MS;
+
+  const ageEl = card.querySelector('.om-card-age');
+  ageEl.className = 'om-card-age' + (stale ? ' stale' : '');
+  ageEl.textContent = (d ? fmtAgo(d.fetchedAt) : 'never') + (stale && d ? ' · stale' : '');
+
+  const body = card.querySelector('.om-card-body');
+  const btn = card.querySelector('.om-rbtn');
+  btn.innerHTML = '↻';
+  btn.disabled = false;
+
+  if (!d) {
+    body.innerHTML = '<div class="om-empty">Tap ↻ to load</div>';
+    return;
+  }
+
+  const errHtml = d.errors?.length
+    ? `<div class="om-err">⚠ ${esc(d.errors[0])}${d.errors.length > 1 ? ` (+${d.errors.length - 1} more)` : ''}</div>`
+    : '';
+
+  if (!d.stories?.length) {
+    body.innerHTML = errHtml || `<div class="om-empty">No results in the last ${Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS)} days</div>`;
+    return;
+  }
+
+  const span = parseInt(card.dataset.span || '1', 10);
+  const rows = getRows(panel.id);
+  let shown = d.stories.slice(0, span * rows);
+  if (span > 1 && shown.length < span * rows && shown.length >= span) {
+    shown = shown.slice(0, Math.floor(shown.length / span) * span);
+  }
+
+  body.innerHTML = errHtml + shown.map(s =>
+    `<div class="om-item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
+      <h3>${esc(s.title)}</h3>
+      <div class="om-item-meta">${esc(s.source)}${s.source && s.date ? ' · ' : ''}${esc(fmtDate(s.date))}</div>
+    </a></div>`
+  ).join('');
+}
+
+// ── Drag-to-reorder ──
+const ORDER_KEY = 'orbital_monitor_order_v1';
+
+function loadOrder() {
+  try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || null; } catch { return null; }
+}
+function saveOrder(ids) {
+  try { localStorage.setItem(ORDER_KEY, JSON.stringify(ids)); } catch {}
+}
+function clearOrder() {
+  try { localStorage.removeItem(ORDER_KEY); } catch {}
+}
+
+function applySavedOrder() {
+  const saved = loadOrder();
+  if (!saved || !Array.isArray(saved)) return;
+  PANELS.sort((a, b) => {
+    const ai = saved.indexOf(a.id);
+    const bi = saved.indexOf(b.id);
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+}
+
+function initSortable() {
+  const grid = document.getElementById('grid');
+  if (typeof Sortable === 'undefined') return;
+  Sortable.create(grid, {
+    handle: '.om-card-head',
+    filter: '.om-btn, .om-resize, .om-vresize',
+    preventOnFilter: false,
+    animation: 150,
+    ghostClass: 'om-card-ghost',
+    dragClass: 'om-card-drag',
+    onEnd() {
+      saveOrder([...grid.children].map(el => el.dataset.id));
+    },
+  });
+}
+
+// ── Resize ──
+function initResize(card) {
+  const handle = card.querySelector('.om-resize');
+  if (!handle) return;
+  handle.addEventListener('pointerdown', e => {
+    if (e.button !== undefined && e.button !== 0) return;
+    const cols = gridColCount();
+    if (cols < 2) return;
+    e.preventDefault();
+
+    const grid = document.getElementById('grid');
+    const gridRect = grid.getBoundingClientRect();
+    const cs = getComputedStyle(grid);
+    const gap = parseFloat(cs.columnGap || cs.gap) || 0;
+    const colW = (gridRect.width
+      - (parseFloat(cs.paddingLeft) || 0)
+      - (parseFloat(cs.paddingRight) || 0)
+      - gap * (cols - 1)) / cols;
+    const cardLeft = card.getBoundingClientRect().left - gridRect.left;
+    const panel = PANELS.find(p => p.id === card.dataset.id);
+
+    try { handle.setPointerCapture(e.pointerId); } catch {}
+    handle.classList.add('om-resizing');
+    document.body.style.userSelect = 'none';
+
+    let lastSpan = parseInt(card.dataset.span || '1', 10);
+
+    function onMove(ev) {
+      const x = ev.clientX - gridRect.left - cardLeft;
+      let span = Math.round((x + gap) / (colW + gap));
+      span = Math.max(1, Math.min(cols, span));
+      if (span !== lastSpan) {
+        card.style.gridColumn = `span ${span}`;
+        card.dataset.span = String(span);
+        lastSpan = span;
+      }
+    }
+    function onUp() {
+      handle.removeEventListener('pointermove', onMove);
+      handle.removeEventListener('pointerup', onUp);
+      handle.removeEventListener('pointercancel', onUp);
+      handle.classList.remove('om-resizing');
+      document.body.style.userSelect = '';
+      const span = parseInt(card.dataset.span, 10);
+      setSpanPref(card.dataset.id, span);
+      if (panel) renderCard(panel);
+    }
+    handle.addEventListener('pointermove', onMove);
+    handle.addEventListener('pointerup', onUp);
+    handle.addEventListener('pointercancel', onUp);
+  });
+}
+
+function initVResize(card) {
+  const handle = card.querySelector('.om-vresize');
+  if (!handle) return;
+  handle.addEventListener('pointerdown', e => {
+    if (e.button !== undefined && e.button !== 0) return;
+    e.preventDefault();
+
+    const panel = PANELS.find(p => p.id === card.dataset.id);
+    if (!panel) return;
+    const body = card.querySelector('.om-card-body');
+
+    // Estimate per-row item height from current render; fall back to 64px.
+    const span = parseInt(card.dataset.span || '1', 10);
+    let itemH = 64;
+    const items = body.querySelectorAll('.om-item');
+    if (items.length > 0) {
+      const visibleRows = Math.max(1, Math.ceil(items.length / span));
+      itemH = body.getBoundingClientRect().height / visibleRows;
+    }
+
+    try { handle.setPointerCapture(e.pointerId); } catch {}
+    handle.classList.add('om-resizing');
+    document.body.style.userSelect = 'none';
+
+    const startY = e.clientY;
+    const startRows = getRows(card.dataset.id);
+    let lastRows = startRows;
+    let pendingRows = startRows;
+    let rafId = 0;
+
+    function commit() {
+      rafId = 0;
+      if (pendingRows !== lastRows) {
+        setRowsPref(card.dataset.id, pendingRows);
+        renderCard(panel);
+        lastRows = pendingRows;
+      }
+    }
+    function onMove(ev) {
+      const dy = ev.clientY - startY;
+      // 30% hysteresis: don't flip until you've moved past 80% of the way to the next row.
+      // Using floor((dy + 0.2*itemH) / itemH) shifts the snap point inward, dampening jitter.
+      const delta = Math.floor((dy + itemH * 0.2) / itemH);
+      let rows = Math.max(1, Math.min(MAX_ROWS, startRows + delta));
+      if (rows !== pendingRows) {
+        pendingRows = rows;
+        if (!rafId) rafId = requestAnimationFrame(commit);
+      }
+    }
+    function onUp() {
+      handle.removeEventListener('pointermove', onMove);
+      handle.removeEventListener('pointerup', onUp);
+      handle.removeEventListener('pointercancel', onUp);
+      handle.classList.remove('om-resizing');
+      document.body.style.userSelect = '';
+      if (rafId) { cancelAnimationFrame(rafId); commit(); }
+    }
+    handle.addEventListener('pointermove', onMove);
+    handle.addEventListener('pointerup', onUp);
+    handle.addEventListener('pointercancel', onUp);
+  });
+}
+
+// ── Build Grid ──
+function init() {
+  applySavedOrder();
+  document.getElementById('grid').innerHTML = PANELS.map(p =>
+    `<div class="om-card" data-id="${p.id}" data-span="1">
+      <div class="om-card-head">
+        <div class="om-card-head-left">
+          <div class="om-card-icon" style="color: var(--accent-${p.id})">${ICONS[p.id] || ''}</div>
+          <div>
+            <div class="om-card-name">${esc(p.name)}</div>
+            <div class="om-card-age">never</div>
+          </div>
+        </div>
+        <div class="om-card-head-right">
+          <button class="om-btn om-rbtn" title="Refresh">↻</button>
+        </div>
+      </div>
+      <div class="om-card-body"><div class="om-empty">Tap ↻ to load</div></div>
+      <div class="om-resize" title="Drag to resize width"></div>
+      <div class="om-vresize" title="Drag to resize height"></div>
+    </div>`
+  ).join('');
+
+  document.querySelectorAll('#grid .om-card').forEach(card => {
+    applyLayout(card);
+    initResize(card);
+    initVResize(card);
+  });
+
+  // Bind events
+  PANELS.forEach(p => {
+    document.querySelector(`#grid [data-id="${p.id}"] .om-rbtn`)
+      .addEventListener('click', () => fetchPanel(p));
+
+    if (state[p.id]) {
+      renderCard(p);
+      if (Date.now() - state[p.id].fetchedAt > STALE_MS) fetchPanel(p);
+    } else {
+      fetchPanel(p);
+    }
+  });
+
+  // Refresh all
+  document.getElementById('refresh-all').addEventListener('click', async e => {
+    e.target.disabled = true;
+    await Promise.all(PANELS.map(fetchPanel));
+    e.target.disabled = false;
+  });
+
+  // Reset card layout (order + spans + rows) to defaults
+  document.getElementById('reset-order').addEventListener('click', () => {
+    clearOrder();
+    spanStore.clear();
+    rowStore.clear();
+    location.reload();
+  });
+
+  // Export current layout to a JSON file
+  document.getElementById('export-layout').addEventListener('click', () => {
+    const data = {
+      monitor: 'space-monitor',
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      order: loadOrder(),
+      spans: spanStore.get(),
+      rows: rowStore.get(),
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `space-monitor-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  // Import layout from a JSON file
+  document.getElementById('import-layout').addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+    input.addEventListener('change', e => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          if (data.monitor && data.monitor !== 'space-monitor') {
+            alert(`This layout is for "${data.monitor}" and can't be applied here — the cards are different. Load it into that monitor instead.`);
+            return;
+          }
+          if (Array.isArray(data.order)) saveOrder(data.order); else clearOrder();
+          if (data.spans && typeof data.spans === 'object') spanStore.set(data.spans); else spanStore.clear();
+          if (data.rows && typeof data.rows === 'object') rowStore.set(data.rows); else rowStore.clear();
+          location.reload();
+        } catch (err) {
+          alert('Could not parse layout file: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    });
+    input.click();
+  });
+
+  initSortable();
+
+  // Re-apply layout when crossing viewport breakpoints
+  let lastCols = gridColCount();
+  window.addEventListener('resize', () => {
+    const cols = gridColCount();
+    if (cols !== lastCols) {
+      lastCols = cols;
+      document.querySelectorAll('#grid .om-card').forEach(applyLayout);
+      PANELS.forEach(p => { if (state[p.id]) renderCard(p); });
+    }
+  });
+}
+
+init();
+</script>
+</body>
+</html>

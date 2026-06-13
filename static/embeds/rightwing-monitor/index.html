@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Right-Wing Politics Monitor</title>
+        <meta
+            name="description"
+            content="A media monitoring tool tracking right-wing and far-right political actors across Europe and the United States for research purposes."
+        />
+        <meta property="og:title" content="Right-Wing Politics Monitor" />
+        <meta
+            property="og:description"
+            content="Research instrument. Analytical observation of transatlantic right-wing and far-right actors."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Right-Wing Politics Monitor" />
+        <meta
+            name="twitter:description"
+            content="Research instrument. Analytical observation."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --bg-void: #f5f3ef;
+                --bg-deep: #edeae5;
+                --bg-card: #ffffff;
+                --bg-card-hover: #f9f8f6;
+                --border-dim: #e0dcd6;
+                --border-mid: #c8c2b8;
+                --text-primary: #2c2822;
+                --text-secondary: #6e665c;
+                --text-muted: #9e958a;
+                --text-bright: #1a1610;
+                --accent-maga:    #a07030;
+                --accent-frp:     #4a7a9e;
+                --accent-sd:      #8a7040;
+                --accent-rn:      #5078a0;
+                --accent-fdi:     #3a8a7a;
+                --accent-reform:  #30808e;
+                --accent-afd:     #a04a3a;
+                --accent-hungary: #a05c20;
+                --accent-vox:     #5e8a3a;
+                --accent-pis:     #804a48;
+                --accent-general: #6a7080;
+                --accent-nodes:   #6e52a0;
+                --accent-bluesky: #4a7a9e;
+                --font-display: 'Chakra Petch', sans-serif;
+                --font-body: 'Be Vietnam Pro', sans-serif;
+            }
+
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+            html { font-size: 17px; }
+
+            body {
+                font-family: var(--font-body);
+                background: var(--bg-void);
+                color: var(--text-primary);
+                min-height: 100vh;
+                line-height: 1.5;
+            }
+
+            /* ── Header ── */
+            header {
+                position: relative; z-index: 1;
+                padding: 2rem 2rem 1.2rem;
+                border-bottom: 1px solid var(--border-dim);
+                background: var(--bg-card);
+                display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+            }
+            .hdr-left { display: flex; align-items: center; gap: 1rem; }
+            .hdr-icon svg { width: 36px; height: 36px; }
+            .hdr-title {
+                font-family: var(--font-display);
+                font-size: 1.65rem; font-weight: 700;
+                letter-spacing: 0.08em; text-transform: uppercase;
+                color: var(--text-bright);
+            }
+            .hdr-sub {
+                font-size: 0.78rem; color: var(--text-muted);
+                letter-spacing: 0.04em; margin-top: 0.15rem;
+            }
+            .hdr-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+            .hdr-btn {
+                font-family: var(--font-display);
+                font-size: 0.72rem; font-weight: 600;
+                text-transform: uppercase; letter-spacing: 0.1em;
+                background: var(--bg-void); color: var(--text-secondary);
+                border: 1px solid var(--border-dim);
+                padding: 0.45rem 0.9rem; border-radius: 4px;
+                cursor: pointer; transition: all 0.15s;
+            }
+            .hdr-btn:hover { border-color: var(--border-mid); color: var(--text-primary); background: var(--bg-deep); }
+            .hdr-btn:disabled { opacity: 0.4; cursor: default; }
+            .hdr-btn.active {
+                background: var(--text-primary); color: #fff; border-color: var(--text-primary);
+            }
+            .hdr-btn.active:hover {
+                background: var(--text-bright); color: #fff; border-color: var(--text-bright);
+            }
+
+            /* ── Grid ── */
+            .grid {
+                position: relative; z-index: 1;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1.2rem 2rem 3rem;
+                max-width: 1470px; margin: 0 auto;
+            }
+            @media (min-width: 720px) and (max-width: 1099px) {
+                .grid { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (min-width: 1100px) {
+                .grid { grid-template-columns: repeat(3, 1fr); }
+            }
+            @media (max-width: 700px) {
+                .grid { padding: 0.8rem; gap: 0.8rem; }
+                header { padding: 1.2rem 0.8rem 0.8rem; }
+                .hdr-title { font-size: 1.2rem; }
+            }
+
+            /* ── Cards ── */
+            .card {
+                position: relative;
+                background: var(--bg-card);
+                border: 1px solid var(--border-dim);
+                border-top: 2px solid var(--border-dim);
+                border-radius: 6px;
+                overflow: hidden;
+                display: flex; flex-direction: column;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            }
+
+            /* ── Resize handles ── */
+            .resize {
+                position: absolute;
+                top: 0; right: 0; bottom: 0;
+                width: 10px;
+                cursor: col-resize;
+                z-index: 3;
+                touch-action: none;
+            }
+            .resize::after {
+                content: '';
+                position: absolute;
+                top: 50%; right: 3px;
+                width: 2px; height: 36px;
+                margin-top: -18px;
+                background: var(--border-mid);
+                border-radius: 1px;
+                opacity: 0;
+                transition: opacity 0.15s;
+            }
+            .card:hover .resize::after { opacity: 0.45; }
+            .resize:hover::after,
+            .resize.resizing::after { opacity: 0.85; }
+
+            .vresize {
+                position: absolute;
+                left: 0; right: 10px; bottom: 0;
+                height: 10px;
+                cursor: row-resize;
+                z-index: 3;
+                touch-action: none;
+            }
+            .vresize::after {
+                content: '';
+                position: absolute;
+                left: 50%; bottom: 3px;
+                width: 36px; height: 2px;
+                margin-left: -18px;
+                background: var(--border-mid);
+                border-radius: 1px;
+                opacity: 0;
+                transition: opacity 0.15s;
+            }
+            .card:hover .vresize::after { opacity: 0.45; }
+            .vresize:hover::after,
+            .vresize.resizing::after { opacity: 0.85; }
+
+            @media (max-width: 700px) {
+                .resize { display: none; }
+                .vresize { right: 0; height: 14px; }
+                .vresize::after { opacity: 0.4; width: 48px; height: 3px; }
+            }
+            .card.maga    { border-top-color: var(--accent-maga); }
+            .card.frp     { border-top-color: var(--accent-frp); }
+            .card.sd      { border-top-color: var(--accent-sd); }
+            .card.rn      { border-top-color: var(--accent-rn); }
+            .card.fdi     { border-top-color: var(--accent-fdi); }
+            .card.reform  { border-top-color: var(--accent-reform); }
+            .card.afd     { border-top-color: var(--accent-afd); }
+            .card.hungary { border-top-color: var(--accent-hungary); }
+            .card.vox     { border-top-color: var(--accent-vox); }
+            .card.pis     { border-top-color: var(--accent-pis); }
+            .card.general { border-top-color: var(--accent-general); }
+            .card.nodes   { border-top-color: var(--accent-nodes); }
+            .card.bluesky { border-top-color: var(--accent-bluesky); }
+
+            .card-ghost { opacity: 0.35; }
+            .card-drag { box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+            /* ── Card head ── */
+            .head {
+                display: flex; align-items: center; justify-content: space-between;
+                gap: 0.5rem;
+                padding: 0.7rem 0.85rem;
+                border-bottom: 1px solid var(--border-dim);
+                min-height: 48px;
+                cursor: grab;
+                user-select: none;
+            }
+            .head:active { cursor: grabbing; }
+            .head-left { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
+            .head-text { min-width: 0; }
+            .card-icon { flex-shrink: 0; width: 24px; height: 24px; display: block; }
+            .card-icon svg { display: block; width: 100%; height: 100%; }
+            .card.general .card-icon { color: var(--accent-general); }
+            .card.bluesky .card-icon { color: var(--accent-bluesky); }
+            .card.nodes   .card-icon { color: var(--accent-nodes); }
+            .title {
+                font-family: var(--font-display);
+                font-size: 0.82rem; font-weight: 600;
+                letter-spacing: 0.04em;
+                color: var(--text-bright);
+                white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            }
+            .card.maga    .title { color: var(--accent-maga); }
+            .card.frp     .title { color: var(--accent-frp); }
+            .card.sd      .title { color: var(--accent-sd); }
+            .card.rn      .title { color: var(--accent-rn); }
+            .card.fdi     .title { color: var(--accent-fdi); }
+            .card.reform  .title { color: var(--accent-reform); }
+            .card.afd     .title { color: var(--accent-afd); }
+            .card.hungary .title { color: var(--accent-hungary); }
+            .card.vox     .title { color: var(--accent-vox); }
+            .card.pis     .title { color: var(--accent-pis); }
+            .card.general .title { color: var(--accent-general); }
+            .card.nodes   .title { color: var(--accent-nodes); }
+            .card.bluesky .title { color: var(--accent-bluesky); }
+
+            .age {
+                font-size: 0.65rem; color: var(--text-muted);
+                letter-spacing: 0.02em; white-space: nowrap;
+                margin-top: 0.15rem;
+            }
+            .age.stale { color: #b06830; }
+
+            .head-btns { display: flex; gap: 0.3rem; flex-shrink: 0; }
+            .rbtn, .tbtn {
+                width: 28px; height: 28px;
+                display: flex; align-items: center; justify-content: center;
+                background: transparent; border: 1px solid var(--border-dim);
+                color: var(--text-secondary); border-radius: 4px;
+                cursor: pointer; font-size: 0.85rem; transition: all 0.15s;
+                padding: 0; font-family: inherit;
+            }
+            .rbtn:hover, .tbtn:hover { border-color: var(--border-mid); color: var(--text-primary); }
+            .rbtn:disabled, .tbtn:disabled { opacity: 0.35; cursor: default; }
+            .tbtn {
+                width: auto;
+                padding: 0 0.55rem;
+                font-family: var(--font-display);
+                font-size: 0.68rem; font-weight: 600;
+                text-transform: uppercase; letter-spacing: 0.08em;
+            }
+            .tbtn.active {
+                background: var(--text-primary); color: #fff;
+                border-color: var(--text-primary);
+            }
+
+            @keyframes spin { to { transform: rotate(360deg); } }
+            .spin { display: inline-block; animation: spin 0.8s linear infinite; }
+
+            /* ── Card body ── */
+            .body { flex: 1; padding: 0; }
+
+            /* ── Items ── */
+            .item { border-bottom: 1px solid var(--border-dim); }
+            .item:last-child { border-bottom: none; }
+            .item a {
+                display: block; padding: 0.6rem 0.85rem;
+                text-decoration: none; color: inherit;
+                transition: background 0.12s;
+            }
+            .item a:hover { background: var(--bg-card-hover); }
+            .item h3 {
+                font-family: var(--font-body);
+                font-size: 0.82rem; font-weight: 500;
+                line-height: 1.4;
+                color: var(--text-primary);
+                margin: 0 0 0.2rem 0;
+            }
+            .card.maga    .item h3:hover { color: var(--accent-maga); }
+            .card.frp     .item h3:hover { color: var(--accent-frp); }
+            .card.sd      .item h3:hover { color: var(--accent-sd); }
+            .card.rn      .item h3:hover { color: var(--accent-rn); }
+            .card.fdi     .item h3:hover { color: var(--accent-fdi); }
+            .card.reform  .item h3:hover { color: var(--accent-reform); }
+            .card.afd     .item h3:hover { color: var(--accent-afd); }
+            .card.hungary .item h3:hover { color: var(--accent-hungary); }
+            .card.vox     .item h3:hover { color: var(--accent-vox); }
+            .card.pis     .item h3:hover { color: var(--accent-pis); }
+            .card.general .item h3:hover { color: var(--accent-general); }
+            .card.nodes   .item h3:hover { color: var(--accent-nodes); }
+            .card.bluesky .item h3:hover { color: var(--accent-bluesky); }
+
+            .meta {
+                font-size: 0.68rem; color: var(--text-muted);
+                letter-spacing: 0.01em;
+            }
+            .desc {
+                font-size: 0.74rem;
+                color: var(--text-secondary);
+                margin-top: 0.3rem;
+                line-height: 1.4;
+            }
+            .card.bluesky .item .desc { white-space: pre-wrap; }
+
+            .empty {
+                padding: 1.8rem 1rem;
+                text-align: center;
+                font-size: 0.78rem; color: var(--text-muted);
+            }
+            .err {
+                padding: 0.5rem 0.85rem;
+                font-size: 0.7rem; color: #a06030;
+                background: rgba(180,120,60,0.06);
+                border-bottom: 1px solid var(--border-dim);
+            }
+            .foot {
+                text-align: center;
+                margin-top: 20px;
+                padding: 0 1rem 2rem;
+                font-size: 0.78rem;
+                color: var(--text-muted);
+                letter-spacing: 0.02em;
+            }
+
+            /* ── Wide-card sub-layouts (driven by data-span) ── */
+            .card[data-span="2"] .body {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card[data-span="3"] .body {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @media (max-width: 1099px) {
+                .card[data-span="3"] .body { grid-template-columns: repeat(2, 1fr); }
+            }
+            @media (max-width: 719px) {
+                .card[data-span="2"] .body,
+                .card[data-span="3"] .body { grid-template-columns: 1fr; }
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+        <script src="/embeds/_shared/greenlist.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="hdr-left">
+                <div class="hdr-icon">
+                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="18" cy="22" r="2.2" fill="#2c2822"/>
+                        <path d="M11 22 a7 7 0 0 1 14 0" stroke="#4a7a9e" stroke-width="1.6" fill="none" opacity="0.85"/>
+                        <path d="M7 22 a11 11 0 0 1 22 0" stroke="#8a8278" stroke-width="1.2" fill="none" opacity="0.55"/>
+                        <path d="M3 22 a15 15 0 0 1 30 0" stroke="#8a8278" stroke-width="1" fill="none" opacity="0.35"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="hdr-title">Right-Wing Politics Monitor</div>
+                    <div class="hdr-sub">Transatlantic far-right · Comparative monitoring · Research-oriented</div>
+                </div>
+            </div>
+            <div class="hdr-actions">
+                <button class="hdr-btn" id="translateAll" title="Translate all loaded cards to English">EN</button>
+                <button class="hdr-btn" id="resetOrder" title="Restore default card order and sizes">↺ Reset Layout</button>
+                <button class="hdr-btn" id="exportLayout" title="Save current layout as a JSON file">↓ Save</button>
+                <button class="hdr-btn" id="importLayout" title="Load layout from a JSON file">↑ Load</button>
+                <button class="hdr-btn" id="refreshAll">↻ Refresh All</button>
+            </div>
+        </header>
+
+        <div class="grid" id="grid"></div>
+
+        <div class="foot">
+            All links are automatically aggregated via Google News RSS. Errors and irrelevant results may occur.
+        </div>
+
+        <script>
+            // ============================================================
+            // rss2json.com API key (free: 10,000 requests/day)
+            // Sign up at https://rss2json.com/sign-up to get one.
+            //
+            // Option A — paste inline (simple, but do NOT commit this file
+            // to a public repo afterwards):
+            const RSS2JSON_KEY_INLINE = "";
+            //
+            // Option B — keep the file clean, set once from browser console:
+            //   localStorage.setItem("rss2json_key", "YOUR_KEY_HERE")
+            // then refresh the page. This survives across sessions.
+            // ============================================================
+            const RSS2JSON_KEY =
+                (typeof localStorage !== "undefined" &&
+                    localStorage.getItem("rss2json_key")) ||
+                RSS2JSON_KEY_INLINE ||
+                "e3xqpmsfkaarzbksh1vd6cz0hatwotgdhk8skm6z";
+
+            const PARTIES = [
+                {
+                    id: "maga",
+                    name: "Trump/MAGA (U.S.)",
+                    flag: "🇺🇸",
+                    q: '"Donald Trump" OR "Trump administration" OR MAGA OR "JD Vance" OR "Stephen Miller" OR "America First" OR "Steve Bannon"',
+                    lang: "en",
+                    country: "US",
+                },
+                {
+                    id: "frp",
+                    name: "Fremskrittspartiet (Norway)",
+                    flag: "🇳🇴",
+                    q: 'Fremskrittspartiet OR FrP OR "Sylvi Listhaug" OR "Norwegian Progress Party" OR "Per-Willy Amundsen" OR "Hans Andreas Limi" OR "Simen Velle"',
+                    lang: "no",
+                    country: "NO",
+                },
+                {
+                    id: "sd",
+                    name: "Sverigedemokraterna (Sweden)",
+                    flag: "🇸🇪",
+                    q: 'Sverigedemokraterna OR "Jimmie Åkesson" OR "Sweden Democrats"',
+                    lang: "sv",
+                    country: "SE",
+                },
+                {
+                    id: "rn",
+                    name: "Rassemblement National (France)",
+                    flag: "🇫🇷",
+                    q: '"Rassemblement National" OR "Marine Le Pen" OR "Jordan Bardella" OR "National Rally" OR "Marion Maréchal"',
+                    lang: "fr",
+                    country: "FR",
+                },
+                {
+                    id: "fdi",
+                    name: "Fratelli d'Italia; Lega (Italy)",
+                    flag: "🇮🇹",
+                    q: 'Meloni OR Salvini OR "Fratelli d\'Italia" OR "Brothers of Italy" OR Lega',
+                    lang: "it",
+                    country: "IT",
+                },
+                {
+                    id: "reform",
+                    name: "Reform UK (U.K.)",
+                    flag: "🇬🇧",
+                    q: '"Reform UK" OR "Nigel Farage" OR "Richard Tice"',
+                    lang: "en",
+                    country: "GB",
+                },
+                {
+                    id: "afd",
+                    name: "AfD (Germany)",
+                    flag: "🇩🇪",
+                    q: '"Alternative fur Deutschland" OR AfD OR "Tino Chrupalla" OR "Alice Weidel"',
+                    lang: "de",
+                    country: "DE",
+                },
+                {
+                    id: "hungary",
+                    name: "Fidesz; Tisza (Hungary)",
+                    flag: "🇭🇺",
+                    q: '"Orbán Viktor" OR "Magyar Péter" OR "Fidesz" OR "Tisza"',
+                    lang: "hu",
+                    country: "HU",
+                },
+                {
+                    id: "vox",
+                    name: "Vox (Spain)",
+                    flag: "🇪🇸",
+                    q: '"Vox" OR "Santiago Abascal" OR "Ignacio Garriga" OR "Javier Ortega Smith" OR "Rocío Monasterio" OR "Kiko Méndez-Monasterio"',
+                    lang: "es",
+                    country: "ES",
+                },
+                {
+                    id: "pis",
+                    name: "PiS (Poland)",
+                    flag: "🇵🇱",
+                    q: '"Prawo i Sprawiedliwość" OR "PiS" OR "Jarosław Kaczyński" OR "Mateusz Morawiecki" OR "Karol Nawrocki" OR "Law and Justice"',
+                    lang: "pl",
+                    country: "PL",
+                },
+                {
+                    id: "general",
+                    name: "General Right-Wing News",
+                    flag: "🌍",
+                    queries: [
+                        '"far right" OR "alt-right" OR "right-wing extremist" OR "fascism"',
+                        '"ethnonationalism" OR "white nationalism" OR "Christian nationalism" OR "manosphere"',
+                        '"national conservatism" OR "illiberal democracy" OR "techno-fascism"',
+                    ],
+                    lang: "en",
+                    country: "US",
+                },
+                {
+                    id: "bluesky",
+                    name: "TrumpNews (Bluesky)",
+                    flag: "🦋",
+                    type: "bluesky",
+                    handle: "victorshammas.com",
+                    feedKey: "trump-news",
+                },
+                {
+                    id: "nodes",
+                    name: "Transnational Network Infrastructure",
+                    flag: "🕸️",
+                    queries: [
+                        '"Heritage Foundation" OR "Project 2025" OR "American Enterprise Institute" OR "Claremont Institute" OR "Edmund Burke Foundation"',
+                        '"Danube Institute" OR "Mathias Corvinus Collegium" OR "MCC Budapest" OR "MCC Brussels"',
+                        '"National Conservatism" OR "NatCon" OR "Conservative Political Action Conference" OR "CPAC" OR "Turning Point USA" OR "Turning Point UK"',
+                        '"Institute of Economic Affairs" OR "Policy Exchange" OR "Centre for Policy Studies" OR "Alliance for Responsible Citizenship"',
+                    ],
+                    lang: "en",
+                    country: "US",
+                },
+            ];
+
+            // Minimal SVG flag panels (22x14 within a 22x22 viewBox)
+            // and bespoke SVGs for the three non-flag cards.
+            const ICONS = {
+                maga: '<svg viewBox="0 0 22 22"><rect x="0" y="4" width="22" height="14" fill="#fff"/><rect x="0" y="4"  width="22" height="2" fill="#b22234"/><rect x="0" y="8"  width="22" height="2" fill="#b22234"/><rect x="0" y="12" width="22" height="2" fill="#b22234"/><rect x="0" y="16" width="22" height="2" fill="#b22234"/><rect x="0" y="4" width="9" height="7.5" fill="#3c3b6e"/><circle cx="1.7" cy="5.7" r="0.4" fill="#fff"/><circle cx="4.2" cy="5.7" r="0.4" fill="#fff"/><circle cx="6.7" cy="5.7" r="0.4" fill="#fff"/><circle cx="2.9" cy="7.0" r="0.4" fill="#fff"/><circle cx="5.4" cy="7.0" r="0.4" fill="#fff"/><circle cx="1.7" cy="8.3" r="0.4" fill="#fff"/><circle cx="4.2" cy="8.3" r="0.4" fill="#fff"/><circle cx="6.7" cy="8.3" r="0.4" fill="#fff"/><circle cx="2.9" cy="9.6" r="0.4" fill="#fff"/><circle cx="5.4" cy="9.6" r="0.4" fill="#fff"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                frp: '<svg viewBox="0 0 22 22"><rect x="0" y="4" width="22" height="14" fill="#ba0c2f"/><rect x="6" y="4" width="4" height="14" fill="#fff"/><rect x="0" y="9" width="22" height="4" fill="#fff"/><rect x="7" y="4" width="2" height="14" fill="#00205b"/><rect x="0" y="10" width="22" height="2" fill="#00205b"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                sd: '<svg viewBox="0 0 22 22"><rect x="0" y="4" width="22" height="14" fill="#006aa7"/><rect x="6" y="4" width="4" height="14" fill="#fecc00"/><rect x="0" y="9" width="22" height="4" fill="#fecc00"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                rn: '<svg viewBox="0 0 22 22"><rect x="0" y="4" width="7.33" height="14" fill="#002654"/><rect x="7.33" y="4" width="7.33" height="14" fill="#fff"/><rect x="14.66" y="4" width="7.34" height="14" fill="#ed2939"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                fdi: '<svg viewBox="0 0 22 22"><rect x="0" y="4" width="7.33" height="14" fill="#009246"/><rect x="7.33" y="4" width="7.33" height="14" fill="#fff"/><rect x="14.66" y="4" width="7.34" height="14" fill="#ce2b37"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                reform: '<svg viewBox="0 0 22 22"><defs><clipPath id="rw-uk"><rect x="0" y="4" width="22" height="14"/></clipPath></defs><g clip-path="url(#rw-uk)"><rect x="0" y="4" width="22" height="14" fill="#012169"/><path d="M0 4 L22 18 M22 4 L0 18" stroke="#fff" stroke-width="2.4"/><path d="M0 4 L22 18 M22 4 L0 18" stroke="#c8102e" stroke-width="1"/><rect x="9" y="4" width="4" height="14" fill="#fff"/><rect x="0" y="9.5" width="22" height="3" fill="#fff"/><rect x="10" y="4" width="2" height="14" fill="#c8102e"/><rect x="0" y="10.5" width="22" height="1" fill="#c8102e"/></g><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                afd: '<svg viewBox="0 0 22 22"><rect x="0" y="4"    width="22" height="4.67" fill="#000"/><rect x="0" y="8.67" width="22" height="4.67" fill="#dd0000"/><rect x="0" y="13.33" width="22" height="4.67" fill="#ffce00"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                hungary: '<svg viewBox="0 0 22 22"><rect x="0" y="4"    width="22" height="4.67" fill="#cd2a3e"/><rect x="0" y="8.67" width="22" height="4.67" fill="#fff"/><rect x="0" y="13.33" width="22" height="4.67" fill="#436f4d"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                vox: '<svg viewBox="0 0 22 22"><rect x="0" y="4"   width="22" height="3.5" fill="#aa151b"/><rect x="0" y="7.5" width="22" height="7"   fill="#f1bf00"/><rect x="0" y="14.5" width="22" height="3.5" fill="#aa151b"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                pis: '<svg viewBox="0 0 22 22"><rect x="0" y="4"  width="22" height="7" fill="#fff"/><rect x="0" y="11" width="22" height="7" fill="#dc143c"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                general: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.55"/><ellipse cx="11" cy="11" rx="3.8" ry="8" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.5"/><line x1="3" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="0.7" opacity="0.45"/><path d="M4 7 Q11 9 18 7" stroke="currentColor" stroke-width="0.7" fill="none" opacity="0.35"/><path d="M4 15 Q11 13 18 15" stroke="currentColor" stroke-width="0.7" fill="none" opacity="0.35"/></svg>',
+                bluesky: '<svg viewBox="0 0 22 22" fill="none"><path d="M11 12 C8 7 5 6 4 8 C3 10 5 12 8 13 C5 13 4 14 5 15 C6 16 9 15 11 13 C13 15 16 16 17 15 C18 14 17 13 14 13 C17 12 19 10 18 8 C17 6 14 7 11 12 Z" fill="currentColor" opacity="0.9"/></svg>',
+                nodes: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="2"   fill="currentColor" opacity="0.85"/><circle cx="4"  cy="5"  r="1.4" fill="currentColor" opacity="0.7"/><circle cx="18" cy="5"  r="1.4" fill="currentColor" opacity="0.7"/><circle cx="4"  cy="17" r="1.4" fill="currentColor" opacity="0.7"/><circle cx="18" cy="17" r="1.4" fill="currentColor" opacity="0.7"/><line x1="11" y1="11" x2="4"  y2="5"  stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="11" y1="11" x2="18" y2="5"  stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="11" y1="11" x2="4"  y2="17" stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="11" y1="11" x2="18" y2="17" stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="4"  y1="5"  x2="18" y2="5"  stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="4"  y1="17" x2="18" y2="17" stroke="currentColor" stroke-width="0.5" opacity="0.3"/></svg>',
+            };
+
+            const LS_KEY = "farright_tracker_v1";
+            const SPAN_KEY = "farright_tracker_spans_v1";
+            const ROW_KEY = "farright_tracker_rows_v1";
+            const STALE_MS = 3 * 3600 * 1000;
+            const MAX_CACHED = 50;
+            const MAX_ROWS = 12;
+            const MAX_BLUESKY = 36;
+
+            const store = {
+                get: () => {
+                    try {
+                        return JSON.parse(localStorage.getItem(LS_KEY)) || {};
+                    } catch {
+                        return {};
+                    }
+                },
+                set: (v) => {
+                    try {
+                        localStorage.setItem(LS_KEY, JSON.stringify(v));
+                    } catch {}
+                },
+            };
+            let state = store.get();
+
+            // ── Per-card layout (span/rows) ──
+            const spanStore = {
+                get: () => { try { return JSON.parse(localStorage.getItem(SPAN_KEY)) || {}; } catch { return {}; } },
+                set: (v) => { try { localStorage.setItem(SPAN_KEY, JSON.stringify(v)); } catch {} },
+                clear: () => { try { localStorage.removeItem(SPAN_KEY); } catch {} },
+            };
+            const rowStore = {
+                get: () => { try { return JSON.parse(localStorage.getItem(ROW_KEY)) || {}; } catch { return {}; } },
+                set: (v) => { try { localStorage.setItem(ROW_KEY, JSON.stringify(v)); } catch {} },
+                clear: () => { try { localStorage.removeItem(ROW_KEY); } catch {} },
+            };
+
+            // Default sizes preserve prior per-card layout:
+            //  general → 2×8, nodes → 3×3, bluesky → 3×4, others → 1×8.
+            const DEFAULT_SPAN = { general: 2, nodes: 3, bluesky: 3 };
+            const DEFAULT_ROWS = { general: 8, nodes: 3, bluesky: 4 };
+            const defaultSpan = (id) => DEFAULT_SPAN[id] || 1;
+            const defaultRows = (id) => DEFAULT_ROWS[id] || 8;
+            function getSpan(id) {
+                const s = spanStore.get();
+                return s[id] || defaultSpan(id);
+            }
+            function getRows(id) {
+                const r = rowStore.get();
+                return r[id] || defaultRows(id);
+            }
+            function setSpanPref(id, n) { const s = spanStore.get(); s[id] = n; spanStore.set(s); }
+            function setRowsPref(id, n) { const r = rowStore.get(); r[id] = n; rowStore.set(r); }
+            function gridColCount() {
+                const cs = getComputedStyle(document.getElementById("grid"));
+                return cs.gridTemplateColumns.split(" ").filter(Boolean).length;
+            }
+            function applyLayout(card) {
+                const id = card.dataset.id;
+                const pref = getSpan(id);
+                const cols = gridColCount();
+                const eff = Math.max(1, Math.min(pref, cols));
+                card.style.gridColumn = `span ${eff}`;
+                card.dataset.span = String(eff);
+            }
+
+            const feedUrl = (p, query) => {
+                const win = p.window || "3d"; // 3-day window — concentrates Google News' sampling on the freshest items
+                const q = query || p.q;
+                const g = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:" + win)}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
+                const keyParam = RSS2JSON_KEY
+                    ? `&api_key=${encodeURIComponent(RSS2JSON_KEY)}`
+                    : "";
+                return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(g)}&count=50${keyParam}`;
+            };
+            const strip = (h, source) => {
+                if (!h) return "";
+                let t = h
+                    .replace(/<[^>]+>/g, " ")
+                    .replace(/&nbsp;/g, " ")
+                    .replace(/&amp;/g, "&")
+                    .replace(/&quot;/g, '"')
+                    .replace(/&#39;/g, "'")
+                    .replace(/\s+/g, " ")
+                    .trim();
+                if (source) {
+                    const esc = source.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+                    t = t.replace(new RegExp("[\\s\\-–—]*" + esc + "\\s*$", "i"), "").trim();
+                }
+                return t.length > 220 ? t.slice(0, 220) + "…" : t;
+            };
+            const srcOf = (t) => {
+                const m = t.match(/\s-\s([^-]+)$/);
+                return m ? m[1].trim() : "";
+            };
+            const fmtD = (iso) =>
+                iso
+                    ? new Date(iso).toLocaleDateString(undefined, {
+                          month: "short",
+                          day: "numeric",
+                      })
+                    : "";
+            const age = (ts) => {
+                if (!ts) return "never";
+                const h = Math.floor((Date.now() - ts) / 3600000);
+                if (h < 1) return "just now";
+                if (h < 24) return h + "h ago";
+                return Math.floor(h / 24) + "d ago";
+            };
+            const esc = (s) =>
+                (s || "").replace(
+                    /[&<>"']/g,
+                    (c) =>
+                        ({
+                            "&": "&amp;",
+                            "<": "&lt;",
+                            ">": "&gt;",
+                            '"': "&quot;",
+                            "'": "&#39;",
+                        })[c],
+                );
+
+            async function resolveDid(handle) {
+                state.__dids = state.__dids || {};
+                if (state.__dids[handle]) return state.__dids[handle];
+                const r = await fetch(
+                    `https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=${encodeURIComponent(handle)}`,
+                );
+                const j = await r.json();
+                if (!j.did) throw new Error("Could not resolve handle");
+                state.__dids[handle] = j.did;
+                store.set(state);
+                return j.did;
+            }
+
+            async function fetchBluesky(p) {
+                const did = await resolveDid(p.handle);
+                const feedUri = `at://${did}/app.bsky.feed.generator/${p.feedKey}`;
+                const url = `https://public.api.bsky.app/xrpc/app.bsky.feed.getFeed?feed=${encodeURIComponent(feedUri)}&limit=${MAX_BLUESKY}`;
+                const r = await fetch(url);
+                const j = await r.json();
+                if (!j.feed) throw new Error(j.message || "feed error");
+                return j.feed.slice(0, MAX_BLUESKY).map((entry) => {
+                    const post = entry.post;
+                    const rkey = post.uri.split("/").pop();
+                    const handle = post.author.handle;
+                    const text = (post.record?.text || "").trim();
+                    const embed = post.embed || post.record?.embed;
+                    const ext =
+                        embed?.external || embed?.record?.embeds?.[0]?.external || null;
+                    const postUrl = `https://bsky.app/profile/${handle}/post/${rkey}`;
+                    const title =
+                        (ext?.title || "").trim() ||
+                        text.split("\n")[0].slice(0, 120) ||
+                        "(no text)";
+                    const linkUrl = ext?.uri || postUrl;
+                    let summary = text;
+                    if (!ext?.title && text.split("\n").length > 1) {
+                        summary = text.split("\n").slice(1).join("\n").trim();
+                    } else if (!ext?.title) {
+                        summary = "";
+                    }
+                    if (summary.length > 300) summary = summary.slice(0, 300) + "…";
+                    return {
+                        title,
+                        url: linkUrl,
+                        source: post.author.displayName || `@${handle}`,
+                        date: post.record?.createdAt,
+                        summary,
+                    };
+                });
+            }
+
+            async function fetchParty(p) {
+                const card = document.querySelector(`[data-id="${p.id}"]`);
+                const btn = card.querySelector(".rbtn");
+                btn.innerHTML = '<span class="spin">↻</span>';
+                btn.disabled = true;
+                try {
+                    let stories;
+                    let errors = [];
+                    if (p.type === "bluesky") {
+                        stories = await fetchBluesky(p);
+                    } else {
+                        const queries = p.queries || [p.q];
+                        const results = await Promise.all(
+                            queries.map(async (q) => {
+                                try {
+                                    const r = await fetch(feedUrl(p, q));
+                                    const j = await r.json();
+                                    if (j.status !== "ok") {
+                                        const msg =
+                                            j.message || j.status || "unknown rss2json error";
+                                        console.warn(
+                                            `[${p.id}] rss2json error for query`,
+                                            q,
+                                            "→",
+                                            j,
+                                        );
+                                        errors.push(msg);
+                                        return [];
+                                    }
+                                    return j.items || [];
+                                } catch (err) {
+                                    console.warn(
+                                        `[${p.id}] fetch exception for query`,
+                                        q,
+                                        "→",
+                                        err,
+                                    );
+                                    errors.push(err.message || "fetch failed");
+                                    return [];
+                                }
+                            }),
+                        );
+                        const merged = [].concat(...results);
+                        const seen = new Set();
+                        const deduped = merged.filter((it) => {
+                            if (!it.link || seen.has(it.link)) return false;
+                            seen.add(it.link);
+                            return true;
+                        });
+                        // Local cutoff matches the API window
+                        const cutoffMs = Date.now() - 3 * 24 * 3600 * 1000;
+                        const mapped = deduped
+                            .filter((it) => {
+                                const t = new Date(it.pubDate || 0).getTime();
+                                return t && t >= cutoffMs;
+                            })
+                            .map((it) => {
+                                const source = srcOf(it.title);
+                                return {
+                                    title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
+                                    url: it.link,
+                                    source,
+                                    date: it.pubDate,
+                                    summary: "",
+                                };
+                            });
+                        stories = (window.MonitorCanon && window.MonitorCanon.rankByCanon)
+                            ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, "date")
+                            : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
+                    }
+                    state[p.id] = { stories, fetchedAt: Date.now(), errors };
+                    store.set(state);
+                    renderCard(p);
+                } catch (e) {
+                    card.querySelector(".body").innerHTML =
+                        `<div class="err">⚠ ${esc(e.message || "Failed")}</div>`;
+                    btn.innerHTML = "↻";
+                    btn.disabled = false;
+                }
+            }
+
+            async function translateText(text, sourceLang) {
+                if (!text) return "";
+                const url =
+                    `https://translate.googleapis.com/translate_a/single?client=gtx` +
+                    `&sl=${encodeURIComponent(sourceLang || "auto")}&tl=en&dt=t&q=${encodeURIComponent(text)}`;
+                const r = await fetch(url);
+                if (!r.ok) throw new Error("translate HTTP " + r.status);
+                const j = await r.json();
+                if (!Array.isArray(j) || !Array.isArray(j[0]))
+                    throw new Error("translate parse");
+                return j[0].map((chunk) => (chunk && chunk[0]) || "").join("");
+            }
+
+            async function translateCard(p) {
+                const card = document.querySelector(`[data-id="${p.id}"]`);
+                const tbtn = card.querySelector(".tbtn");
+                const d = state[p.id];
+                if (!d || !d.stories?.length) return;
+
+                if (d.translated) {
+                    d.translated = false;
+                    store.set(state);
+                    renderCard(p);
+                    return;
+                }
+
+                const allCached = d.stories.every(
+                    (s) => s.titleEn !== undefined && s.summaryEn !== undefined,
+                );
+                if (allCached) {
+                    d.translated = true;
+                    store.set(state);
+                    renderCard(p);
+                    return;
+                }
+
+                tbtn.innerHTML = '<span class="spin">↻</span>';
+                tbtn.disabled = true;
+
+                try {
+                    await Promise.all(
+                        d.stories.map(async (s) => {
+                            if (s.titleEn === undefined) {
+                                try {
+                                    s.titleEn = await translateText(s.title, p.lang);
+                                } catch {
+                                    s.titleEn = s.title;
+                                }
+                            }
+                            if (s.summaryEn === undefined) {
+                                try {
+                                    s.summaryEn = s.summary
+                                        ? await translateText(s.summary, p.lang)
+                                        : "";
+                                } catch {
+                                    s.summaryEn = s.summary || "";
+                                }
+                            }
+                        }),
+                    );
+                    d.translated = true;
+                    store.set(state);
+                    renderCard(p);
+                } catch (e) {
+                    tbtn.innerHTML = "EN";
+                    tbtn.disabled = false;
+                    card.querySelector(".body").insertAdjacentHTML(
+                        "afterbegin",
+                        `<div class="err">⚠ Translation failed: ${esc(e.message || "unknown")}</div>`,
+                    );
+                }
+            }
+
+            function renderCard(p) {
+                const card = document.querySelector(`[data-id="${p.id}"]`);
+                const d = state[p.id];
+                const stale = !d || Date.now() - d.fetchedAt > STALE_MS;
+                card.querySelector(".age").className = "age" + (stale ? " stale" : "");
+                card.querySelector(".age").textContent =
+                    age(d?.fetchedAt) + (stale && d ? " · stale" : "");
+                const body = card.querySelector(".body");
+                const btn = card.querySelector(".rbtn");
+                btn.innerHTML = "↻";
+                btn.disabled = false;
+                const tbtn = card.querySelector(".tbtn");
+                if (tbtn) {
+                    tbtn.innerHTML = "EN";
+                    tbtn.disabled = false;
+                    tbtn.classList.toggle("active", !!d?.translated);
+                    tbtn.title = d?.translated ? "Show original" : "Translate to English";
+                }
+                if (!d) {
+                    body.innerHTML = '<div class="empty">Tap ↻ to load</div>';
+                    return;
+                }
+                const useEn = !!d.translated;
+                const errHtml =
+                    d.errors && d.errors.length
+                        ? `<div class="err">⚠ ${esc(d.errors[0])}${d.errors.length > 1 ? ` (+${d.errors.length - 1} more)` : ""}</div>`
+                        : "";
+                if (!d.stories || !d.stories.length) {
+                    // Updated the fallback text here to reflect the 5-day limit
+                    body.innerHTML =
+                        errHtml || '<div class="empty">No results in the last 3 days</div>';
+                    return;
+                }
+                const span = parseInt(card.dataset.span || "1", 10);
+                const rows = getRows(p.id);
+                let shown = d.stories.slice(0, span * rows);
+                if (span > 1 && shown.length < span * rows && shown.length >= span) {
+                    shown = shown.slice(0, Math.floor(shown.length / span) * span);
+                }
+                body.innerHTML =
+                    errHtml +
+                    shown
+                        .map((s) => {
+                            const title = useEn && s.titleEn ? s.titleEn : s.title;
+                            const summary =
+                                useEn && s.summaryEn !== undefined ? s.summaryEn : s.summary;
+                            return `
+            <div class="item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
+              <h3>${esc(title)} ↗</h3>
+              <div class="meta">${esc(s.source)}${s.source && s.date ? " · " : ""}${esc(fmtD(s.date))}</div>
+              ${summary ? `<div class="desc">${esc(summary)}</div>` : ""}
+            </a></div>`;
+                        })
+                        .join("");
+            }
+
+            // ── Drag-to-reorder ──
+            const ORDER_KEY = "farright_tracker_order_v1";
+            const loadOrder = () => { try { return JSON.parse(localStorage.getItem(ORDER_KEY)) || null; } catch { return null; } };
+            const saveOrderIds = (ids) => { try { localStorage.setItem(ORDER_KEY, JSON.stringify(ids)); } catch {} };
+            const clearOrderKey = () => { try { localStorage.removeItem(ORDER_KEY); } catch {} };
+
+            function applySavedOrder() {
+                const saved = loadOrder();
+                if (!saved || !Array.isArray(saved)) return;
+                PARTIES.sort((a, b) => {
+                    const ai = saved.indexOf(a.id);
+                    const bi = saved.indexOf(b.id);
+                    if (ai === -1 && bi === -1) return 0;
+                    if (ai === -1) return 1;
+                    if (bi === -1) return -1;
+                    return ai - bi;
+                });
+            }
+
+            function initSortable() {
+                const grid = document.getElementById("grid");
+                if (typeof Sortable === "undefined") return;
+                Sortable.create(grid, {
+                    handle: ".head",
+                    filter: ".rbtn, .tbtn, .resize, .vresize",
+                    preventOnFilter: false,
+                    animation: 150,
+                    ghostClass: "card-ghost",
+                    dragClass: "card-drag",
+                    onEnd() {
+                        saveOrderIds([...grid.children].map((el) => el.dataset.id));
+                    },
+                });
+            }
+
+            // ── Resize handles ──
+            function initResize(card) {
+                const handle = card.querySelector(".resize");
+                if (!handle) return;
+                handle.addEventListener("pointerdown", (e) => {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    const cols = gridColCount();
+                    if (cols < 2) return;
+                    e.preventDefault();
+                    const grid = document.getElementById("grid");
+                    const gridRect = grid.getBoundingClientRect();
+                    const cs = getComputedStyle(grid);
+                    const gap = parseFloat(cs.columnGap || cs.gap) || 0;
+                    const colW =
+                        (gridRect.width -
+                            (parseFloat(cs.paddingLeft) || 0) -
+                            (parseFloat(cs.paddingRight) || 0) -
+                            gap * (cols - 1)) / cols;
+                    const cardLeft = card.getBoundingClientRect().left - gridRect.left;
+                    const party = PARTIES.find((p) => p.id === card.dataset.id);
+                    try { handle.setPointerCapture(e.pointerId); } catch {}
+                    handle.classList.add("resizing");
+                    document.body.style.userSelect = "none";
+                    let lastSpan = parseInt(card.dataset.span || "1", 10);
+                    function onMove(ev) {
+                        const x = ev.clientX - gridRect.left - cardLeft;
+                        let span = Math.round((x + gap) / (colW + gap));
+                        span = Math.max(1, Math.min(cols, span));
+                        if (span !== lastSpan) {
+                            card.style.gridColumn = `span ${span}`;
+                            card.dataset.span = String(span);
+                            lastSpan = span;
+                        }
+                    }
+                    function onUp() {
+                        handle.removeEventListener("pointermove", onMove);
+                        handle.removeEventListener("pointerup", onUp);
+                        handle.removeEventListener("pointercancel", onUp);
+                        handle.classList.remove("resizing");
+                        document.body.style.userSelect = "";
+                        setSpanPref(card.dataset.id, parseInt(card.dataset.span, 10));
+                        if (party) renderCard(party);
+                    }
+                    handle.addEventListener("pointermove", onMove);
+                    handle.addEventListener("pointerup", onUp);
+                    handle.addEventListener("pointercancel", onUp);
+                });
+            }
+
+            function initVResize(card) {
+                const handle = card.querySelector(".vresize");
+                if (!handle) return;
+                handle.addEventListener("pointerdown", (e) => {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    e.preventDefault();
+                    const party = PARTIES.find((p) => p.id === card.dataset.id);
+                    if (!party) return;
+                    const body = card.querySelector(".body");
+                    const span = parseInt(card.dataset.span || "1", 10);
+                    let itemH = 80; // Right-wing items can have descriptions, so estimate a bit taller.
+                    const items = body.querySelectorAll(".item");
+                    if (items.length > 0) {
+                        const visibleRows = Math.max(1, Math.ceil(items.length / span));
+                        itemH = body.getBoundingClientRect().height / visibleRows;
+                    }
+                    try { handle.setPointerCapture(e.pointerId); } catch {}
+                    handle.classList.add("resizing");
+                    document.body.style.userSelect = "none";
+                    const startY = e.clientY;
+                    const startRows = getRows(card.dataset.id);
+                    let lastRows = startRows;
+                    let pendingRows = startRows;
+                    let rafId = 0;
+                    function commit() {
+                        rafId = 0;
+                        if (pendingRows !== lastRows) {
+                            setRowsPref(card.dataset.id, pendingRows);
+                            renderCard(party);
+                            lastRows = pendingRows;
+                        }
+                    }
+                    function onMove(ev) {
+                        const dy = ev.clientY - startY;
+                        const delta = Math.floor((dy + itemH * 0.2) / itemH);
+                        let rows = Math.max(1, Math.min(MAX_ROWS, startRows + delta));
+                        if (rows !== pendingRows) {
+                            pendingRows = rows;
+                            if (!rafId) rafId = requestAnimationFrame(commit);
+                        }
+                    }
+                    function onUp() {
+                        handle.removeEventListener("pointermove", onMove);
+                        handle.removeEventListener("pointerup", onUp);
+                        handle.removeEventListener("pointercancel", onUp);
+                        handle.classList.remove("resizing");
+                        document.body.style.userSelect = "";
+                        if (rafId) { cancelAnimationFrame(rafId); commit(); }
+                    }
+                    handle.addEventListener("pointermove", onMove);
+                    handle.addEventListener("pointerup", onUp);
+                    handle.addEventListener("pointercancel", onUp);
+                });
+            }
+
+            function render() {
+                applySavedOrder();
+                document.getElementById("grid").innerHTML = PARTIES.map(
+                    (p) => `
+            <div class="card ${p.id}" data-id="${p.id}" data-span="1">
+              <div class="head">
+                <div class="head-left">
+                  <div class="card-icon">${ICONS[p.id] || ""}</div>
+                  <div class="head-text">
+                    <div class="title">${esc(p.name)}</div>
+                    <div class="age">never</div>
+                  </div>
+                </div>
+                <div class="head-btns">
+                  ${p.lang && p.lang !== "en" && !p.type ? '<button class="tbtn" title="Translate to English">EN</button>' : ""}
+                  <button class="rbtn">↻</button>
+                </div>
+              </div>
+              <div class="body"><div class="empty">Tap ↻ to load</div></div>
+              <div class="resize" title="Drag to resize width"></div>
+              <div class="vresize" title="Drag to resize height"></div>
+            </div>`,
+                ).join("");
+
+                document.querySelectorAll("#grid .card").forEach((card) => {
+                    applyLayout(card);
+                    initResize(card);
+                    initVResize(card);
+                });
+
+                // Implemented auto-fetch logic here
+                PARTIES.forEach((p) => {
+                    document
+                        .querySelector(`[data-id="${p.id}"] .rbtn`)
+                        .addEventListener("click", () => fetchParty(p));
+                    const tbtn = document.querySelector(`[data-id="${p.id}"] .tbtn`);
+                    if (tbtn) tbtn.addEventListener("click", () => translateCard(p));
+                    
+                    if (state[p.id]) {
+                        renderCard(p);
+                        // Auto-fetch if cached data is older than STALE_MS (3 hours)
+                        if (Date.now() - state[p.id].fetchedAt > STALE_MS) {
+                            fetchParty(p);
+                        }
+                    } else {
+                        // Auto-fetch immediately if no cache exists
+                        fetchParty(p);
+                    }
+                });
+            }
+            document.getElementById("translateAll").addEventListener("click", async (e) => {
+                const btn = e.target;
+                const translatable = PARTIES.filter((p) => p.lang && p.lang !== "en" && !p.type);
+                const loaded = translatable.filter((p) => state[p.id]?.stories?.length);
+                if (!loaded.length) return;
+
+                const allTranslated = loaded.every((p) => state[p.id]?.translated);
+
+                if (allTranslated) {
+                    loaded.forEach((p) => {
+                        state[p.id].translated = false;
+                    });
+                    store.set(state);
+                    loaded.forEach((p) => renderCard(p));
+                    btn.classList.remove('active');
+                    return;
+                }
+
+                btn.innerHTML = '<span class="spin">↻</span>';
+                btn.disabled = true;
+
+                const toTranslate = loaded.filter((p) => !state[p.id]?.translated);
+                await Promise.all(
+                    toTranslate.map(async (p) => {
+                        const d = state[p.id];
+                        const card = document.querySelector(`[data-id="${p.id}"]`);
+                        const tbtn = card?.querySelector(".tbtn");
+                        if (tbtn) {
+                            tbtn.innerHTML = '<span class="spin">↻</span>';
+                            tbtn.disabled = true;
+                        }
+
+                        const needsTranslation = d.stories.some(
+                            (s) => s.titleEn === undefined || s.summaryEn === undefined,
+                        );
+                        if (needsTranslation) {
+                            await Promise.all(
+                                d.stories.map(async (s) => {
+                                    if (s.titleEn === undefined) {
+                                        try { s.titleEn = await translateText(s.title, p.lang); }
+                                        catch { s.titleEn = s.title; }
+                                    }
+                                    if (s.summaryEn === undefined) {
+                                        try { s.summaryEn = s.summary ? await translateText(s.summary, p.lang) : ""; }
+                                        catch { s.summaryEn = s.summary || ""; }
+                                    }
+                                }),
+                            );
+                        }
+                        d.translated = true;
+                        renderCard(p);
+                    }),
+                );
+
+                store.set(state);
+                btn.innerHTML = "EN";
+                btn.disabled = false;
+                btn.classList.add('active');
+            });
+            document.getElementById("refreshAll").addEventListener("click", async (e) => {
+                e.target.disabled = true;
+                await Promise.all(PARTIES.map(fetchParty));
+                e.target.disabled = false;
+            });
+            document.getElementById("resetOrder").addEventListener("click", () => {
+                clearOrderKey();
+                spanStore.clear();
+                rowStore.clear();
+                location.reload();
+            });
+
+            // Export current layout to a JSON file
+            document.getElementById("exportLayout").addEventListener("click", () => {
+                const data = {
+                    monitor: "rightwing-monitor",
+                    version: 1,
+                    exportedAt: new Date().toISOString(),
+                    order: loadOrder(),
+                    spans: spanStore.get(),
+                    rows: rowStore.get(),
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `rightwing-monitor-${new Date().toISOString().slice(0, 10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+
+            // Import layout from a JSON file
+            document.getElementById("importLayout").addEventListener("click", () => {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "application/json,.json";
+                input.addEventListener("change", (e) => {
+                    const file = e.target.files && e.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        try {
+                            const data = JSON.parse(reader.result);
+                            if (data.monitor && data.monitor !== "rightwing-monitor") {
+                                alert(`This layout is for "${data.monitor}" and can't be applied here — the cards are different. Load it into that monitor instead.`);
+                                return;
+                            }
+                            if (Array.isArray(data.order)) saveOrderIds(data.order); else clearOrderKey();
+                            if (data.spans && typeof data.spans === "object") spanStore.set(data.spans); else spanStore.clear();
+                            if (data.rows && typeof data.rows === "object") rowStore.set(data.rows); else rowStore.clear();
+                            location.reload();
+                        } catch (err) {
+                            alert("Could not parse layout file: " + err.message);
+                        }
+                    };
+                    reader.readAsText(file);
+                });
+                input.click();
+            });
+
+            render();
+            initSortable();
+
+            // Re-apply layout when crossing viewport breakpoints
+            let lastCols = gridColCount();
+            window.addEventListener("resize", () => {
+                const cols = gridColCount();
+                if (cols !== lastCols) {
+                    lastCols = cols;
+                    document.querySelectorAll("#grid .card").forEach(applyLayout);
+                    PARTIES.forEach((p) => { if (state[p.id]) renderCard(p); });
+                }
+            });
+        </script>
+    </body>
+</html>

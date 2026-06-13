@@ -1,0 +1,246 @@
+{{/*
+  Blog Feed — Horizontal footer variant
+  5 random posts from /blog/, baked at build time.
+*/}}
+
+{{ $posts := where site.RegularPages "Section" "blog" }}
+{{ $data := slice }}
+{{ range $posts }}
+  {{ $summary := "" }}
+  {{ with .Params.dek }}{{ $summary = . }}{{ end }}
+  {{ if eq $summary "" }}{{ with .Params.summary }}{{ $summary = . }}{{ end }}{{ end }}
+  {{ if eq $summary "" }}{{ $summary = .Summary | plainify }}{{ end }}
+  {{ $data = $data | append (dict
+    "title" .Title
+    "link" .RelPermalink
+    "description" $summary
+    "pubDate" (.Date.Format "2006-01-02")
+  ) }}
+{{ end }}
+
+<aside class="blog-footer" id="blog-footer" aria-label="Blog feed" style="display:none">
+  <div class="blog-footer__header">
+    <svg class="blog-footer__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <line x1="16" y1="8" x2="2" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="blog-footer__title">From the blog</span>
+    <a class="blog-footer__follow" href="/blog/">All posts</a>
+  </div>
+  <div class="blog-footer__posts" id="blog-footer-posts">
+    <div class="blog-footer__loading">Loading posts&hellip;</div>
+  </div>
+  <a class="blog-footer__view-more" href="/blog/">
+    Browse all blog posts &rarr;
+  </a>
+</aside>
+
+<script>window.__blogPosts = {{ $data | jsonify | safeJS }};</script>
+
+<style>
+  .blog-footer {
+    border-top: 1px solid #e2e2e2;
+    padding: 1.5rem 0 0.75rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-top: 3rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .blog-footer__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .blog-footer__icon {
+    width: 18px;
+    height: 18px;
+    color: #8b2500;
+    flex-shrink: 0;
+  }
+  .blog-footer__title {
+    font-weight: 600;
+    flex-grow: 1;
+    font-size: 0.9rem;
+  }
+  .blog-footer__follow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background: #8b2500;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .blog-footer__follow:hover {
+    background: #c4522a;
+  }
+  .blog-footer__posts {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .blog-footer__loading {
+    color: #888;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+  .blog-footer__error {
+    color: #c0392b;
+    font-size: 0.8rem;
+    padding: 1rem 0;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  .blog-ft-post {
+    padding: 0.75rem;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .blog-ft-post:hover {
+    border-color: #8b2500;
+  }
+  .blog-ft-post__title {
+    margin: 0 0 0.35rem 0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-ft-post__excerpt {
+    margin: 0 0 0.4rem 0;
+    color: #555;
+    font-size: 0.78rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+  .blog-ft-post__date {
+    font-size: 0.72rem;
+    color: #888;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid #eee;
+  }
+
+  .blog-footer__view-more {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #8b2500;
+    text-decoration: none;
+  }
+  .blog-footer__view-more:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 900px) {
+    .blog-footer__posts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    .blog-footer__posts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 420px) {
+    .blog-footer__posts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .blog-footer {
+      border-top-color: #333;
+    }
+    .blog-ft-post {
+      background: #1a1a1a;
+      border-color: #333;
+    }
+    .blog-ft-post__title {
+      color: #e0e0e0;
+    }
+    .blog-ft-post__excerpt {
+      color: #aaa;
+    }
+    .blog-ft-post__date {
+      border-top-color: #333;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  var aside = document.getElementById("blog-footer");
+  if (window.__feedPick && window.__feedPick !== "blog") {
+    if (aside && aside.parentNode) aside.parentNode.removeChild(aside);
+    return;
+  }
+  if (aside) aside.style.display = "";
+
+  var POST_LIMIT = 5;
+  var container = document.getElementById("blog-footer-posts");
+
+  var posts = Array.isArray(window.__blogPosts) ? window.__blogPosts : [];
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.appendChild(document.createTextNode(str || ""));
+    return div.innerHTML;
+  }
+
+  function formatDate(dateStr) {
+    var d = new Date(dateStr);
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function renderPost(item) {
+    var excerpt = item.description || "";
+    if (excerpt.length > 200) excerpt = excerpt.slice(0, 200).replace(/\s+\S*$/, "") + "…";
+    return '<a class="blog-ft-post" href="' + escapeHtml(item.link) + '">' +
+      '<h3 class="blog-ft-post__title">' + escapeHtml(item.title) + '</h3>' +
+      '<p class="blog-ft-post__excerpt">' + escapeHtml(excerpt) + '</p>' +
+      '<div class="blog-ft-post__date">' + formatDate(item.pubDate) + '</div>' +
+      '</a>';
+  }
+
+  if (!posts.length) {
+    container.innerHTML = '<div class="blog-footer__loading">No posts yet.</div>';
+    return;
+  }
+  var picked = shuffle(posts).slice(0, POST_LIMIT);
+  container.innerHTML = picked.map(renderPost).join("");
+})();
+</script>
