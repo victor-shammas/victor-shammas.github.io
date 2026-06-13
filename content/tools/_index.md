@@ -15,6 +15,10 @@ url: "/tools/"
 
 [**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Right-wing populist actors across Europe and the U.S.
 
+<h2 class="section-heading">Audio Briefings</h2>
+
+[**Shammas Space & Tech Briefing**](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) — AI-generated daily audio briefing on space, AI, and the wider tech industry. Listen on Spotify.
+
 <h2 class="section-heading">Other Tools</h2>
 
 [**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
