@@ -1,7 +1,7 @@
 ---
 title: Trump’s Nordic Encounter
 date: 2025-04-17
-draft: true
+draft: false
 dek: The Global South knows what US imperialism means. The Nordic countries are beginning to catch on.
 image: /images/blog/255ffe2c-afbb-4d9a-862a-cc41c35964e9_5325x3550.jpg
 summary: ''
