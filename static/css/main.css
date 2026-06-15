@@ -328,6 +328,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
 
 .pub-entry .journal { font-style: italic; }
 
+.prose .pdf-link,
 .pub-entry .pdf-link {
   display: inline-flex;
   align-items: center;
@@ -341,8 +342,21 @@ body.is-resizing-sidebar * { user-select: none !important; }
   margin-left: 0.4rem;
   transition: color 0.15s;
 }
-.pub-entry .pdf-link:hover { color: var(--link-hover); }
+.prose .pdf-link:hover,
+.pub-entry .pdf-link:hover { color: var(--link-hover); text-decoration: none; }
+.prose .pdf-link::before,
 .pub-entry .pdf-link::before { content: '⤓'; font-size: 0.9em; }
+
+/* ── Norwegian page: links match Research title-link styling
+   (no underline by default, bold, underline on hover) ───────── */
+.page-norwegian .prose a:not(.pdf-link) {
+  text-decoration: none;
+  font-weight: 500;
+}
+.page-norwegian .prose a:not(.pdf-link):hover {
+  text-decoration: underline;
+  color: var(--link-hover);
+}
 
 .pub-sub {
   margin-top: 0.4rem;

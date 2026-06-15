@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="shortcut icon" href="/favicon.ico">
 </head>
-<body>
+<body class="page-{{ if .IsHome }}home{{ else if and .File (ne .File.BaseFileName "_index") }}{{ .File.BaseFileName }}{{ else }}{{ .Section }}{{ end }}">
   <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open menu">☰</button>
   <div class="overlay" onclick="toggleMenu()"></div>
   <div class="site">
