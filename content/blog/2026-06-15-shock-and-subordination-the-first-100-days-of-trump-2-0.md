@@ -1,7 +1,7 @@
 ---
 title: 'Shock and Subordination: The First 100 Days of Trump 2.0'
 date: 2025-04-29
-draft: true
+draft: false
 dek: Trump's desire for power seems limitless. But people are beginning to wake up to the real-world consequences of his policies.
 image: /images/blog/photo-1743907727919-fd38c1b0501b.jpg
 summary: ''
