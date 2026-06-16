@@ -506,7 +506,14 @@ function directFeedUrl(url) {
   return `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}&count=50${keyParam}&_cb=${Date.now()}`;
 }
 
-async function fetchPanel(panel) {
+function isTransient(msg) {
+  if (!msg) return false;
+  const m = String(msg).toLowerCase();
+  return m.includes('being processed') || m.includes('try again')
+      || m.includes('rate limit') || m.includes('temporarily');
+}
+
+async function fetchPanel(panel, retryCount = 0) {
   const card = document.querySelector(`#grid [data-id="${panel.id}"]`);
   if (!card) return;
   const btn = card.querySelector('.om-rbtn');
@@ -563,13 +570,22 @@ async function fetchPanel(panel) {
       });
     // Skip canonical ranking for direct-RSS feeds — all of their items
     // are already from greenlist-tier outlets we curated by hand.
-    const stories = (panel.type !== 'feeds' && window.MonitorCanon && window.MonitorCanon.rankByCanon)
+    const fresh = (panel.type !== 'feeds' && window.MonitorCanon && window.MonitorCanon.rankByCanon)
       ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, 'date')
       : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
 
-    state[panel.id] = { stories, fetchedAt: Date.now(), errors };
+    // Stale-while-revalidate
+    const prev = state[panel.id]?.stories || [];
+    const stories = fresh.length ? fresh : prev;
+    const stale = !fresh.length && prev.length > 0;
+
+    state[panel.id] = { stories, fetchedAt: Date.now(), errors, stale };
     store.set(state);
     renderCard(panel);
+
+    if (!fresh.length && retryCount < 1 && errors.length && errors.every(isTransient)) {
+      setTimeout(() => fetchPanel(panel, retryCount + 1), 2500);
+    }
   } catch (e) {
     card.querySelector('.om-card-body').innerHTML = `<div class="om-err">⚠ ${esc(e.message || 'Failed')}</div>`;
     btn.innerHTML = '↻';

@@ -718,7 +718,14 @@
                 });
             }
 
-            async function fetchParty(p) {
+            function isTransient(msg) {
+                if (!msg) return false;
+                const m = String(msg).toLowerCase();
+                return m.includes("being processed") || m.includes("try again")
+                    || m.includes("rate limit") || m.includes("temporarily");
+            }
+
+            async function fetchParty(p, retryCount = 0) {
                 const card = document.querySelector(`[data-id="${p.id}"]`);
                 const btn = card.querySelector(".rbtn");
                 btn.innerHTML = '<span class="spin">↻</span>';
@@ -788,9 +795,19 @@
                             ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, "date")
                             : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
                     }
-                    state[p.id] = { stories, fetchedAt: Date.now(), errors };
+                    // Stale-while-revalidate
+                    const prev = state[p.id]?.stories || [];
+                    const fresh = stories;
+                    if (!fresh.length && prev.length) stories = prev;
+                    const stale = !fresh.length && prev.length > 0;
+
+                    state[p.id] = { stories, fetchedAt: Date.now(), errors, stale };
                     store.set(state);
                     renderCard(p);
+
+                    if (!fresh.length && retryCount < 1 && errors.length && errors.every(isTransient)) {
+                        setTimeout(() => fetchParty(p, retryCount + 1), 2500);
+                    }
                 } catch (e) {
                     card.querySelector(".body").innerHTML =
                         `<div class="err">⚠ ${esc(e.message || "Failed")}</div>`;
