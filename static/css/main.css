@@ -306,7 +306,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
 
 /* ── Publication Entries ─────────────────────────────────────── */
 
-.pub-list { list-style: none; }
+.pub-list { list-style: none; padding: 0; margin: 0; }
 
 .pub-entry {
   margin-bottom: 1.35rem;
