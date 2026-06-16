@@ -595,12 +595,10 @@ function renderCard(panel) {
     return;
   }
 
-  const errHtml = d.errors?.length
-    ? `<div class="om-err">⚠ ${esc(d.errors[0])}${d.errors.length > 1 ? ` (+${d.errors.length - 1} more)` : ''}</div>`
-    : '';
-
   if (!d.stories?.length) {
-    body.innerHTML = errHtml || `<div class="om-empty">No results in the last ${Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS)} days</div>`;
+    body.innerHTML = d.errors?.length
+      ? `<div class="om-empty">Some sources are temporarily unavailable. Try refreshing.</div>`
+      : `<div class="om-empty">No results in the last ${Math.max(panel.lookbackDays || 0, LOOKBACK_DAYS)} days</div>`;
     return;
   }
 
@@ -611,7 +609,7 @@ function renderCard(panel) {
     shown = shown.slice(0, Math.floor(shown.length / span) * span);
   }
 
-  body.innerHTML = errHtml + shown.map(s =>
+  body.innerHTML = shown.map(s =>
     `<div class="om-item"><a href="${esc(s.url)}" target="_blank" rel="noopener">
       <h3>${esc(s.title)}</h3>
       <div class="om-item-meta">${esc(s.source)}${s.source && s.date ? ' · ' : ''}${esc(fmtDate(s.date))}</div>

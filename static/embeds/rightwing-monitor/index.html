@@ -895,14 +895,11 @@
                     return;
                 }
                 const useEn = !!d.translated;
-                const errHtml =
-                    d.errors && d.errors.length
-                        ? `<div class="err">⚠ ${esc(d.errors[0])}${d.errors.length > 1 ? ` (+${d.errors.length - 1} more)` : ""}</div>`
-                        : "";
                 if (!d.stories || !d.stories.length) {
-                    // Updated the fallback text here to reflect the 5-day limit
                     body.innerHTML =
-                        errHtml || '<div class="empty">No results in the last 3 days</div>';
+                        d.errors && d.errors.length
+                            ? '<div class="empty">Some sources are temporarily unavailable. Try refreshing.</div>'
+                            : '<div class="empty">No results in the last 3 days</div>';
                     return;
                 }
                 const span = parseInt(card.dataset.span || "1", 10);
@@ -912,7 +909,6 @@
                     shown = shown.slice(0, Math.floor(shown.length / span) * span);
                 }
                 body.innerHTML =
-                    errHtml +
                     shown
                         .map((s) => {
                             const title = useEn && s.titleEn ? s.titleEn : s.title;
