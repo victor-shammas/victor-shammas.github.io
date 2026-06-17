@@ -13,6 +13,8 @@ url: "/tools/"
 
 [**Tech Monitor**](/tools/tech-monitor/) — Silicon Valley: platform companies, AI labs, chips, enterprise/cloud, key individuals, and commentary.
 
+[**Left Politics Monitor**](/tools/leftpolitics-monitor/) — Social democracy, democratic socialism, and the radical left across Europe and the Americas.
+
 [**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Right-wing populist actors across Europe and the U.S.
 
 <h2 class="section-heading">Audio Briefings</h2>
