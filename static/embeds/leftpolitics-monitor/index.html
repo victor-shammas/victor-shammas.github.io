@@ -399,12 +399,11 @@ const PANELS = [
       'Jacobin OR "New Left Review" OR "Verso Books" OR "Catalyst journal" OR "Tribune magazine" OR "Dissent magazine"',
       '"democratic socialism" OR "social democracy" OR "left critique" OR "post-liberal" OR "left populism"',
     ] },
-  { id: 'france', name: 'French Left',
-    q: '"Jean-Luc Mélenchon" OR "France Insoumise" OR "Nouveau Front Populaire" OR "Parti Socialiste France" OR EELV OR "Les Écologistes" OR "François Ruffin"' },
-  { id: 'germany', name: 'German Left & SPD',
-    q: '"Olaf Scholz" OR "Lars Klingbeil" OR "Die Linke" OR "Heidi Reichinnek" OR "Robert Habeck" OR "Annalena Baerbock" OR "German Greens"' },
-  { id: 'iberia-italy', name: 'Southern European Left',
-    q: 'PSOE OR "Pedro Sánchez" OR Sumar OR "Yolanda Díaz" OR Podemos OR "Bloco de Esquerda" OR "Partito Democratico" OR "Elly Schlein" OR "Alleanza Verdi e Sinistra"' },
+  { id: 'labor', name: 'Labor, Unions & Programs', wide: true, greenlist: true,
+    queries: [
+      '"labor union" OR "trade union" OR "union organizing" OR "labour movement" OR "on strike" OR "strike wave" OR UAW OR Teamsters OR "Starbucks union" OR "Amazon union" OR "International Labour Organization"',
+      '"Green New Deal" OR "Medicare for All" OR "wealth tax" OR "rent control" OR "universal basic income" OR "welfare policy" OR "welfare spending"',
+    ] },
   { id: 'latam', name: 'Latin American Left', wide: true, lookbackDays: 10,
     queries: [
       'Lula OR "Workers\' Party Brazil" OR PT OR "Claudia Sheinbaum" OR Morena',
