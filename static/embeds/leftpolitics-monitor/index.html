@@ -316,15 +316,45 @@ header {
   <div class="hdr-left">
     <div class="hdr-icon">
       <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Stylized rose (traditional symbol of social democracy / the left) -->
-        <path d="M18 11 C14 9, 10 12, 12 16 C13 18, 16 18, 18 17 C20 18, 23 18, 24 16 C26 12, 22 9, 18 11 Z" fill="#a04a3a" opacity="0.85"/>
-        <path d="M18 14 C16 13, 14 14, 15 16 C15.5 17, 17 17, 18 16.5 C19 17, 20.5 17, 21 16 C22 14, 20 13, 18 14 Z" fill="#7a3528" opacity="0.95"/>
-        <circle cx="18" cy="15.5" r="0.7" fill="#5a2418"/>
-        <path d="M18 17 L18 28" stroke="#3a5a3a" stroke-width="1.2" opacity="0.85"/>
-        <path d="M18 21 Q14 21 12 24" stroke="#3a5a3a" stroke-width="1" fill="none" opacity="0.7"/>
-        <path d="M14 24 Q12 23 11 25" stroke="#3a5a3a" stroke-width="0.9" fill="none" opacity="0.6"/>
-        <path d="M18 24 Q22 24 24 27" stroke="#3a5a3a" stroke-width="1" fill="none" opacity="0.7"/>
-        <path d="M22 27 Q24 26 25 28" stroke="#3a5a3a" stroke-width="0.9" fill="none" opacity="0.6"/>
+        <!-- Parliamentary semicircle: left half oxblood-filled, right half grey-outlined -->
+        <path d="M3 22 A15 15 0 0 1 33 22" stroke="rgba(0,0,0,0.15)" stroke-width="0.4" fill="none"/>
+        <line x1="18" y1="6" x2="18" y2="18.5" stroke="rgba(0,0,0,0.25)" stroke-width="0.4" stroke-dasharray="0.8 0.8"/>
+        <circle cx="13.17" cy="20.71" r="0.85" fill="#7a2818"/>
+        <circle cx="14.46" cy="18.46" r="0.85" fill="#7a2818"/>
+        <circle cx="16.71" cy="17.17" r="0.85" fill="#7a2818"/>
+        <circle cx="10.15" cy="20.44" r="0.85" fill="#7a2818"/>
+        <circle cx="11.35" cy="17.56" r="0.85" fill="#7a2818"/>
+        <circle cx="13.56" cy="15.35" r="0.85" fill="#7a2818"/>
+        <circle cx="16.44" cy="14.15" r="0.85" fill="#7a2818"/>
+        <circle cx="7.14" cy="20.28" r="0.85" fill="#7a2818"/>
+        <circle cx="8.20" cy="17.01" r="0.85" fill="#7a2818"/>
+        <circle cx="10.22" cy="14.22" r="0.85" fill="#7a2818"/>
+        <circle cx="13.01" cy="12.20" r="0.85" fill="#7a2818"/>
+        <circle cx="16.28" cy="11.14" r="0.85" fill="#7a2818"/>
+        <circle cx="4.12" cy="20.17" r="0.85" fill="#7a2818"/>
+        <circle cx="5.07" cy="16.64" r="0.85" fill="#7a2818"/>
+        <circle cx="6.89" cy="13.48" r="0.85" fill="#7a2818"/>
+        <circle cx="9.48" cy="10.89" r="0.85" fill="#7a2818"/>
+        <circle cx="12.64" cy="9.07" r="0.85" fill="#7a2818"/>
+        <circle cx="16.17" cy="8.12" r="0.85" fill="#7a2818"/>
+        <circle cx="19.29" cy="17.17" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="21.54" cy="18.46" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="22.83" cy="20.71" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="19.56" cy="14.15" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="22.44" cy="15.35" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="24.65" cy="17.56" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="25.85" cy="20.44" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="19.72" cy="11.14" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="22.99" cy="12.20" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="25.78" cy="14.22" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="27.80" cy="17.01" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="28.86" cy="20.28" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="19.83" cy="8.12" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="23.36" cy="9.07" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="26.52" cy="10.89" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="29.11" cy="13.48" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="30.93" cy="16.64" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
+        <circle cx="31.88" cy="20.17" r="0.85" fill="none" stroke="#999" stroke-width="0.5"/>
       </svg>
     </div>
     <div>
@@ -357,7 +387,7 @@ const PANELS = [
   { id: 'germany', name: 'German Left & SPD',
     q: '"Olaf Scholz" OR "Lars Klingbeil" OR "Die Linke" OR "Heidi Reichinnek" OR "Robert Habeck" OR "Annalena Baerbock" OR "German Greens"' },
   { id: 'nordic', name: 'Nordic Left',
-    q: 'Arbeiderpartiet OR "Jonas Gahr Støre" OR Rødt OR "Bjørnar Moxnes" OR SV OR "Sosialistisk Venstreparti" OR Vänsterpartiet OR "Nooshi Dadgostar" OR Enhedslisten' },
+    q: 'Arbeiderpartiet OR "Jonas Gahr Støre" OR Rødt OR "Bjørnar Moxnes" OR "Sosialistisk Venstreparti" OR Vänsterpartiet OR "Nooshi Dadgostar" OR Enhedslisten' },
   { id: 'iberia-italy', name: 'Southern European Left',
     q: 'PSOE OR "Pedro Sánchez" OR Sumar OR "Yolanda Díaz" OR Podemos OR "Bloco de Esquerda" OR "Partito Democratico" OR "Elly Schlein" OR "Alleanza Verdi e Sinistra"' },
   { id: 'latam', name: 'Latin American Left', wide: true, lookbackDays: 10,
