@@ -378,6 +378,8 @@ header {
 // ── Left Politics Monitor ──
 
 const PANELS = [
+  { id: 'us', name: 'US Progressive Left', greenlist: true,
+    q: '"Bernie Sanders" OR "Alexandria Ocasio-Cortez" OR AOC OR "Democratic Socialists" OR "the Squad" OR "Zohran Mamdani" OR "Ilhan Omar" OR "Rashida Tlaib"' },
   { id: 'uk', name: 'UK Labour & the Left', greenlist: true,
     q: '"Keir Starmer" OR "UK Labour" OR "Jeremy Corbyn" OR "Zarah Sultana" OR "Your Party" OR "Diane Abbott" OR "John McDonnell" OR "Green Party UK" OR "Zach Polanski"' },
   { id: 'nordic', name: 'Nordic Left', interleave: true,
@@ -386,25 +388,23 @@ const PANELS = [
       { hl: 'sv', gl: 'SE', q: 'Vänsterpartiet OR "Nooshi Dadgostar" OR Socialdemokraterna OR "Magdalena Andersson" OR Miljöpartiet' },
       { hl: 'da', gl: 'DK', q: 'Enhedslisten OR SF OR "Socialistisk Folkeparti" OR Socialdemokratiet OR "Mette Frederiksen" OR Alternativet' },
     ] },
-  { id: 'france', name: 'French Left',
-    q: '"Jean-Luc Mélenchon" OR "France Insoumise" OR "Nouveau Front Populaire" OR "Parti Socialiste France" OR EELV OR "Les Écologistes" OR "François Ruffin"' },
-  { id: 'germany', name: 'German Left & SPD',
-    q: '"Olaf Scholz" OR "Lars Klingbeil" OR "Die Linke" OR "Heidi Reichinnek" OR "Robert Habeck" OR "Annalena Baerbock" OR "German Greens"' },
-  { id: 'iberia-italy', name: 'Southern European Left',
-    q: 'PSOE OR "Pedro Sánchez" OR Sumar OR "Yolanda Díaz" OR Podemos OR "Bloco de Esquerda" OR "Partito Democratico" OR "Elly Schlein" OR "Alleanza Verdi e Sinistra"' },
-  { id: 'us', name: 'US Progressive Left', greenlist: true,
-    q: '"Bernie Sanders" OR "Alexandria Ocasio-Cortez" OR AOC OR "Democratic Socialists" OR "the Squad" OR "Zohran Mamdani" OR "Ilhan Omar" OR "Rashida Tlaib"' },
+  { id: 'labor', name: 'Labor & Welfare', wide: true, greenlist: true,
+    queries: [
+      '"labor union" OR "trade union" OR "union organizing" OR "labour movement" OR "on strike" OR "strike wave" OR UAW OR Teamsters OR "Starbucks union" OR "Amazon union" OR "International Labour Organization"',
+      '"Green New Deal" OR "Medicare for All" OR "wealth tax" OR "rent control" OR UBI',
+    ] },
   { id: 'commentary', name: 'Left Commentary & Theorists', wide: true, greenlist: true, lookbackDays: 14,
     queries: [
       '"Yanis Varoufakis" OR DiEM25 OR "Naomi Klein" OR "Wendy Brown" OR "Chantal Mouffe" OR "Wolfgang Streeck"',
       'Jacobin OR "New Left Review" OR "Verso Books" OR "Catalyst journal" OR "Tribune magazine" OR "Dissent magazine"',
       '"democratic socialism" OR "social democracy" OR "left critique" OR "post-liberal" OR "left populism"',
     ] },
-  { id: 'labor', name: 'Labor, Unions & Programs', wide: true, greenlist: true,
-    queries: [
-      '"labor union" OR "trade union" OR "union organizing" OR "labour movement" OR "on strike" OR "strike wave" OR UAW OR Teamsters OR "Starbucks union" OR "Amazon union" OR "International Labour Organization"',
-      '"Green New Deal" OR "Medicare for All" OR "wealth tax" OR "rent control" OR UBI',
-    ] },
+  { id: 'france', name: 'French Left',
+    q: '"Jean-Luc Mélenchon" OR "France Insoumise" OR "Nouveau Front Populaire" OR "Parti Socialiste France" OR EELV OR "Les Écologistes" OR "François Ruffin"' },
+  { id: 'germany', name: 'German Left & SPD',
+    q: '"Olaf Scholz" OR "Lars Klingbeil" OR "Die Linke" OR "Heidi Reichinnek" OR "Robert Habeck" OR "Annalena Baerbock" OR "German Greens"' },
+  { id: 'iberia-italy', name: 'Southern European Left',
+    q: 'PSOE OR "Pedro Sánchez" OR Sumar OR "Yolanda Díaz" OR Podemos OR "Bloco de Esquerda" OR "Partito Democratico" OR "Elly Schlein" OR "Alleanza Verdi e Sinistra"' },
   { id: 'latam', name: 'Latin American Left', wide: true, lookbackDays: 10,
     queries: [
       'Lula OR "Workers\' Party Brazil" OR PT OR "Claudia Sheinbaum" OR Morena',
