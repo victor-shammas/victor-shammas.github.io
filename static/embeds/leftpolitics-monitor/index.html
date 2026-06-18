@@ -378,9 +378,9 @@ header {
 // ── Left Politics Monitor ──
 
 const PANELS = [
-  { id: 'us', name: 'US Progressive Left',
+  { id: 'us', name: 'US Progressive Left', greenlist: true,
     q: '"Bernie Sanders" OR "Alexandria Ocasio-Cortez" OR AOC OR "Democratic Socialists" OR "the Squad" OR "Zohran Mamdani" OR "Ilhan Omar" OR "Rashida Tlaib"' },
-  { id: 'uk', name: 'UK Labour & the Left',
+  { id: 'uk', name: 'UK Labour & the Left', greenlist: true,
     q: '"Keir Starmer" OR "UK Labour" OR "Jeremy Corbyn" OR "Zarah Sultana" OR "Your Party" OR "Diane Abbott" OR "John McDonnell" OR "Green Party UK" OR "Zach Polanski"' },
   { id: 'france', name: 'French Left',
     q: '"Jean-Luc Mélenchon" OR "France Insoumise" OR "Nouveau Front Populaire" OR "Parti Socialiste France" OR EELV OR "Les Écologistes" OR "François Ruffin"' },
@@ -396,13 +396,13 @@ const PANELS = [
       '"Gabriel Boric" OR "Gustavo Petro" OR "Frente Amplio Chile" OR "Frente Amplio Uruguay"',
       'AMLO OR "Mexican left" OR "Pink Tide" OR Sandinista OR "Daniel Ortega"',
     ] },
-  { id: 'commentary', name: 'Left Commentary & Theorists', wide: true, lookbackDays: 14,
+  { id: 'commentary', name: 'Left Commentary & Theorists', wide: true, greenlist: true, lookbackDays: 14,
     queries: [
       '"Yanis Varoufakis" OR DiEM25 OR "Naomi Klein" OR "Wendy Brown" OR "Chantal Mouffe" OR "Wolfgang Streeck"',
       'Jacobin OR "New Left Review" OR "Verso Books" OR "Catalyst journal" OR "Tribune magazine" OR "Dissent magazine"',
       '"democratic socialism" OR "social democracy" OR "left critique" OR "post-liberal" OR "left populism"',
     ] },
-  { id: 'labor', name: 'Labor, Unions & Programs', wide: true,
+  { id: 'labor', name: 'Labor, Unions & Programs', wide: true, greenlist: true,
     queries: [
       '"labor union" OR "trade union" OR "union organizing" OR "labour movement" OR "on strike" OR "strike wave" OR UAW OR Teamsters OR "Starbucks union" OR "Amazon union" OR "International Labour Organization"',
       '"Green New Deal" OR "Medicare for All" OR "wealth tax" OR "rent control" OR UBI',
@@ -582,7 +582,8 @@ async function fetchPanel(panel, retryCount = 0) {
         source: srcOf(it.title),
         date: it.pubDate,
       }));
-    const fresh = (window.MonitorCanon && window.MonitorCanon.rankByCanon)
+    const useCanon = panel.greenlist && window.MonitorCanon && window.MonitorCanon.rankByCanon;
+    const fresh = useCanon
       ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, 'date')
       : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
 
