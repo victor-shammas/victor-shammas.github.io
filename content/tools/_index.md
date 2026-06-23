@@ -21,6 +21,8 @@ url: "/tools/"
 
 [**Shammas Space & Tech Briefing**](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) (Spotify) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
 
+[**Shammas Right-Wing Politics Briefing**](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) (Spotify) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
+
 <h2 class="section-heading">Other Tools</h2>
 
 [**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
