@@ -127,7 +127,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
 }
 .sidebar__nav a:hover { background: var(--sidebar-hover-bg); color: var(--sidebar-hover-text); }
 .sidebar__nav a.active { background: var(--sidebar-hover-bg); color: var(--sidebar-hover-text); font-weight: 500; }
-.sidebar__nav a.external::after { content: '↗'; font-size: 0.7em; margin-left: 0.35em; opacity: 0.5; }
+.sidebar__nav a.external::after { content: '\2197\FE0E'; font-variant-emoji: text; font-size: 0.7em; margin-left: 0.35em; opacity: 0.5; }
 
 .sidebar__footer {
   margin-top: auto;
