@@ -3,6 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{/* Theme: set before stylesheet to avoid a flash of the wrong palette */}}
+  <script>
+  (function(){
+    try {
+      var t = localStorage.getItem('theme');
+      var root = document.documentElement;
+      if (t === 'dark' || t === 'light') root.setAttribute('data-theme', t);
+      var eff = (t === 'dark' || t === 'light') ? t
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      root.setAttribute('data-theme-effective', eff);
+    } catch (e) {}
+  })();
+  </script>
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta name="author" content="{{ .Site.Params.author }}">
@@ -54,6 +67,22 @@
     document.getElementById('sidebar').classList.toggle('open');
     document.querySelector('.overlay').classList.toggle('open');
   }
+  (function(){
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+      var root = document.documentElement;
+      var cur = root.getAttribute('data-theme-effective') || 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      root.setAttribute('data-theme-effective', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      // Live-sync any embedded monitor iframes (same origin).
+      document.querySelectorAll('iframe.tool-embed').forEach(function(f){
+        try { f.contentWindow.postMessage({ type: 'theme', theme: next }, '*'); } catch (e) {}
+      });
+    });
+  })();
   (function () {
     var KEY = 'sidebar_width_px';
     var MIN = 200, MAX = 480;

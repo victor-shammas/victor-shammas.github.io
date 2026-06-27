@@ -3,6 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){
+  try{
+    var t=localStorage.getItem('theme'),r=document.documentElement;
+    if(t==='dark'||t==='light')r.setAttribute('data-theme',t);
+    window.addEventListener('message',function(e){
+      var d=e.data;
+      if(d&&d.type==='theme'&&(d.theme==='dark'||d.theme==='light')){
+        r.setAttribute('data-theme',d.theme);
+        try{localStorage.setItem('theme',d.theme);}catch(_){}
+      }
+    });
+  }catch(_){}
+})();
+</script>
 <title>Left Politics Monitor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +47,21 @@
   --accent-labor:        #a07030;
   --font-display: 'Chakra Petch', sans-serif;
   --font-body: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ── Dark mode ── warm-toned, matches the main site. Auto via OS pref
+   (unless forced light) and explicit via data-theme="dark" from the toggle. */
+:root[data-theme="dark"]{
+  --bg-void:#1b1917;--bg-deep:#211e1b;--bg-card:#262320;--bg-card-hover:#2f2b27;
+  --border-dim:#322d28;--border-mid:#423c35;
+  --text-primary:#e7e1d6;--text-secondary:#b5ada2;--text-muted:#8a8278;--text-bright:#f2ece2;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg-void:#1b1917;--bg-deep:#211e1b;--bg-card:#262320;--bg-card-hover:#2f2b27;
+    --border-dim:#322d28;--border-mid:#423c35;
+    --text-primary:#e7e1d6;--text-secondary:#b5ada2;--text-muted:#8a8278;--text-bright:#f2ece2;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

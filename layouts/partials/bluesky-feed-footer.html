@@ -25,7 +25,7 @@
 
 <style>
   .bsky-footer {
-    border-top: 1px solid #e2e2e2;
+    border-top: 1px solid var(--rule);
     padding: 1.5rem 0 0.75rem;
     font-family: inherit;
     font-size: 0.85rem;
@@ -71,7 +71,7 @@
     gap: 1rem;
   }
   .bsky-footer__loading {
-    color: #888;
+    color: var(--muted);
     font-size: 0.8rem;
     padding: 1rem 0;
     text-align: center;
@@ -88,9 +88,9 @@
   /* Individual post card */
   .bsky-ft-post {
     padding: 0.75rem;
-    border: 1px solid #eee;
+    border: 1px solid var(--rule);
     border-radius: 6px;
-    background: #fafafa;
+    background: var(--warm);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -105,21 +105,21 @@
   }
   .bsky-ft-post__author {
     margin-bottom: 0.35rem;
-    color: #1a1a1a;
+    color: var(--text);
     font-size: 0.78rem;
   }
   .bsky-ft-post__handle {
-    color: #888;
+    color: var(--muted);
     font-weight: normal;
   }
   .bsky-ft-post__repost-label {
-    color: #888;
+    color: var(--muted);
     font-size: 0.72rem;
     font-style: italic;
   }
   .bsky-ft-post__text {
     margin: 0 0 0.4rem 0;
-    color: #1a1a1a;
+    color: var(--text);
     font-size: 0.82rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -134,10 +134,10 @@
     align-items: center;
     gap: 0.6rem;
     font-size: 0.72rem;
-    color: #888;
+    color: var(--muted);
     margin-top: 0.35rem;
     padding-top: 0.35rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--rule);
   }
   .bsky-ft-post__stat {
     display: flex;
@@ -171,24 +171,6 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .bsky-footer {
-      border-top-color: #333;
-    }
-    .bsky-ft-post {
-      background: #1a1a1a;
-      border-color: #333;
-    }
-    .bsky-ft-post__author {
-      color: #e0e0e0;
-    }
-    .bsky-ft-post__text {
-      color: #e0e0e0;
-    }
-    .bsky-ft-post__meta {
-      border-top-color: #333;
-    }
-  }
 </style>
 
 <script>

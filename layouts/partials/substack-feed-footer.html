@@ -26,7 +26,7 @@
 
 <style>
   .stk-footer {
-    border-top: 1px solid #e2e2e2;
+    border-top: 1px solid var(--rule);
     padding: 1.5rem 0 0.75rem;
     font-family: inherit;
     font-size: 0.85rem;
@@ -71,7 +71,7 @@
     gap: 1rem;
   }
   .stk-footer__loading {
-    color: #888;
+    color: var(--muted);
     font-size: 0.8rem;
     padding: 1rem 0;
     text-align: center;
@@ -88,9 +88,9 @@
   /* Individual post card */
   .stk-ft-post {
     padding: 0.75rem;
-    border: 1px solid #eee;
+    border: 1px solid var(--rule);
     border-radius: 6px;
-    background: #fafafa;
+    background: var(--warm);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -107,7 +107,7 @@
     margin: 0 0 0.35rem 0;
     font-size: 0.82rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: var(--text);
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -115,7 +115,7 @@
   }
   .stk-ft-post__excerpt {
     margin: 0 0 0.4rem 0;
-    color: #555;
+    color: var(--muted);
     font-size: 0.78rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -125,10 +125,10 @@
   }
   .stk-ft-post__date {
     font-size: 0.72rem;
-    color: #888;
+    color: var(--muted);
     margin-top: 0.35rem;
     padding-top: 0.35rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--rule);
   }
 
   .stk-footer__view-more {
@@ -161,24 +161,6 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .stk-footer {
-      border-top-color: #333;
-    }
-    .stk-ft-post {
-      background: #1a1a1a;
-      border-color: #333;
-    }
-    .stk-ft-post__title {
-      color: #e0e0e0;
-    }
-    .stk-ft-post__excerpt {
-      color: #aaa;
-    }
-    .stk-ft-post__date {
-      border-top-color: #333;
-    }
-  }
 </style>
 
 <script>

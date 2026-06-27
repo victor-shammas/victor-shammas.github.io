@@ -16,6 +16,7 @@
   --sidebar-text: #CFC9C0;
   --sidebar-hover-bg: #3A3633;
   --sidebar-hover-text: #FFFFFF;
+  --tint: rgba(0,0,0,0.02);
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Source Sans 3', 'Helvetica Neue', sans-serif;
   --text-xs: 0.8rem;     /* 13px — labels, dates, footer, fine print */
@@ -27,6 +28,39 @@
   --text-3xl: 2.2rem;    /* 35px — page/post h1 */
   --max-content: 720px;
   --sidebar-width: 280px;
+}
+
+/* ── Dark mode ───────────────────────────────────────────────────
+   Warm-toned dark palette. Applied two ways: automatically when the
+   OS prefers dark (unless the visitor has forced light), and explicitly
+   when data-theme="dark" is set by the toggle. The sidebar stays its
+   charcoal self in both modes — it simply reads as a raised panel. */
+:root[data-theme="dark"],
+:root[data-theme="dark"] body {
+  --text: #E7E1D6;
+  --paper: #1B1917;
+  --warm: #262320;
+  --accent: #C8775F;
+  --accent-light: #D98C72;
+  --link: #C8775F;
+  --link-hover: #D98C72;
+  --muted: #9B948A;
+  --rule: #322D28;
+  --tint: rgba(255,255,255,0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text: #E7E1D6;
+    --paper: #1B1917;
+    --warm: #262320;
+    --accent: #C8775F;
+    --accent-light: #D98C72;
+    --link: #C8775F;
+    --link-hover: #D98C72;
+    --muted: #9B948A;
+    --rule: #322D28;
+    --tint: rgba(255,255,255,0.04);
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -141,6 +175,33 @@ body.is-resizing-sidebar * { user-select: none !important; }
 .sidebar__footer a:hover { color: var(--sidebar-hover-text); }
 
 .sidebar__links { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 0.75rem; }
+
+/* ── Theme toggle ────────────────────────────────────────────── */
+.theme-toggle {
+  margin-top: 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--sidebar-text);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.theme-toggle:hover { background: var(--sidebar-hover-bg); color: #fff; border-color: rgba(255,255,255,0.25); }
+.theme-toggle__icon { width: 15px; height: 15px; display: block; flex-shrink: 0; }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+:root[data-theme-effective="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme-effective="dark"] .theme-toggle .icon-moon { display: none; }
+.theme-toggle__label::after { content: 'Dark'; }
+:root[data-theme-effective="dark"] .theme-toggle__label::after { content: 'Light'; }
 
 /* ── Mobile Menu ─────────────────────────────────────────────── */
 
@@ -505,7 +566,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
   padding: 0.75rem 1.25rem;
   color: var(--muted);
   font-style: italic;
-  background: rgba(0,0,0,0.02);
+  background: var(--tint);
   border-radius: 0 4px 4px 0;
 }
 .post-body blockquote p { margin-bottom: 0.5rem; }
