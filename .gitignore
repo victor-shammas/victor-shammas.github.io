@@ -15,3 +15,7 @@ Thumbs.db
 
 # Hugo lock
 .hugo_build.lock
+
+# Build-time cache (extracted PDF text for the search index)
+.cache/
+node_modules/

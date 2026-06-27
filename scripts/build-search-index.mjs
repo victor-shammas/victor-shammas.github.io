@@ -15,7 +15,8 @@
 
 import * as pagefind from "pagefind";
 import { execFileSync } from "node:child_process";
-import { readdirSync, mkdtempSync, rmSync, readFileSync } from "node:fs";
+import { readdirSync, mkdtempSync, rmSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -79,37 +80,59 @@ const { index } = await pagefind.createIndex({
 const dir = await index.addDirectory({ path: PUBLIC_DIR });
 console.log(`Indexed ${dir.page_count} HTML pages.`);
 
-// 2. Index PDF full text.
-let pdfCount = 0, ocrCount = 0, emptyCount = 0;
+// 2. Index PDF full text — cached.
+//    The expensive pdftotext/OCR pass only runs for a PDF when its bytes
+//    change OR the workflow cache has rolled over (keyed weekly), so routine
+//    content deploys reuse the cached text and stay fast. The HTML index above
+//    is always rebuilt, so new posts are searchable immediately regardless.
+//    FORCE_PDF_REFRESH=1 ignores the cache and re-extracts everything.
+const CACHE_FILE = ".cache/pdf-text.json";
+const FORCE = process.env.FORCE_PDF_REFRESH === "1";
+let cache = {};
+if (!FORCE && existsSync(CACHE_FILE)) {
+  try { cache = JSON.parse(readFileSync(CACHE_FILE, "utf8")); } catch { cache = {}; }
+}
+const nextCache = {};
+let pdfCount = 0, ocrCount = 0, emptyCount = 0, freshCount = 0, reuseCount = 0;
 const pdfs = readdirSync(PDF_DIR).filter((f) => f.toLowerCase().endsWith(".pdf"));
 for (const file of pdfs) {
   const path = join(PDF_DIR, file);
-  let text = pdftotext(path);
-  let viaOcr = false;
-  if (text.replace(/\s+/g, "").length < OCR_THRESHOLD) {
-    const ocrText = ocr(path);
-    if (ocrText.replace(/\s+/g, "").length > text.replace(/\s+/g, "").length) {
-      text = ocrText;
-      viaOcr = true;
+  const sha = createHash("sha1").update(readFileSync(path)).digest("hex");
+  let entry = cache[file];
+  if (!entry || entry.sha !== sha) {
+    let text = pdftotext(path);
+    let viaOcr = false;
+    if (text.replace(/\s+/g, "").length < OCR_THRESHOLD) {
+      const ocrText = ocr(path);
+      if (ocrText.replace(/\s+/g, "").length > text.replace(/\s+/g, "").length) {
+        text = ocrText;
+        viaOcr = true;
+      }
     }
+    entry = { sha, text: text.replace(/\s+/g, " ").trim(), ocr: viaOcr };
+    freshCount++;
+    if (viaOcr) { ocrCount++; console.log(`  ocr  ${file}`); }
+  } else {
+    reuseCount++;
+    if (entry.ocr) ocrCount++;
   }
-  const clean = text.replace(/\s+/g, " ").trim();
-  if (clean.length < 20) {
+  nextCache[file] = entry;
+  if (!entry.text || entry.text.length < 20) {
     emptyCount++;
     console.warn(`  ⚠ no text extracted: ${file}`);
     continue;
   }
-  const title = titleFromFilename(file);
   await index.addCustomRecord({
     url: `/pdfs/${encodeURIComponent(file)}`,
-    content: clean,
+    content: entry.text,
     language: "en",
-    meta: { title, resource: "PDF" },
+    meta: { title: titleFromFilename(file), resource: "PDF" },
   });
   pdfCount++;
-  if (viaOcr) { ocrCount++; console.log(`  ocr  ${file}`); }
 }
-console.log(`Indexed ${pdfCount} PDFs (${ocrCount} via OCR, ${emptyCount} empty/skipped).`);
+mkdirSync(".cache", { recursive: true });
+writeFileSync(CACHE_FILE, JSON.stringify(nextCache));
+console.log(`Indexed ${pdfCount} PDFs (${freshCount} extracted, ${reuseCount} cached, ${ocrCount} OCR, ${emptyCount} empty).`);
 
 await index.writeFiles({ outputPath: OUT_DIR });
 await pagefind.close();
