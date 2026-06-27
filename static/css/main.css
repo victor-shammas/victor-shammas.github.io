@@ -222,20 +222,8 @@ body.is-resizing-sidebar * { user-select: none !important; }
 .sidebar__search-icon { width: 15px; height: 15px; flex-shrink: 0; opacity: 0.8; }
 .sidebar__search-label { flex-grow: 1; text-align: left; }
 
-/* ── Search modal (Pagefind) ─────────────────────────────────── */
-.search-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: flex-start; justify-content: center; }
-.search-modal[hidden] { display: none; }
-.search-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
-.search-modal__panel {
-  position: relative;
-  margin-top: 10vh;
-  width: min(640px, 92vw);
-  max-height: 80vh; overflow: auto;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.3);
-  padding: 1.5rem 1.25rem 1rem;
+/* ── Search page (Pagefind) ──────────────────────────────────── */
+.search-page {
   --pagefind-ui-primary: var(--accent);
   --pagefind-ui-text: var(--text);
   --pagefind-ui-background: var(--paper);
@@ -245,17 +233,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
   --pagefind-ui-border-radius: 6px;
   --pagefind-ui-font: var(--font-body);
 }
-.search-modal__close {
-  position: absolute; top: 0.4rem; right: 0.7rem;
-  background: none; border: none; color: var(--muted);
-  font-size: 1.6rem; line-height: 1; cursor: pointer; padding: 0.25rem;
-}
-.search-modal__close:hover { color: var(--text); }
 .search-unavailable { color: var(--muted); font-size: var(--text-sm); padding: 1rem 0; }
-body.search-open { overflow: hidden; }
-@media (max-width: 600px) {
-  .search-modal__panel { margin-top: 4vh; width: 94vw; max-height: 88vh; }
-}
 
 /* ── Mobile Menu ─────────────────────────────────────────────── */
 
