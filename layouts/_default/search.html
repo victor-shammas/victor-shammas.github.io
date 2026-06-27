@@ -1,0 +1,60 @@
+{{ define "main" }}
+
+<header class="page-header" data-pagefind-ignore>
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
+</header>
+
+<div id="pagefind-search" class="search-page" data-pagefind-ignore></div>
+
+<script>
+  (function () {
+    function init() {
+      function ready() {
+        /* global PagefindUI */
+        var ui = new PagefindUI({
+          element: '#pagefind-search',
+          showSubResults: true,
+          showImages: false,
+          excerptLength: 24,
+          pageSize: 10,
+          resetStyles: false,
+          autofocus: true
+        });
+        // Prefill from ?q= and keep the URL in sync so results are linkable.
+        var input = document.querySelector('#pagefind-search input');
+        var params = new URLSearchParams(location.search);
+        var q = params.get('q');
+        if (input && q) {
+          input.value = q;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        if (input) {
+          input.addEventListener('input', function () {
+            var u = new URL(location);
+            if (input.value) u.searchParams.set('q', input.value);
+            else u.searchParams.delete('q');
+            history.replaceState(null, '', u);
+          });
+          input.focus();
+        }
+      }
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = '/pagefind/pagefind-ui.css';
+      document.head.appendChild(css);
+      var js = document.createElement('script');
+      js.src = '/pagefind/pagefind-ui.js';
+      js.onload = ready;
+      js.onerror = function () {
+        document.getElementById('pagefind-search').innerHTML =
+          '<p class="search-unavailable">Search index is still building — try again shortly.</p>';
+      };
+      document.body.appendChild(js);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+</script>
+
+{{ end }}
