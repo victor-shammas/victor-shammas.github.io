@@ -275,12 +275,18 @@ body.is-resizing-sidebar * { user-select: none !important; }
   overflow: hidden;
 }
 
-.content:has(> .tool-embed),
-.content:has(> .tool-shell) {
+/* Descendant (not direct-child) match: the page content is wrapped in a
+   data-pagefind-body div for search indexing, so the embed/tool-shell is a
+   grandchild of .content. The plain wrapper div stays full-width, so the
+   iframe fills once .content drops its prose max-width. */
+.content:has(.tool-embed),
+.content:has(.tool-shell) {
   max-width: none;
   padding: 0;
   overflow: visible;
 }
+.content:has(.tool-shell) > [data-pagefind-body],
+.content:has(.tool-embed) > [data-pagefind-body] { display: contents; }
 
 .tool-embed {
   display: block;
