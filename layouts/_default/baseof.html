@@ -85,18 +85,19 @@
   })();
 
   (function(){
-    var btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    btn.addEventListener('click', function(){
-      var root = document.documentElement;
-      var cur = root.getAttribute('data-theme-effective') || 'light';
-      var next = cur === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      root.setAttribute('data-theme-effective', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-      // Live-sync any embedded monitor iframes (same origin).
-      document.querySelectorAll('iframe.tool-embed').forEach(function(f){
-        try { f.contentWindow.postMessage({ type: 'theme', theme: next }, '*'); } catch (e) {}
+    var btns = document.querySelectorAll('.theme-switch__btn[data-theme-set]');
+    if (!btns.length) return;
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var next = b.getAttribute('data-theme-set');
+        var root = document.documentElement;
+        root.setAttribute('data-theme', next);
+        root.setAttribute('data-theme-effective', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        // Live-sync any embedded monitor iframes (same origin).
+        document.querySelectorAll('iframe.tool-embed').forEach(function(f){
+          try { f.contentWindow.postMessage({ type: 'theme', theme: next }, '*'); } catch (e) {}
+        });
       });
     });
   })();

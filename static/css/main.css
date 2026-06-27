@@ -176,32 +176,32 @@ body.is-resizing-sidebar * { user-select: none !important; }
 
 .sidebar__links { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 0.75rem; }
 
-/* ── Theme toggle ────────────────────────────────────────────── */
-.theme-toggle {
+/* ── Theme switch (moon / bulb, active one emphasized) ───────── */
+.theme-switch {
   margin-top: 1.5rem;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.12);
-  color: var(--sidebar-text);
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.4rem 0.75rem;
-  border-radius: 4px;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  gap: 0.5rem;
 }
-.theme-toggle:hover { background: var(--sidebar-hover-bg); color: #fff; border-color: rgba(255,255,255,0.25); }
-.theme-toggle__icon { width: 15px; height: 15px; display: block; flex-shrink: 0; }
-.theme-toggle .icon-sun { display: none; }
-.theme-toggle .icon-moon { display: block; }
-:root[data-theme-effective="dark"] .theme-toggle .icon-sun { display: block; }
-:root[data-theme-effective="dark"] .theme-toggle .icon-moon { display: none; }
-.theme-toggle__label::after { content: 'Dark'; }
-:root[data-theme-effective="dark"] .theme-toggle__label::after { content: 'Light'; }
+.theme-switch__btn {
+  background: none;
+  border: none;
+  padding: 0.15rem;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  opacity: 0.4;
+  display: inline-flex;
+  transition: opacity 0.2s, color 0.2s;
+}
+.theme-switch__btn:hover { opacity: 0.8; }
+.theme-switch__icon { width: 17px; height: 17px; display: block; }
+.theme-switch__sep { color: rgba(255,255,255,0.25); font-size: 0.95rem; line-height: 1; }
+/* Emphasize whichever mode is currently active. */
+:root[data-theme-effective="dark"] .theme-switch__btn[data-theme-set="dark"],
+:root[data-theme-effective="light"] .theme-switch__btn[data-theme-set="light"] {
+  opacity: 1;
+  color: #fff;
+}
 
 /* ── Sidebar search trigger ──────────────────────────────────── */
 .sidebar__search {
@@ -233,6 +233,14 @@ body.is-resizing-sidebar * { user-select: none !important; }
   --pagefind-ui-border-radius: 6px;
   --pagefind-ui-font: var(--font-body);
 }
+/* The search input doesn't pick up --pagefind-ui-text reliably, so its typed
+   text rendered dark-on-dark in dark mode. Bind it to the palette explicitly. */
+.search-page .pagefind-ui__search-input {
+  color: var(--text);
+  background-color: var(--paper);
+}
+.search-page .pagefind-ui__search-input::placeholder { color: var(--muted); }
+.search-page .pagefind-ui__search-clear { color: var(--muted); background-color: transparent; }
 /* Enlarge result text (titles + excerpts read a touch small by default). */
 .search-page .pagefind-ui__result-title,
 .search-page .pagefind-ui__result-link { font-size: 1.1rem; line-height: 1.35; }
