@@ -4,7 +4,7 @@
 {{ $monitorSlugs := slice "ai-monitor" "space-monitor" "rightwing-monitor" "tech-monitor" "leftpolitics-monitor" }}
 {{ $isMonitor := and (eq .Section "tools") (in $monitorSlugs $slug) }}
 {{ if $isMonitor }}
-<div class="tool-shell">
+<div class="tool-shell" data-pagefind-ignore>
   <nav class="tool-tabs" aria-label="Monitor tabs">
     <a href="{{ "/tools/ai-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "ai-monitor" }} active{{ end }}">AI</a>
     <a href="{{ "/tools/space-monitor/" | relURL }}" class="tool-tab{{ if eq $slug "space-monitor" }} active{{ end }}">Space</a>
@@ -25,6 +25,7 @@
   src="{{ .Params.embed_src }}"
   title="{{ .Title }}"
   loading="lazy"
+  data-pagefind-ignore
   referrerpolicy="no-referrer-when-downgrade"></iframe>
 {{ end }}
 {{ end }}

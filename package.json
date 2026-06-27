@@ -1,0 +1,13 @@
+{
+  "name": "victorshammas-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build tooling for victorshammas.com — Pagefind search index incl. full-text PDF extraction.",
+  "type": "module",
+  "scripts": {
+    "build:search": "node scripts/build-search-index.mjs"
+  },
+  "devDependencies": {
+    "pagefind": "^1.1.1"
+  }
+}

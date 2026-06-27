@@ -28,8 +28,22 @@ jobs:
           hugo-version: '0.139.0'
           extended: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install PDF text + OCR tooling
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils tesseract-ocr tesseract-ocr-nor
+
+      - name: Install Node dependencies
+        run: npm install
+
       - name: Build
         run: hugo --minify
+
+      - name: Build search index (HTML + full-text PDFs)
+        run: npm run build:search
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
