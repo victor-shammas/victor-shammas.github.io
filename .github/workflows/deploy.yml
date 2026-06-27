@@ -39,10 +39,25 @@ jobs:
       - name: Install Node dependencies
         run: npm install
 
+      - name: Compute PDF cache key (rolls over weekly, or when a PDF changes)
+        id: pdfkey
+        run: |
+          echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+          echo "set=$(find static/pdfs -name '*.pdf' -printf '%f %s\n' | sort | sha256sum | cut -c1-16)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache extracted PDF text
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          # No restore-keys: a new ISO week (or a changed PDF set) is a cache
+          # miss, which forces the heavy pdftotext/OCR pass to re-run. Within a
+          # week with an unchanged PDF set, the cache hits and text is reused.
+          key: pdf-text-${{ steps.pdfkey.outputs.week }}-${{ steps.pdfkey.outputs.set }}
+
       - name: Build
         run: hugo --minify
 
-      - name: Build search index (HTML + full-text PDFs)
+      - name: Build search index (HTML always; PDF text reused from cache)
         run: npm run build:search
 
       - name: Upload artifact
