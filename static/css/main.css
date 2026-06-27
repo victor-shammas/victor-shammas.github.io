@@ -233,6 +233,12 @@ body.is-resizing-sidebar * { user-select: none !important; }
   --pagefind-ui-border-radius: 6px;
   --pagefind-ui-font: var(--font-body);
 }
+/* Enlarge result text (titles + excerpts read a touch small by default). */
+.search-page .pagefind-ui__result-title,
+.search-page .pagefind-ui__result-link { font-size: 1.1rem; line-height: 1.35; }
+.search-page .pagefind-ui__result-excerpt { font-size: 0.98rem; line-height: 1.55; }
+.search-page .pagefind-ui__result-tags,
+.search-page .pagefind-ui__result .pagefind-ui__button { font-size: 0.9rem; }
 .search-unavailable { color: var(--muted); font-size: var(--text-sm); padding: 1rem 0; }
 
 /* ── Mobile Menu ─────────────────────────────────────────────── */
