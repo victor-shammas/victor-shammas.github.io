@@ -11,7 +11,7 @@ aliases:
 
 [**Klassekampen (Norway): *Marxismen er ikke død***](https://klassekampen.no/artikkel/2026-06-27/marxismen-er-ikke-dod/8iA8) (June 2026). "Nærmere våre dager overbeviser…Shammas i sin lett tilgjengelige artikkel om nødvendigheten av å analysere tek-gigantene ved hjelp av marxistiske nøkkelbegreper: Deres støvsuging av tilgjengelige tekster minner om hvordan britiske storbønder med Parlamentets velsignelse underla seg det som hadde vært allmenning, og slik la grunnlaget for et nytt eiendomsregime. I en ideologisk tilnærming stiller han spørsmålet om hvem det er som fører ordet gjennom KI. Shammas' drøm er en offentlig, ikke-kommersialisert KI."
 
-[**Al Jazeera English: *Inside Story***](https://youtu.be/9xDW_s1ZRJg) (June 2023). Guest appearance on Al Jazeera English's flagship news panel program, *Inside Story*, discussing commercial sea tourism and the commercialization of outer space. [[YouTube](https://youtu.be/9xDW_s1ZRJg)] [[Spotify](https://open.spotify.com/episode/0Psrzd4i3qjXYu9Gi1qdMU)]
+[**Al Jazeera English: *Inside Story***](https://youtu.be/9xDW_s1ZRJg) (June 2023). Guest appearance on Al Jazeera English's flagship news panel program, *Inside Story*, discussing the commercialization of outer space. [[YouTube](https://youtu.be/9xDW_s1ZRJg)] [[Spotify](https://open.spotify.com/episode/0Psrzd4i3qjXYu9Gi1qdMU)]
 
 [**International School of Stavanger — Invited Graduation Speaker**](https://www.youtube.com/live/gGBDW3GU6JY?feature=share&t=1835) for the ISS Class of 2023 graduation ceremony (June 2023). [[YouTube](https://www.youtube.com/live/gGBDW3GU6JY?feature=share&t=1835)]
 
