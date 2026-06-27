@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -29,9 +29,9 @@ jobs:
           extended: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install PDF text + OCR tooling
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils tesseract-ocr tesseract-ocr-nor
@@ -46,7 +46,7 @@ jobs:
           echo "set=$(find static/pdfs -name '*.pdf' -printf '%f %s\n' | sort | sha256sum | cut -c1-16)" >> "$GITHUB_OUTPUT"
 
       - name: Cache extracted PDF text
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .cache
           # No restore-keys: a new ISO week (or a changed PDF set) is a cache
@@ -61,7 +61,7 @@ jobs:
         run: npm run build:search
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
@@ -74,4 +74,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
