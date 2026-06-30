@@ -5,7 +5,7 @@ aliases:
 ---
 <img class="about-photo" src="/images/shammas-keynote-2023.jpg" alt="Victor Shammas delivering keynote address">
 
-Dr. Victor Lund Shammas is Head of Department and Associate Professor of Sociology in the Department of Sociology and Social Work, University of Agder in Norway. He holds a PhD in Sociology from the University of Oslo (2017) and has previously worked as Senior Researcher at the Work Research Institute (AFI), Oslo Metropolitan University.
+Dr. Victor Lund Shammas is Associate Professor of Sociology at the University of Bergen (UiB) in Norway. Formerly, he was Head of Department in the Department of Sociology and Social Work, University of Agder (2021–2026). He holds a PhD in Sociology from the University of Oslo (2017) and has also worked as Senior Researcher at the Work Research Institute (AFI), Oslo Metropolitan University.
 
 His research interests include comparative penology, political economy, critical theory, ethnographic methods, and political theology. He has been a visiting scholar/doctoral student at Stanford University (2017), Stockholm University (2015), and the University of California, Berkeley (2015–2016), and he has served as Deputy Head of the Norwegian National Academic Council for Sociology (Nasjonalt fagorgan for sosiologi), 2023–2024.
 
@@ -27,10 +27,10 @@ He writes a regular Substack newsletter and blog on global politics, culture, an
   </div>
   <div class="contact-item">
     <span class="contact-label">Mail</span>
-    Dr. Victor L. Shammas<br>
-    Dept. of Sociology and Social Work<br>
-    University of Agder<br>
-    PO Box 422, 4604 Kristiansand, Norway
+    Dr. Victor Shammas<br>
+    University of Bergen<br>
+    Department of Sociology<br>
+    PO Box 7802, 5020 Bergen, Norway
   </div>
 </div>
 
