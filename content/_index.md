@@ -27,10 +27,10 @@ He writes a regular Substack newsletter and blog on global politics, culture, an
   </div>
   <div class="contact-item">
     <span class="contact-label">Mail</span>
-    Dr. Victor L. Shammas<br>
-    Dept. of Sociology and Social Work<br>
-    University of Agder<br>
-    PO Box 422, 4604 Kristiansand, Norway
+    Dr. Victor Shammas<br>
+    University of Bergen<br>
+    Department of Sociology<br>
+    PO Box 7802, 5020 Bergen, Norway
   </div>
 </div>
 
