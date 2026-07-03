@@ -89,6 +89,30 @@
     return GREENLIST.some(g => n === g || n.includes(g));
   }
 
+  /*
+   * Redlist: outlets that must never appear in any monitor. Each entry is a
+   * lowercase substring matched against the normalized source name AND the
+   * lowercased item URL, so it catches both the Google-News source label and
+   * the domain. Add sources here to hard-drop them everywhere.
+   */
+  const REDLIST = [
+    'stadium rant', 'stadiumrant',   // sports-blog spam, never relevant
+    'motley fool', 'fool.com',       // stock-picking content marketing
+    'livetipsportal',                // sports-betting spam (name + livetipsportal.com)
+  ];
+
+  function isBlocked(item) {
+    if (!item) return false;
+    const n = normalize(item.source || item._sourceName || '');
+    const u = (item.url || item.link || '').toLowerCase();
+    return REDLIST.some(r => (n && n.includes(r)) || (u && u.includes(r)));
+  }
+
+  // Drop any redlisted items. Safe on undefined/empty.
+  function filterBlocked(items) {
+    return (items || []).filter(it => !isBlocked(it));
+  }
+
   /**
    * Time-decay promotion: each greenlisted item gets PROMOTION_HOURS of
    * synthetic age reduction. Effective score is `(now - pubDate) - boost`;
@@ -124,5 +148,5 @@
     return scored.slice(0, limit).map(s => s.it);
   }
 
-  window.MonitorCanon = { GREENLIST, PROMOTION_HOURS, normalize, isGreenlisted, rankByCanon };
+  window.MonitorCanon = { GREENLIST, REDLIST, PROMOTION_HOURS, normalize, isGreenlisted, isBlocked, filterBlocked, rankByCanon };
 })();
