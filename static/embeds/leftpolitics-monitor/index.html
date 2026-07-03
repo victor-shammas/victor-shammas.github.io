@@ -620,12 +620,13 @@ async function fetchPanel(panel, retryCount = 0) {
         source: srcOf(it.title),
         date: it.pubDate,
       }));
+    const kept = (window.MonitorCanon && window.MonitorCanon.filterBlocked) ? window.MonitorCanon.filterBlocked(mapped) : mapped;
     const useCanon = panel.greenlist && window.MonitorCanon && window.MonitorCanon.rankByCanon;
     const fresh = useCanon
-      ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, 'date')
+      ? window.MonitorCanon.rankByCanon(kept, MAX_CACHED, 'date')
       : panel.interleave
-        ? mapped.slice(0, MAX_CACHED)
-        : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
+        ? kept.slice(0, MAX_CACHED)
+        : kept.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
 
     // Stale-while-revalidate: keep previously cached stories if this
     // attempt came up empty (transient upstream failure, etc.). User

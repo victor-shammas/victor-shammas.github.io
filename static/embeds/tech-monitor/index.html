@@ -585,9 +585,10 @@ async function fetchPanel(panel, retryCount = 0) {
       });
     // Skip canonical ranking for direct-RSS feeds — all of their items
     // are already from greenlist-tier outlets we curated by hand.
+    const kept = (window.MonitorCanon && window.MonitorCanon.filterBlocked) ? window.MonitorCanon.filterBlocked(mapped) : mapped;
     const fresh = (panel.type !== 'feeds' && window.MonitorCanon && window.MonitorCanon.rankByCanon)
-      ? window.MonitorCanon.rankByCanon(mapped, MAX_CACHED, 'date')
-      : mapped.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
+      ? window.MonitorCanon.rankByCanon(kept, MAX_CACHED, 'date')
+      : kept.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
 
     // Stale-while-revalidate
     const prev = state[panel.id]?.stories || [];
