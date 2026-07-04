@@ -100,6 +100,7 @@
     'motley fool', 'fool.com',
     'livetipsportal',
     'space daily', 'spacedaily',
+    '人民网财经',
   ];
 
   function isBlocked(item) {
