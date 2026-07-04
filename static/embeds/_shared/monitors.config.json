@@ -1,0 +1,487 @@
+{
+  "version": 1,
+  "note": "Shared source of truth for the RSS monitors — read by the embeds and by the Vault feed resolver. Phase 1: mirror of the live embeds. Edit here going forward.",
+  "greenlist": [
+    "new york times",
+    "nytimes",
+    "washington post",
+    "wall street journal",
+    "wsj",
+    "financial times",
+    "ft.com",
+    "bloomberg",
+    "guardian",
+    "reuters",
+    "associated press",
+    "ap news",
+    "bbc news",
+    "bbc.com",
+    "bbc.co.uk",
+    "le monde diplomatique",
+    "le monde",
+    "der spiegel",
+    "spiegel",
+    "economist",
+    "atlantic",
+    "new yorker",
+    "harper",
+    "new york review",
+    "london review",
+    "n+1",
+    "jacobin",
+    "foreign affairs",
+    "foreign policy",
+    "propublica",
+    "intercept",
+    "mit technology review",
+    "mit tech review",
+    "the information",
+    "wired",
+    "klassekampen",
+    "morgenbladet",
+    "aftenposten",
+    "nrk",
+    "spacenews",
+    "space news",
+    "al jazeera",
+    "aljazeera",
+    "the hill",
+    "politico",
+    "lawfare",
+    "cnbc"
+  ],
+  "redlist": [
+    "stadium rant",
+    "stadiumrant",
+    "motley fool",
+    "fool.com",
+    "livetipsportal",
+    "space daily",
+    "spacedaily",
+    "人民网财经"
+  ],
+  "monitors": {
+    "ai-monitor": [
+      {
+        "id": "anthropic",
+        "name": "Anthropic",
+        "q": "Anthropic OR Claude OR \"Claude Opus\" OR \"Claude Sonnet\" OR \"Dario Amodei\" OR \"Daniela Amodei\""
+      },
+      {
+        "id": "openai",
+        "name": "OpenAI",
+        "q": "OpenAI OR \"Sam Altman\" OR ChatGPT OR \"GPT-5\" OR \"GPT-6\" OR Sora OR \"Greg Brockman\" OR \"Mira Murati\""
+      },
+      {
+        "id": "chips",
+        "name": "Nvidia & Chips",
+        "q": "Nvidia OR \"Jensen Huang\" OR Blackwell OR \"H100\" OR \"B200\" OR TSMC OR ASML OR semiconductor OR \"chip export\""
+      },
+      {
+        "id": "hyperscalers",
+        "name": "Other Hyperscalers",
+        "q": "\"Google DeepMind\" OR Gemini OR \"Demis Hassabis\" OR \"Meta AI\" OR \"Yann LeCun\" OR xAI OR Grok OR \"Microsoft AI\" OR Copilot"
+      },
+      {
+        "id": "policy",
+        "name": "AI Policy & Regulation",
+        "lookbackDays": 10,
+        "q": "\"AI Act\" OR \"AI regulation\" OR \"AI safety institute\" OR \"AI executive order\" OR \"AI policy\" OR \"FTC OpenAI\" OR \"AI lawsuit\" OR \"AI copyright\""
+      },
+      {
+        "id": "energy",
+        "name": "AI Energy & Infrastructure",
+        "q": "\"AI data center\" OR Stargate OR \"AI electricity\" OR \"data center power\" OR \"AI energy\" OR \"AI water use\" OR \"compute cluster\""
+      },
+      {
+        "id": "chinataiwan",
+        "name": "China / Taiwan AI & Chips",
+        "wide": true,
+        "lookbackDays": 10,
+        "queries": [
+          "DeepSeek OR Qwen OR \"Alibaba AI\" OR \"Baidu Ernie\" OR \"ByteDance Doubao\" OR \"Tencent Hunyuan\" OR \"Moonshot Kimi\"",
+          "\"chip export controls\" OR \"Huawei chip\" OR SMIC OR YMTC OR \"China semiconductor\" OR \"AI chip China\"",
+          "Taiwan OR TSMC OR \"Taiwan semiconductor\" OR \"Taiwan policy\" OR \"Taiwan election\" OR \"Strait of Taiwan\""
+        ]
+      },
+      {
+        "id": "safety",
+        "name": "AI Safety, Labor & Ideology",
+        "wide": true,
+        "maxItems": 9,
+        "lookbackDays": 10,
+        "queries": [
+          "\"AI safety\" OR \"AI alignment\" OR \"AI interpretability\" OR \"AI evaluation\" OR \"AI red teaming\" OR \"model evaluations\"",
+          "\"AI labor\" OR \"AI automation\" OR \"AI jobs\" OR \"AI displacement\" OR \"AI workforce\" OR \"AI productivity\"",
+          "TESCREAL OR \"AI accelerationism\" OR \"e/acc\" OR \"AI doomer\" OR \"AI critique\" OR \"techno-optimist\" OR \"AI ideology\""
+        ]
+      },
+      {
+        "id": "general",
+        "name": "General AI News",
+        "wide": true,
+        "queries": [
+          "\"open-source AI\" OR \"open-weight AI\" OR \"Llama 4\" OR Mistral OR \"Hugging Face\"",
+          "\"AI startup\" OR \"AI funding\" OR \"AI IPO\" OR \"AI valuation\" OR \"AI venture\"",
+          "\"AI defense\" OR Palantir OR Anduril OR \"AI weapon\" OR \"AI surveillance\" OR deepfake"
+        ]
+      },
+      {
+        "id": "globalsouth",
+        "name": "AI & the Global South",
+        "wide": true,
+        "lookbackDays": 10,
+        "queries": [
+          "\"AI in Africa\" OR \"African AI\" OR \"Kenya AI\" OR \"Nigeria AI\" OR \"South Africa AI\" OR \"Egypt AI\" OR \"Morocco AI\" OR \"African Union AI\" OR \"Smart Africa\"",
+          "\"AI in Latin America\" OR \"Latin American AI\" OR \"Brazil AI\" OR \"Mexico AI\" OR \"Argentina AI\" OR \"Chile AI\" OR \"Colombia AI\" OR \"ECLAC AI\"",
+          "\"AI in India\" OR \"AI in Indonesia\" OR \"AI in Vietnam\" OR \"AI in Philippines\" OR \"AI in Pakistan\" OR \"AI in Thailand\" OR \"AI in Malaysia\" OR \"Global South AI\" OR \"data colonialism\""
+        ]
+      }
+    ],
+    "space-monitor": [
+      {
+        "id": "spacex",
+        "name": "SpaceX",
+        "q": "SpaceX OR \"Falcon 9\" OR \"Falcon Heavy\" OR Starship OR \"Crew Dragon\" OR \"Super Heavy\" OR \"Raptor engine\""
+      },
+      {
+        "id": "starlink",
+        "name": "Starlink & Satellites",
+        "q": "Starlink OR Starshield OR \"Project Kuiper\" OR OneWeb OR \"direct-to-cell satellite\" OR \"satellite constellation\""
+      },
+      {
+        "id": "bluorigin",
+        "name": "Blue Origin",
+        "q": "\"Blue Origin\" OR \"New Glenn\" OR \"New Shepard\" OR \"Blue Moon lander\" OR \"Blue Ring\""
+      },
+      {
+        "id": "military",
+        "name": "Space Militarization",
+        "lookbackDays": 14,
+        "q": "\"Space Force\" OR \"Space Command\" OR \"Golden Dome\" OR \"Pentagon space\" OR \"military satellite\" OR \"anti-satellite\" OR \"satellite jamming\" OR \"GPS jamming\" OR \"missile defense\" OR \"X-37B\" OR \"Space Development Agency\" OR \"Maxar\""
+      },
+      {
+        "id": "governance",
+        "name": "Space Governance & Law",
+        "lookbackDays": 10,
+        "q": "\"Outer Space Treaty\" OR \"Artemis Accords\" OR COPUOS OR \"space debris\" OR \"space regulation\" OR \"space law\" OR \"orbital debris\" OR \"space sustainability\" OR \"Kessler syndrome\""
+      },
+      {
+        "id": "economy",
+        "name": "Space Economy",
+        "q": "\"Rocket Lab\" OR \"Virgin Galactic\" OR \"Axiom Space\" OR \"Firefly Aerospace\" OR \"United Launch Alliance\" OR \"Vulcan Centaur\" OR Starliner OR \"space startup\" OR \"space funding\" OR \"space IPO\" OR \"space venture capital\" OR \"space investment\" OR \"Space Capital\""
+      },
+      {
+        "id": "geopolitics",
+        "name": "Space Geopolitics",
+        "wide": true,
+        "lookbackDays": 10,
+        "queries": [
+          "\"China space program\" OR CNSA OR Tiangong OR \"Long March rocket\"",
+          "Roscosmos OR ISRO OR Chandrayaan OR Gaganyaan OR \"Russian space\"",
+          "\"European Space Agency\" OR ESA OR JAXA OR \"Ariane 6\" OR Arianespace"
+        ]
+      },
+      {
+        "id": "humandeep",
+        "name": "NASA, Human Spaceflight & Deep Space",
+        "wide": true,
+        "maxItems": 9,
+        "queries": [
+          "NASA OR \"Artemis program\" OR \"Space Launch System\" OR \"Orion spacecraft\" OR \"Lunar Gateway\" OR \"Human Landing System\"",
+          "astronaut OR spacewalk OR \"human spaceflight\" OR \"ISS crew\" OR \"private astronaut\" OR \"Axiom mission\"",
+          "\"Mars mission\" OR \"Mars Sample Return\" OR Perseverance OR \"Curiosity rover\" OR \"deep space\" OR \"interplanetary\" OR \"Europa Clipper\" OR Dragonfly OR Voyager"
+        ]
+      },
+      {
+        "id": "general",
+        "name": "General Space News",
+        "wide": true,
+        "queries": [
+          "\"space commercialization\" OR \"space economy\" OR NewSpace OR \"space industry\"",
+          "\"space privatization\" OR \"space mining\" OR \"asteroid mining\" OR \"cislunar economy\"",
+          "\"Earth observation\" OR \"remote sensing\" OR \"Planet Labs\" OR \"climate satellite\" OR \"International Space Station\" OR \"in-space manufacturing\""
+        ]
+      }
+    ],
+    "tech-monitor": [
+      {
+        "id": "platforms",
+        "name": "Major Platform Companies",
+        "wide": true,
+        "queries": [
+          "Google OR Alphabet OR Meta OR Facebook OR \"Apple Inc\" OR \"Apple iPhone\" OR Amazon OR Microsoft OR Netflix",
+          "Spotify OR Uber OR Airbnb OR Snapchat OR Reddit OR \"Discord app\" OR Pinterest",
+          "Bluesky OR \"X Corp\" OR \"Twitter X\" OR \"Musk Twitter\""
+        ]
+      },
+      {
+        "id": "aillm",
+        "name": "AI & LLM Companies",
+        "wide": true,
+        "queries": [
+          "OpenAI OR Anthropic OR xAI OR \"Google DeepMind\" OR \"Mistral AI\" OR Cohere OR Perplexity OR \"Stability AI\" OR Midjourney",
+          "\"Hugging Face\" OR \"Character.ai\" OR \"Inflection AI\" OR \"Scale AI\" OR \"Runway AI\""
+        ]
+      },
+      {
+        "id": "chips",
+        "name": "Semiconductor & Hardware",
+        "q": "Nvidia OR AMD OR Intel OR TSMC OR \"Samsung Semiconductor\" OR Qualcomm OR \"ARM Holdings\" OR Broadcom OR ASML"
+      },
+      {
+        "id": "enterprise",
+        "name": "Enterprise & Cloud",
+        "q": "Salesforce OR \"Oracle Corp\" OR IBM OR Palantir OR \"SAP SE\" OR Snowflake OR Databricks OR ServiceNow OR Cloudflare OR AWS OR Azure OR \"Google Cloud\""
+      },
+      {
+        "id": "regs",
+        "name": "Regulatory & Governance",
+        "lookbackDays": 10,
+        "q": "\"FTC tech\" OR \"Digital Markets Act\" OR \"AI Act\" OR \"CHIPS Act\" OR \"Section 230\" OR \"GDPR enforcement\" OR \"US antitrust Big Tech\""
+      },
+      {
+        "id": "individuals",
+        "name": "Key Individuals",
+        "wide": true,
+        "queries": [
+          "\"Elon Musk\" OR \"Mark Zuckerberg\" OR \"Tim Cook\" OR \"Sundar Pichai\" OR \"Satya Nadella\" OR \"Jeff Bezos\" OR \"Andy Jassy\"",
+          "\"Sam Altman\" OR \"Jensen Huang\" OR \"Dario Amodei\" OR \"Marc Andreessen\" OR \"Peter Thiel\""
+        ]
+      },
+      {
+        "id": "sources",
+        "name": "Commentary Sources",
+        "wide": true,
+        "type": "feeds",
+        "maxItems": 9,
+        "lookbackDays": 30,
+        "feeds": [
+          {
+            "name": "BIG (Matt Stoller)",
+            "url": "https://mattstoller.substack.com/feed"
+          },
+          {
+            "name": "American Economic Liberties Project",
+            "url": "https://www.economicliberties.us/feed/"
+          },
+          {
+            "name": "Pluralistic (Doctorow)",
+            "url": "https://pluralistic.net/feed/"
+          },
+          {
+            "name": "The Markup",
+            "url": "https://themarkup.org/feeds/rss.xml"
+          },
+          {
+            "name": "Platformer",
+            "url": "https://www.platformer.news/rss/"
+          },
+          {
+            "name": "EFF Deeplinks",
+            "url": "https://www.eff.org/rss/updates.xml"
+          }
+        ]
+      }
+    ],
+    "leftpolitics-monitor": [
+      {
+        "id": "us",
+        "name": "US Progressive Left",
+        "greenlist": true,
+        "q": "\"Bernie Sanders\" OR \"Alexandria Ocasio-Cortez\" OR AOC OR \"Democratic Socialists\" OR \"the Squad\" OR \"Zohran Mamdani\" OR \"Ilhan Omar\" OR \"Rashida Tlaib\""
+      },
+      {
+        "id": "uk",
+        "name": "UK Labour & the Left",
+        "greenlist": true,
+        "q": "\"Keir Starmer\" OR \"UK Labour\" OR \"Jeremy Corbyn\" OR \"Zarah Sultana\" OR \"Your Party\" OR \"Diane Abbott\" OR \"John McDonnell\" OR \"Green Party UK\" OR \"Zach Polanski\""
+      },
+      {
+        "id": "nordic",
+        "name": "Nordic Left",
+        "interleave": true,
+        "queries": [
+          {
+            "hl": "no",
+            "gl": "NO",
+            "q": "Arbeiderpartiet OR \"Jonas Gahr Støre\" OR Rødt OR \"Bjørnar Moxnes\" OR \"Sosialistisk Venstreparti\" OR SV OR Senterpartiet OR MDG"
+          },
+          {
+            "hl": "sv",
+            "gl": "SE",
+            "q": "Vänsterpartiet OR \"Nooshi Dadgostar\" OR Socialdemokraterna OR \"Magdalena Andersson\" OR Miljöpartiet"
+          },
+          {
+            "hl": "da",
+            "gl": "DK",
+            "q": "Enhedslisten OR SF OR \"Socialistisk Folkeparti\" OR Socialdemokratiet OR \"Mette Frederiksen\" OR Alternativet"
+          }
+        ]
+      },
+      {
+        "id": "labor",
+        "name": "Labor & Welfare",
+        "wide": true,
+        "greenlist": true,
+        "queries": [
+          "\"labor union\" OR \"trade union\" OR \"union organizing\" OR \"labour movement\" OR \"on strike\" OR \"strike wave\" OR UAW OR Teamsters OR \"Starbucks union\" OR \"Amazon union\" OR \"International Labour Organization\"",
+          "\"Green New Deal\" OR \"Medicare for All\" OR \"wealth tax\" OR \"rent control\" OR \"universal basic income\" OR \"welfare policy\" OR \"welfare spending\""
+        ]
+      },
+      {
+        "id": "commentary",
+        "name": "Left Commentary & Theorists",
+        "wide": true,
+        "greenlist": true,
+        "lookbackDays": 14,
+        "queries": [
+          "\"Yanis Varoufakis\" OR DiEM25 OR \"Naomi Klein\" OR \"Wendy Brown\" OR \"Chantal Mouffe\" OR \"Wolfgang Streeck\"",
+          "Jacobin OR \"New Left Review\" OR \"Verso Books\" OR \"Catalyst journal\" OR \"Tribune magazine\" OR \"Dissent magazine\"",
+          "\"democratic socialism\" OR \"social democracy\" OR \"left critique\" OR \"post-liberal\" OR \"left populism\""
+        ]
+      },
+      {
+        "id": "latam",
+        "name": "Latin American Left",
+        "wide": true,
+        "lookbackDays": 10,
+        "queries": [
+          "Lula OR \"Workers' Party Brazil\" OR \"Partido dos Trabalhadores\" OR \"Claudia Sheinbaum\" OR Morena",
+          "\"Gabriel Boric\" OR \"Gustavo Petro\" OR \"Frente Amplio Chile\" OR \"Frente Amplio Uruguay\"",
+          "\"López Obrador\" OR \"Mexican left\" OR \"Pink Tide\" OR Sandinista OR \"Daniel Ortega\""
+        ]
+      },
+      {
+        "id": "france",
+        "name": "French Left",
+        "q": "\"Jean-Luc Mélenchon\" OR \"France Insoumise\" OR \"Nouveau Front Populaire\" OR \"Parti Socialiste France\" OR EELV OR \"Les Écologistes\" OR \"François Ruffin\""
+      },
+      {
+        "id": "germany",
+        "name": "German Left & SPD",
+        "q": "\"Olaf Scholz\" OR \"Lars Klingbeil\" OR \"Die Linke\" OR \"Heidi Reichinnek\" OR \"Robert Habeck\" OR \"Annalena Baerbock\" OR \"German Greens\""
+      },
+      {
+        "id": "iberia-italy",
+        "name": "Southern European Left",
+        "q": "PSOE OR \"Pedro Sánchez\" OR \"Yolanda Díaz\" OR Podemos OR \"Bloco de Esquerda\" OR \"Partito Democratico\" OR \"Elly Schlein\" OR \"Alleanza Verdi e Sinistra\""
+      }
+    ],
+    "rightwing-monitor": [
+      {
+        "id": "maga",
+        "name": "Trump/MAGA (U.S.)",
+        "flag": "🇺🇸",
+        "q": "\"Donald Trump\" OR \"Trump administration\" OR MAGA OR \"JD Vance\" OR \"Stephen Miller\" OR \"America First\" OR \"Steve Bannon\"",
+        "lang": "en",
+        "country": "US"
+      },
+      {
+        "id": "frp",
+        "name": "Fremskrittspartiet (Norway)",
+        "flag": "🇳🇴",
+        "q": "Fremskrittspartiet OR FrP OR \"Sylvi Listhaug\" OR \"Norwegian Progress Party\" OR \"Per-Willy Amundsen\" OR \"Hans Andreas Limi\" OR \"Simen Velle\"",
+        "lang": "no",
+        "country": "NO"
+      },
+      {
+        "id": "sd",
+        "name": "Sverigedemokraterna (Sweden)",
+        "flag": "🇸🇪",
+        "q": "Sverigedemokraterna OR \"Jimmie Åkesson\" OR \"Sweden Democrats\"",
+        "lang": "sv",
+        "country": "SE"
+      },
+      {
+        "id": "rn",
+        "name": "Rassemblement National (France)",
+        "flag": "🇫🇷",
+        "q": "\"Rassemblement National\" OR \"Marine Le Pen\" OR \"Jordan Bardella\" OR \"National Rally\" OR \"Marion Maréchal\"",
+        "lang": "fr",
+        "country": "FR"
+      },
+      {
+        "id": "fdi",
+        "name": "Fratelli d'Italia; Lega (Italy)",
+        "flag": "🇮🇹",
+        "q": "Meloni OR Salvini OR \"Fratelli d'Italia\" OR \"Brothers of Italy\" OR Lega",
+        "lang": "it",
+        "country": "IT"
+      },
+      {
+        "id": "reform",
+        "name": "Reform UK (U.K.)",
+        "flag": "🇬🇧",
+        "q": "\"Reform UK\" OR \"Nigel Farage\" OR \"Richard Tice\"",
+        "lang": "en",
+        "country": "GB"
+      },
+      {
+        "id": "afd",
+        "name": "AfD (Germany)",
+        "flag": "🇩🇪",
+        "q": "\"Alternative fur Deutschland\" OR AfD OR \"Tino Chrupalla\" OR \"Alice Weidel\"",
+        "lang": "de",
+        "country": "DE"
+      },
+      {
+        "id": "hungary",
+        "name": "Fidesz; Tisza (Hungary)",
+        "flag": "🇭🇺",
+        "q": "\"Orbán Viktor\" OR \"Magyar Péter\" OR \"Fidesz\" OR \"Tisza\"",
+        "lang": "hu",
+        "country": "HU"
+      },
+      {
+        "id": "vox",
+        "name": "Vox (Spain)",
+        "flag": "🇪🇸",
+        "q": "\"Vox\" OR \"Santiago Abascal\" OR \"Ignacio Garriga\" OR \"Javier Ortega Smith\" OR \"Rocío Monasterio\" OR \"Kiko Méndez-Monasterio\"",
+        "lang": "es",
+        "country": "ES"
+      },
+      {
+        "id": "pis",
+        "name": "PiS (Poland)",
+        "flag": "🇵🇱",
+        "q": "\"Prawo i Sprawiedliwość\" OR \"PiS\" OR \"Jarosław Kaczyński\" OR \"Mateusz Morawiecki\" OR \"Karol Nawrocki\" OR \"Law and Justice\"",
+        "lang": "pl",
+        "country": "PL"
+      },
+      {
+        "id": "general",
+        "name": "General Right-Wing News",
+        "flag": "🌍",
+        "queries": [
+          "\"far right\" OR \"alt-right\" OR \"right-wing extremist\" OR \"fascism\"",
+          "\"ethnonationalism\" OR \"white nationalism\" OR \"Christian nationalism\" OR \"manosphere\"",
+          "\"national conservatism\" OR \"illiberal democracy\" OR \"techno-fascism\""
+        ],
+        "lang": "en",
+        "country": "US"
+      },
+      {
+        "id": "bluesky",
+        "name": "TrumpNews (Bluesky)",
+        "flag": "🦋",
+        "type": "bluesky",
+        "handle": "victorshammas.com",
+        "feedKey": "trump-news"
+      },
+      {
+        "id": "nodes",
+        "name": "Transnational Network Infrastructure",
+        "flag": "🕸️",
+        "queries": [
+          "\"Heritage Foundation\" OR \"Project 2025\" OR \"American Enterprise Institute\" OR \"Claremont Institute\" OR \"Edmund Burke Foundation\"",
+          "\"Danube Institute\" OR \"Mathias Corvinus Collegium\" OR \"MCC Budapest\" OR \"MCC Brussels\"",
+          "\"National Conservatism\" OR \"NatCon\" OR \"Conservative Political Action Conference\" OR \"CPAC\" OR \"Turning Point USA\" OR \"Turning Point UK\"",
+          "\"Institute of Economic Affairs\" OR \"Policy Exchange\" OR \"Centre for Policy Studies\" OR \"Alliance for Responsible Citizenship\""
+        ],
+        "lang": "en",
+        "country": "US"
+      }
+    ]
+  }
+}
