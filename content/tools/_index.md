@@ -5,6 +5,10 @@ layout: "single"
 url: "/tools/"
 ---
 
+<h2 class="section-heading">Academic Research</h2>
+
+[**Academic Journal Monitor**](/tools/academic-journal-monitor/) — Live tracker of new articles across 70+ social-science journals — sociology, criminology, political economy, social theory, anthropology, political science — plus keyword discovery searches, powered by OpenAlex.
+
 <h2 class="section-heading">RSS News Monitors</h2>
 
 [**AI Monitor**](/tools/ai-monitor/) — Politics of artificial intelligence, AI commercialization, and compute infrastructure.
@@ -26,10 +30,6 @@ url: "/tools/"
 [**Shammas Space & Tech Briefing**](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) (Spotify) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
 
 [**Shammas Right-Wing Politics Briefing**](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) (Spotify) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
-
-<h2 class="section-heading">Other Tools</h2>
-
-[**Academic Journal Monitor**](/tools/academic-journal-monitor/) — Live tracker of new articles across 70+ social-science journals — sociology, criminology, political economy, social theory, anthropology, political science — plus keyword discovery searches, powered by OpenAlex.
 
 <h2 class="section-heading">Apps and Extensions</h2>
 
