@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build:search": "node scripts/build-search-index.mjs",
-    "config:monitors": "node scripts/build-monitors-config.mjs",
-    "config:monitors:check": "node scripts/build-monitors-config.mjs --check"
+    "gen:monitors": "node scripts/gen-monitors.mjs",
+    "gen:monitors:check": "node scripts/gen-monitors.mjs --check"
   },
   "devDependencies": {
     "pagefind": "^1.1.1"

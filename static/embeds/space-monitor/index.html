@@ -362,38 +362,74 @@ header {
 <script>
 // ── Space Monitor ──
 
+// @genstart PANELS — generated from monitors.config.json; edit that file, run: npm run gen:monitors
 const PANELS = [
-  { id: 'spacex', name: 'SpaceX',
-    q: 'SpaceX OR "Falcon 9" OR "Falcon Heavy" OR Starship OR "Crew Dragon" OR "Super Heavy" OR "Raptor engine"' },
-  { id: 'starlink', name: 'Starlink & Satellites',
-    q: 'Starlink OR Starshield OR "Project Kuiper" OR OneWeb OR "direct-to-cell satellite" OR "satellite constellation"' },
-  { id: 'bluorigin', name: 'Blue Origin',
-    q: '"Blue Origin" OR "New Glenn" OR "New Shepard" OR "Blue Moon lander" OR "Blue Ring"' },
-  { id: 'military', name: 'Space Militarization', lookbackDays: 14,
-    q: '"Space Force" OR "Space Command" OR "Golden Dome" OR "Pentagon space" OR "military satellite" OR "anti-satellite" OR "satellite jamming" OR "GPS jamming" OR "missile defense" OR "X-37B" OR "Space Development Agency" OR "Maxar"' },
-  { id: 'governance', name: 'Space Governance & Law', lookbackDays: 10,
-    q: '"Outer Space Treaty" OR "Artemis Accords" OR COPUOS OR "space debris" OR "space regulation" OR "space law" OR "orbital debris" OR "space sustainability" OR "Kessler syndrome"' },
-  { id: 'economy', name: 'Space Economy',
-    q: '"Rocket Lab" OR "Virgin Galactic" OR "Axiom Space" OR "Firefly Aerospace" OR "United Launch Alliance" OR "Vulcan Centaur" OR Starliner OR "space startup" OR "space funding" OR "space IPO" OR "space venture capital" OR "space investment" OR "Space Capital"' },
-  { id: 'geopolitics', name: 'Space Geopolitics', wide: true, lookbackDays: 10,
-    queries: [
-      '"China space program" OR CNSA OR Tiangong OR "Long March rocket"',
-      'Roscosmos OR ISRO OR Chandrayaan OR Gaganyaan OR "Russian space"',
-      '"European Space Agency" OR ESA OR JAXA OR "Ariane 6" OR Arianespace',
-    ] },
-  { id: 'humandeep', name: 'NASA, Human Spaceflight & Deep Space', wide: true, maxItems: 9,
-    queries: [
-      'NASA OR "Artemis program" OR "Space Launch System" OR "Orion spacecraft" OR "Lunar Gateway" OR "Human Landing System"',
-      'astronaut OR spacewalk OR "human spaceflight" OR "ISS crew" OR "private astronaut" OR "Axiom mission"',
-      '"Mars mission" OR "Mars Sample Return" OR Perseverance OR "Curiosity rover" OR "deep space" OR "interplanetary" OR "Europa Clipper" OR Dragonfly OR Voyager',
-    ] },
-  { id: 'general', name: 'General Space News', wide: true,
-    queries: [
-      '"space commercialization" OR "space economy" OR NewSpace OR "space industry"',
-      '"space privatization" OR "space mining" OR "asteroid mining" OR "cislunar economy"',
-      '"Earth observation" OR "remote sensing" OR "Planet Labs" OR "climate satellite" OR "International Space Station" OR "in-space manufacturing"',
-    ] },
+  {
+    "id": "spacex",
+    "name": "SpaceX",
+    "q": "SpaceX OR \"Falcon 9\" OR \"Falcon Heavy\" OR Starship OR \"Crew Dragon\" OR \"Super Heavy\" OR \"Raptor engine\""
+  },
+  {
+    "id": "starlink",
+    "name": "Starlink & Satellites",
+    "q": "Starlink OR Starshield OR \"Project Kuiper\" OR OneWeb OR \"direct-to-cell satellite\" OR \"satellite constellation\""
+  },
+  {
+    "id": "bluorigin",
+    "name": "Blue Origin",
+    "q": "\"Blue Origin\" OR \"New Glenn\" OR \"New Shepard\" OR \"Blue Moon lander\" OR \"Blue Ring\""
+  },
+  {
+    "id": "military",
+    "name": "Space Militarization",
+    "lookbackDays": 14,
+    "q": "\"Space Force\" OR \"Space Command\" OR \"Golden Dome\" OR \"Pentagon space\" OR \"military satellite\" OR \"anti-satellite\" OR \"satellite jamming\" OR \"GPS jamming\" OR \"missile defense\" OR \"X-37B\" OR \"Space Development Agency\" OR \"Maxar\""
+  },
+  {
+    "id": "governance",
+    "name": "Space Governance & Law",
+    "lookbackDays": 10,
+    "q": "\"Outer Space Treaty\" OR \"Artemis Accords\" OR COPUOS OR \"space debris\" OR \"space regulation\" OR \"space law\" OR \"orbital debris\" OR \"space sustainability\" OR \"Kessler syndrome\""
+  },
+  {
+    "id": "economy",
+    "name": "Space Economy",
+    "q": "\"Rocket Lab\" OR \"Virgin Galactic\" OR \"Axiom Space\" OR \"Firefly Aerospace\" OR \"United Launch Alliance\" OR \"Vulcan Centaur\" OR Starliner OR \"space startup\" OR \"space funding\" OR \"space IPO\" OR \"space venture capital\" OR \"space investment\" OR \"Space Capital\""
+  },
+  {
+    "id": "geopolitics",
+    "name": "Space Geopolitics",
+    "wide": true,
+    "lookbackDays": 10,
+    "queries": [
+      "\"China space program\" OR CNSA OR Tiangong OR \"Long March rocket\"",
+      "Roscosmos OR ISRO OR Chandrayaan OR Gaganyaan OR \"Russian space\"",
+      "\"European Space Agency\" OR ESA OR JAXA OR \"Ariane 6\" OR Arianespace"
+    ]
+  },
+  {
+    "id": "humandeep",
+    "name": "NASA, Human Spaceflight & Deep Space",
+    "wide": true,
+    "maxItems": 9,
+    "queries": [
+      "NASA OR \"Artemis program\" OR \"Space Launch System\" OR \"Orion spacecraft\" OR \"Lunar Gateway\" OR \"Human Landing System\"",
+      "astronaut OR spacewalk OR \"human spaceflight\" OR \"ISS crew\" OR \"private astronaut\" OR \"Axiom mission\"",
+      "\"Mars mission\" OR \"Mars Sample Return\" OR Perseverance OR \"Curiosity rover\" OR \"deep space\" OR \"interplanetary\" OR \"Europa Clipper\" OR Dragonfly OR Voyager"
+    ]
+  },
+  {
+    "id": "general",
+    "name": "General Space News",
+    "wide": true,
+    "queries": [
+      "\"space commercialization\" OR \"space economy\" OR NewSpace OR \"space industry\"",
+      "\"space privatization\" OR \"space mining\" OR \"asteroid mining\" OR \"cislunar economy\"",
+      "\"Earth observation\" OR \"remote sensing\" OR \"Planet Labs\" OR \"climate satellite\" OR \"International Space Station\" OR \"in-space manufacturing\""
+    ]
+  }
 ];
+// @genend PANELS
 
 const ICONS = {
   spacex: '<svg viewBox="0 0 22 22" fill="none"><path d="M11 2 L13.5 8 L12 9 L14 18 L11 15 L8 18 L10 9 L8.5 8 Z" fill="currentColor" opacity="0.85"/><path d="M7 18.5 L8.5 14.5 L11 17 L13.5 14.5 L15 18.5" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/></svg>',

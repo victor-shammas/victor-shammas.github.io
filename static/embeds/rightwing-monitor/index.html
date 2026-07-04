@@ -468,121 +468,123 @@
                 return stored || RSS2JSON_KEY_INLINE || "e3xqpmsfkaarzbksh1vd6cz0hatwotgdhk8skm6z";
             })();
 
+            // @genstart PARTIES — generated from monitors.config.json; edit that file, run: npm run gen:monitors
             const PARTIES = [
-                {
-                    id: "maga",
-                    name: "Trump/MAGA (U.S.)",
-                    flag: "🇺🇸",
-                    q: '"Donald Trump" OR "Trump administration" OR MAGA OR "JD Vance" OR "Stephen Miller" OR "America First" OR "Steve Bannon"',
-                    lang: "en",
-                    country: "US",
-                },
-                {
-                    id: "frp",
-                    name: "Fremskrittspartiet (Norway)",
-                    flag: "🇳🇴",
-                    q: 'Fremskrittspartiet OR FrP OR "Sylvi Listhaug" OR "Norwegian Progress Party" OR "Per-Willy Amundsen" OR "Hans Andreas Limi" OR "Simen Velle"',
-                    lang: "no",
-                    country: "NO",
-                },
-                {
-                    id: "sd",
-                    name: "Sverigedemokraterna (Sweden)",
-                    flag: "🇸🇪",
-                    q: 'Sverigedemokraterna OR "Jimmie Åkesson" OR "Sweden Democrats"',
-                    lang: "sv",
-                    country: "SE",
-                },
-                {
-                    id: "rn",
-                    name: "Rassemblement National (France)",
-                    flag: "🇫🇷",
-                    q: '"Rassemblement National" OR "Marine Le Pen" OR "Jordan Bardella" OR "National Rally" OR "Marion Maréchal"',
-                    lang: "fr",
-                    country: "FR",
-                },
-                {
-                    id: "fdi",
-                    name: "Fratelli d'Italia; Lega (Italy)",
-                    flag: "🇮🇹",
-                    q: 'Meloni OR Salvini OR "Fratelli d\'Italia" OR "Brothers of Italy" OR Lega',
-                    lang: "it",
-                    country: "IT",
-                },
-                {
-                    id: "reform",
-                    name: "Reform UK (U.K.)",
-                    flag: "🇬🇧",
-                    q: '"Reform UK" OR "Nigel Farage" OR "Richard Tice"',
-                    lang: "en",
-                    country: "GB",
-                },
-                {
-                    id: "afd",
-                    name: "AfD (Germany)",
-                    flag: "🇩🇪",
-                    q: '"Alternative fur Deutschland" OR AfD OR "Tino Chrupalla" OR "Alice Weidel"',
-                    lang: "de",
-                    country: "DE",
-                },
-                {
-                    id: "hungary",
-                    name: "Fidesz; Tisza (Hungary)",
-                    flag: "🇭🇺",
-                    q: '"Orbán Viktor" OR "Magyar Péter" OR "Fidesz" OR "Tisza"',
-                    lang: "hu",
-                    country: "HU",
-                },
-                {
-                    id: "vox",
-                    name: "Vox (Spain)",
-                    flag: "🇪🇸",
-                    q: '"Vox" OR "Santiago Abascal" OR "Ignacio Garriga" OR "Javier Ortega Smith" OR "Rocío Monasterio" OR "Kiko Méndez-Monasterio"',
-                    lang: "es",
-                    country: "ES",
-                },
-                {
-                    id: "pis",
-                    name: "PiS (Poland)",
-                    flag: "🇵🇱",
-                    q: '"Prawo i Sprawiedliwość" OR "PiS" OR "Jarosław Kaczyński" OR "Mateusz Morawiecki" OR "Karol Nawrocki" OR "Law and Justice"',
-                    lang: "pl",
-                    country: "PL",
-                },
-                {
-                    id: "general",
-                    name: "General Right-Wing News",
-                    flag: "🌍",
-                    queries: [
-                        '"far right" OR "alt-right" OR "right-wing extremist" OR "fascism"',
-                        '"ethnonationalism" OR "white nationalism" OR "Christian nationalism" OR "manosphere"',
-                        '"national conservatism" OR "illiberal democracy" OR "techno-fascism"',
-                    ],
-                    lang: "en",
-                    country: "US",
-                },
-                {
-                    id: "bluesky",
-                    name: "TrumpNews (Bluesky)",
-                    flag: "🦋",
-                    type: "bluesky",
-                    handle: "victorshammas.com",
-                    feedKey: "trump-news",
-                },
-                {
-                    id: "nodes",
-                    name: "Transnational Network Infrastructure",
-                    flag: "🕸️",
-                    queries: [
-                        '"Heritage Foundation" OR "Project 2025" OR "American Enterprise Institute" OR "Claremont Institute" OR "Edmund Burke Foundation"',
-                        '"Danube Institute" OR "Mathias Corvinus Collegium" OR "MCC Budapest" OR "MCC Brussels"',
-                        '"National Conservatism" OR "NatCon" OR "Conservative Political Action Conference" OR "CPAC" OR "Turning Point USA" OR "Turning Point UK"',
-                        '"Institute of Economic Affairs" OR "Policy Exchange" OR "Centre for Policy Studies" OR "Alliance for Responsible Citizenship"',
-                    ],
-                    lang: "en",
-                    country: "US",
-                },
+              {
+                "id": "maga",
+                "name": "Trump/MAGA (U.S.)",
+                "flag": "🇺🇸",
+                "q": "\"Donald Trump\" OR \"Trump administration\" OR MAGA OR \"JD Vance\" OR \"Stephen Miller\" OR \"America First\" OR \"Steve Bannon\"",
+                "lang": "en",
+                "country": "US"
+              },
+              {
+                "id": "frp",
+                "name": "Fremskrittspartiet (Norway)",
+                "flag": "🇳🇴",
+                "q": "Fremskrittspartiet OR FrP OR \"Sylvi Listhaug\" OR \"Norwegian Progress Party\" OR \"Per-Willy Amundsen\" OR \"Hans Andreas Limi\" OR \"Simen Velle\"",
+                "lang": "no",
+                "country": "NO"
+              },
+              {
+                "id": "sd",
+                "name": "Sverigedemokraterna (Sweden)",
+                "flag": "🇸🇪",
+                "q": "Sverigedemokraterna OR \"Jimmie Åkesson\" OR \"Sweden Democrats\"",
+                "lang": "sv",
+                "country": "SE"
+              },
+              {
+                "id": "rn",
+                "name": "Rassemblement National (France)",
+                "flag": "🇫🇷",
+                "q": "\"Rassemblement National\" OR \"Marine Le Pen\" OR \"Jordan Bardella\" OR \"National Rally\" OR \"Marion Maréchal\"",
+                "lang": "fr",
+                "country": "FR"
+              },
+              {
+                "id": "fdi",
+                "name": "Fratelli d'Italia; Lega (Italy)",
+                "flag": "🇮🇹",
+                "q": "Meloni OR Salvini OR \"Fratelli d'Italia\" OR \"Brothers of Italy\" OR Lega",
+                "lang": "it",
+                "country": "IT"
+              },
+              {
+                "id": "reform",
+                "name": "Reform UK (U.K.)",
+                "flag": "🇬🇧",
+                "q": "\"Reform UK\" OR \"Nigel Farage\" OR \"Richard Tice\"",
+                "lang": "en",
+                "country": "GB"
+              },
+              {
+                "id": "afd",
+                "name": "AfD (Germany)",
+                "flag": "🇩🇪",
+                "q": "\"Alternative fur Deutschland\" OR AfD OR \"Tino Chrupalla\" OR \"Alice Weidel\"",
+                "lang": "de",
+                "country": "DE"
+              },
+              {
+                "id": "hungary",
+                "name": "Fidesz; Tisza (Hungary)",
+                "flag": "🇭🇺",
+                "q": "\"Orbán Viktor\" OR \"Magyar Péter\" OR \"Fidesz\" OR \"Tisza\"",
+                "lang": "hu",
+                "country": "HU"
+              },
+              {
+                "id": "vox",
+                "name": "Vox (Spain)",
+                "flag": "🇪🇸",
+                "q": "\"Vox\" OR \"Santiago Abascal\" OR \"Ignacio Garriga\" OR \"Javier Ortega Smith\" OR \"Rocío Monasterio\" OR \"Kiko Méndez-Monasterio\"",
+                "lang": "es",
+                "country": "ES"
+              },
+              {
+                "id": "pis",
+                "name": "PiS (Poland)",
+                "flag": "🇵🇱",
+                "q": "\"Prawo i Sprawiedliwość\" OR \"PiS\" OR \"Jarosław Kaczyński\" OR \"Mateusz Morawiecki\" OR \"Karol Nawrocki\" OR \"Law and Justice\"",
+                "lang": "pl",
+                "country": "PL"
+              },
+              {
+                "id": "general",
+                "name": "General Right-Wing News",
+                "flag": "🌍",
+                "queries": [
+                  "\"far right\" OR \"alt-right\" OR \"right-wing extremist\" OR \"fascism\"",
+                  "\"ethnonationalism\" OR \"white nationalism\" OR \"Christian nationalism\" OR \"manosphere\"",
+                  "\"national conservatism\" OR \"illiberal democracy\" OR \"techno-fascism\""
+                ],
+                "lang": "en",
+                "country": "US"
+              },
+              {
+                "id": "bluesky",
+                "name": "TrumpNews (Bluesky)",
+                "flag": "🦋",
+                "type": "bluesky",
+                "handle": "victorshammas.com",
+                "feedKey": "trump-news"
+              },
+              {
+                "id": "nodes",
+                "name": "Transnational Network Infrastructure",
+                "flag": "🕸️",
+                "queries": [
+                  "\"Heritage Foundation\" OR \"Project 2025\" OR \"American Enterprise Institute\" OR \"Claremont Institute\" OR \"Edmund Burke Foundation\"",
+                  "\"Danube Institute\" OR \"Mathias Corvinus Collegium\" OR \"MCC Budapest\" OR \"MCC Brussels\"",
+                  "\"National Conservatism\" OR \"NatCon\" OR \"Conservative Political Action Conference\" OR \"CPAC\" OR \"Turning Point USA\" OR \"Turning Point UK\"",
+                  "\"Institute of Economic Affairs\" OR \"Policy Exchange\" OR \"Centre for Policy Studies\" OR \"Alliance for Responsible Citizenship\""
+                ],
+                "lang": "en",
+                "country": "US"
+              }
             ];
+            // @genend PARTIES
 
             // Minimal SVG flag panels (22x14 within a 22x22 viewBox)
             // and bespoke SVGs for the three non-flag cards.
