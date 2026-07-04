@@ -5,7 +5,9 @@
   "description": "Build tooling for victorshammas.com — Pagefind search index incl. full-text PDF extraction.",
   "type": "module",
   "scripts": {
-    "build:search": "node scripts/build-search-index.mjs"
+    "build:search": "node scripts/build-search-index.mjs",
+    "config:monitors": "node scripts/build-monitors-config.mjs",
+    "config:monitors:check": "node scripts/build-monitors-config.mjs --check"
   },
   "devDependencies": {
     "pagefind": "^1.1.1"
