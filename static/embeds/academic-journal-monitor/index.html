@@ -1255,9 +1255,10 @@
             // concurrently (~90 at once), but OpenAlex caps bursts at ~10 req/s —
             // without spacing, the first few succeed and the rest get HTTP 429.
             // fetchWorks spaces requests under the cap (slot reservation is
-            // synchronous, so concurrent callers queue correctly), sends the
-            // polite-pool mailto param, and retries 429s with backoff.
-            const DEFAULT_MAILTO = "theorybrief@gmail.com";
+            // synchronous, so concurrent callers queue correctly) and retries
+            // 429s with backoff. No mailto is sent — OpenAlex no longer needs
+            // one for polite-pool access, and we don't want every visitor's
+            // requests attributed to the site owner's address.
             const MAX_RPS = 8;
             let nextSlot = 0;
 
@@ -1271,7 +1272,6 @@
             }
 
             async function fetchWorks(params) {
-                params.set("mailto", DEFAULT_MAILTO);
                 const url = `${OPENALEX_BASE}?${params}`;
                 for (let attempt = 0; ; attempt++) {
                     await rateLimit();
