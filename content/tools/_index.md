@@ -27,9 +27,9 @@ url: "/tools/"
 
 <h2 class="section-heading">Audio Briefings</h2>
 
-[**Shammas Space & Tech Briefing**](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) (Spotify) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
+**Shammas Space & Tech Briefing** ([Spotify](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) · [YouTube](https://www.youtube.com/playlist?list=PLF4EFT0ex3z8)) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
 
-[**Shammas Right-Wing Politics Briefing**](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) (Spotify) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
+**Shammas Right-Wing Politics Briefing** ([Spotify](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) · [YouTube](https://www.youtube.com/playlist?list=PLEIoYRgVQTLc)) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
 
 <h2 class="section-heading">Apps and Extensions</h2>
 
