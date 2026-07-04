@@ -778,7 +778,8 @@
                 if (!msg) return false;
                 const m = String(msg).toLowerCase();
                 return m.includes("being processed") || m.includes("try again")
-                    || m.includes("rate limit") || m.includes("temporarily");
+                    || m.includes("rate limit") || m.includes("temporarily")
+                    || m.includes("cannot download") || m.includes("fetch failed");
             }
 
             async function fetchParty(p, retryCount = 0) {
@@ -862,8 +863,8 @@
                     store.set(state);
                     renderCard(p);
 
-                    if (!fresh.length && retryCount < 1 && errors.length && errors.every(isTransient)) {
-                        setTimeout(() => fetchParty(p, retryCount + 1), 2500);
+                    if (!fresh.length && retryCount < 3 && errors.length && errors.every(isTransient)) {
+                        setTimeout(() => fetchParty(p, retryCount + 1), 2500 * Math.pow(2, retryCount));
                     }
                 } catch (e) {
                     card.querySelector(".body").innerHTML =
