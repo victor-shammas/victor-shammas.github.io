@@ -782,6 +782,8 @@
                     || m.includes("cannot download") || m.includes("fetch failed");
             }
 
+            const MONITOR_SLUG = "rightwing-monitor";
+
             async function fetchParty(p, retryCount = 0) {
                 const card = document.querySelector(`[data-id="${p.id}"]`);
                 const btn = card.querySelector(".rbtn");
@@ -794,7 +796,12 @@
                         stories = await fetchBluesky(p);
                     } else {
                         const queries = p.queries || [p.q];
-                        const results = await Promise.all(
+                        // Prefer the Vault snapshot; fall back to rss2json if it's
+                        // unreachable or older than ~45 min. (Bluesky panel above
+                        // is not on the Vault and stays client-side.)
+                        const MC = window.MonitorCanon;
+                        const snap = (MC && MC.fetchSnapshot) ? await MC.fetchSnapshot(MONITOR_SLUG, p.id, 45 * 60 * 1000) : null;
+                        const results = snap ? MC.snapshotResults(snap, queries.length) : await Promise.all(
                             queries.map(async (q) => {
                                 try {
                                     const r = await fetch(feedUrl(p, q));

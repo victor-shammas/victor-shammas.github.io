@@ -114,6 +114,52 @@
     return (items || []).filter(it => !isBlocked(it));
   }
 
+  /*
+   * Vault feed snapshots. The Vault (vault.victorshammas.com) pre-fetches every
+   * panel's Google News feeds server-side every ~15 min and serves a merged,
+   * deduped, newest-first JSON snapshot per panel. Monitors read that instead of
+   * calling rss2json live — no rate limits, no per-client flakiness, and it works
+   * regardless of blocked third-party-iframe storage. If the snapshot is
+   * unreachable or older than maxAgeMs, callers fall back to the rss2json path.
+   *
+   * Snapshot shape: { status:"ok", monitor, panel, fetchedAt, lookbackDays,
+   * partial, items:[{ title, link, pubDate, source, qi }] }.
+   */
+  const SNAPSHOT_BASE = 'https://vault.victorshammas.com/monitors';
+
+  async function fetchSnapshot(monitor, panelId, maxAgeMs) {
+    try {
+      const url = `${SNAPSHOT_BASE}/${monitor}/${encodeURIComponent(panelId)}.json`;
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 8000);
+      let r;
+      try { r = await fetch(url, { cache: 'no-store', signal: ctrl.signal }); }
+      finally { clearTimeout(timer); }
+      if (!r || !r.ok) return null;
+      const j = await r.json();
+      if (!j || j.status !== 'ok' || !Array.isArray(j.items)) return null;
+      if (maxAgeMs) {
+        const age = Date.now() - new Date(j.fetchedAt || 0).getTime();
+        if (!(age >= 0) || age > maxAgeMs) return null; // too stale → fall back
+      }
+      return j;
+    } catch (e) { return null; }
+  }
+
+  // Regroup a snapshot's flat items into per-sub-query arrays (by `qi`) so the
+  // monitors' existing merge/interleave logic works unchanged. Also mirrors the
+  // server-provided `source` onto `_sourceName` for direct-feed panels.
+  function snapshotResults(snap, numQueries) {
+    const n = Math.max(1, numQueries || 1);
+    const groups = Array.from({ length: n }, () => []);
+    for (const it of (snap && snap.items) || []) {
+      if (it && it._sourceName === undefined && it.source) it._sourceName = it.source;
+      const qi = (typeof it.qi === 'number' && it.qi >= 0 && it.qi < n) ? it.qi : 0;
+      groups[qi].push(it);
+    }
+    return groups;
+  }
+
   /**
    * Time-decay promotion: each greenlisted item gets PROMOTION_HOURS of
    * synthetic age reduction. Effective score is `(now - pubDate) - boost`;
@@ -149,5 +195,5 @@
     return scored.slice(0, limit).map(s => s.it);
   }
 
-  window.MonitorCanon = { GREENLIST, REDLIST, PROMOTION_HOURS, normalize, isGreenlisted, isBlocked, filterBlocked, rankByCanon };
+  window.MonitorCanon = { GREENLIST, REDLIST, PROMOTION_HOURS, normalize, isGreenlisted, isBlocked, filterBlocked, fetchSnapshot, snapshotResults, rankByCanon };
 })();

@@ -537,6 +537,8 @@ function isTransient(msg) {
       || m.includes('cannot download') || m.includes('fetch failed');
 }
 
+const MONITOR_SLUG = 'tech-monitor';
+
 async function fetchPanel(panel, retryCount = 0) {
   const card = document.querySelector(`#grid [data-id="${panel.id}"]`);
   if (!card) return;
@@ -548,7 +550,13 @@ async function fetchPanel(panel, retryCount = 0) {
     const errors = [];
     let raw = [];
 
-    if (panel.type === 'feeds') {
+    // Prefer the Vault snapshot (covers the feeds panel too); fall back to the
+    // live feeds/rss2json paths only if it's unreachable or older than ~45 min.
+    const MC = window.MonitorCanon;
+    const snap = (MC && MC.fetchSnapshot) ? await MC.fetchSnapshot(MONITOR_SLUG, panel.id, 45 * 60 * 1000) : null;
+    if (snap) {
+      raw = [].concat(...MC.snapshotResults(snap, 1));
+    } else if (panel.type === 'feeds') {
       const results = await Promise.all((panel.feeds || []).map(async f => {
         try {
           const r = await fetch(directFeedUrl(f.url));
