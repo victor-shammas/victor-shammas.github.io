@@ -918,5 +918,22 @@ function init() {
 
 init();
 </script>
+<script>
+// Report content height to the hrmn.ai parent frame so the iframe can size to
+// fit with no inner scrollbar. Cross-origin: the parent can't measure this
+// document, so we post the height to it (only hrmn.ai receives it).
+(function () {
+  function postMonitorHeight() {
+    try {
+      parent.postMessage(
+        { type: 'monitor-embed-height', height: document.documentElement.scrollHeight },
+        'https://hrmn.ai'
+      );
+    } catch (e) {}
+  }
+  window.addEventListener('load', postMonitorHeight);
+  if (window.ResizeObserver) new ResizeObserver(postMonitorHeight).observe(document.documentElement);
+})();
+</script>
 </body>
 </html>
