@@ -1040,14 +1040,6 @@
                     <label for="days-back">Days back to fetch</label>
                     <input type="number" id="days-back" min="7" max="365" value="30" />
                 </div>
-                <div class="settings-input-block">
-                    <label for="email-input">Email (optional, for OpenAlex polite pool)</label>
-                    <input type="email" id="email-input" placeholder="you@example.com" />
-                </div>
-                <p class="settings-helper">
-                    Requests use the site's OpenAlex polite-pool address by default;
-                    add your own email to use yours instead.
-                </p>
             </div>
 
             <div class="settings-section">
@@ -1207,7 +1199,6 @@
                 lastFetch: "ajm_last_fetch_v1",
                 lastVisit: "ajm_last_visit_v1",
                 daysBack: "ajm_days_back_v1",
-                email: "ajm_email_v1",
             };
 
             // Clear keys left behind by the retired journals-tracker predecessor
@@ -1231,7 +1222,6 @@
                 keywords: load(STORAGE_KEYS.keywords, DEFAULT_KEYWORDS),
                 saved: new Set(load(STORAGE_KEYS.saved, [])),
                 daysBack: load(STORAGE_KEYS.daysBack, 30),
-                email: load(STORAGE_KEYS.email, ""),
                 articlesByDomain: {}, // { domain: [articles] }
                 keywordArticles: [], // [articles from keyword search]
                 errors: [], // fetch errors
@@ -1281,7 +1271,7 @@
             }
 
             async function fetchWorks(params) {
-                params.set("mailto", state.email || DEFAULT_MAILTO);
+                params.set("mailto", DEFAULT_MAILTO);
                 const url = `${OPENALEX_BASE}?${params}`;
                 for (let attempt = 0; ; attempt++) {
                     await rateLimit();
@@ -1859,9 +1849,8 @@
             }
 
             function renderSettings() {
-                // Days back & email
+                // Days back
                 document.getElementById("days-back").value = state.daysBack;
-                document.getElementById("email-input").value = state.email;
 
                 // Domain select
                 const sel = document.getElementById("add-journal-domain");
@@ -1969,10 +1958,6 @@
                         Math.min(365, parseInt(e.target.value) || 30),
                     );
                     save(STORAGE_KEYS.daysBack, state.daysBack);
-                });
-                document.getElementById("email-input").addEventListener("change", (e) => {
-                    state.email = e.target.value.trim();
-                    save(STORAGE_KEYS.email, state.email);
                 });
 
                 document.getElementById("add-journal-btn").addEventListener("click", () => {
