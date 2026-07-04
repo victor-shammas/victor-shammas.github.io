@@ -534,6 +534,8 @@ function isTransient(msg) {
       || m.includes('cannot download') || m.includes('fetch failed');
 }
 
+const MONITOR_SLUG = 'space-monitor';
+
 async function fetchPanel(panel, retryCount = 0) {
   const card = document.querySelector(`#grid [data-id="${panel.id}"]`);
   if (!card) return;
@@ -545,14 +547,23 @@ async function fetchPanel(panel, retryCount = 0) {
     const queries = panel.queries || [panel.q];
     const errors = [];
 
-    const results = await Promise.all(queries.map(async q => {
-      try {
-        const r = await fetch(feedUrl(panel, q));
-        const j = await r.json();
-        if (j.status !== 'ok') { errors.push(j.message || j.status || 'rss2json error'); return []; }
-        return j.items || [];
-      } catch (err) { errors.push(err.message || 'fetch failed'); return []; }
-    }));
+    // Prefer the Vault snapshot (server-side merged, cached, no rss2json).
+    // Fall back to rss2json only if it's unreachable or older than ~45 min.
+    const MC = window.MonitorCanon;
+    let results;
+    const snap = (MC && MC.fetchSnapshot) ? await MC.fetchSnapshot(MONITOR_SLUG, panel.id, 45 * 60 * 1000) : null;
+    if (snap) {
+      results = MC.snapshotResults(snap, queries.length);
+    } else {
+      results = await Promise.all(queries.map(async q => {
+        try {
+          const r = await fetch(feedUrl(panel, q));
+          const j = await r.json();
+          if (j.status !== 'ok') { errors.push(j.message || j.status || 'rss2json error'); return []; }
+          return j.items || [];
+        } catch (err) { errors.push(err.message || 'fetch failed'); return []; }
+      }));
+    }
 
     const merged = [].concat(...results);
     const seen = new Set();
