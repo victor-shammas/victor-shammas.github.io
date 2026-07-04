@@ -25,6 +25,8 @@ url: "/tools/"
 
 <h2 class="section-heading">Other Tools</h2>
 
+[**Academic Journal Monitor**](/tools/academic-journal-monitor/) — Live tracker of new articles across 70+ social-science journals — sociology, criminology, political economy, social theory, anthropology, political science — plus keyword discovery searches, powered by OpenAlex.
+
 [**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
 
 [**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
