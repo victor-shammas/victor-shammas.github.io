@@ -572,7 +572,8 @@ function isTransient(msg) {
   if (!msg) return false;
   const m = String(msg).toLowerCase();
   return m.includes('being processed') || m.includes('try again')
-      || m.includes('rate limit') || m.includes('temporarily');
+      || m.includes('rate limit') || m.includes('temporarily')
+      || m.includes('cannot download') || m.includes('fetch failed');
 }
 
 async function fetchPanel(panel, retryCount = 0) {
@@ -649,8 +650,8 @@ async function fetchPanel(panel, retryCount = 0) {
 
     // One auto-retry on transient errors: rss2json was likely still
     // warming its cache; a second attempt 2.5s later usually succeeds.
-    if (!fresh.length && retryCount < 1 && errors.length && errors.every(isTransient)) {
-      setTimeout(() => fetchPanel(panel, retryCount + 1), 2500);
+    if (!fresh.length && retryCount < 3 && errors.length && errors.every(isTransient)) {
+      setTimeout(() => fetchPanel(panel, retryCount + 1), 2500 * Math.pow(2, retryCount));
     }
   } catch (e) {
     card.querySelector('.om-card-body').innerHTML = `<div class="om-err">⚠ ${esc(e.message || 'Failed')}</div>`;
