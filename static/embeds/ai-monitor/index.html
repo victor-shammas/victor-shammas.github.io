@@ -441,10 +441,14 @@ const LOOKBACK_DAYS = 3;
 const RSS2JSON_KEY_INLINE = '';
 // Option B — set from browser console:
 //   localStorage.setItem('rss2json_key', 'YOUR_KEY_HERE')
-const RSS2JSON_KEY =
-  (typeof localStorage !== 'undefined' && localStorage.getItem('rss2json_key')) ||
-  RSS2JSON_KEY_INLINE ||
-  'e3xqpmsfkaarzbksh1vd6cz0hatwotgdhk8skm6z';
+const RSS2JSON_KEY = (function () {
+  // localStorage.getItem can throw a SecurityError when storage is blocked
+  // (e.g. this embed framed cross-site under strict-privacy settings); guard it
+  // so a blocked read never crashes the whole script.
+  let stored = '';
+  try { if (typeof localStorage !== 'undefined') stored = localStorage.getItem('rss2json_key') || ''; } catch (e) {}
+  return stored || RSS2JSON_KEY_INLINE || 'e3xqpmsfkaarzbksh1vd6cz0hatwotgdhk8skm6z';
+})();
 
 // ── Storage ──
 const store = {
