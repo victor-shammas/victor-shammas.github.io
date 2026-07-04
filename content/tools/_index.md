@@ -5,6 +5,10 @@ layout: "single"
 url: "/tools/"
 ---
 
+<h2 class="section-heading">Academic Research</h2>
+
+[**Academic Journal Monitor**](/tools/academic-journal-monitor/) — Live tracker of new articles across 70+ social-science journals — sociology, criminology, political economy, social theory, anthropology, political science — plus keyword discovery searches, powered by OpenAlex.
+
 <h2 class="section-heading">RSS News Monitors</h2>
 
 [**AI Monitor**](/tools/ai-monitor/) — Politics of artificial intelligence, AI commercialization, and compute infrastructure.
@@ -17,17 +21,17 @@ url: "/tools/"
 
 [**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Right-wing populist actors across Europe and the U.S.
 
+<hr style="border:0;border-top:1px solid var(--tint);margin:1.75rem 0 1.5rem;max-width:3rem;">
+
+[**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — A more comprehensive, standalone monitor of right-wing politics across 10+ countries.
+
 <h2 class="section-heading">Audio Briefings</h2>
 
-[**Shammas Space & Tech Briefing**](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) (Spotify) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
+**Shammas Space & Tech Briefing** ([Spotify](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) · [YouTube](https://www.youtube.com/playlist?list=PLF4EFT0ex3z8)) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
 
-[**Shammas Right-Wing Politics Briefing**](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) (Spotify) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
+**Shammas Right-Wing Politics Briefing** ([Spotify](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) · [YouTube](https://www.youtube.com/playlist?list=PLEIoYRgVQTLc)) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
 
-<h2 class="section-heading">Other Tools</h2>
-
-[**Academic Journal Monitor**](/tools/academic-journal-monitor/) — Live tracker of new articles across 70+ social-science journals — sociology, criminology, political economy, social theory, anthropology, political science — plus keyword discovery searches, powered by OpenAlex.
-
-[**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
+<h2 class="section-heading">Apps and Extensions</h2>
 
 [**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
 
