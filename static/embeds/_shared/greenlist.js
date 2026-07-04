@@ -10,67 +10,57 @@
  * since Google News varies on how it labels outlets.
  */
 (function () {
+  // @genstart GREENLIST — generated from monitors.config.json; edit that file, run: npm run gen:monitors
   const GREENLIST = [
-    // English-language wires & majors
-    'new york times', 'nytimes',
-    'washington post',
-    'wall street journal', 'wsj',
-    'financial times', 'ft.com',
-    'bloomberg',
-    'guardian',
-    'reuters',
-    'associated press', 'ap news',
-    'bbc news', 'bbc.com', 'bbc.co.uk',
-
-    // European broadsheets
-    'le monde diplomatique',
-    'le monde',
-    'der spiegel', 'spiegel',
-
-    // Magazines & long-form
-    'economist',
-    'atlantic',
-    'new yorker',
-    'harper',                // matches "Harper's Magazine"
-    'new york review',       // NYRB
-    'london review',         // LRB
-    'n+1',
-    'jacobin',
-
-    // Foreign-affairs / policy
-    'foreign affairs',
-    'foreign policy',
-
-    // Investigative & long-form
-    'propublica',
-    'intercept',
-
-    // Tech-press majors
-    'mit technology review',
-    'mit tech review',
-    'the information',
-    'wired',
-
-    // Norwegian (sociologist's home market)
-    'klassekampen',
-    'morgenbladet',
-    'aftenposten',
-    'nrk',
-
-    // Space-press
-    'spacenews', 'space news',
-
-    // Global English
-    'al jazeera', 'aljazeera',
-
-    // US politics & legal
-    'the hill',
-    'politico',
-    'lawfare',
-
-    // Business / markets
-    'cnbc',
+    "new york times",
+    "nytimes",
+    "washington post",
+    "wall street journal",
+    "wsj",
+    "financial times",
+    "ft.com",
+    "bloomberg",
+    "guardian",
+    "reuters",
+    "associated press",
+    "ap news",
+    "bbc news",
+    "bbc.com",
+    "bbc.co.uk",
+    "le monde diplomatique",
+    "le monde",
+    "der spiegel",
+    "spiegel",
+    "economist",
+    "atlantic",
+    "new yorker",
+    "harper",
+    "new york review",
+    "london review",
+    "n+1",
+    "jacobin",
+    "foreign affairs",
+    "foreign policy",
+    "propublica",
+    "intercept",
+    "mit technology review",
+    "mit tech review",
+    "the information",
+    "wired",
+    "klassekampen",
+    "morgenbladet",
+    "aftenposten",
+    "nrk",
+    "spacenews",
+    "space news",
+    "al jazeera",
+    "aljazeera",
+    "the hill",
+    "politico",
+    "lawfare",
+    "cnbc"
   ];
+  // @genend GREENLIST
 
   // Lowercase + trim only. We intentionally do NOT strip a leading
   // "the " here: substring containment already handles it ("The New
@@ -95,13 +85,18 @@
    * lowercased item URL, so it catches both the Google-News source label and
    * the domain. Add sources here to hard-drop them everywhere.
    */
+  // @genstart REDLIST — generated from monitors.config.json; edit that file, run: npm run gen:monitors
   const REDLIST = [
-    'stadium rant', 'stadiumrant',
-    'motley fool', 'fool.com',
-    'livetipsportal',
-    'space daily', 'spacedaily',
-    '人民网财经',
+    "stadium rant",
+    "stadiumrant",
+    "motley fool",
+    "fool.com",
+    "livetipsportal",
+    "space daily",
+    "spacedaily",
+    "人民网财经"
   ];
+  // @genend REDLIST
 
   function isBlocked(item) {
     if (!item) return false;

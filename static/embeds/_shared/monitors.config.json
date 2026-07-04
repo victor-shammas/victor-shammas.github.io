@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Shared source of truth for the RSS monitors — read by the embeds and by the Vault feed resolver. Phase 1: mirror of the live embeds. Edit here going forward.",
+  "note": "Source of truth for the RSS monitors — read by the Vault feed resolver and injected into the embeds (PANELS/PARTIES) and greenlist.js (GREENLIST/REDLIST) by scripts/gen-monitors.mjs. Edit this file, then run: npm run gen:monitors. Do not hand-edit the generated blocks; CI enforces they match.",
   "greenlist": [
     "new york times",
     "nytimes",

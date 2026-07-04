@@ -39,8 +39,8 @@ jobs:
       - name: Install Node dependencies
         run: npm install
 
-      - name: Verify monitors.config.json is in sync with the embeds
-        run: npm run config:monitors:check
+      - name: Verify embeds are generated from monitors.config.json
+        run: npm run gen:monitors:check
 
       - name: Compute PDF cache key (rolls over weekly, or when a PDF changes)
         id: pdfkey

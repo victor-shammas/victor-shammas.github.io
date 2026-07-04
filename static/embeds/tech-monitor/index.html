@@ -360,39 +360,88 @@ header {
 <script>
 // ── Tech Monitor ──
 
+// @genstart PANELS — generated from monitors.config.json; edit that file, run: npm run gen:monitors
 const PANELS = [
-  { id: 'platforms', name: 'Major Platform Companies', wide: true,
-    queries: [
-      'Google OR Alphabet OR Meta OR Facebook OR "Apple Inc" OR "Apple iPhone" OR Amazon OR Microsoft OR Netflix',
-      'Spotify OR Uber OR Airbnb OR Snapchat OR Reddit OR "Discord app" OR Pinterest',
-      'Bluesky OR "X Corp" OR "Twitter X" OR "Musk Twitter"',
-    ] },
-  { id: 'aillm', name: 'AI & LLM Companies', wide: true,
-    queries: [
-      'OpenAI OR Anthropic OR xAI OR "Google DeepMind" OR "Mistral AI" OR Cohere OR Perplexity OR "Stability AI" OR Midjourney',
-      '"Hugging Face" OR "Character.ai" OR "Inflection AI" OR "Scale AI" OR "Runway AI"',
-    ] },
-  { id: 'chips', name: 'Semiconductor & Hardware',
-    q: 'Nvidia OR AMD OR Intel OR TSMC OR "Samsung Semiconductor" OR Qualcomm OR "ARM Holdings" OR Broadcom OR ASML' },
-  { id: 'enterprise', name: 'Enterprise & Cloud',
-    q: 'Salesforce OR "Oracle Corp" OR IBM OR Palantir OR "SAP SE" OR Snowflake OR Databricks OR ServiceNow OR Cloudflare OR AWS OR Azure OR "Google Cloud"' },
-  { id: 'regs', name: 'Regulatory & Governance', lookbackDays: 10,
-    q: '"FTC tech" OR "Digital Markets Act" OR "AI Act" OR "CHIPS Act" OR "Section 230" OR "GDPR enforcement" OR "US antitrust Big Tech"' },
-  { id: 'individuals', name: 'Key Individuals', wide: true,
-    queries: [
-      '"Elon Musk" OR "Mark Zuckerberg" OR "Tim Cook" OR "Sundar Pichai" OR "Satya Nadella" OR "Jeff Bezos" OR "Andy Jassy"',
-      '"Sam Altman" OR "Jensen Huang" OR "Dario Amodei" OR "Marc Andreessen" OR "Peter Thiel"',
-    ] },
-  { id: 'sources', name: 'Commentary Sources', wide: true, type: 'feeds', maxItems: 9, lookbackDays: 30,
-    feeds: [
-      { name: 'BIG (Matt Stoller)',     url: 'https://mattstoller.substack.com/feed' },
-      { name: 'American Economic Liberties Project', url: 'https://www.economicliberties.us/feed/' },
-      { name: 'Pluralistic (Doctorow)', url: 'https://pluralistic.net/feed/' },
-      { name: 'The Markup',             url: 'https://themarkup.org/feeds/rss.xml' },
-      { name: 'Platformer',             url: 'https://www.platformer.news/rss/' },
-      { name: 'EFF Deeplinks',          url: 'https://www.eff.org/rss/updates.xml' },
-    ] },
+  {
+    "id": "platforms",
+    "name": "Major Platform Companies",
+    "wide": true,
+    "queries": [
+      "Google OR Alphabet OR Meta OR Facebook OR \"Apple Inc\" OR \"Apple iPhone\" OR Amazon OR Microsoft OR Netflix",
+      "Spotify OR Uber OR Airbnb OR Snapchat OR Reddit OR \"Discord app\" OR Pinterest",
+      "Bluesky OR \"X Corp\" OR \"Twitter X\" OR \"Musk Twitter\""
+    ]
+  },
+  {
+    "id": "aillm",
+    "name": "AI & LLM Companies",
+    "wide": true,
+    "queries": [
+      "OpenAI OR Anthropic OR xAI OR \"Google DeepMind\" OR \"Mistral AI\" OR Cohere OR Perplexity OR \"Stability AI\" OR Midjourney",
+      "\"Hugging Face\" OR \"Character.ai\" OR \"Inflection AI\" OR \"Scale AI\" OR \"Runway AI\""
+    ]
+  },
+  {
+    "id": "chips",
+    "name": "Semiconductor & Hardware",
+    "q": "Nvidia OR AMD OR Intel OR TSMC OR \"Samsung Semiconductor\" OR Qualcomm OR \"ARM Holdings\" OR Broadcom OR ASML"
+  },
+  {
+    "id": "enterprise",
+    "name": "Enterprise & Cloud",
+    "q": "Salesforce OR \"Oracle Corp\" OR IBM OR Palantir OR \"SAP SE\" OR Snowflake OR Databricks OR ServiceNow OR Cloudflare OR AWS OR Azure OR \"Google Cloud\""
+  },
+  {
+    "id": "regs",
+    "name": "Regulatory & Governance",
+    "lookbackDays": 10,
+    "q": "\"FTC tech\" OR \"Digital Markets Act\" OR \"AI Act\" OR \"CHIPS Act\" OR \"Section 230\" OR \"GDPR enforcement\" OR \"US antitrust Big Tech\""
+  },
+  {
+    "id": "individuals",
+    "name": "Key Individuals",
+    "wide": true,
+    "queries": [
+      "\"Elon Musk\" OR \"Mark Zuckerberg\" OR \"Tim Cook\" OR \"Sundar Pichai\" OR \"Satya Nadella\" OR \"Jeff Bezos\" OR \"Andy Jassy\"",
+      "\"Sam Altman\" OR \"Jensen Huang\" OR \"Dario Amodei\" OR \"Marc Andreessen\" OR \"Peter Thiel\""
+    ]
+  },
+  {
+    "id": "sources",
+    "name": "Commentary Sources",
+    "wide": true,
+    "type": "feeds",
+    "maxItems": 9,
+    "lookbackDays": 30,
+    "feeds": [
+      {
+        "name": "BIG (Matt Stoller)",
+        "url": "https://mattstoller.substack.com/feed"
+      },
+      {
+        "name": "American Economic Liberties Project",
+        "url": "https://www.economicliberties.us/feed/"
+      },
+      {
+        "name": "Pluralistic (Doctorow)",
+        "url": "https://pluralistic.net/feed/"
+      },
+      {
+        "name": "The Markup",
+        "url": "https://themarkup.org/feeds/rss.xml"
+      },
+      {
+        "name": "Platformer",
+        "url": "https://www.platformer.news/rss/"
+      },
+      {
+        "name": "EFF Deeplinks",
+        "url": "https://www.eff.org/rss/updates.xml"
+      }
+    ]
+  }
 ];
+// @genend PANELS
 
 const ICONS = {
   platforms:   '<svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="0.8" stroke="currentColor" stroke-width="1" fill="currentColor" fill-opacity="0.15"/><rect x="12" y="3" width="7" height="7" rx="0.8" stroke="currentColor" stroke-width="1" fill="currentColor" fill-opacity="0.12"/><rect x="3" y="12" width="7" height="7" rx="0.8" stroke="currentColor" stroke-width="1" fill="currentColor" fill-opacity="0.12"/><rect x="12" y="12" width="7" height="7" rx="0.8" stroke="currentColor" stroke-width="1" fill="currentColor" fill-opacity="0.15"/></svg>',

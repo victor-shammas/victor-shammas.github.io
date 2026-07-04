@@ -375,44 +375,85 @@ header {
 <script>
 // ── AI Monitor ──
 
+// @genstart PANELS — generated from monitors.config.json; edit that file, run: npm run gen:monitors
 const PANELS = [
-  { id: 'anthropic', name: 'Anthropic',
-    q: 'Anthropic OR Claude OR "Claude Opus" OR "Claude Sonnet" OR "Dario Amodei" OR "Daniela Amodei"' },
-  { id: 'openai', name: 'OpenAI',
-    q: 'OpenAI OR "Sam Altman" OR ChatGPT OR "GPT-5" OR "GPT-6" OR Sora OR "Greg Brockman" OR "Mira Murati"' },
-  { id: 'chips', name: 'Nvidia & Chips',
-    q: 'Nvidia OR "Jensen Huang" OR Blackwell OR "H100" OR "B200" OR TSMC OR ASML OR semiconductor OR "chip export"' },
-  { id: 'hyperscalers', name: 'Other Hyperscalers',
-    q: '"Google DeepMind" OR Gemini OR "Demis Hassabis" OR "Meta AI" OR "Yann LeCun" OR xAI OR Grok OR "Microsoft AI" OR Copilot' },
-  { id: 'policy', name: 'AI Policy & Regulation', lookbackDays: 10,
-    q: '"AI Act" OR "AI regulation" OR "AI safety institute" OR "AI executive order" OR "AI policy" OR "FTC OpenAI" OR "AI lawsuit" OR "AI copyright"' },
-  { id: 'energy', name: 'AI Energy & Infrastructure',
-    q: '"AI data center" OR Stargate OR "AI electricity" OR "data center power" OR "AI energy" OR "AI water use" OR "compute cluster"' },
-  { id: 'chinataiwan', name: 'China / Taiwan AI & Chips', wide: true, lookbackDays: 10,
-    queries: [
-      'DeepSeek OR Qwen OR "Alibaba AI" OR "Baidu Ernie" OR "ByteDance Doubao" OR "Tencent Hunyuan" OR "Moonshot Kimi"',
-      '"chip export controls" OR "Huawei chip" OR SMIC OR YMTC OR "China semiconductor" OR "AI chip China"',
-      'Taiwan OR TSMC OR "Taiwan semiconductor" OR "Taiwan policy" OR "Taiwan election" OR "Strait of Taiwan"',
-    ] },
-  { id: 'safety', name: 'AI Safety, Labor & Ideology', wide: true, maxItems: 9, lookbackDays: 10,
-    queries: [
-      '"AI safety" OR "AI alignment" OR "AI interpretability" OR "AI evaluation" OR "AI red teaming" OR "model evaluations"',
-      '"AI labor" OR "AI automation" OR "AI jobs" OR "AI displacement" OR "AI workforce" OR "AI productivity"',
-      'TESCREAL OR "AI accelerationism" OR "e/acc" OR "AI doomer" OR "AI critique" OR "techno-optimist" OR "AI ideology"',
-    ] },
-  { id: 'general', name: 'General AI News', wide: true,
-    queries: [
-      '"open-source AI" OR "open-weight AI" OR "Llama 4" OR Mistral OR "Hugging Face"',
-      '"AI startup" OR "AI funding" OR "AI IPO" OR "AI valuation" OR "AI venture"',
-      '"AI defense" OR Palantir OR Anduril OR "AI weapon" OR "AI surveillance" OR deepfake',
-    ] },
-  { id: 'globalsouth', name: 'AI & the Global South', wide: true, lookbackDays: 10,
-    queries: [
-      '"AI in Africa" OR "African AI" OR "Kenya AI" OR "Nigeria AI" OR "South Africa AI" OR "Egypt AI" OR "Morocco AI" OR "African Union AI" OR "Smart Africa"',
-      '"AI in Latin America" OR "Latin American AI" OR "Brazil AI" OR "Mexico AI" OR "Argentina AI" OR "Chile AI" OR "Colombia AI" OR "ECLAC AI"',
-      '"AI in India" OR "AI in Indonesia" OR "AI in Vietnam" OR "AI in Philippines" OR "AI in Pakistan" OR "AI in Thailand" OR "AI in Malaysia" OR "Global South AI" OR "data colonialism"',
-    ] },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "q": "Anthropic OR Claude OR \"Claude Opus\" OR \"Claude Sonnet\" OR \"Dario Amodei\" OR \"Daniela Amodei\""
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "q": "OpenAI OR \"Sam Altman\" OR ChatGPT OR \"GPT-5\" OR \"GPT-6\" OR Sora OR \"Greg Brockman\" OR \"Mira Murati\""
+  },
+  {
+    "id": "chips",
+    "name": "Nvidia & Chips",
+    "q": "Nvidia OR \"Jensen Huang\" OR Blackwell OR \"H100\" OR \"B200\" OR TSMC OR ASML OR semiconductor OR \"chip export\""
+  },
+  {
+    "id": "hyperscalers",
+    "name": "Other Hyperscalers",
+    "q": "\"Google DeepMind\" OR Gemini OR \"Demis Hassabis\" OR \"Meta AI\" OR \"Yann LeCun\" OR xAI OR Grok OR \"Microsoft AI\" OR Copilot"
+  },
+  {
+    "id": "policy",
+    "name": "AI Policy & Regulation",
+    "lookbackDays": 10,
+    "q": "\"AI Act\" OR \"AI regulation\" OR \"AI safety institute\" OR \"AI executive order\" OR \"AI policy\" OR \"FTC OpenAI\" OR \"AI lawsuit\" OR \"AI copyright\""
+  },
+  {
+    "id": "energy",
+    "name": "AI Energy & Infrastructure",
+    "q": "\"AI data center\" OR Stargate OR \"AI electricity\" OR \"data center power\" OR \"AI energy\" OR \"AI water use\" OR \"compute cluster\""
+  },
+  {
+    "id": "chinataiwan",
+    "name": "China / Taiwan AI & Chips",
+    "wide": true,
+    "lookbackDays": 10,
+    "queries": [
+      "DeepSeek OR Qwen OR \"Alibaba AI\" OR \"Baidu Ernie\" OR \"ByteDance Doubao\" OR \"Tencent Hunyuan\" OR \"Moonshot Kimi\"",
+      "\"chip export controls\" OR \"Huawei chip\" OR SMIC OR YMTC OR \"China semiconductor\" OR \"AI chip China\"",
+      "Taiwan OR TSMC OR \"Taiwan semiconductor\" OR \"Taiwan policy\" OR \"Taiwan election\" OR \"Strait of Taiwan\""
+    ]
+  },
+  {
+    "id": "safety",
+    "name": "AI Safety, Labor & Ideology",
+    "wide": true,
+    "maxItems": 9,
+    "lookbackDays": 10,
+    "queries": [
+      "\"AI safety\" OR \"AI alignment\" OR \"AI interpretability\" OR \"AI evaluation\" OR \"AI red teaming\" OR \"model evaluations\"",
+      "\"AI labor\" OR \"AI automation\" OR \"AI jobs\" OR \"AI displacement\" OR \"AI workforce\" OR \"AI productivity\"",
+      "TESCREAL OR \"AI accelerationism\" OR \"e/acc\" OR \"AI doomer\" OR \"AI critique\" OR \"techno-optimist\" OR \"AI ideology\""
+    ]
+  },
+  {
+    "id": "general",
+    "name": "General AI News",
+    "wide": true,
+    "queries": [
+      "\"open-source AI\" OR \"open-weight AI\" OR \"Llama 4\" OR Mistral OR \"Hugging Face\"",
+      "\"AI startup\" OR \"AI funding\" OR \"AI IPO\" OR \"AI valuation\" OR \"AI venture\"",
+      "\"AI defense\" OR Palantir OR Anduril OR \"AI weapon\" OR \"AI surveillance\" OR deepfake"
+    ]
+  },
+  {
+    "id": "globalsouth",
+    "name": "AI & the Global South",
+    "wide": true,
+    "lookbackDays": 10,
+    "queries": [
+      "\"AI in Africa\" OR \"African AI\" OR \"Kenya AI\" OR \"Nigeria AI\" OR \"South Africa AI\" OR \"Egypt AI\" OR \"Morocco AI\" OR \"African Union AI\" OR \"Smart Africa\"",
+      "\"AI in Latin America\" OR \"Latin American AI\" OR \"Brazil AI\" OR \"Mexico AI\" OR \"Argentina AI\" OR \"Chile AI\" OR \"Colombia AI\" OR \"ECLAC AI\"",
+      "\"AI in India\" OR \"AI in Indonesia\" OR \"AI in Vietnam\" OR \"AI in Philippines\" OR \"AI in Pakistan\" OR \"AI in Thailand\" OR \"AI in Malaysia\" OR \"Global South AI\" OR \"data colonialism\""
+    ]
+  }
 ];
+// @genend PANELS
 
 const ICONS = {
   anthropic: '<svg viewBox="0 0 22 22" fill="none"><path d="M8 4 L4 18 L6.5 18 L7.5 15 L11.5 15 L12.5 18 L15 18 L11 4 Z" fill="currentColor" opacity="0.8"/><path d="M8.3 13 L10.7 13 L9.5 8.5 Z" fill="var(--bg-card)"/><rect x="15.5" y="4" width="2.2" height="14" fill="currentColor" opacity="0.55"/></svg>',
