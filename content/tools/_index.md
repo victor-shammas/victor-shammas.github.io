@@ -29,6 +29,8 @@ url: "/tools/"
 
 [**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — Comprehensive media monitor covering right-wing politics in 10+ countries.
 
+<h2 class="section-heading">Apps and Extensions</h2>
+
 [**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
 
 [**URL-to-Notes**](https://github.com/victor-shammas/url-to-notes) — A Google Chrome extension for saving links to Apple Notes.
