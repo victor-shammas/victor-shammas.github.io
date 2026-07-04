@@ -96,9 +96,10 @@
    * the domain. Add sources here to hard-drop them everywhere.
    */
   const REDLIST = [
-    'stadium rant', 'stadiumrant',   // sports-blog spam, never relevant
-    'motley fool', 'fool.com',       // stock-picking content marketing
-    'livetipsportal',                // sports-betting spam (name + livetipsportal.com)
+    'stadium rant', 'stadiumrant',
+    'motley fool', 'fool.com',
+    'livetipsportal',
+    'space daily', 'spacedaily',
   ];
 
   function isBlocked(item) {
