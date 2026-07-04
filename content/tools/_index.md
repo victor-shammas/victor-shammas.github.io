@@ -21,7 +21,8 @@ url: "/tools/"
 
 [**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Right-wing populist actors across Europe and the U.S.
 
-<hr>
+<hr style="border:0;border-top:1px solid var(--rule);width:4rem;margin:1.5rem 0;">
+
 
 [**Transatlantic Right-Wing Media Monitor**](/tools/media-monitor/) — A more comprehensive, standalone monitor of right-wing politics across 10+ countries.
 
