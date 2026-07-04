@@ -936,13 +936,18 @@
             /* RESPONSIVE */
             @media (max-width: 768px) {
                 .masthead {
-                    padding: 20px 20px 16px;
+                    padding: 16px 18px 14px;
+                }
+                h1.title {
+                    font-size: clamp(34px, 11vw, 56px);
                 }
                 main {
-                    padding: 24px 20px 60px;
+                    padding: 24px 18px 60px;
                 }
+                /* Leave room on the left for the site's hamburger (fixed,
+                   top-left) when this tool is embedded on /tools/…. */
                 .domain-nav {
-                    padding: 0 20px;
+                    padding: 0 18px 0 68px;
                 }
                 .articles {
                     grid-template-columns: 1fr;
@@ -953,7 +958,38 @@
                 }
                 .masthead-top {
                     flex-direction: column;
+                    align-items: stretch;
                     gap: 10px;
+                    margin-bottom: 14px;
+                    padding-left: 50px; /* clear the site hamburger */
+                }
+                .masthead-top .right {
+                    flex-wrap: wrap;
+                    gap: 8px 10px;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+                .filter-input {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+                .section-header {
+                    flex-wrap: wrap;
+                    gap: 8px;
+                }
+                .section-title {
+                    font-size: 22px;
+                }
+                /* Add-journal form wraps instead of overflowing */
+                .add-form {
+                    flex-wrap: wrap;
+                }
+                .add-form input,
+                .add-form select {
+                    flex: 1 1 auto;
+                }
+                .add-form input.issn {
+                    width: auto;
                 }
             }
         </style>
@@ -1004,14 +1040,6 @@
                     <label for="days-back">Days back to fetch</label>
                     <input type="number" id="days-back" min="7" max="365" value="30" />
                 </div>
-                <div class="settings-input-block">
-                    <label for="email-input">Email (optional, for OpenAlex polite pool)</label>
-                    <input type="email" id="email-input" placeholder="you@example.com" />
-                </div>
-                <p class="settings-helper">
-                    Requests use the site's OpenAlex polite-pool address by default;
-                    add your own email to use yours instead.
-                </p>
             </div>
 
             <div class="settings-section">
@@ -1171,7 +1199,6 @@
                 lastFetch: "ajm_last_fetch_v1",
                 lastVisit: "ajm_last_visit_v1",
                 daysBack: "ajm_days_back_v1",
-                email: "ajm_email_v1",
             };
 
             // Clear keys left behind by the retired journals-tracker predecessor
@@ -1195,7 +1222,6 @@
                 keywords: load(STORAGE_KEYS.keywords, DEFAULT_KEYWORDS),
                 saved: new Set(load(STORAGE_KEYS.saved, [])),
                 daysBack: load(STORAGE_KEYS.daysBack, 30),
-                email: load(STORAGE_KEYS.email, ""),
                 articlesByDomain: {}, // { domain: [articles] }
                 keywordArticles: [], // [articles from keyword search]
                 errors: [], // fetch errors
@@ -1229,9 +1255,10 @@
             // concurrently (~90 at once), but OpenAlex caps bursts at ~10 req/s —
             // without spacing, the first few succeed and the rest get HTTP 429.
             // fetchWorks spaces requests under the cap (slot reservation is
-            // synchronous, so concurrent callers queue correctly), sends the
-            // polite-pool mailto param, and retries 429s with backoff.
-            const DEFAULT_MAILTO = "theorybrief@gmail.com";
+            // synchronous, so concurrent callers queue correctly) and retries
+            // 429s with backoff. No mailto is sent — OpenAlex no longer needs
+            // one for polite-pool access, and we don't want every visitor's
+            // requests attributed to the site owner's address.
             const MAX_RPS = 8;
             let nextSlot = 0;
 
@@ -1245,7 +1272,6 @@
             }
 
             async function fetchWorks(params) {
-                params.set("mailto", state.email || DEFAULT_MAILTO);
                 const url = `${OPENALEX_BASE}?${params}`;
                 for (let attempt = 0; ; attempt++) {
                     await rateLimit();
@@ -1823,9 +1849,8 @@
             }
 
             function renderSettings() {
-                // Days back & email
+                // Days back
                 document.getElementById("days-back").value = state.daysBack;
-                document.getElementById("email-input").value = state.email;
 
                 // Domain select
                 const sel = document.getElementById("add-journal-domain");
@@ -1933,10 +1958,6 @@
                         Math.min(365, parseInt(e.target.value) || 30),
                     );
                     save(STORAGE_KEYS.daysBack, state.daysBack);
-                });
-                document.getElementById("email-input").addEventListener("change", (e) => {
-                    state.email = e.target.value.trim();
-                    save(STORAGE_KEYS.email, state.email);
                 });
 
                 document.getElementById("add-journal-btn").addEventListener("click", () => {
