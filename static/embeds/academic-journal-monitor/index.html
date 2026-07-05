@@ -197,6 +197,10 @@
                 border-bottom: 1px solid var(--rule);
                 padding: 0 48px;
                 overflow-x: auto;
+                /* Horizontal-only: without this, overflow-y computes to auto and
+                   the bar rubber-bands vertically on iOS swipes. */
+                overflow-y: hidden;
+                overscroll-behavior-x: contain;
                 background: var(--paper);
                 position: sticky;
                 top: 0;
@@ -254,7 +258,7 @@
             .nav-btn.active::after {
                 content: "";
                 position: absolute;
-                bottom: -1px;
+                bottom: 0; /* -1px would be clipped now that the nav hides vertical overflow */
                 left: 0;
                 right: 0;
                 height: 3px;
@@ -320,13 +324,17 @@
             /* ARTICLES GRID */
             .articles {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
                 gap: 0;
                 border-top: 1px solid var(--rule);
                 border-left: 1px solid var(--rule);
             }
 
             .article {
+                /* Grid items default to min-width auto, so one unbreakable string
+                   (a DOI, URL, long title) widens the whole column past the
+                   viewport on mobile. */
+                min-width: 0;
                 border-right: 1px solid var(--rule);
                 border-bottom: 1px solid var(--rule);
                 padding: 24px 22px 20px;
@@ -399,6 +407,13 @@
                 50% {
                     opacity: 0.6;
                 }
+            }
+
+            .article-title,
+            .article-authors,
+            .article-abstract,
+            .article-journal {
+                overflow-wrap: anywhere; /* feed data can contain DOIs/URLs with no break points */
             }
 
             .article-title {
