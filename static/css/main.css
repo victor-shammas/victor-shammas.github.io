@@ -712,6 +712,56 @@ body.is-resizing-sidebar * { user-select: none !important; }
   text-align: center;
 }
 
+/* Blog-post footer: copyright + inline newsletter signup on one line */
+.site-footer--row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  text-align: left;
+}
+.footer-newsletter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.footer-newsletter__label {
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.footer-newsletter__input {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--text);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.35rem 0.6rem;
+  width: 13rem;
+  max-width: 100%;
+}
+.footer-newsletter__input::placeholder { color: var(--muted); }
+.footer-newsletter__input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.footer-newsletter__button {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.footer-newsletter__button:hover { background: var(--accent-light); }
+
 /* ── Animations ──────────────────────────────────────────────── */
 
 @keyframes fadeUp {
