@@ -737,6 +737,10 @@
             }
 
             .domain-label {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 8px;
                 font-family:
                     "Inter",
                     -apple-system,
@@ -749,6 +753,29 @@
                 margin-bottom: 6px;
                 border-bottom: 1px dotted var(--rule);
                 padding-bottom: 4px;
+            }
+
+            .remove-domain-btn {
+                flex-shrink: 0;
+                background: transparent;
+                border: none;
+                color: var(--muted-soft);
+                cursor: pointer;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-style: normal;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                padding: 0 2px;
+            }
+
+            .remove-domain-btn:hover {
+                color: var(--accent);
             }
 
             .item-list {
@@ -2101,9 +2128,13 @@
               `,
                         )
                         .join("");
+                    const count = (grouped[d] || []).length;
                     return `
                 <div class="settings-group" data-domain="${escapeHtml(d)}">
-                  <div class="domain-label">${escapeHtml(d)}</div>
+                  <div class="domain-label">
+                    <span>${escapeHtml(d)}</span>
+                    <button class="remove-domain-btn" data-action="remove-domain" title="Delete this category and its ${count} journal${count === 1 ? "" : "s"}">✕ category</button>
+                  </div>
                   <ul class="item-list">${items || '<li class="item empty-placeholder"><em style="color:var(--muted-soft)">none</em></li>'}</ul>
                 </div>
               `;
@@ -2131,6 +2162,42 @@
                 const keywordsList = document.getElementById("keywords-list");
 
                 journalsList.addEventListener("click", (e) => {
+                    // Delete an entire category (heading ✕) — removes every
+                    // journal in it, which makes the heading disappear since
+                    // domains are derived from the journal list.
+                    const domBtn = e.target.closest('[data-action="remove-domain"]');
+                    if (domBtn) {
+                        const group = domBtn.closest("[data-domain]");
+                        const domain = group && group.dataset.domain;
+                        if (!domain) return;
+                        const count = state.journals.filter(
+                            (j) => j.domain === domain,
+                        ).length;
+                        if (
+                            !confirm(
+                                `Delete the entire “${domain}” category and its ${count} journal${count === 1 ? "" : "s"}? Keywords are not affected.`,
+                            )
+                        )
+                            return;
+                        state.journals = state.journals.filter(
+                            (j) => j.domain !== domain,
+                        );
+                        save(STORAGE_KEYS.journals, state.journals);
+                        // Drop this category's already-fetched articles so the
+                        // nav and list reflect the deletion immediately, not
+                        // only after the next refresh.
+                        delete state.articlesByDomain[domain];
+                        save(STORAGE_KEYS.cache, {
+                            articlesByDomain: state.articlesByDomain,
+                            keywordArticles: state.keywordArticles,
+                            errors: state.errors,
+                            fetchedAt: state.lastFetch,
+                        });
+                        renderSettings();
+                        render();
+                        return;
+                    }
+
                     const btn = e.target.closest('[data-action="remove-journal"]');
                     if (!btn) return;
                     const li = btn.closest("li[data-journal-name]");
