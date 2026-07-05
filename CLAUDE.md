@@ -33,9 +33,13 @@ Common edits:
   strings, or `{hl,gl,q}` locale objects for Nordic-style interleave).
 - **Boost canonical outlets:** add to `greenlist` (time-decay ranking).
 
-The config feeds two consumers; both agree because they read the same file:
+The config feeds three consumers; all agree because they read the same file:
 - **The embeds** (generated at author time, committed).
 - **The Vault** (see below) fetches the published config each run.
+- **The cross-monitor digest email** (`monitor_digest.py` in the vault repo,
+  daily cron on the VPS) fetches the published config each run for the panel
+  list + greenlist + redlist, then reads the Vault snapshots — a query or
+  list edit reaches the next day's digest automatically.
 
 ### Where the feed data comes from — the Vault
 
