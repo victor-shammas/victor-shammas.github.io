@@ -1,8 +1,8 @@
 ---
-title: "About"
-aliases:
-  - /about
+title: About
+aliases: /about
 ---
+
 <img class="about-photo" src="/images/shammas-keynote-2023.jpg" alt="Victor Shammas delivering keynote address">
 
 Dr. Victor Lund Shammas is Associate Professor of Sociology at the University of Bergen (UiB) in Norway. Formerly, he was Head of Department (2023–2026) and Associate Professor (2021–2026) in the Department of Sociology and Social Work, University of Agder. He holds a PhD in Sociology from the University of Oslo (2017) and has also worked as Senior Researcher at the Work Research Institute (AFI), Oslo Metropolitan University.
@@ -15,7 +15,7 @@ His work has been supported by the Norwegian Research Council (NFR) with an IDEA
 
 In recent years, he has advised Senator Bernie Sanders, then-Chairman of the U.S. Senate Budget Committee, on the topic of outer space policy, and has [appeared on Al Jazeera English](https://www.youtube.com/watch?v=9xDW_s1ZRJg)'s news panel show, *Inside Story*. He has lectured in the Norwegian Parliament, the Storting, on Marx's *Capital*, and participated in academic conferences across Europe and the United States.
 
-He writes a regular Substack newsletter and blog on global politics, culture, and social theory called *The Theory Brief*: [theorybrief.com](https://www.theorybrief.com).
+He writes a regular newsletter about global politics, culture, and social theory, *The Theory Brief*: [theorybrief.com](https://www.theorybrief.com).
 
 <a href="/pdfs/Shammas-CV.pdf" class="cv-link">⤓ Curriculum Vitae (PDF)</a>
 
