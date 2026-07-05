@@ -832,6 +832,11 @@
                 font-size: 11px;
             }
 
+            .add-form input.domain {
+                flex-grow: 0;
+                width: 130px;
+            }
+
             .add-form select {
                 background: var(--paper-deep);
                 border: 1px solid var(--rule);
@@ -872,6 +877,22 @@
                 flex-direction: column;
                 gap: 6px;
                 margin-bottom: 12px;
+            }
+
+            .settings-hint {
+                font-size: 11px;
+                line-height: 1.5;
+                color: var(--muted);
+                margin-top: 2px;
+            }
+
+            .settings-hint code {
+                font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+                font-size: 10px;
+                background: var(--paper-deep);
+                border: 1px solid var(--rule);
+                padding: 0 4px;
+                border-radius: 3px;
             }
 
             .settings-input-block label {
@@ -929,6 +950,24 @@
                 font-size: 11px;
                 color: var(--accent-deep);
                 margin-bottom: 8px;
+            }
+
+            .quota-note {
+                background: var(--highlight);
+                border: 1px solid var(--rule);
+                border-left: 3px solid var(--accent);
+                padding: 10px 14px;
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 13px;
+                line-height: 1.5;
+                color: var(--ink);
+                margin-bottom: 12px;
+                border-radius: 2px;
             }
 
             /* FOOTER */
@@ -1054,6 +1093,11 @@
                     <label for="days-back">Days back to fetch</label>
                     <input type="number" id="days-back" min="7" max="365" value="30" />
                 </div>
+                <div class="settings-input-block">
+                    <label for="api-key">OpenAlex API key (optional)</label>
+                    <input type="password" id="api-key" placeholder="Paste a key to bypass the shared free quota" autocomplete="off" spellcheck="false" />
+                    <div class="settings-hint">Sent as <code>api_key</code> on every request, so you can keep fetching after the free per-IP daily quota runs out. Stored only in this browser — never uploaded or shared. Leave blank to use free anonymous access.</div>
+                </div>
             </div>
 
             <div class="settings-section">
@@ -1062,7 +1106,8 @@
                 <div class="add-form">
                     <input type="text" id="add-journal-name" placeholder="Journal name" />
                     <input type="text" id="add-journal-issn" class="issn" placeholder="ISSN" />
-                    <select id="add-journal-domain"></select>
+                    <input type="text" id="add-journal-domain" class="domain" list="domain-options" placeholder="Category" />
+                    <datalist id="domain-options"></datalist>
                     <button class="add-btn" id="add-journal-btn">Add</button>
                 </div>
             </div>
@@ -1079,9 +1124,13 @@
             <div class="settings-section">
                 <div class="settings-section-title">Data</div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                    <button class="icon-btn" id="export-config-btn">↓ Export config</button>
+                    <button class="icon-btn" id="import-config-btn">↑ Import config</button>
                     <button class="icon-btn" id="reset-defaults-btn">Reset to defaults</button>
                     <button class="icon-btn" id="clear-saved-btn">Clear saved articles</button>
                 </div>
+                <input type="file" id="import-config-input" accept="application/json,.json" style="display: none" />
+                <div class="settings-hint" style="margin-top: 8px">Config = your journals, keywords and date range (not the API key or saved articles). Export to back up or share a setup; import to swap the monitor over to a different one.</div>
             </div>
         </aside>
 
@@ -1193,7 +1242,11 @@
                 "ethnography",
             ];
 
-            const DOMAINS = [
+            // The canonical categories that ship by default. The live set of
+            // domains is derived from the current journals (see domainsInUse),
+            // so an imported config can re-orient the monitor into entirely new
+            // categories without touching this list.
+            const DEFAULT_DOMAINS = [
                 "Sociology",
                 "Criminology",
                 "Political Economy",
@@ -1201,6 +1254,30 @@
                 "Anthropology",
                 "Political Science",
             ];
+
+            // Domains that actually have journals right now, ordered: the known
+            // defaults first (canonical order), then any custom domains from an
+            // imported/edited config in first-seen order. Drives the nav and the
+            // settings grouping.
+            function domainsInUse() {
+                const present = state.journals
+                    .map((j) => j.domain)
+                    .filter(Boolean);
+                const ordered = DEFAULT_DOMAINS.filter((d) => present.includes(d));
+                for (const d of present) {
+                    if (!ordered.includes(d)) ordered.push(d);
+                }
+                return ordered;
+            }
+
+            // Options offered in the "add journal" domain field: everything in
+            // use plus the standard defaults, so the canonical categories are
+            // always available even after a re-orientation.
+            function domainOptions() {
+                const opts = domainsInUse();
+                for (const d of DEFAULT_DOMAINS) if (!opts.includes(d)) opts.push(d);
+                return opts;
+            }
 
             // ============================================================
             // STATE
@@ -1213,6 +1290,7 @@
                 lastFetch: "ajm_last_fetch_v1",
                 lastVisit: "ajm_last_visit_v1",
                 daysBack: "ajm_days_back_v1",
+                apiKey: "ajm_api_key_v1",
             };
 
             // Clear keys left behind by the retired journals-tracker predecessor
@@ -1243,6 +1321,7 @@
                 filterQ: "",
                 lastFetch: load(STORAGE_KEYS.lastFetch, null),
                 lastVisit: load(STORAGE_KEYS.lastVisit, null),
+                apiKey: load(STORAGE_KEYS.apiKey, ""),
             };
 
             function load(key, fallback) {
@@ -1273,7 +1352,13 @@
             // 429s with backoff. No mailto is sent — OpenAlex no longer needs
             // one for polite-pool access, and we don't want every visitor's
             // requests attributed to the site owner's address.
+            //
+            // If the visitor has entered an OpenAlex API key in Settings, it is
+            // appended as `api_key` so they can keep fetching after the free
+            // per-IP daily quota is exhausted. The key lives only in their own
+            // browser's localStorage — it is never committed or shared.
             const MAX_RPS = 8;
+            const REQUEST_TIMEOUT_MS = 20000;
             let nextSlot = 0;
 
             function rateLimit() {
@@ -1286,10 +1371,30 @@
             }
 
             async function fetchWorks(params) {
-                const url = `${OPENALEX_BASE}?${params}`;
+                const keyParam = state.apiKey
+                    ? `&api_key=${encodeURIComponent(state.apiKey)}`
+                    : "";
+                const url = `${OPENALEX_BASE}?${params}${keyParam}`;
                 for (let attempt = 0; ; attempt++) {
                     await rateLimit();
-                    const res = await fetch(url);
+                    // Abort a hung request so an exhausted quota or a stalled
+                    // connection can never freeze the whole fetch (Settings must
+                    // stay usable so a key can be entered).
+                    const controller = new AbortController();
+                    const timer = setTimeout(
+                        () => controller.abort(),
+                        REQUEST_TIMEOUT_MS,
+                    );
+                    let res;
+                    try {
+                        res = await fetch(url, { signal: controller.signal });
+                    } catch (err) {
+                        clearTimeout(timer);
+                        throw err.name === "AbortError"
+                            ? new Error("timed out")
+                            : err;
+                    }
+                    clearTimeout(timer);
                     if (res.status === 429 && attempt < 2) {
                         const retryAfter = parseFloat(res.headers.get("Retry-After"));
                         await new Promise((r) =>
@@ -1507,11 +1612,12 @@
                     grouped[groupKey].push(a);
                 }
 
-                // Stable group order: DOMAINS first, then keywords alphabetically
+                // Stable group order: domains first, then keywords alphabetically
+                const doms = domainsInUse();
                 const groupOrder = [
-                    ...DOMAINS.filter((d) => grouped[d]),
+                    ...doms.filter((d) => grouped[d]),
                     ...Object.keys(grouped)
-                        .filter((k) => !DOMAINS.includes(k))
+                        .filter((k) => !doms.includes(k))
                         .sort(),
                 ];
 
@@ -1547,8 +1653,8 @@
                 return lines.join("\n");
             }
 
-            function downloadMarkdown(content, filename) {
-                const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+            function downloadBlob(content, filename, mime) {
+                const blob = new Blob([content], { type: mime });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
@@ -1557,6 +1663,93 @@
                 a.click();
                 document.body.removeChild(a);
                 setTimeout(() => URL.revokeObjectURL(url), 100);
+            }
+
+            function downloadMarkdown(content, filename) {
+                downloadBlob(content, filename, "text/markdown;charset=utf-8");
+            }
+
+            // ============================================================
+            // CONFIG EXPORT / IMPORT
+            // ============================================================
+            // A "config" is the tracked journals + keywords + date range — the
+            // knobs that define what the monitor watches. The API key and saved
+            // articles are deliberately excluded (a key is a secret; saved
+            // articles are personal, not part of a shareable setup).
+            function exportConfig() {
+                const cfg = {
+                    type: "academic-journal-monitor-config",
+                    version: 1,
+                    exportedAt: new Date().toISOString(),
+                    daysBack: state.daysBack,
+                    journals: state.journals,
+                    keywords: state.keywords,
+                };
+                const date = new Date().toISOString().slice(0, 10);
+                downloadBlob(
+                    JSON.stringify(cfg, null, 2),
+                    `academic-journal-monitor-config-${date}.json`,
+                    "application/json;charset=utf-8",
+                );
+            }
+
+            function importConfig(file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    let cfg;
+                    try {
+                        cfg = JSON.parse(reader.result);
+                    } catch {
+                        alert("That file isn’t valid JSON.");
+                        return;
+                    }
+                    const okJournals =
+                        Array.isArray(cfg.journals) &&
+                        cfg.journals.every(
+                            (j) =>
+                                j &&
+                                typeof j.name === "string" &&
+                                typeof j.issn === "string",
+                        );
+                    const okKeywords =
+                        Array.isArray(cfg.keywords) &&
+                        cfg.keywords.every((k) => typeof k === "string");
+                    if (!okJournals || !okKeywords) {
+                        alert(
+                            "That doesn’t look like a monitor config. It needs a \"journals\" array of {name, issn, domain} and a \"keywords\" array of strings.",
+                        );
+                        return;
+                    }
+                    if (
+                        !confirm(
+                            `Replace the current setup with ${cfg.journals.length} journal${cfg.journals.length === 1 ? "" : "s"} and ${cfg.keywords.length} keyword${cfg.keywords.length === 1 ? "" : "s"} from this file?`,
+                        )
+                    )
+                        return;
+                    state.journals = cfg.journals.map((j) => ({
+                        name: j.name.trim(),
+                        issn: j.issn.trim(),
+                        domain:
+                            typeof j.domain === "string" && j.domain.trim()
+                                ? j.domain.trim()
+                                : DEFAULT_DOMAINS[0],
+                    }));
+                    state.keywords = [
+                        ...new Set(cfg.keywords.map((k) => k.trim()).filter(Boolean)),
+                    ];
+                    if (Number.isFinite(cfg.daysBack)) {
+                        state.daysBack = Math.max(
+                            7,
+                            Math.min(365, Math.round(cfg.daysBack)),
+                        );
+                        save(STORAGE_KEYS.daysBack, state.daysBack);
+                    }
+                    save(STORAGE_KEYS.journals, state.journals);
+                    save(STORAGE_KEYS.keywords, state.keywords);
+                    renderSettings();
+                    fetchAll();
+                };
+                reader.readAsText(file);
             }
 
             function exportCurrentView(articles, viewTitle) {
@@ -1613,12 +1806,13 @@
 
             function renderNav() {
                 const nav = document.getElementById("nav-buttons");
+                const doms = domainsInUse();
                 const counts = {};
-                for (const d of DOMAINS) counts[d] = (state.articlesByDomain[d] || []).length;
+                for (const d of doms) counts[d] = (state.articlesByDomain[d] || []).length;
 
                 const buttons = [
                     { key: "all", label: "All Recent", count: totalCount() },
-                    ...DOMAINS.map((d) => ({
+                    ...doms.map((d) => ({
                         key: `domain:${d}`,
                         label: d,
                         count: counts[d],
@@ -1708,6 +1902,18 @@
                 </div>
               </div>
             `;
+
+                // Quota / rate-limit hint: if OpenAlex is refusing requests
+                // (429/403) or timing out, nudge the user toward the API key.
+                const quotaBlocked =
+                    state.errors.length > 0 &&
+                    state.errors.some((e) => /HTTP (429|403)|timed out/.test(e));
+                if (
+                    quotaBlocked &&
+                    (state.activeView === "all" || state.activeView === "keywords")
+                ) {
+                    html += `<div class="quota-note">⚠ OpenAlex is refusing requests — the free per-IP daily quota is likely exhausted${state.apiKey ? " (even with your key — it may be invalid or out of credits)" : ""}.${state.apiKey ? "" : " Add your <strong>OpenAlex API key</strong> in ⚙ Settings to keep fetching."}</div>`;
+                }
 
                 // Errors
                 if (
@@ -1866,11 +2072,15 @@
                 // Days back
                 document.getElementById("days-back").value = state.daysBack;
 
-                // Domain select
-                const sel = document.getElementById("add-journal-domain");
-                sel.innerHTML = DOMAINS.map(
-                    (d) => `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`,
-                ).join("");
+                // API key
+                document.getElementById("api-key").value = state.apiKey || "";
+
+                // Domain options for the "add journal" field (pick an existing
+                // category or type a new one)
+                const domainList = document.getElementById("domain-options");
+                domainList.innerHTML = domainOptions()
+                    .map((d) => `<option value="${escapeHtml(d)}"></option>`)
+                    .join("");
 
                 // Journals list
                 const grouped = {};
@@ -1879,7 +2089,7 @@
                     grouped[j.domain].push(j);
                 }
                 const journalsList = document.getElementById("journals-list");
-                journalsList.innerHTML = DOMAINS.map((d) => {
+                journalsList.innerHTML = domainsInUse().map((d) => {
                     const items = (grouped[d] || [])
                         .map(
                             (j) => `
@@ -1974,35 +2184,26 @@
                     save(STORAGE_KEYS.daysBack, state.daysBack);
                 });
 
+                document.getElementById("api-key").addEventListener("input", (e) => {
+                    state.apiKey = e.target.value.trim();
+                    save(STORAGE_KEYS.apiKey, state.apiKey);
+                });
+
                 document.getElementById("add-journal-btn").addEventListener("click", () => {
                     const nameInput = document.getElementById("add-journal-name");
                     const issnInput = document.getElementById("add-journal-issn");
+                    const domainInput = document.getElementById("add-journal-domain");
                     const name = nameInput.value.trim();
                     const issn = issnInput.value.trim();
-                    const domain = document.getElementById("add-journal-domain").value;
+                    const domain = domainInput.value.trim() || DEFAULT_DOMAINS[0];
                     if (!name || !issn) return;
                     state.journals.push({ name, issn, domain });
                     save(STORAGE_KEYS.journals, state.journals);
                     nameInput.value = "";
                     issnInput.value = "";
-                    // Surgical insert into the right domain group
-                    const group = document.querySelector(
-                        `#journals-list [data-domain="${CSS.escape(domain)}"] ul`,
-                    );
-                    if (group) {
-                        // Remove "none" placeholder if present
-                        const placeholder = group.querySelector(".empty-placeholder");
-                        if (placeholder) placeholder.remove();
-                        const li = document.createElement("li");
-                        li.className = "item";
-                        li.dataset.journalName = name;
-                        li.innerHTML = `
-                  <span class="item-name">${escapeHtml(name)}</span>
-                  <span class="item-meta">${escapeHtml(issn)}</span>
-                  <button class="remove-btn" data-action="remove-journal" title="Remove">✕</button>
-                `;
-                        group.appendChild(li);
-                    }
+                    domainInput.value = "";
+                    // Re-render so a brand-new category gets its own group
+                    renderSettings();
                 });
 
                 document.getElementById("add-keyword-btn").addEventListener("click", () => {
@@ -2031,6 +2232,24 @@
                 document.getElementById("add-keyword").addEventListener("keypress", (e) => {
                     if (e.key === "Enter") document.getElementById("add-keyword-btn").click();
                 });
+
+                document
+                    .getElementById("export-config-btn")
+                    .addEventListener("click", exportConfig);
+
+                document
+                    .getElementById("import-config-btn")
+                    .addEventListener("click", () => {
+                        document.getElementById("import-config-input").click();
+                    });
+
+                document
+                    .getElementById("import-config-input")
+                    .addEventListener("change", (e) => {
+                        const file = e.target.files && e.target.files[0];
+                        if (file) importConfig(file);
+                        e.target.value = ""; // allow re-importing the same file
+                    });
 
                 document.getElementById("reset-defaults-btn").addEventListener("click", () => {
                     if (!confirm("Reset journals and keywords to defaults?")) return;
