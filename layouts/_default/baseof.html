@@ -6,6 +6,7 @@
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta name="author" content="{{ .Site.Params.author }}">
+  <link rel="canonical" href="{{ .Permalink }}">
   {{/* Open Graph */}}
   <meta property="og:title" content="{{ .Title }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
