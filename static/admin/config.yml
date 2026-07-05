@@ -82,9 +82,16 @@ collections:
         hint: "The full post content. Supports Markdown, images, links, and HTML."
 
   # ── Static Pages ───────────────────────────────────────────────
-  # These let you edit the About, Media, and Norwegian pages via
-  # the CMS GUI. The Research (home) page uses raw HTML for its
+  # These let you edit the About, Contact, Tools, Media, and Norwegian
+  # pages via the CMS GUI. The Research page uses raw HTML for its
   # complex bibliography formatting, so it's edited in the repo.
+  #
+  # NOTE: `hidden` fields below carry structural front matter (layout,
+  # url, menu, aliases, etc.) so they round-trip untouched on save —
+  # the CMS only writes fields it knows about, so anything not declared
+  # here would be dropped. Bodies that are mostly raw HTML use the
+  # `text` widget (a plain textarea) so the markdown editor can't
+  # reformat the markup; prose-heavy bodies use `markdown`.
 
   - name: "pages"
     label: "Pages"
@@ -92,9 +99,29 @@ collections:
 
       - label: "About"
         name: "about"
-        file: "content/about.md"
+        file: "content/_index.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
+          - { label: "Aliases", name: "aliases", widget: "hidden" }
+          - { label: "Body", name: "body", widget: "text" }
+
+      - label: "Contact"
+        name: "contact"
+        file: "content/contact.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string", required: false }
+          - { label: "Menu", name: "menu", widget: "hidden" }
+          - { label: "Body", name: "body", widget: "text" }
+
+      - label: "Tools"
+        name: "tools"
+        file: "content/tools/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Layout", name: "layout", widget: "hidden" }
+          - { label: "URL", name: "url", widget: "hidden" }
           - { label: "Body", name: "body", widget: "markdown" }
 
       - label: "Media"
@@ -103,6 +130,9 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Layout", name: "layout", widget: "hidden" }
+          - { label: "Type", name: "type", widget: "hidden" }
+          - { label: "Aliases", name: "aliases", widget: "hidden" }
           - { label: "Body", name: "body", widget: "markdown" }
 
       - label: "Norwegian"
@@ -111,4 +141,7 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Layout", name: "layout", widget: "hidden" }
+          - { label: "URL", name: "url", widget: "hidden" }
+          - { label: "Aliases", name: "aliases", widget: "hidden" }
           - { label: "Body", name: "body", widget: "markdown" }
