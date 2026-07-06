@@ -2,8 +2,9 @@
   Newsletter card — site-wide subscribe CTA for The Theory Brief (Substack).
   Rendered on every page except the monitor embeds (gated in baseof.html).
   Full-width within the content column, orange-tinted to match theorybrief.com.
+  Pass "tight" when a feed strip precedes the card so the gap above it is halved.
 */}}
-<aside class="newsletter-card" aria-label="Subscribe to The Theory Brief">
+<aside class="newsletter-card{{ if .tight }} newsletter-card--tight{{ end }}" aria-label="Subscribe to The Theory Brief">
   <div class="newsletter-card__intro">
     <svg class="newsletter-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M22.539 8.242H1.46V5.836h21.08v2.406zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.406h21.08V0z" fill="currentColor"/>
