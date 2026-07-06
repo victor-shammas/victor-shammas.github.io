@@ -730,6 +730,10 @@ body.is-resizing-sidebar * { user-select: none !important; }
   gap: 1.25rem 2rem;
   flex-wrap: wrap;
 }
+/* Halved top gap when a rotating feed strip sits directly above the card. */
+.newsletter-card--tight {
+  margin-top: 1.5rem;
+}
 .newsletter-card__intro {
   display: flex;
   align-items: center;

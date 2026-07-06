@@ -48,7 +48,7 @@
           {{ partial "blog-feed-footer.html" . }}
         {{ end }}
         {{ if ne .Layout "embed" }}
-          {{ partial "newsletter-card.html" . }}
+          {{ partial "newsletter-card.html" (dict "tight" $showFeeds) }}
         {{ end }}
         <footer class="site-footer">
           <span class="site-footer__copyright">&copy; {{ now.Year }} Victor Shammas</span>
