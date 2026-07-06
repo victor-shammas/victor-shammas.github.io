@@ -712,6 +712,14 @@ body.is-resizing-sidebar * { user-select: none !important; }
   text-align: center;
 }
 
+/* When a rotating feed strip precedes the footer, tighten the gap above the
+   divider so it matches the strip's top padding. The strip already adds
+   0.75rem of bottom padding, so 0.75rem here totals the 1.5rem used at the
+   strip's top. */
+.site-footer--feeds {
+  margin-top: 0.75rem;
+}
+
 /* Blog-post footer: copyright + inline newsletter signup on one line */
 .site-footer--row {
   display: flex;

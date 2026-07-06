@@ -35,7 +35,8 @@
         <div data-pagefind-body>
           {{- block "main" . -}}{{- end -}}
         </div>
-        {{ if and (ne .Section "blog") (ne .Layout "embed") }}
+        {{ $showFeeds := and (ne .Section "blog") (ne .Layout "embed") }}
+        {{ if $showFeeds }}
           <script>
             (function () {
               var r = Math.random();
@@ -47,7 +48,7 @@
           {{ partial "blog-feed-footer.html" . }}
         {{ end }}
         {{ $showNewsletter := and (eq .Section "blog") .IsPage }}
-        <footer class="site-footer{{ if $showNewsletter }} site-footer--row{{ end }}">
+        <footer class="site-footer{{ if $showNewsletter }} site-footer--row{{ end }}{{ if $showFeeds }} site-footer--feeds{{ end }}">
           <span class="site-footer__copyright">&copy; {{ now.Year }} Victor Shammas</span>
           {{ if $showNewsletter }}
           <form class="footer-newsletter" action="https://www.theorybrief.com/subscribe" method="get" target="_blank" rel="noopener">
