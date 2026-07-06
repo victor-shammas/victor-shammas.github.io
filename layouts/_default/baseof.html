@@ -47,16 +47,11 @@
           {{ partial "bluesky-feed-footer.html" . }}
           {{ partial "blog-feed-footer.html" . }}
         {{ end }}
-        {{ $showNewsletter := and (eq .Section "blog") .IsPage }}
-        <footer class="site-footer{{ if $showNewsletter }} site-footer--row{{ end }}{{ if $showFeeds }} site-footer--feeds{{ end }}">
+        {{ if ne .Layout "embed" }}
+          {{ partial "newsletter-card.html" . }}
+        {{ end }}
+        <footer class="site-footer">
           <span class="site-footer__copyright">&copy; {{ now.Year }} Victor Shammas</span>
-          {{ if $showNewsletter }}
-          <form class="footer-newsletter" action="https://www.theorybrief.com/subscribe" method="get" target="_blank" rel="noopener">
-            <label class="footer-newsletter__label" for="footer-newsletter-email">Newsletter</label>
-            <input class="footer-newsletter__input" id="footer-newsletter-email" type="email" name="email" placeholder="your@email.com" required>
-            <button class="footer-newsletter__button" type="submit">Subscribe</button>
-          </form>
-          {{ end }}
         </footer>
       </div>
     </main>
