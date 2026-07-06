@@ -808,9 +808,14 @@ body.is-resizing-sidebar * { user-select: none !important; }
   .newsletter-card {
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 1.1rem;
   }
-  .newsletter-card__form { flex-basis: auto; }
+  /* Reset the desktop flex sizing: in a column, the intro's 280px basis would
+     become a 280px min-height and inflate the card. Size both to content so
+     the border hugs the contents. */
+  .newsletter-card__intro,
+  .newsletter-card__form { flex: 0 0 auto; }
 }
 
 /* ── Animations ──────────────────────────────────────────────── */
