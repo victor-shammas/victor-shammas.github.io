@@ -1,0 +1,20 @@
+{{/*
+  Newsletter card — site-wide subscribe CTA for The Theory Brief (Substack).
+  Rendered on every page except the monitor embeds (gated in baseof.html).
+  Full-width within the content column, orange-tinted to match theorybrief.com.
+*/}}
+<aside class="newsletter-card" aria-label="Subscribe to The Theory Brief">
+  <div class="newsletter-card__intro">
+    <svg class="newsletter-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M22.539 8.242H1.46V5.836h21.08v2.406zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.406h21.08V0z" fill="currentColor"/>
+    </svg>
+    <div class="newsletter-card__text">
+      <p class="newsletter-card__title">The Theory Brief</p>
+      <p class="newsletter-card__desc">Notes on society, politics, and ideas &mdash; delivered to your inbox.</p>
+    </div>
+  </div>
+  <form class="newsletter-card__form" action="https://www.theorybrief.com/subscribe" method="get" target="_blank" rel="noopener">
+    <input class="newsletter-card__input" type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
+    <button class="newsletter-card__button" type="submit">Subscribe</button>
+  </form>
+</aside>
