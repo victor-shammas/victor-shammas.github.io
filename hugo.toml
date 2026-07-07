@@ -45,7 +45,7 @@ url = "/media/"
 weight = 4
 
 [[menus.main]]
-name = "Theory Brief"
+name = "The Theory Brief"
 url = "https://www.theorybrief.com"
 weight = 5
 [menus.main.params]
