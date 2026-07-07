@@ -1119,7 +1119,7 @@
                 <div class="settings-section-title">Fetching</div>
                 <div class="settings-input-block">
                     <label for="days-back">Days back to fetch</label>
-                    <input type="number" id="days-back" min="7" max="365" value="30" />
+                    <input type="number" id="days-back" min="7" max="365" value="15" />
                 </div>
                 <div class="settings-input-block">
                     <label for="api-key">OpenAlex API key (optional)</label>
@@ -1341,7 +1341,7 @@
                 journals: load(STORAGE_KEYS.journals, DEFAULT_JOURNALS),
                 keywords: load(STORAGE_KEYS.keywords, DEFAULT_KEYWORDS),
                 saved: new Set(load(STORAGE_KEYS.saved, [])),
-                daysBack: load(STORAGE_KEYS.daysBack, 30),
+                daysBack: load(STORAGE_KEYS.daysBack, 15),
                 articlesByDomain: {}, // { domain: [articles] }
                 keywordArticles: [], // [articles from keyword search]
                 errors: [], // fetch errors
@@ -2247,7 +2247,7 @@
                 document.getElementById("days-back").addEventListener("change", (e) => {
                     state.daysBack = Math.max(
                         7,
-                        Math.min(365, parseInt(e.target.value) || 30),
+                        Math.min(365, parseInt(e.target.value) || 15),
                     );
                     save(STORAGE_KEYS.daysBack, state.daysBack);
                 });
