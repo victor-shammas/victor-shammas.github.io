@@ -13,7 +13,7 @@ canonicalifyURLs = false
   email = "contact@victorshammas.com"
   # Cloudflare Web Analytics beacon token (public — appears in page HTML).
   # Loaded only in production builds; leave empty to disable.
-  cloudflareAnalyticsToken = ""
+  cloudflareAnalyticsToken = "3fc9d9e70dba473490a7340792fdd54a"
 
 [params.social]
   googleScholar = "https://scholar.google.no/citations?user=FQgxhqkAAAAJ"
