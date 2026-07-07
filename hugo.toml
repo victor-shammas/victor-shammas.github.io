@@ -11,6 +11,9 @@ canonicalifyURLs = false
   description = "Sociologist — University of Bergen, Norway"
   author = "Victor Lund Shammas"
   email = "contact@victorshammas.com"
+  # Cloudflare Web Analytics beacon token (public — appears in page HTML).
+  # Loaded only in production builds; leave empty to disable.
+  cloudflareAnalyticsToken = ""
 
 [params.social]
   googleScholar = "https://scholar.google.no/citations?user=FQgxhqkAAAAJ"

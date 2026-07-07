@@ -112,5 +112,9 @@
     else init();
   })();
   </script>
+  {{/* Cloudflare Web Analytics — production builds only, when a token is set */}}
+  {{ if hugo.IsProduction }}{{ with .Site.Params.cloudflareAnalyticsToken }}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ . }}"}'></script>
+  {{ end }}{{ end }}
 </body>
 </html>
