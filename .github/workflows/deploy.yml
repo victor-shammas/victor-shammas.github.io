@@ -34,7 +34,18 @@ jobs:
           node-version: '22'
 
       - name: Install PDF text + OCR tooling
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils tesseract-ocr tesseract-ocr-nor
+        run: |
+          # GitHub-hosted runners ship Microsoft's apt repos
+          # (packages.microsoft.com) preconfigured. When Microsoft's repo
+          # signing breaks (recurring, e.g. the "Clearsigned file isn't
+          # valid, got 'NOSPLIT'" error), `apt-get update` exits non-zero
+          # and aborts this step — even though every package we install
+          # comes from the Ubuntu archive, not Microsoft's. Drop those
+          # third-party repos first so a Microsoft-side outage can't fail
+          # our build.
+          grep -rl packages.microsoft.com /etc/apt/sources.list.d/ 2>/dev/null | sudo xargs -r rm -f || true
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils tesseract-ocr tesseract-ocr-nor
 
       - name: Install Node dependencies
         run: npm install
