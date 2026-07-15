@@ -8,6 +8,8 @@ aliases: /norwegian-writings
 
 ## Essays og artikler
 
+«[Silicon Valley i verdensrummet](https://udenrigs.dk/silicon-valley-i-verdensrummet/)» (_Udenrigs.dk_, juli 2026)
+
 «[En kort innføring i Loïc Wacquants sosiologi](https://sosiologen.no/ideer/roffguide/en-kort-innforing-i-loic-wacquants-sosiologi/)» (_Sosiologen.no_, juni 2026) <a class="pdf-link" href="/pdfs/Shammas-Wacquant-innforing.pdf">PDF</a>
 
 «[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](/pdfs/Shammas-2026-Fra-Karl-Marx-til-kunstig-intelligens-(under-utgivelse).pdf)» (_Agora_, 2026, nr. 1-2)
