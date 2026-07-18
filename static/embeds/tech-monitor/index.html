@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 <script src="/embeds/_shared/greenlist.js"></script>
+<script src="/embeds/_shared/monitor-ui.js"></script>
 <style>
 :root {
   --bg-void: #f5f3ef;
@@ -936,6 +937,8 @@ function init() {
 
   // Export current layout to a JSON file
   document.getElementById('export-layout').addEventListener('click', () => {
+    // In-app browsers (Messenger, Instagram, etc.) can't save blob downloads.
+    if (window.MonitorUI && MonitorUI.blockDownloadInApp()) return;
     const data = {
       monitor: 'tech-monitor',
       version: 1,
