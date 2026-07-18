@@ -11,6 +11,7 @@
             href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap"
             rel="stylesheet"
         />
+        <script src="/embeds/_shared/monitor-ui.js"></script>
         <style>
             :root {
                 --paper: #FCFBF9;
@@ -1682,6 +1683,8 @@
             }
 
             function downloadBlob(content, filename, mime) {
+                // In-app browsers (Messenger, Instagram, etc.) can't save blob downloads.
+                if (window.MonitorUI && MonitorUI.blockDownloadInApp()) return;
                 const blob = new Blob([content], { type: mime });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
