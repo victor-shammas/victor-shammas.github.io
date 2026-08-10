@@ -94,7 +94,11 @@ if (!FORCE && existsSync(CACHE_FILE)) {
 }
 const nextCache = {};
 let pdfCount = 0, ocrCount = 0, emptyCount = 0, freshCount = 0, reuseCount = 0;
-const pdfs = readdirSync(PDF_DIR).filter((f) => f.toLowerCase().endsWith(".pdf"));
+// Skip directories: a redirect stub can occupy an old PDF path as
+// <name>.pdf/index.html, and readFileSync on it would throw EISDIR.
+const pdfs = readdirSync(PDF_DIR, { withFileTypes: true })
+  .filter((e) => e.isFile() && e.name.toLowerCase().endsWith(".pdf"))
+  .map((e) => e.name);
 for (const file of pdfs) {
   const path = join(PDF_DIR, file);
   const sha = createHash("sha1").update(readFileSync(path)).digest("hex");
