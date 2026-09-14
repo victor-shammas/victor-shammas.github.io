@@ -7,12 +7,6 @@ subtitle: "Articles, essays, reviews, and theses."
 <ul class="pub-list">
 
 <li class="pub-entry">
-<span class="authors">Shammas, V. L.</span> <span class="year">(forthcoming)</span>
-<span class="title-link">"NewSpace revisited: Commercialization, securitization and the emergence of a hybrid state-corporate space regime."</span>
-In: Greene, P. and Brush, C. (eds.), <span class="journal">Building the Global Space Economy: A Research Agenda for Entrepreneurship and Space Law</span>. Cheltenham: Edward Elgar.
-</li>
-
-<li class="pub-entry">
 <span class="authors">Shammas, V. L.</span> <span class="year">(2026)</span>
 <a href="/pdfs/Shammas-2026-Punishment-and-Technocracy.pdf" class="title-link">"Punishment and technocracy: Penal populism, elitism, and the 'buffered ideal' in the sociology of punishment."</a>
 In: Corda, A. (ed.), <span class="journal"><a href="https://www.e-elgar.com/shop/gbp/research-handbook-on-penal-policy-9781035308521.html">Research Handbook on Penal Policy</a></span>. Cheltenham: Edward Elgar, pp. 87–110.
