@@ -18,15 +18,15 @@ aliases: /norwegian-writings
 
 «[Noe er råttent i kongeriket Danmark](/pdfs/Shammas-Noe-er-rattent-Klassekampen-2025.pdf)» (_Klassekampen_, august 2025)
 
-«[Straffen: Kriminalomsorg mellom soning og forsoning](/pdfs/Shammas-Straffen-politisk-teologi.pdf)». I: Kloster, Løland, Lauritzen og Stålsett (red.), [_Hellig makt: Studier i politisk teologi_](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm Akademisk, 2025, s. 207–225.
+«[Straffen: Kriminalomsorg mellom soning og forsoning](/pdfs/Shammas-Straffen-politisk-teologi.pdf)». I: Kloster, S. T., Løland, O. J., Lauritzen, S. M. og Stålsett, S. J. (red.), [_Hellig makt: Studier i politisk teologi_](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm Akademisk, 2025, s. 207–225.
 
-«[Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell](/pdfs/Shammas-Stuart-Hall-Sosiologisk-analyse.pdf)». I: Øversveen, Leiulfsrud, Stuvøy og Tjora (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Bergen: Fagbokforlaget, 2025, s. 219–238.
+«[Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell](/pdfs/Shammas-Stuart-Hall-Sosiologisk-analyse.pdf)». I: Øversveen, E., Leiulfsrud, H., Stuvøy, I. og Tjora, A. (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Bergen: Fagbokforlaget, 2025, s. 219–238.
 
-«Kritisk teori». I: Øversveen, Leiulfsrud, Stuvøy og Tjora (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Bergen: Fagbokforlaget, 2025, s. 117–134 (m/ E. Øversveen).
+«Kritisk teori». I: Øversveen, E., Leiulfsrud, H., Stuvøy, I. og Tjora, A. (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Bergen: Fagbokforlaget, 2025, s. 117–134 (m/ E. Øversveen).
 
 [Brød eller sirkus?](/pdfs/Shammas-Klassekampen-Brod-eller-sirkus.pdf) (_Klassekampen_, juni 2024)
 
-[Marx' metode: Om _Kapitalen_ og dialektikkens arbeidsteknikker](/pdfs/Shammas-Marx-metode.pdf). I: Skarpenes og Hestholm (red.), [_Sosiologisk analyse_](https://fagbokforlaget.no/products/9788245045932-sosiologisk-analyse). Bergen: Fagbokforlaget, 2023, s. 283–302.
+[Marx' metode: Om _Kapitalen_ og dialektikkens arbeidsteknikker](/pdfs/Shammas-Marx-metode.pdf). I: Skarpenes, O. og Hestholm, R. (red.), [_Sosiologisk analyse_](https://fagbokforlaget.no/products/9788245045932-sosiologisk-analyse). Bergen: Fagbokforlaget, 2023, s. 283–302.
 
 [Bitterhetens politikk](/pdfs/shammas-2024-bitterhetens-politikk.pdf) (bokessay om Joseph Vogls _Capital & Ressentiment_; _Agora_ 41(2–3), 2023, s. 399–409)
 
@@ -60,7 +60,7 @@ aliases: /norwegian-writings
 
 [Den kritiske venn](/pdfs/Shammas-Den-kritiske-venn-Agora.pdf) (_Agora_ 37(2), 2019, s. 249–257)
 
-[Livet etter det 21. århundret: En samtale med McKenzie Wark](/pdfs/Shammas-og-Holen-Livet-etter-det-21-aarhundret.pdf) (_Agora_ 36(4)/37(1), 2019, s. 197–219; med Tomas Bjerke Holen)
+[Livet etter det 21. århundret: En samtale med McKenzie Wark](/pdfs/Shammas-og-Holen-Livet-etter-det-21-aarhundret.pdf) (_Agora_ 36(4)/37(1), 2019, s. 197–219; m/ T. B. Holen)
 
 [Mesterbyggeren Bourdieu](/pdfs/Shammas-Mesterbyggeren-Bourdieu.pdf) (anmeldelse av Pierre Bourdieus _Sociologie générale, tome 2_; _Agora_ 36(4)/37(1), 2019, s. 258–268)
 
