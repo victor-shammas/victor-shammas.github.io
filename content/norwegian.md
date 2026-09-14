@@ -12,27 +12,27 @@ aliases: /norwegian-writings
 
 «[En kort innføring i Loïc Wacquants sosiologi](https://sosiologen.no/ideer/roffguide/en-kort-innforing-i-loic-wacquants-sosiologi/)» (_Sosiologen.no_, juni 2026) <a class="pdf-link" href="/pdfs/Shammas-Wacquant-innforing.pdf">PDF</a>
 
-«[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](https://www.scup.com/doi/10.18261/agora.44.1-2.7)» (_Agora_, 2026, nr. 1-2) <a class="pdf-link" href="/pdfs/Shammas-2026-Fra-Karl-Marx-til-KI-Agora.pdf">PDF</a>
+«[Fra Karl Marx til KI: Fire begreper for å tenke kritisk om kunstig intelligens](https://www.scup.com/doi/10.18261/agora.44.1-2.7)» (_Agora_ 44(1–2), 2026, s. 173–197) <a class="pdf-link" href="/pdfs/Shammas-2026-Fra-Karl-Marx-til-KI-Agora.pdf">PDF</a>
 
-«[Opp-ned-filosofen](/pdfs/shammas-2025-opp-ned-filosofen.pdf)» (_Agora_, 2024)
+«[Opp-ned-filosofen](/pdfs/shammas-2025-opp-ned-filosofen.pdf)» (anmeldelse av Slavoj Žižeks _Freedom: A Disease Without a Cure_; _Agora_ 42(3–4), 2024, s. 309–318)
 
 «[Noe er råttent i kongeriket Danmark](/pdfs/Shammas-Noe-er-rattent-Klassekampen-2025.pdf)» (_Klassekampen_, august 2025)
 
-«[Straffen: Kriminalomsorg mellom soning og forsoning](/pdfs/Shammas-Straffen-politisk-teologi.pdf)». I: Kloster et al. (red.), [_Hellig makt: Studier i politisk teologi_](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm, 2024.
+«[Straffen: Kriminalomsorg mellom soning og forsoning](/pdfs/Shammas-Straffen-politisk-teologi.pdf)». I: Kloster, Løland, Lauritzen og Stålsett (red.), [_Hellig makt: Studier i politisk teologi_](https://utdanning.cappelendamm.no/_hellig-makt-9788202822149). Oslo: Cappelen Damm Akademisk, 2025, s. 207–225.
 
-«[Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell](/pdfs/Shammas-Stuart-Hall-Sosiologisk-analyse.pdf)». I: Øversveen et al. (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025.
+«[Stuart Hall: Kulturteoretiker, marxist og 'kollektiv' intellektuell](/pdfs/Shammas-Stuart-Hall-Sosiologisk-analyse.pdf)». I: Øversveen, Leiulfsrud, Stuvøy og Tjora (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Bergen: Fagbokforlaget, 2025, s. 219–238.
 
-«Kritisk teori». I: Øversveen et al. (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Oslo: Fagbokforlaget, 2025 (m/ E. Øversveen).
+«Kritisk teori». I: Øversveen, Leiulfsrud, Stuvøy og Tjora (red.), [_Sosiologisk teori: Klassikere, modernitet og samtid_](https://fagbokforlaget.no/products/9788245044157-sosiologisk-teori). Bergen: Fagbokforlaget, 2025, s. 117–134 (m/ E. Øversveen).
 
 [Brød eller sirkus?](/pdfs/Shammas-Klassekampen-Brod-eller-sirkus.pdf) (_Klassekampen_, juni 2024)
 
-[Marx' metode: Om _Kapitalen_ og dialektikkens arbeidsteknikker](/pdfs/Shammas-Marx-metode.pdf). I: Skarpenes og Hestholm (red.), [_Sosiologisk analyse_](https://fagbokforlaget.no/products/9788245045932-sosiologisk-analyse). Oslo: Fagbokforlaget, 2023, s. 283–302.
+[Marx' metode: Om _Kapitalen_ og dialektikkens arbeidsteknikker](/pdfs/Shammas-Marx-metode.pdf). I: Skarpenes og Hestholm (red.), [_Sosiologisk analyse_](https://fagbokforlaget.no/products/9788245045932-sosiologisk-analyse). Bergen: Fagbokforlaget, 2023, s. 283–302.
 
-[Bitterhetens politikk](/pdfs/shammas-2024-bitterhetens-politikk.pdf) (bokessay om Joseph Vogls _Capital & Ressentiment_; _Agora_, 2023)
+[Bitterhetens politikk](/pdfs/shammas-2024-bitterhetens-politikk.pdf) (bokessay om Joseph Vogls _Capital & Ressentiment_; _Agora_ 41(2–3), 2023, s. 399–409)
 
-[Etter oss, informasjonsfloden](/pdfs/Shammas-Etter-oss-informasjonsfloden-Agora.pdf) (_Agora_, 2022)
+[Etter oss, informasjonsfloden](/pdfs/Shammas-Etter-oss-informasjonsfloden-Agora.pdf) (anmeldelse av McKenzie Warks _Capital is Dead_; _Agora_ 40(2–3), 2022, s. 530–543)
 
-[Den heterodokse insider: Om Loïc Wacquants forfatterskap](/pdfs/Shammas-Den-heterodokse-insider.pdf) (_Nytt Norsk Tidsskrift_, 2022)
+[Den heterodokse insider: Om Loïc Wacquants forfatterskap](/pdfs/Shammas-Den-heterodokse-insider.pdf) (_Nytt Norsk Tidsskrift_ 39(3), 2022, s. 226–230)
 
 [Bokanmeldelse: Yngve Hammerlin, _Hard mot de harde_](/pdfs/sosiologenno-Hard-mot-de-harde.pdf) (_Sosiologen.no_, juni 2022)
 
@@ -42,31 +42,31 @@ aliases: /norwegian-writings
 
 [Oljefondets naivitet](/pdfs/klassekampenno-Oljefondets-naivitet.pdf) (_Klassekampen_, mars 2022)
 
-[Paulus med/uten Kristus](/pdfs/Shammas-Agora-Paulus-med-uten-Kristus.pdf) (_Agora_, 2021)
+[Paulus med/uten Kristus](/pdfs/Shammas-Agora-Paulus-med-uten-Kristus.pdf) (_Agora_ 39(3), 2021, s. 282–291)
 
-[Bokanmeldelse: Stuart Halls _Rase, etnisitet, nasjon_](/pdfs/TfS-2021-BM-Shammas.pdf) (_Tidsskrift for samfunnsforskning_, 2021)
+[Bokanmeldelse: Stuart Halls _Rase, etnisitet, nasjon_](/pdfs/TfS-2021-BM-Shammas.pdf) (_Tidsskrift for samfunnsforskning_ 62(4), 2021, s. 382–387)
 
 [Kapitalens diktatur](/pdfs/Shammas-Kapitalens-diktatur.pdf) (e-pamflett, 142 sider; 2021)
 
 [Malplassert liberalisme](/pdfs/agendamagasinno-Malplassert-liberalisme.pdf) (_Agenda Magasin_, januar 2021)
 
-[Kritikk av den liberale populismekritikk](/pdfs/Shammas-Kritikk-av-den-liberale-populismekritikk.pdf) (_Agora_, 2020)
+[Kritikk av den liberale populismekritikk](/pdfs/Shammas-Kritikk-av-den-liberale-populismekritikk.pdf) (_Agora_ 38(1–2), 2020, s. 115–131)
 
-[Opp alle jordens bundne sosialdemokrater!](/pdfs/Shammas-Opp-alle-jordens-bundne-sosialdemokrater.pdf) (_Agora_, 2020)
+[Opp alle jordens bundne sosialdemokrater!](/pdfs/Shammas-Opp-alle-jordens-bundne-sosialdemokrater.pdf) (_Agora_ 38(1–2), 2020, s. 347–356)
 
-[En tenker uten trelldommens ånd](/pdfs/Shammas-En-tenker-uten-trelldommens-and-Agora.pdf) (_Agora_, september 2019)
+[En tenker uten trelldommens ånd](/pdfs/Shammas-En-tenker-uten-trelldommens-and-Agora.pdf) (anmeldelse av Mark Fishers _K-Punk_; _Agora_ 37(3–4), 2019, s. 272–279)
 
 [Den kristne fornuft](/pdfs/Shammas-Vart-Land-kronikk.pdf) (_Vårt Land_, november 2019)
 
-[Den kritiske venn](/pdfs/Shammas-Den-kritiske-venn-Agora.pdf) (_Agora_, juni 2019)
+[Den kritiske venn](/pdfs/Shammas-Den-kritiske-venn-Agora.pdf) (_Agora_ 37(2), 2019, s. 249–257)
 
-[Livet etter det 21. århundret: En samtale med McKenzie Wark](/pdfs/Shammas-og-Holen-Livet-etter-det-21-aarhundret.pdf) (_Agora_, november 2018; med Tomas Bjerke Holen)
+[Livet etter det 21. århundret: En samtale med McKenzie Wark](/pdfs/Shammas-og-Holen-Livet-etter-det-21-aarhundret.pdf) (_Agora_ 36(4)/37(1), 2019, s. 197–219; med Tomas Bjerke Holen)
 
-[Mesterbyggeren Bourdieu](/pdfs/Shammas-Mesterbyggeren-Bourdieu.pdf) (_Agora_, november 2018)
+[Mesterbyggeren Bourdieu](/pdfs/Shammas-Mesterbyggeren-Bourdieu.pdf) (anmeldelse av Pierre Bourdieus _Sociologie générale, tome 2_; _Agora_ 36(4)/37(1), 2019, s. 258–268)
 
 ['La arbeiderne ta over!' Et intervju med David Ellerman](/pdfs/Shammas-Den-arbeiderstyrte-bedriften.pdf) (_Manifest Tidsskrift_, oktober 2018)
 
-[Samtalens umulighet](/pdfs/Shammas-Samtalens-umulighet-Agora.pdf) (_Agora_, september 2018)
+[Samtalens umulighet](/pdfs/Shammas-Samtalens-umulighet-Agora.pdf) (anmeldelse av Axel Honneth og Jacques Rancières _Recognition or Disagreement_; _Agora_ 36(2–3), 2018, s. 320–327)
 
 [Et annerledes folk](/pdfs/Shammas-Et-annerledes-folk.pdf) (_Klassekampens Bokmagasin_, juli 2018)
 
@@ -92,9 +92,9 @@ aliases: /norwegian-writings
 
 [Bør universitetet bli mer nyliberalt?](/pdfs/Shammas-Bor-universitetet-bli-mer-nyliberalt.pdf) (_Universitas_, 2015)
 
-[Den fiktive kategorien](/pdfs/Shammas-Den-fiktive-kategorien.pdf) (_Agora_, 2014)
+[Den fiktive kategorien](/pdfs/Shammas-Den-fiktive-kategorien.pdf) (anmeldelse av Robert W. Sussmans _The Myth of Race_; _Agora_ 32(3–4), 2014, s. 234–239)
 
-[Nyliberalismens usannsynlige triumf](/pdfs/Shammas-Nyliberalismens-usannsynlige-triumf.pdf) (_Agora_, 2014)
+[Nyliberalismens usannsynlige triumf](/pdfs/Shammas-Nyliberalismens-usannsynlige-triumf.pdf) (anmeldelse av Philip Mirowskis _Never Let a Serious Crisis Go to Waste_; _Agora_ 32(3–4), 2014, s. 279–290)
 
 [Krigens pris](/pdfs/Shammas-Krigens-pris.pdf) (_Klassekampen_, 2013)
 
@@ -104,15 +104,15 @@ aliases: /norwegian-writings
 
 [De andres fengsel](/pdfs/Shammas-De-andres-fengsel.pdf) (_Aftenposten_, 2012)
 
-[Okkupasjonen av byrommet](/pdfs/Shammas-Okkupasjon-av-byrommet.pdf) (_Agora_, 2012)
+[Okkupasjonen av byrommet](/pdfs/Shammas-Okkupasjon-av-byrommet.pdf) (anmeldelse av David Harveys _Rebel Cities_; _Agora_ 30(1), 2012, s. 263–270)
 
-[Revolusjonens uår](/pdfs/Shammas-Revolusjonens-uar.pdf) (_Agora_, 2012)
+[Revolusjonens uår](/pdfs/Shammas-Revolusjonens-uar.pdf) (anmeldelse av Slavoj Žižeks _The Year of Dreaming Dangerously_; _Agora_ 30(2–3), 2012, s. 327–332)
 
 ['En urett mot alle': Hvordan 'union avoidance' svekker amerikanske fagforeninger](/pdfs/Shammas-En-urett-mot-alle.pdf) (_Socius_, 2011)
 
-[Straffens nyliberale fest](/pdfs/Shammas-Straffens-nyliberale-fest.pdf) (_Agora_, 2011)
+[Straffens nyliberale fest](/pdfs/Shammas-Straffens-nyliberale-fest.pdf) (anmeldelse av Loïc Wacquants _Punishing the Poor_; _Agora_ 29(1), 2011, s. 252–260)
 
-[Ghetto, banlieue, favela, problemområde](/pdfs/Shammas-Ghetto-banlieue-favela.pdf) (_Agora_, 2011)
+[Ghetto, banlieue, favela, problemområde: Når bydeler går i oppløsning](/pdfs/Shammas-Ghetto-banlieue-favela.pdf) (anmeldelse av Loïc Wacquants _Urban Outcasts_; _Agora_ 29(1), 2011, s. 261–269)
 
 [Ingen nåde](/pdfs/Shammas-Ingen-nade.pdf) (_Klassekampens Bokmagasin_, 2011)
 
