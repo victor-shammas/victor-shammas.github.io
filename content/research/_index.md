@@ -71,23 +71,16 @@ In: Corda, A. (ed.), <span class="journal"><a href="https://www.e-elgar.com/shop
 
 <li class="pub-entry">
 <span class="authors">Shammas, V. L.</span> <span class="year">(2019)</span>
-<a href="/pdfs/Shammas-The-State-as-God.pdf" class="title-link">"The state as God: On Bourdieu's political theology."</a>
-<span class="journal">Journal of Extreme Anthropology</span> 2(2): 61–77.
-<a href="/pdfs/Shammas-The-State-as-God.pdf" class="pdf-link">PDF</a>
-</li>
-
-<li class="pub-entry">
-<span class="authors">Shammas, V. L.</span> <span class="year">(2019)</span>
-<a href="/pdfs/Shammas-The-pains-of-sovereignty.pdf" class="title-link">"The pains of sovereignty: On the joyous passion of the self-punishing subject."</a>
-<span class="journal">Journal of Extreme Anthropology</span> 2(2): 111–117.
-<a href="/pdfs/Shammas-The-pains-of-sovereignty.pdf" class="pdf-link">PDF</a>
-</li>
-
-<li class="pub-entry">
-<span class="authors">Shammas, V. L.</span> <span class="year">(2019)</span>
 <a href="/pdfs/Shammas-Surplus-populations-and-the-state.pdf" class="title-link">"Surplus populations and the state: A criminological view."</a>
 <span class="journal">International Journal for Crime, Justice and Social Democracy</span> 8(1): 131–146.
 <a href="/pdfs/Shammas-Surplus-populations-and-the-state.pdf" class="pdf-link">PDF</a>
+</li>
+
+<li class="pub-entry">
+<span class="authors">Shammas, V. L.</span> <span class="year">(2018)</span>
+<a href="/pdfs/Shammas-The-State-as-God.pdf" class="title-link">"The state as God: On Bourdieu's political theology."</a>
+<span class="journal">Journal of Extreme Anthropology</span> 2(2): 61–77.
+<a href="/pdfs/Shammas-The-State-as-God.pdf" class="pdf-link">PDF</a>
 </li>
 
 <li class="pub-entry">
@@ -110,6 +103,13 @@ In: Corda, A. (ed.), <span class="journal"><a href="https://www.e-elgar.com/shop
 <span class="journal">Law and Critique</span> 29(2): 201–219.
 <a href="/pdfs/Shammas-Bourdieus-five-lessons.pdf" class="pdf-link">PDF</a>
 <div class="pub-sub">Portuguese translation: <a href="/pdfs/Shammas-Cinco-licoes-de-Bourdieu.pdf">"Cinco lições de Bourdieu para a criminologia."</a> <span class="journal">Revista Jurídica da UFERSA</span> 3(6): 31–54, 2019.</div>
+</li>
+
+<li class="pub-entry">
+<span class="authors">Shammas, V. L.</span> <span class="year">(2018)</span>
+<a href="/pdfs/Shammas-The-pains-of-sovereignty.pdf" class="title-link">"The pains of sovereignty: On the joyous passion of the self-punishing subject."</a>
+<span class="journal">Journal of Extreme Anthropology</span> 2(2): 111–117.
+<a href="/pdfs/Shammas-The-pains-of-sovereignty.pdf" class="pdf-link">PDF</a>
 </li>
 
 <li class="pub-entry">
