@@ -7,7 +7,7 @@ Notes for working on this site (a Hugo static site deployed to GitHub Pages).
 Five monitor dashboards live at `/tools/<name>-monitor/`, each an iframe of a
 standalone page in `static/embeds/<name>-monitor/index.html`:
 `ai`, `space`, `tech`, `leftpolitics`, `rightwing`. They're also embedded
-cross-site (e.g. on hrmn.ai).
+cross-site (e.g. on lab.hrmn.ai).
 
 ### Editing what a monitor tracks — the workflow
 
