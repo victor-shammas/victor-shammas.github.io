@@ -34,7 +34,7 @@ url: "/tools/"
 
 <h2 class="section-heading">Apps and Extensions</h2>
 
-[**MDView**](https://github.com/victor-shammas/mdview/) — A lightweight Markdown reader for macOS.
+[**Plainview – Markdown reader**](https://github.com/victor-shammas/plainview) — A lightweight Markdown reader for macOS.
 
 [**URL-to-Notes**](https://github.com/victor-shammas/url-to-notes) — A Google Chrome extension for saving links to Apple Notes.
 
