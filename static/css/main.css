@@ -147,6 +147,9 @@ body.is-resizing-sidebar * { user-select: none !important; }
 }
 .sidebar__nav a:hover { background: var(--sidebar-hover-bg); color: var(--sidebar-hover-text); }
 .sidebar__nav a.active { background: var(--sidebar-hover-bg); color: var(--sidebar-hover-text); font-weight: 500; }
+.sidebar__nav-icon { width: 1em; height: 1em; margin-right: 0.6em; vertical-align: -0.125em; opacity: 0.7; flex-shrink: 0; }
+.sidebar__nav a:hover .sidebar__nav-icon, .sidebar__nav a.active .sidebar__nav-icon { opacity: 1; }
+.sidebar__nav-divider { margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--sidebar-hover-bg); }
 .sidebar__nav a.external::after { content: '\2197\FE0E'; font-variant-emoji: text; font-size: 0.7em; margin-left: 0.35em; opacity: 0.5; }
 
 .sidebar__footer {

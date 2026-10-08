@@ -41,10 +41,10 @@
       <div class="sidebar__title">Sociologist</div>
       <ul class="sidebar__nav">
         {{- range .Site.Menus.main -}}
-          <li>
+          <li{{ if .Params.divider }} class="sidebar__nav-divider"{{ end }}>
             <a href="{{ if .Params.external }}{{ .URL }}{{ else }}{{ .URL | absURL }}{{ end }}"
                {{- if .Params.external }} class="external" target="_blank" rel="noopener"{{ end -}}>
-              {{ .Name }}
+              {{ partial "nav-icon.html" .Params.icon }}{{ .Name }}
             </a>
           </li>
         {{- end -}}

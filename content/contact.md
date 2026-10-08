@@ -4,6 +4,8 @@ description: Get in touch with Dr. Victor Shammas.
 menu:
   main:
     weight: 70
+    params:
+      icon: mail
 ---
 
 Feel free to reach out with questions about my research, media inquiries, speaking invitations, or collaboration proposals. 
