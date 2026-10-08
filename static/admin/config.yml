@@ -36,7 +36,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     sort: "date:desc"
-    summary: "{{title}} — {{year}}/{{month}}/{{day}}"
+    summary: "{{title}} — {{date | date('YYYY/MM/DD')}}"
     preview_path: "blog/{{slug}}"
 
     fields:
