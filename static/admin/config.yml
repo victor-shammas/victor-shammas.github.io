@@ -35,7 +35,9 @@ collections:
     folder: "content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    sort: "date:desc"
+    sortable_fields:
+      fields: ["date", "title"]
+      default: { field: "date", direction: "descending" }
     summary: "{{title}} — {{date | date('YYYY/MM/DD')}}"
     preview_path: "blog/{{slug}}"
 
