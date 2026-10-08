@@ -177,6 +177,9 @@
 (function () {
   var BSKY_HANDLE = "victorshammas.com";
   var POST_LIMIT = 4;
+  // The API can drop items after applying `limit` (deleted/blocked reposts,
+  // filtered thread posts), so over-fetch and trim to POST_LIMIT.
+  var FETCH_LIMIT = POST_LIMIT * 2;
   var API_URL = "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
   var container = document.getElementById("bsky-sidebar-posts");
 
@@ -253,11 +256,11 @@ function renderPost(item) {
       "</div></div>";
   }
   
-  fetch(API_URL + "?actor=" + encodeURIComponent(BSKY_HANDLE) + "&limit=" + POST_LIMIT + "&filter=posts_no_replies")
+  fetch(API_URL + "?actor=" + encodeURIComponent(BSKY_HANDLE) + "&limit=" + FETCH_LIMIT + "&filter=posts_no_replies")
     .then(function (res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
     .then(function (data) {
       if (!data.feed || data.feed.length === 0) { container.innerHTML = '<div class="bsky-sidebar__loading">No posts yet.</div>'; return; }
-      container.innerHTML = data.feed.map(renderPost).join("");
+      container.innerHTML = data.feed.slice(0, POST_LIMIT).map(renderPost).join("");
     })
     .catch(function (err) {
       console.error("Bluesky sidebar error:", err);
