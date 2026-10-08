@@ -16,6 +16,7 @@ canonicalifyURLs = false
   cloudflareAnalyticsToken = "3fc9d9e70dba473490a7340792fdd54a"
 
 [params.social]
+  uibProfile = "https://www4.uib.no/en/find-employees/victor-lund.shammas"
   googleScholar = "https://scholar.google.no/citations?user=FQgxhqkAAAAJ"
   academia = "https://uio.academia.edu/VictorLundShammas"
   researchGate = "https://www.researchgate.net/profile/Victor_Shammas"
