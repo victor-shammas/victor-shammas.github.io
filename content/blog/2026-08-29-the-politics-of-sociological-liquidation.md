@@ -3,7 +3,7 @@ title: The Politics of Sociological “Liquidation”
 date: 2026-07-28
 draft: false
 dek: Those who would see sociology unmade are aligned, consciously or not, with a powerful reactionary force working to remold the academy—and the world.
-image: ''
+image: /images/blog/d3fc801e-5b38-46f8-8267-0869bd2a71ee_1324x1332.png
 summary: ''
 ---
 
