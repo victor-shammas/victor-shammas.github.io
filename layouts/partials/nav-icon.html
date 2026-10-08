@@ -1,0 +1,6 @@
+{{- /* Inline a menu icon from assets/icons/<name>.svg. Context: icon name. */ -}}
+{{- with . -}}
+  {{- with resources.Get (printf "icons/%s.svg" .) -}}
+    {{- replace (chomp .Content) "<svg " "<svg class=\"sidebar__nav-icon\" " | safeHTML -}}
+  {{- end -}}
+{{- end -}}

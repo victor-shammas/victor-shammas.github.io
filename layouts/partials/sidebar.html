@@ -4,13 +4,13 @@
 
   <ul class="sidebar__nav">
     {{- range .Site.Menus.main -}}
-      <li>
+      <li{{ if .Params.divider }} class="sidebar__nav-divider"{{ end }}>
         <a href="{{ .URL }}"
            {{- if .Params.external }} class="external" target="_blank" rel="noopener"
            {{- else if eq $.RelPermalink .URL }} class="active"
            {{- else if and (ne .URL "/") (hasPrefix $.RelPermalink .URL) }} class="active"
            {{- end -}}>
-          {{ .Name }}
+          {{ partial "nav-icon.html" .Params.icon }}{{ .Name }}
         </a>
       </li>
     {{- end -}}
