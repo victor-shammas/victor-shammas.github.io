@@ -34,8 +34,14 @@ url: "/tools/"
 
 <h2 class="section-heading">Apps and Extensions</h2>
 
-[**Plainview – Markdown reader**](https://github.com/victor-shammas/plainview) — A lightweight Markdown reader for macOS.
+[**Plainview**](https://victorshammas.com/plainview/) — A Markdown reader for the Mac: opens Markdown files in a clean, readable window.
+
+[**Gaugeline**](https://victorshammas.com/gaugeline/) — Claude Code and Codex usage limits in the Mac menu bar, with reset countdowns and pace forecasts.
+
+[**Quoth**](https://victorshammas.com/quoth/) — Local voice transcription for the Mac: hold a key, speak, and your words appear where you type.
+
+[**Staple**](https://victorshammas.com/staple/) — A Chrome extension that gathers Substack essays into one PDF, EPUB or HTML file for offline reading.
+
+[**Claude Usage Meter**](https://victorshammas.com/claude-usage-meter/) — Your Claude 5-hour and weekly usage limits in the Mac menu bar. Free and open source.
 
 [**URL-to-Notes**](https://github.com/victor-shammas/url-to-notes) — A Google Chrome extension for saving links to Apple Notes.
-
-[**Claude Usage Menubar**](https://github.com/victor-shammas/claude-usage-menubar) — macOS menu bar widget showing Claude usage quotas (5-hour and weekly windows).
