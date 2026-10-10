@@ -40,7 +40,7 @@ url: "/tools/"
 
 [**Quoth**](https://victorshammas.com/quoth/) — Local voice transcription for the Mac: hold a key, speak, and your words appear where you type.
 
-[**Staple**](https://victorshammas.com/staple/) — A Chrome extension that gathers Substack essays into one PDF, EPUB or HTML file for offline reading.
+[**Staple**](https://victorshammas.com/staple/) ([Chrome Web Store](https://chromewebstore.google.com/detail/staple/hakeoeghnpkdejinkkbopcmonhigpmdf)) — A Chrome extension that gathers Substack essays into one PDF, EPUB or HTML file for offline reading.
 
 [**Claude Usage Meter**](https://victorshammas.com/claude-usage-meter/) — Your Claude 5-hour and weekly usage limits in the Mac menu bar. Free and open source.
 
