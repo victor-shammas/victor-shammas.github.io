@@ -439,6 +439,9 @@ body.is-resizing-sidebar * { user-select: none !important; }
   text-decoration: underline;
   color: var(--link-hover);
 }
+/* A section heading that links somewhere keeps the heading's look;
+   it only shows the underline on hover. */
+.page-tools .prose .section-heading a:not(.pdf-link) { color: inherit; font-weight: inherit; }
 
 .pub-sub {
   margin-top: 0.4rem;

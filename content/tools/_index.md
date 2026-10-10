@@ -32,7 +32,7 @@ url: "/tools/"
 
 **Shammas Right-Wing Politics Briefing** ([Spotify](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) · [YouTube](https://www.youtube.com/playlist?list=PLEIoYRgVQTLc)) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
 
-<h2 class="section-heading">Apps and Extensions</h2>
+<h2 class="section-heading"><a href="/apps/">Apps and Extensions</a></h2>
 
 [**Plainview**](https://victorshammas.com/plainview/) — A Markdown reader for the Mac: opens Markdown files in a clean, readable window.
 
