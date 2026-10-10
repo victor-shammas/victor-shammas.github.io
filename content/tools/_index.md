@@ -44,4 +44,6 @@ url: "/tools/"
 
 [**Claude Usage Meter**](https://victorshammas.com/claude-usage-meter/) — Your Claude 5-hour and weekly usage limits in the Mac menu bar. Free and open source.
 
+[**Lectern**](https://victorshammas.com/lectern/) — A presenter view for HTML slide decks on the Mac: the slides on the projector, your notes and the next slide on your laptop.
+
 [**URL-to-Notes**](https://github.com/victor-shammas/url-to-notes) — A Google Chrome extension for saving links to Apple Notes.
