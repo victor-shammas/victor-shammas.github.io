@@ -46,4 +46,4 @@ url: "/tools/"
 
 [**Lectern**](https://victorshammas.com/lectern/) — A presenter view for HTML slide decks on the Mac: the slides on the projector, your notes and the next slide on your laptop.
 
-[**URL-to-Notes**](https://github.com/victor-shammas/url-to-notes) — A Google Chrome extension for saving links to Apple Notes.
+[**Commonplace**](https://victorshammas.com/commonplace/) — A Chrome extension for the Mac that saves links to Apple Notes, with the page title, the date and your own comment. Free and open source.
