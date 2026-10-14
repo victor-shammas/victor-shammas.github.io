@@ -678,7 +678,8 @@ body.is-resizing-sidebar * { user-select: none !important; }
   font-size: var(--text-base);
   line-height: 1.6;
 }
-.news-date { font-weight: 600; white-space: nowrap; }
+.news-date { color: var(--muted); white-space: nowrap; }
+.news-title { font-weight: 600; }
 .news-text p { display: inline; margin: 0; }
 .news-more {
   display: inline-block;
