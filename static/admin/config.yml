@@ -163,6 +163,7 @@ collections:
             name: "items"
             widget: "list"
             add_to_top: true
+            collapsed: auto
             summary: "{{fields.date}} — {{fields.title}}"
             fields:
               - label: "Date"
