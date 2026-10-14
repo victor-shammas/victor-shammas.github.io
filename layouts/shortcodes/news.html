@@ -18,11 +18,9 @@
 <ul class="news-list">
   {{- range . }}
   <li class="news-item">
-    <time class="news-date" datetime="{{ .t.Format "2006-01-02" }}">{{ .t.Format "2 January 2006" }}</time>
-    <div class="news-body">
-      <span class="news-title">{{ with .link }}<a href="{{ . }}">{{ end }}{{ .title }}{{ with .link }}</a>{{ end }}{{ if and .text (not (findRE `[.!?:]$` .title)) }}.{{ end }}</span>
-      {{- with .text }} <span class="news-text">{{ . | markdownify }}</span>{{ end }}
-    </div>
+    <time class="news-date" datetime="{{ .t.Format "2006-01-02" }}">{{ .t.Format "2 January 2006" }}.</time>
+    <span class="news-title">{{ with .link }}<a href="{{ . }}">{{ end }}{{ .title }}{{ with .link }}</a>{{ end }}{{ if not (findRE `[.!?:]$` .title) }}.{{ end }}</span>
+    {{- with .text }} <span class="news-text">{{ . | markdownify }}</span>{{ end }}
   </li>
   {{- end }}
 </ul>
