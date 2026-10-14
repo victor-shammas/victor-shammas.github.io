@@ -1,14 +1,7 @@
 # News items for the "News" block on the About page and the /news/ archive.
-# Newest items appear first automatically; the About page shows the latest 5.
-#
-# Fields:
-#   date:  "YYYY-MM-DD" (shown as month + year; use the 1st if the day doesn't matter)
-#   title: short headline, e.g. "PhD defense, Stockholm University"
-#   text:  optional one-sentence explanation (Markdown allowed, e.g. links)
-#   link:  optional URL; makes the headline a link
-#
-# Tip: tenseless phrasing ("Member of…", "Keynote at…") never needs updating.
-
-- date: "2026-09-01"
-  title: "PhD defense, Stockholm University"
-  text: "Member of the grading committee (betygsnämnd) for Emelí Lönnqvist's dissertation on pre-trial detention in Sweden, Department of Criminology."
+# Edit via the admin panel (News), or by hand here. Order doesn't matter:
+# items are sorted newest-first automatically; the About page shows the latest 5.
+items:
+  - date: "2026-09-01"
+    title: "PhD defense, Stockholm University"
+    text: "Member of the grading committee (betygsnämnd) for Emelí Lönnqvist's dissertation on pre-trial detention in Sweden, Department of Criminology."

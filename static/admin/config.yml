@@ -147,3 +147,42 @@ collections:
           - { label: "URL", name: "url", widget: "hidden" }
           - { label: "Aliases", name: "aliases", widget: "hidden" }
           - { label: "Body", name: "body", widget: "markdown" }
+
+  # ── News ───────────────────────────────────────────────────────
+  # One-line updates shown on the About page (latest 5) and at /news/.
+  # The data file is a single object with an `items` list; new items
+  # are added at the top, but the site sorts by date regardless.
+  - name: "news"
+    label: "News"
+    files:
+      - label: "News items"
+        name: "news"
+        file: "data/news.yaml"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            add_to_top: true
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - label: "Date"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                hint: "Shown as month + year. Use the 1st if the day doesn't matter."
+              - label: "Headline"
+                name: "title"
+                widget: "string"
+                hint: "Short, e.g. “PhD defense, Stockholm University”."
+              - label: "Explanation"
+                name: "text"
+                widget: "text"
+                required: false
+                hint: "Optional single sentence. Tenseless phrasing (“Member of…”, “Keynote at…”) never needs updating. Markdown links allowed."
+              - label: "Link"
+                name: "link"
+                widget: "string"
+                required: false
+                hint: "Optional URL; makes the headline a link."
