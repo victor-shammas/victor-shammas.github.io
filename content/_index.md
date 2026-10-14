@@ -25,10 +25,3 @@ He writes a regular newsletter about global politics, culture, and social theory
 <div class="contact-block">
   <a href="mailto:contact@victorshammas.com">contact@victorshammas.com</a>
 </div>
-<div class="profile-links">
-<a href="https://scholar.google.no/citations?user=FQgxhqkAAAAJ" target="_blank">Google Scholar</a>
-<a href="https://uio.academia.edu/VictorLundShammas" target="_blank">Academia.edu</a>
-<a href="https://www.researchgate.net/profile/Victor_Shammas" target="_blank">ResearchGate</a>
-<a href="https://www.linkedin.com/in/victor-shammas/" target="_blank">LinkedIn</a>
-<a href="https://www.theorybrief.com" target="_blank">Substack</a>
-</div>
