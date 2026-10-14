@@ -1,0 +1,27 @@
+{{- /*
+  News list, fed by data/news.yaml.
+  Usage:  {{< news limit="5" >}}   short block with heading + "All news" link (About page)
+          {{< news full="true" >}}  complete archive, no heading (/news/ page)
+*/ -}}
+{{- $full := eq (.Get "full") "true" -}}
+{{- $limit := int (.Get "limit" | default "0") -}}
+{{- $all := sort (site.Data.news | default slice) "date" "desc" -}}
+{{- $items := $all -}}
+{{- if and (not $full) (gt $limit 0) }}{{ $items = first $limit $all }}{{ end -}}
+{{- with $items -}}
+{{- if not $full }}<h2 class="section-heading">News</h2>{{ end }}
+<ul class="news-list">
+  {{- range . }}
+  <li class="news-item">
+    <time class="news-date" datetime="{{ .date }}">{{ time.Format "Jan 2006" (time.AsTime .date) }}</time>
+    <div class="news-body">
+      <span class="news-title">{{ with .link }}<a href="{{ . }}">{{ end }}{{ .title }}{{ with .link }}</a>{{ end }}{{ if and .text (not (findRE `[.!?:]$` .title)) }}.{{ end }}</span>
+      {{- with .text }} <span class="news-text">{{ . | markdownify }}</span>{{ end }}
+    </div>
+  </li>
+  {{- end }}
+</ul>
+{{- if and (not $full) (gt (len $all) (len $items)) }}
+<a class="news-more" href="{{ "/news/" | relURL }}">All news →</a>
+{{- end }}
+{{- end -}}

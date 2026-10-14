@@ -19,19 +19,11 @@ He writes a regular newsletter about global politics, culture, and social theory
 
 <a href="/pdfs/Shammas-CV.pdf" class="cv-link">⤓ Curriculum Vitae (PDF)</a>
 
+{{< news limit="5" >}}
+
 <h2 class="section-heading">Contact</h2>
 <div class="contact-block">
-  <div class="contact-item">
-    <span class="contact-label">Email</span>
-    <a href="mailto:contact@victorshammas.com">contact@victorshammas.com</a>
-  </div>
-  <div class="contact-item">
-    <span class="contact-label">Mail</span>
-    Dr. Victor Shammas<br>
-    University of Bergen<br>
-    Department of Sociology<br>
-    PO Box 7802, 5020 Bergen, Norway
-  </div>
+  <a href="mailto:contact@victorshammas.com">contact@victorshammas.com</a>
 </div>
 
 <h2 class="section-heading">Profiles</h2>
