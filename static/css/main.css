@@ -675,7 +675,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
 .news-item,
 .prose .news-item {
   display: grid;
-  grid-template-columns: 5.5rem 1fr;
+  grid-template-columns: 7.5rem 1fr;
   gap: 1rem;
   margin: 0 0 0.9rem;
   font-size: var(--text-base);

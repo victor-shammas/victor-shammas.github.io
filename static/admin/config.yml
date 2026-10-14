@@ -171,7 +171,7 @@ collections:
                 format: "YYYY-MM-DD"
                 date_format: "YYYY-MM-DD"
                 time_format: false
-                hint: "Shown as month + year. Use the 1st if the day doesn't matter."
+                hint: "Shown as month, day, year (e.g. Sep 18, 2026)."
               - label: "Headline"
                 name: "title"
                 widget: "string"
