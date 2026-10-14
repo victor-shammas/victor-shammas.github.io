@@ -2,6 +2,9 @@
 # Edit via the admin panel (News), or by hand here. Order doesn't matter:
 # items are sorted newest-first automatically; the About page shows the latest 5.
 items:
+  - date: "2026-10-05"
+    title: "Presented paper on “oligarchic infrastructure”"
+    text: "Comparative Political Economy (CPE) seminar, Faculty of Social Sciences, University of Bergen."
   - date: "2026-09-18"
     title: "PhD defense"
     text: "Member of the grading committee (betygsnämnd) for Emelí Lönnqvist's dissertation on pre-trial detention, Department of Criminology, Stockholm University."
