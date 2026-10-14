@@ -40,13 +40,6 @@ weight = 2
 icon = "library"
 
 [[menus.main]]
-name = "Blog"
-url = "/blog/"
-weight = 3
-[menus.main.params]
-icon = "square-pen"
-
-[[menus.main]]
 name = "Media"
 url = "/media/"
 weight = 4
