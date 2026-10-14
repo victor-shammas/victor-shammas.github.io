@@ -8,7 +8,7 @@
 {{ range .Paginator.Pages }}
 <article class="blog-post">
   <div class="blog-post__date">
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
   </div>
   <h2 class="blog-post__title">
     <a href="{{ .Permalink }}">{{ .Title }}</a>

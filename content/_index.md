@@ -25,8 +25,6 @@ He writes a regular newsletter about global politics, culture, and social theory
 <div class="contact-block">
   <a href="mailto:contact@victorshammas.com">contact@victorshammas.com</a>
 </div>
-
-<h2 class="section-heading">Profiles</h2>
 <div class="profile-links">
 <a href="https://scholar.google.no/citations?user=FQgxhqkAAAAJ" target="_blank">Google Scholar</a>
 <a href="https://uio.academia.edu/VictorLundShammas" target="_blank">Academia.edu</a>

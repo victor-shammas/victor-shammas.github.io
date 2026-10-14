@@ -35,7 +35,7 @@
         <div data-pagefind-body>
           {{- block "main" . -}}{{- end -}}
         </div>
-        {{ $showFeeds := and (ne .Section "blog") (ne .Layout "embed") }}
+        {{ $showFeeds := and (not .IsHome) (ne .Section "blog") (ne .Layout "embed") }}
         {{ if $showFeeds }}
           <script>
             (function () {
@@ -49,6 +49,15 @@
         {{ end }}
         {{ if ne .Layout "embed" }}
           {{ partial "newsletter-card.html" (dict "tight" $showFeeds) }}
+          {{ if $showFeeds }}
+          <script>
+            /* The Substack feed already offers Subscribe; avoid two Theory Brief blocks in a row. */
+            if (window.__feedPick === "substack") {
+              var nc = document.querySelector(".newsletter-card");
+              if (nc) nc.remove();
+            }
+          </script>
+          {{ end }}
         {{ end }}
         <footer class="site-footer">
           <span class="site-footer__copyright">&copy; {{ now.Year }} Victor Shammas</span>
