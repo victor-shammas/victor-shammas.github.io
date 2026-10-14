@@ -675,7 +675,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
 .news-item,
 .prose .news-item {
   display: grid;
-  grid-template-columns: 7.5rem 1fr;
+  grid-template-columns: 9rem 1fr;
   gap: 1rem;
   margin: 0 0 0.9rem;
   font-size: var(--text-base);
@@ -683,10 +683,8 @@ body.is-resizing-sidebar * { user-select: none !important; }
 }
 .news-date {
   color: var(--muted);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
   padding-top: 0.2rem;
   white-space: nowrap;
 }
