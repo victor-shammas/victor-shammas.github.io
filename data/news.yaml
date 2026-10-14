@@ -1,10 +1,9 @@
-# News items for the "News" block on the About page and the /news/ archive.
-# Edit via the admin panel (News), or by hand here. Order doesn't matter:
-# items are sorted newest-first automatically; the About page shows the latest 5.
 items:
-  - date: "2026-10-05"
-    title: "Presented paper on “oligarchic infrastructure”"
-    text: "Comparative Political Economy (CPE) seminar, Faculty of Social Sciences, University of Bergen."
-  - date: "2026-09-18"
-    title: "PhD defense, Stockholm University"
-    text: "Member of the grading committee (betygsnämnd) for Emelí Lönnqvist's dissertation on pre-trial detention, Department of Criminology, Stockholm University."
+  - date: 2026-10-05
+    title: Presented paper on “oligarchic infrastructure”
+    text: Comparative Political Economy (CPE) seminar, Faculty of Social Sciences, University of Bergen.
+    link: ''
+  - date: 2026-09-18
+    title: PhD defense, Stockholm University
+    text: Member of the grading committee (betygsnämnd) for Emelí Lönnqvist's dissertation on pre-trial detention, Department of Criminology, Stockholm University.
+    link: https://www.su.se/enheter/kriminologiska-institutionen/kalender/kalenderartiklar/2026-09-07-disputation-emeli-lonnqvist-kriminologiska-institutionen
