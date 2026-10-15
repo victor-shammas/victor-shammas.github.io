@@ -1,0 +1,45 @@
+name: Sort news items by date
+
+# The admin panel's News list shows items in file order (the CMS list widget
+# can't sort). After any change to data/news.yaml, reorder the file
+# newest-first so the admin matches the website. The follow-up commit is made
+# with GITHUB_TOKEN, so it doesn't re-trigger deploys (the site sorts by date
+# on its own, so the order change doesn't affect the built output).
+
+on:
+  push:
+    branches: [main]
+    paths: [data/news.yaml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sort-news
+  cancel-in-progress: false
+
+jobs:
+  sort:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Sort data/news.yaml newest-first
+        run: npm run sort:news
+
+      - name: Commit if order changed
+        run: |
+          if git diff --quiet -- data/news.yaml; then
+            echo "Already in date order."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Sort news items by date"
+          git pull --rebase origin main
+          git push origin HEAD:main
