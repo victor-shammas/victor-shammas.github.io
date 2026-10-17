@@ -151,7 +151,9 @@ collections:
   # ── News ───────────────────────────────────────────────────────
   # One-line updates shown on the About page (latest 5) and at /news/.
   # The data file is a single object with an `items` list; new items
-  # are added at the top, but the site sorts by date regardless.
+  # are added at the top. The site sorts by date regardless, and the
+  # sort-news workflow reorders the file newest-first after every save
+  # so this list matches (reload the admin to see the new order).
   - name: "news"
     label: "News"
     files:
