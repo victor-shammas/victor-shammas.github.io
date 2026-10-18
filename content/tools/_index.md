@@ -25,25 +25,3 @@ url: "/tools/"
 
 
 [**Transatlantic Right-Wing Monitor**](/tools/media-monitor/) — A more comprehensive, standalone monitor of right-wing politics across 10+ countries.
-
-<h2 class="section-heading">Audio Briefings</h2>
-
-**Shammas Space & Tech Briefing** ([Spotify](https://open.spotify.com/show/033xPCQpHLsdjkrViG4bIk) · [YouTube](https://www.youtube.com/playlist?list=PLF4EFT0ex3z8)) — AI-generated daily audio briefing on space, AI, and the wider tech industry.
-
-**Shammas Right-Wing Politics Briefing** ([Spotify](https://open.spotify.com/show/033C4zIWEWt3XIIqeKtbkx) · [YouTube](https://www.youtube.com/playlist?list=PLEIoYRgVQTLc)) — A daily audio briefing on right-wing and far-right political actors across Europe and the Americas — parties, figures, movements, and transnational networks.
-
-<h2 class="section-heading"><a href="/apps/">Apps and Extensions</a></h2>
-
-[**Plainview**](https://victorshammas.com/plainview/) — A Markdown reader for the Mac: opens Markdown files in a clean, readable window.
-
-[**Gaugeline**](https://victorshammas.com/gaugeline/) — Claude Code and Codex usage limits in the Mac menu bar, with reset countdowns and pace forecasts.
-
-[**Quoth**](https://victorshammas.com/quoth/) — Local voice transcription for the Mac: hold a key, speak, and your words appear where you type.
-
-[**Staple**](https://victorshammas.com/staple/) ([Chrome Web Store](https://chromewebstore.google.com/detail/staple/hakeoeghnpkdejinkkbopcmonhigpmdf)) — A Chrome extension that gathers Substack essays into one PDF, EPUB or HTML file for offline reading.
-
-[**Claude Usage Meter**](https://victorshammas.com/claude-usage-meter/) — Your Claude 5-hour and weekly usage limits in the Mac menu bar. Free and open source.
-
-[**Lectern**](https://victorshammas.com/lectern/) — A presenter view for HTML slide decks on the Mac: the slides on the projector, your notes and the next slide on your laptop.
-
-[**Commonplace**](https://victorshammas.com/commonplace/) — A Chrome extension for the Mac that saves links to Apple Notes, with the page title, the date and your own comment. Free and open source.
