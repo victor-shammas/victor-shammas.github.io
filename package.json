@@ -8,7 +8,9 @@
     "build:search": "node scripts/build-search-index.mjs",
     "gen:monitors": "node scripts/gen-monitors.mjs",
     "gen:monitors:check": "node scripts/gen-monitors.mjs --check",
-    "sort:news": "node scripts/sort-news.mjs"
+    "sort:news": "node scripts/sort-news.mjs",
+    "refresh:theorybrief": "node scripts/refresh-theorybrief.mjs",
+    "test:theorybrief": "node --test scripts/refresh-theorybrief.test.mjs"
   },
   "devDependencies": {
     "pagefind": "^1.1.1"
