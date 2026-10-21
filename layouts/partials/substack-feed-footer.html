@@ -1,6 +1,6 @@
 {{/* 
   Substack Feed — Horizontal footer variant
-  5 latest posts from The Theory Brief.
+  5 random posts from the saved Theory Brief archive.
   Place in layouts/partials/substack-feed-footer.html
   
   In baseof.html, place ABOVE the Bluesky feed partial:
@@ -77,13 +77,7 @@
     text-align: center;
     grid-column: 1 / -1;
   }
-  .stk-footer__error {
-    color: #c0392b;
-    font-size: 0.8rem;
-    padding: 1rem 0;
-    text-align: center;
-    grid-column: 1 / -1;
-  }
+
 
   /* Individual post card */
   .stk-ft-post {
@@ -163,6 +157,7 @@
 
 </style>
 
+{{ $snapshot := transform.Unmarshal (readFile "static/feeds/theorybrief.json") }}
 <script>
 (function () {
   var aside = document.getElementById("stk-footer");
@@ -172,13 +167,9 @@
   }
   if (aside) aside.style.display = "";
 
-  var ARCHIVE_URL = "https://www.theorybrief.com/api/v1/archive";
-  var FALLBACK_FEED_URL = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.theorybrief.com%2Ffeed";
-  var PAGE_SIZE = 50;
-  var MAX_POSTS = 1000;
+  // Hugo safely serializes the saved archive into JavaScript. No live feed request.
+  var pool = {{ $snapshot.posts }};
   var POST_LIMIT = 5;
-  var CACHE_KEY = "theorybrief.archive.v1";
-  var CACHE_TTL_MS = 6 * 60 * 60 * 1000;
   var container = document.getElementById("stk-footer-posts");
 
   function escapeHtml(str) {
@@ -187,19 +178,13 @@
     return div.innerHTML;
   }
 
-  function stripHtml(html) {
-    var tmp = document.createElement("div");
-    tmp.innerHTML = html || "";
-    return tmp.textContent || tmp.innerText || "";
-  }
-
   function formatDate(dateStr) {
     var d = new Date(dateStr);
     return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   }
 
   function renderPost(item) {
-    var excerpt = stripHtml(item.description || item.content || "");
+    var excerpt = item.description || "";
     if (excerpt.length > 200) excerpt = excerpt.slice(0, 200).replace(/\s+\S*$/, "") + "…";
 
     return '<a class="stk-ft-post" href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener noreferrer">' +
@@ -218,97 +203,7 @@
     return a;
   }
 
-  function readCache() {
-    try {
-      var raw = localStorage.getItem(CACHE_KEY);
-      if (!raw) return null;
-      var obj = JSON.parse(raw);
-      if (!obj || !obj.t || !Array.isArray(obj.posts)) return null;
-      if (Date.now() - obj.t > CACHE_TTL_MS) return null;
-      return obj.posts;
-    } catch (e) { return null; }
-  }
-
-  function writeCache(posts) {
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), posts: posts })); } catch (e) {}
-  }
-
-  function normalizeArchiveItem(p) {
-    return {
-      title: p.title,
-      link: p.canonical_url,
-      description: p.subtitle || p.description || p.search_engine_description || "",
-      pubDate: p.post_date
-    };
-  }
-
-  function normalizeRssItem(it) {
-    return {
-      title: it.title,
-      link: it.link,
-      description: it.description || it.content || "",
-      pubDate: it.pubDate
-    };
-  }
-
-  function fetchArchivePage(offset) {
-    var url = ARCHIVE_URL + "?sort=new&limit=" + PAGE_SIZE + "&offset=" + offset;
-    return fetch(url).then(function (res) {
-      if (!res.ok) throw new Error("archive HTTP " + res.status);
-      return res.json();
-    });
-  }
-
-  function fetchAllArchive() {
-    var collected = [];
-    function next(offset) {
-      if (offset >= MAX_POSTS) return collected;
-      return fetchArchivePage(offset).then(function (batch) {
-        if (!Array.isArray(batch) || batch.length === 0) return collected;
-        collected = collected.concat(batch);
-        if (batch.length < PAGE_SIZE) return collected;
-        return next(offset + PAGE_SIZE);
-      });
-    }
-    return next(0);
-  }
-
-  function fetchFallback() {
-    return fetch(FALLBACK_FEED_URL)
-      .then(function (res) {
-        if (!res.ok) throw new Error("fallback HTTP " + res.status);
-        return res.json();
-      })
-      .then(function (data) { return (data.items || []).map(normalizeRssItem); });
-  }
-
-  function loadPool() {
-    var cached = readCache();
-    if (cached && cached.length) return Promise.resolve(cached);
-    return fetchAllArchive()
-      .then(function (raw) {
-        var posts = raw.map(normalizeArchiveItem).filter(function (p) { return p.title && p.link; });
-        if (posts.length) writeCache(posts);
-        return posts;
-      })
-      .catch(function (err) {
-        console.warn("Theory Brief archive unavailable, falling back to RSS:", err);
-        return fetchFallback();
-      });
-  }
-
-  loadPool()
-    .then(function (pool) {
-      if (!pool || pool.length === 0) {
-        container.innerHTML = '<div class="stk-footer__loading">No posts yet.</div>';
-        return;
-      }
-      var picked = shuffle(pool).slice(0, POST_LIMIT);
-      container.innerHTML = picked.map(renderPost).join("");
-    })
-    .catch(function (err) {
-      console.error("Substack feed error:", err);
-      container.innerHTML = '<div class="stk-footer__error">Could not load feed.</div>';
-    });
+  var picked = shuffle(pool).slice(0, POST_LIMIT);
+  container.innerHTML = picked.map(renderPost).join("");
 })();
 </script>

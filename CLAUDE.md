@@ -80,6 +80,23 @@ Consequences to remember:
 - `layouts/_default/embed.html` → the manila tab bar (AI · Space · Tech · Left ·
   Right) and the iframe wrapper.
 
+## Theory Brief footer
+
+`static/feeds/theorybrief.json` is a checked-in seed of public post metadata.
+Hugo embeds its posts directly in the Substack footer; the browser still picks
+five at random, with no Substack/rss2json request or localStorage expiry.
+
+`npm run refresh:theorybrief` refreshes the archive before each build. It first
+recovers a newer snapshot from the currently published site, then fetches all
+archive pages server-side. On an upstream failure it retains the most recent
+valid snapshot without expiring it. Invalid or partially fetched archives never
+replace saved posts. Deploy builds publish the refreshed JSON alongside the HTML
+but do not commit it back to Git. Keep the checked-in seed for offline builds.
+
+The deploy workflow also runs every six hours to pick up new posts without a
+content commit (GitHub may delay scheduled runs). Run `npm run test:theorybrief`
+for pagination, validation, and outage-retention tests.
+
 ## Deploys
 
 - Push to `main` triggers `.github/workflows/deploy.yml` (Hugo build + Pagefind

@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:  # allows manual trigger from GitHub UI
+  schedule:
+    - cron: "23 */6 * * *"  # refresh the saved Theory Brief archive every six hours (UTC)
 
 permissions:
   contents: read
@@ -67,6 +69,12 @@ jobs:
           # miss, which forces the heavy pdftotext/OCR pass to re-run. Within a
           # week with an unchanged PDF set, the cache hits and text is reused.
           key: pdf-text-${{ steps.pdfkey.outputs.week }}-${{ steps.pdfkey.outputs.set }}
+
+      - name: Test Theory Brief snapshot refresh
+        run: npm run test:theorybrief
+
+      - name: Refresh Theory Brief snapshot (retains saved posts on upstream failure)
+        run: npm run refresh:theorybrief
 
       - name: Build
         run: hugo --minify
