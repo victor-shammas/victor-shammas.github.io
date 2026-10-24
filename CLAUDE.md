@@ -160,7 +160,7 @@ hand-written "Originally published in The Theory Brief" lines; credits to
 other venues stay in the post body. The lookup lives in
 `layouts/partials/theorybrief-original.html`, and the same URL is the post's
 `<link rel="canonical">` (so the Substack copy is the one that ranks in
-search) and keeps the post out of `sitemap.xml` (`layouts/sitemap.xml`).
+search). The posts stay in `sitemap.xml` on purpose.
 
 ## SEO
 

@@ -3,7 +3,7 @@
      an empty value, as the admin saves it, counts as unset), else the
      Theory Brief post with the same title (lowercased, non-alphanumerics
      stripped) in static/feeds/theorybrief.json. Used for the "also appears
-     in" line, the canonical URL, and leaving such posts out of the sitemap.
+     in" line and the canonical URL.
      Context: the page. */ -}}
 {{- $original := "" -}}
 {{- if and .IsPage (eq .Section "blog") -}}
