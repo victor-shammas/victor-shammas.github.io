@@ -80,6 +80,14 @@ Consequences to remember:
 - `layouts/_default/embed.html` → the manila tab bar (AI · Space · Tech · Left ·
   Right) and the iframe wrapper.
 
+## Reading log
+
+`/reading/` is a running link log: `data/reading.yaml` (an `items` list of
+`date`/`title`/`link`), edited only through the admin panel's "Reading"
+collection, rendered by `layouts/shortcodes/reading.html` (newest first,
+grouped by month, domain shown after the title). Same pattern as News. It's
+a trial; there's deliberately no phone/API ingestion.
+
 ## Theory Brief footer
 
 `static/feeds/theorybrief.json` is a checked-in seed of public post metadata.

@@ -692,6 +692,37 @@ body.is-resizing-sidebar * { user-select: none !important; }
   font-weight: 500;
 }
 
+/* ── Reading log ─────────────────────────────────────────────── */
+
+.reading-month:first-child { margin-top: 0; }
+.reading-list,
+.prose .reading-list { list-style: none; padding: 0; margin: 0; }
+.reading-item,
+.prose .reading-item {
+  display: grid;
+  grid-template-columns: 3.75rem minmax(0, 1fr);
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0.55rem 0;
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+.reading-date {
+  color: var(--muted);
+  color: color-mix(in srgb, var(--muted) 78%, var(--text));
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-top: 0.1rem;
+}
+.reading-title { font-weight: 500; overflow-wrap: anywhere; }
+.reading-domain {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+}
+.reading-empty { color: var(--muted); }
+
 /* ── Media Page ──────────────────────────────────────────────── */
 
 .media-entry {
