@@ -1,0 +1,10 @@
+{{- /* Small RSS icon for a page header, if the page has an RSS output
+       (the blog and the reading log). Context: the page. */ -}}
+{{- with .OutputFormats.Get "rss" -}}
+  {{- $href := .RelPermalink -}}
+  {{- with resources.Get "icons/rss.svg" }}
+  <a class="feed-link" href="{{ $href }}" title="RSS feed" aria-label="RSS feed">
+    {{- replace (chomp .Content) "<svg " "<svg class=\"feed-link__icon\" " | safeHTML -}}
+  </a>
+  {{- end }}
+{{- end -}}

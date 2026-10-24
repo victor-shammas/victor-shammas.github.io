@@ -132,8 +132,9 @@ in `scripts/reading-lib.mjs`.
 RSS: `/reading/index.xml` (`layouts/_default/reading.rss.xml`, the 50 newest,
 linking straight to each article; enabled in `content/reading.md`) and
 `/blog/index.xml` (`layouts/blog/list.rss.xml`, 20 newest posts; enabled by the
-`[[cascade]]` for `/blog` in `hugo.toml`). Both pages show an "RSS feed" link
-and a `<link rel="alternate">`.
+`[[cascade]]` for `/blog` in `hugo.toml`). Both pages show a small RSS icon in
+the page header (`layouts/partials/feed-link.html`, shown on any page with an
+RSS output) and a `<link rel="alternate">`.
 
 Titles can be left blank: `.github/workflows/fill-reading-titles.yml` runs
 `npm run fill:reading` (`scripts/fill-reading-titles.mjs`, over both the log

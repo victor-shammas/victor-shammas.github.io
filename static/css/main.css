@@ -705,8 +705,21 @@ body.is-resizing-sidebar * { user-select: none !important; }
 
 /* ── RSS feed links (blog, reading log) ──────────────────────── */
 
-.feed-link,
-.prose .feed-link { margin: 0 0 1rem; font-size: var(--text-sm); }
+/* A small icon in the page header's bottom-right corner, above the rule. */
+.page-header { position: relative; }
+.page-header:has(.feed-link) { padding-right: 2rem; }
+.feed-link {
+  position: absolute;
+  right: 0;
+  bottom: 1.7rem;
+  display: inline-flex;
+  color: var(--muted);
+  opacity: 0.7;
+  transition: color 0.15s, opacity 0.15s;
+}
+.feed-link:hover,
+.feed-link:focus-visible { color: var(--accent); opacity: 1; }
+.feed-link__icon { width: 1rem; height: 1rem; }
 
 /* ── Reading log ─────────────────────────────────────────────── */
 
