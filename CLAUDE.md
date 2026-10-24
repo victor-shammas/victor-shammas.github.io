@@ -83,10 +83,20 @@ Consequences to remember:
 ## Reading log
 
 `/reading/` is a running link log: `data/reading.yaml` (an `items` list of
-`date`/`title`/`link`), edited only through the admin panel's "Reading"
-collection, rendered by `layouts/shortcodes/reading.html` (newest first,
-grouped by month, domain shown after the title). Same pattern as News. It's
-a trial; there's deliberately no phone/API ingestion.
+`date`/`link`/`title`/`note`), edited only through the admin panel's
+"Reading" collection, rendered by `layouts/shortcodes/reading.html` (newest
+first, grouped by month, domain after the title, optional Markdown note
+below). Same pattern as News. It's a trial; there's deliberately no
+phone/API ingestion.
+
+Titles can be left blank: `.github/workflows/fill-reading-titles.yml` runs
+`npm run fill:reading` (`scripts/fill-reading-titles.mjs`) on every push that
+touches the file, fetches og:title/`<title>` for blank-titled links, commits
+them back, and dispatches `deploy.yml` (a GITHUB_TOKEN push doesn't trigger
+deploys on its own). Typed or edited titles are never overwritten: only
+blanks are filled, and the bot pushes fast-forward only (if main moved, it
+re-reads the latest file and starts over, never merges). Unfetchable or
+bot-wall titles stay blank and the page shows the domain.
 
 ## Theory Brief footer
 

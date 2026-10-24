@@ -721,6 +721,14 @@ body.is-resizing-sidebar * { user-select: none !important; }
   font-size: var(--text-xs);
   white-space: nowrap;
 }
+.reading-note {
+  margin-top: 0.2rem;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+.reading-note p,
+.prose .reading-note p { margin: 0 0 0.4rem; }
+.reading-note p:last-child { margin-bottom: 0; }
 .reading-empty { color: var(--muted); }
 
 /* ── Media Page ──────────────────────────────────────────────── */

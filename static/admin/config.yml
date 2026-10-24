@@ -194,6 +194,9 @@ collections:
   # The running link log at /reading/. Same shape as News: one data
   # file with an `items` list, new items added at the top. The page
   # sorts by date and groups by month, so file order doesn't matter.
+  # A blank title is filled in from the page by the fill-reading-titles
+  # workflow a minute or two after saving (reload the admin to see it).
+  # It only ever fills blanks, so typed or edited titles always win.
   - name: "reading"
     label: "Reading"
     files:
@@ -216,12 +219,18 @@ collections:
                 time_format: false
                 default: "{{now}}"
                 hint: "When you read it. Defaults to today."
-              - label: "Title"
-                name: "title"
-                widget: "string"
-                hint: "Article or page title, as you'd like it shown."
               - label: "Link"
                 name: "link"
                 widget: "string"
                 pattern: ["^https?://", "Must start with http:// or https://"]
                 hint: "Full URL. The site shows its domain next to the title."
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                required: false
+                hint: "Leave blank to fill it in from the page automatically (a minute or two after saving; reload to see it). A title typed or edited here is never overwritten. Clear it to re-fetch."
+              - label: "Note"
+                name: "note"
+                widget: "text"
+                required: false
+                hint: "Optional commentary, shown under the title. Markdown allowed."
