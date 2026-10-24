@@ -1,5 +1,5 @@
 // Shared helpers for the reading-log scripts (fill-reading-titles.mjs,
-// import-bluesky-reading.mjs).
+// import-bluesky-reading.mjs, import-substack-notes.mjs).
 
 const ENTITIES = {
   amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ",
@@ -53,8 +53,61 @@ export function sameLinkKey(url) {
   try {
     const u = new URL(stripTracking(url));
     const q = u.searchParams.toString();
-    return u.hostname.replace(/^www\./, "").toLowerCase() + u.pathname.replace(/\/+$/, "") + (q ? "?" + q : "");
+    return u.host.replace(/^www\./, "").toLowerCase() + u.pathname.replace(/\/+$/, "") + (q ? "?" + q : "");
   } catch {
     return url.trim();
   }
+}
+
+// My own sites aren't "reading"; links to Bluesky posts aren't either.
+const SKIP_HOSTS = ["victorshammas.com", "theorybrief.com", "hrmn.ai",
+  "bsky.app", "bsky.social", "go.bsky.app"];
+
+// An http(s) link to somewhere worth logging.
+export function isReadingLink(url) {
+  try {
+    const u = new URL(url);
+    if (!/^https?:$/.test(u.protocol)) return false;
+    const h = u.hostname.toLowerCase();
+    // Substack Notes and profiles, but not newsletters (*.substack.com).
+    if (/^(www\.)?substack\.com$/.test(h) && /^\/(@|profile\/|notes?(\/|$)|chat)/.test(u.pathname)) return false;
+    return !SKIP_HOSTS.some((s) => h === s || h.endsWith("." + s));
+  } catch {
+    return false;
+  }
+}
+
+// Oslo calendar date, matching how the admin's date field is used.
+export const osloDate = (iso) =>
+  new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" })
+    .format(new Date(iso));
+
+// sameLinkKey()s of every link already in a reading.yaml source.
+export const knownLinks = (src) =>
+  new Set([...src.matchAll(/^\s*(?:- )?link:\s*(.+)$/gm)]
+    .map((m) => sameLinkKey(m[1].trim().replace(/^(['"])(.*)\1$/, "$2"))));
+
+// Insert items ({created, date, link, title, note}) at the top of the list,
+// newest first (where the admin adds too). Returns the new file text.
+export function insertItems(src, items) {
+  const sorted = [...items].sort((a, b) => (a.created < b.created ? 1 : -1));
+  const lines = src.split("\n");
+  const i = lines.findIndex((l) => /^items:/.test(l));
+  if (i === -1) throw new Error('no top-level "items:" key');
+  lines[i] = "items:"; // also turns an empty "items: []" into a list
+  const listIndent = (lines.slice(i + 1).find((l) => /^\s*- /.test(l)) || "  - ").match(/^\s*/)[0];
+  const k = listIndent + "  ";
+  // JSON string syntax is a valid YAML double-quoted scalar.
+  const q = (s) => JSON.stringify(s);
+  const block = sorted.flatMap((a) => {
+    console.log(`  + ${a.date} ${a.link}${a.title ? `\n    → ${a.title}` : ""}`);
+    return [
+      `${listIndent}- date: ${a.date}`,
+      `${k}link: ${q(a.link)}`,
+      `${k}title: ${a.title ? q(a.title) : "''"}`,
+      ...(a.note ? [`${k}note: ${q(a.note)}`] : []),
+    ];
+  });
+  lines.splice(i + 1, 0, ...block);
+  return lines.join("\n");
 }

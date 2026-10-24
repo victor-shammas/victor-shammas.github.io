@@ -1,8 +1,12 @@
-name: Import Bluesky links to the reading log
+name: Import Bluesky and Substack Notes links to the reading log
 
-# Every hour, add links I've posted on Bluesky (my own posts, not reposts)
-# to data/reading.yaml, then fill any blank titles and redeploy. See
-# scripts/import-bluesky-reading.mjs for what's skipped. Like the title
+# Every hour, add links I've posted on Bluesky and in Substack Notes (my own
+# posts, not reposts/restacks) to data/reading.yaml, then fill any blank
+# titles and redeploy. See scripts/import-bluesky-reading.mjs and
+# scripts/import-substack-notes.mjs for what's skipped. Bluesky runs first;
+# a link already in the log (from either source or the admin) is skipped,
+# so one shared in both places appears once. Each importer warns and skips
+# if its source is unreachable. Like the title
 # filler, it pushes fast-forward only: if main moved meanwhile (e.g. an
 # admin save), it starts over from the new file, so admin edits always win.
 
@@ -30,7 +34,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Import new Bluesky links, fill titles, commit, and redeploy
+      - name: Import new links, fill titles, commit, and redeploy
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -40,13 +44,15 @@ jobs:
             git fetch --quiet origin main
             git reset --quiet --hard origin/main
             npm run --silent import:bluesky
+            npm run --silent import:substack
             if git diff --quiet -- data/reading.yaml; then
               exit 0
             fi
             # This push is made with GITHUB_TOKEN, which doesn't trigger the
             # fill-reading-titles workflow, so fill blank titles here.
             npm run --silent fill:reading
-            git commit -qam "Import Bluesky links to reading log"
+            git add data/reading-bluesky.json data/reading-substack.json
+            git commit -qam "Import Bluesky/Substack links to reading log"
             if git push origin HEAD:main; then
               gh workflow run deploy.yml --ref main
               exit 0

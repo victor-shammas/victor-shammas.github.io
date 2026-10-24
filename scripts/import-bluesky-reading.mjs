@@ -14,35 +14,19 @@
 // so an imported entry deleted in the admin never comes back.
 //
 // Usage: node scripts/import-bluesky-reading.mjs [reading.yaml] [cursor.json]
-// Run by .github/workflows/import-bluesky-reading.yml every hour.
+// Run by .github/workflows/import-reading-links.yml every hour.
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { clean, sameLinkKey, stripSiteName, stripTracking } from "./reading-lib.mjs";
+import { clean, insertItems, isReadingLink, knownLinks, osloDate, sameLinkKey, stripSiteName, stripTracking } from "./reading-lib.mjs";
 
 const HANDLE = "victorshammas.com";
 // Overridable for offline tests.
 const API = process.env.READING_BSKY_API || "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
 const MAX_PAGES = 3; // 100 posts each; runs are hourly, so this is plenty
-// My own sites aren't "reading"; links to other Bluesky posts aren't either.
-const SKIP_HOSTS = ["victorshammas.com", "theorybrief.com", "hrmn.ai", "bsky.app", "bsky.social", "go.bsky.app"];
 const TIMEOUT_MS = 15_000;
 
 const readingPath = process.argv[2] || "data/reading.yaml";
 const cursorPath = process.argv[3] || "data/reading-bluesky.json";
-
-const skipHost = (url) => {
-  try {
-    const h = new URL(url).hostname.toLowerCase();
-    return SKIP_HOSTS.some((s) => h === s || h.endsWith("." + s));
-  } catch {
-    return true;
-  }
-};
-
-// Oslo calendar date, matching how the admin's date field is used.
-const osloDate = (iso) =>
-  new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo", year: "numeric", month: "2-digit", day: "2-digit" })
-    .format(new Date(iso));
 
 // Links in a post, in order: the link card first, then links in the text.
 function postLinks(post) {
@@ -99,8 +83,7 @@ async function main() {
   if (!since) throw new Error(`${cursorPath}: missing "since"`);
 
   const src = readFileSync(readingPath, "utf8");
-  const known = new Set([...src.matchAll(/^\s*(?:- )?link:\s*(.+)$/gm)]
-    .map((m) => sameLinkKey(m[1].trim().replace(/^(['"])(.*)\1$/, "$2"))));
+  const known = knownLinks(src);
 
   let feed;
   try {
@@ -120,7 +103,7 @@ async function main() {
     if (created > newest) newest = created;
     // Replies count only within my own threads.
     if (item.reply && !(isMine(item.reply.parent?.author) && isMine(item.reply.root?.author))) continue;
-    const link = postLinks(post).find((l) => /^https?:\/\//i.test(l.uri) && !skipHost(l.uri));
+    const link = postLinks(post).find((l) => isReadingLink(l.uri));
     if (!link) continue;
     const key = sameLinkKey(link.uri);
     if (known.has(key)) continue;
@@ -140,27 +123,7 @@ async function main() {
     return;
   }
 
-  // Newest first, inserted at the top of the list (where the admin adds too).
-  added.sort((a, b) => (a.created < b.created ? 1 : -1));
-  const lines = src.split("\n");
-  let i = lines.findIndex((l) => /^items:/.test(l));
-  if (i === -1) throw new Error(`${readingPath}: no top-level "items:" key`);
-  lines[i] = "items:"; // also turns an empty "items: []" into a list
-  const listIndent = (lines.slice(i + 1).find((l) => /^\s*- /.test(l)) || "  - ").match(/^\s*/)[0];
-  const k = listIndent + "  ";
-  // JSON string syntax is a valid YAML double-quoted scalar.
-  const q = (s) => JSON.stringify(s);
-  const block = added.flatMap((a) => {
-    console.log(`  + ${a.date} ${a.link}${a.title ? `\n    → ${a.title}` : ""}`);
-    return [
-      `${listIndent}- date: ${a.date}`,
-      `${k}link: ${q(a.link)}`,
-      `${k}title: ${a.title ? q(a.title) : "''"}`,
-      ...(a.note ? [`${k}note: ${q(a.note)}`] : []),
-    ];
-  });
-  lines.splice(i + 1, 0, ...block);
-  writeFileSync(readingPath, lines.join("\n"));
+  writeFileSync(readingPath, insertItems(src, added));
   writeFileSync(cursorPath, JSON.stringify({ ...state, since: newest }, null, 2) + "\n");
   console.log(`${readingPath}: added ${added.length} link(s) from Bluesky.`);
 }
