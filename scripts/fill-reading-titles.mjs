@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Fill in blank titles in data/reading.yaml from each linked page's
-// og:title / twitter:title / <title>, so a link can be logged from the admin
-// panel by pasting just the URL.
+// og:title / twitter:title / <title> (minus a trailing " | Site Name"), so a
+// link can be logged from the admin panel by pasting just the URL.
 //
 // Only items with a missing or empty `title:` are touched; a title typed in
 // the admin always wins. Lines are edited in place (no YAML
@@ -39,7 +39,21 @@ const decode = (s) =>
   });
 const clean = (s) => decode(s).replace(/\s+/g, " ").trim().slice(0, 300);
 
-function titleFromHtml(html) {
+// Drop a trailing " | Site Name" (or " – ", " — ", " - ", " · ") when it's
+// the site's own name: the page already shows the domain after each title.
+// Only strips a suffix matching og:site_name or the domain, so a real
+// subtitle ("Part 1 – The Beginning") is kept.
+const squash = (s) => s.normalize("NFKD").toLowerCase().replace(/[^a-z0-9]/g, "");
+function stripSiteName(title, siteName, host) {
+  const m = title.match(/^(.+)\s+[|–—·•-]\s+(.+)$/);
+  if (!m) return title;
+  const suffix = squash(m[2]);
+  const bare = (host || "").replace(/^www\./, "");
+  const names = [siteName, bare, bare.split(".")[0]].filter(Boolean).map(squash);
+  return names.includes(suffix) ? m[1].trim() : title;
+}
+
+function titleFromHtml(html, host) {
   const meta = {};
   for (const [tag] of html.matchAll(/<meta\b[^>]*>/gi)) {
     const attrs = {};
@@ -47,14 +61,16 @@ function titleFromHtml(html) {
       attrs[a[1].toLowerCase()] = a[2] ?? a[3] ?? a[4];
     }
     const key = (attrs.property || attrs.name || "").toLowerCase();
-    if ((key === "og:title" || key === "twitter:title") && attrs.content && !meta[key]) {
+    if (["og:title", "twitter:title", "og:site_name"].includes(key) && attrs.content && !meta[key]) {
       meta[key] = attrs.content;
     }
   }
   const t = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
   for (const raw of [meta["og:title"], meta["twitter:title"], t && t[1]]) {
     const title = raw && clean(raw);
-    if (title && !JUNK.test(title)) return title;
+    if (title && !JUNK.test(title)) {
+      return stripSiteName(title, meta["og:site_name"] && clean(meta["og:site_name"]), host);
+    }
   }
   return "";
 }
@@ -82,7 +98,7 @@ async function fetchTitle(url) {
   const charset = (type.match(/charset=([\w-]+)/i) || [])[1] || "utf-8";
   let decoder;
   try { decoder = new TextDecoder(charset); } catch { decoder = new TextDecoder("utf-8"); }
-  return titleFromHtml(decoder.decode(Buffer.concat(chunks)));
+  return titleFromHtml(decoder.decode(Buffer.concat(chunks)), new URL(res.url || url).hostname);
 }
 
 const unquote = (v) => {
