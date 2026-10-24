@@ -49,12 +49,11 @@ weight = 4
 icon = "radio"
 
 [[menus.main]]
-name = "The Theory Brief"
-url = "https://www.theorybrief.com"
+name = "Blog"
+url = "/blog/"
 weight = 5
 [menus.main.params]
-icon = "newspaper"
-external = true
+icon = "square-pen"
 
 [[menus.main]]
 name = "Tools"
