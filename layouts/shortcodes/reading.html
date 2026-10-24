@@ -1,6 +1,7 @@
 {{- /*
   Reading log, fed by data/reading.yaml (edited via the admin panel's "Reading" collection).
   Newest first, grouped by month, with an optional Markdown note under each title.
+  Also available as RSS: layouts/_default/reading.rss.xml.
   Usage:  {{< reading >}}
 */ -}}
 {{- $raw := slice -}}
@@ -9,6 +10,9 @@
 {{- $norm := slice -}}
 {{- range $raw }}{{ if and .date .link }}{{ $norm = $norm | append (merge . (dict "t" (time.AsTime .date))) }}{{ end }}{{ end -}}
 {{- $items := sort $norm "t" "desc" -}}
+{{- with .Page.OutputFormats.Get "rss" }}
+<p class="feed-link"><a href="{{ .RelPermalink }}">RSS feed</a></p>
+{{- end }}
 {{- if not $items }}
 <p class="reading-empty">Nothing logged yet.</p>
 {{- else }}

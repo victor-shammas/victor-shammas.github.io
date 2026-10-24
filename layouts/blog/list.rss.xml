@@ -1,0 +1,31 @@
+{{- /*
+  RSS feed of the blog (/blog/index.xml): the 20 newest published posts,
+  each with its admin summary (or Hugo's automatic one) as the description.
+  Enabled by the [[cascade]] for /blog in hugo.toml.
+*/ -}}
+{{- $posts := first 20 (where .RegularPages "Draft" false) -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Title }} — {{ site.Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>Essays and book reviews on sociology, politics, and culture.</description>
+    <language>{{ site.LanguageCode }}</language>
+    <managingEditor>{{ site.Params.email }} ({{ site.Params.author }})</managingEditor>
+    {{- with index $posts 0 }}
+    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "rss" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+    {{- end }}
+    {{- range $posts }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid>{{ .Permalink }}</guid>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <description>{{ with .Params.summary }}{{ . | transform.XMLEscape | safeHTML }}{{ else }}{{ .Summary | transform.XMLEscape | safeHTML }}{{ end }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

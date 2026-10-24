@@ -88,5 +88,14 @@ divider = true
   section = ["HTML"]
   page = ["HTML"]
 
+# RSS feeds: the blog (/blog/index.xml, layouts/blog/list.rss.xml) and the
+# reading log (/reading/index.xml, set in content/reading.md).
+[[cascade]]
+  title = "Blog"
+  outputs = ["HTML", "RSS"]
+  [cascade._target]
+    kind = "section"
+    path = "/blog"
+
 [pagination]
   pagerSize = 10

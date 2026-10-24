@@ -1,0 +1,39 @@
+{{- /*
+  RSS feed of the reading log (/reading/index.xml), from data/reading.yaml.
+  One item per link, newest first: the item links straight to the article,
+  with the domain and my note as its description. Same date handling as
+  layouts/shortcodes/reading.html.
+*/ -}}
+{{- $raw := slice -}}
+{{- with site.Data.reading }}{{ with .items }}{{ $raw = . }}{{ end }}{{ end -}}
+{{- $norm := slice -}}
+{{- range $raw }}{{ if and .date .link }}{{ $norm = $norm | append (merge . (dict "t" (time.AsTime .date))) }}{{ end }}{{ end -}}
+{{- $items := first 50 (sort $norm "t" "desc") -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Title }} — {{ site.Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ with .Params.subtitle }}{{ . }}{{ else }}{{ .Description }}{{ end }}</description>
+    <language>{{ site.LanguageCode }}</language>
+    <managingEditor>{{ site.Params.email }} ({{ site.Params.author }})</managingEditor>
+    {{- with index $items 0 }}
+    <lastBuildDate>{{ .t.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "rss" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+    {{- end }}
+    {{- range $items }}
+    {{- $domain := replaceRE `^www\.` "" (urls.Parse .link).Hostname }}
+    <item>
+      <title>{{ .title | default $domain }}</title>
+      <link>{{ .link }}</link>
+      <guid isPermaLink="false">{{ .link }}</guid>
+      <pubDate>{{ .t.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      {{- $desc := printf "<p>%s</p>" $domain }}
+      {{- with .note }}{{ $desc = printf "%s%s" $desc ($.RenderString (dict "display" "block") .) }}{{ end }}
+      <description>{{ $desc | transform.XMLEscape | safeHTML }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

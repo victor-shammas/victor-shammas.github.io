@@ -4,6 +4,9 @@
   <h1>Blog</h1>
   <p>Essays and book reviews on sociology, politics, and culture.</p>
 </header>
+{{ with .OutputFormats.Get "rss" }}
+<p class="feed-link"><a href="{{ .RelPermalink }}">RSS feed</a></p>
+{{ end }}
 
 {{ range .Paginator.Pages }}
 <article class="blog-post">
