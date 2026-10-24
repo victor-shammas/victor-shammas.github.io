@@ -5,6 +5,11 @@ name: Fill in reading-log titles
 # and commit it back. That commit is made with GITHUB_TOKEN, so it doesn't
 # trigger a deploy by itself; the last step starts one so the titles go live
 # (until then the page shows the link's domain in place of the title).
+#
+# Titles typed or edited in the admin always win: only blank titles are
+# filled, and the bot never merges. It reads the latest main, fills, and
+# pushes only as a fast-forward; if main moved in the meantime (e.g. a
+# title was just edited), it starts over from the new file.
 
 on:
   push:
@@ -30,20 +35,25 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Fill blank titles in data/reading.yaml
-        run: npm run fill:reading
-
-      - name: Commit and redeploy if titles were added
+      - name: Fill blank titles, commit, and redeploy
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet -- data/reading.yaml; then
-            echo "No titles to add."
-            exit 0
-          fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Fill in reading-log titles"
-          git pull --rebase origin main
-          git push origin HEAD:main
-          gh workflow run deploy.yml --ref main
+          for attempt in 1 2 3; do
+            git fetch --quiet origin main
+            git reset --quiet --hard origin/main
+            npm run --silent fill:reading
+            if git diff --quiet -- data/reading.yaml; then
+              echo "No titles to add."
+              exit 0
+            fi
+            git commit -qam "Fill in reading-log titles"
+            if git push origin HEAD:main; then
+              gh workflow run deploy.yml --ref main
+              exit 0
+            fi
+            echo "main changed while fetching titles; starting over from the latest file."
+          done
+          echo "::warning::Gave up after 3 attempts; the next save to data/reading.yaml retries."

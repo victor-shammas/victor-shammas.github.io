@@ -93,7 +93,9 @@ Titles can be left blank: `.github/workflows/fill-reading-titles.yml` runs
 `npm run fill:reading` (`scripts/fill-reading-titles.mjs`) on every push that
 touches the file, fetches og:title/`<title>` for blank-titled links, commits
 them back, and dispatches `deploy.yml` (a GITHUB_TOKEN push doesn't trigger
-deploys on its own). Typed titles are never overwritten; unfetchable or
+deploys on its own). Typed or edited titles are never overwritten: only
+blanks are filled, and the bot pushes fast-forward only (if main moved, it
+re-reads the latest file and starts over, never merges). Unfetchable or
 bot-wall titles stay blank and the page shows the domain.
 
 ## Theory Brief footer
