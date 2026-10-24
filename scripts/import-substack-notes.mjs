@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Add links I post in Substack Notes to the reading log (data/reading.yaml).
+// Queue links I post in Substack Notes for the reading log
+// (data/reading-queue.yaml; see import-bluesky-reading.mjs).
 //
 // Substack has no official API for Notes, so this reads the public endpoints
 // substack.com's own web app uses for a profile page (no login). They're
@@ -8,12 +9,12 @@
 //
 // Same rules as import-bluesky-reading.mjs: my own Notes only (no restacks,
 // no replies), links to my own sites skipped, links already in the log
-// skipped (so a link shared on both Bluesky and Notes appears once), and the
-// Note's text minus the URL becomes the note. The cursor lives in
-// data/reading-substack.json and is only committed along with new items, so
-// an imported entry deleted in the admin never comes back.
+// and queue skipped (so a link shared on both Bluesky and Notes appears
+// once), and the Note's text minus the URL becomes the note. The cursor
+// lives in data/reading-substack.json and is only committed along with new
+// items, so an entry deleted from the queue never comes back.
 //
-// Usage: node scripts/import-substack-notes.mjs [reading.yaml] [cursor.json]
+// Usage: node scripts/import-substack-notes.mjs [reading-queue.yaml] [cursor.json] [reading.yaml]
 // Run by .github/workflows/import-reading-links.yml every hour.
 
 import { readFileSync, writeFileSync } from "node:fs";
@@ -32,8 +33,9 @@ const NOTES_PAGE = process.env.READING_SUBSTACK_NOTES_PAGE || "https://www.theor
 const MAX_PAGES = 3;
 const TIMEOUT_MS = 15_000;
 
-const readingPath = process.argv[2] || "data/reading.yaml";
+const queuePath = process.argv[2] || "data/reading-queue.yaml";
 const cursorPath = process.argv[3] || "data/reading-substack.json";
+const readingPath = process.argv[4] || "data/reading.yaml";
 
 async function getJson(url) {
   const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS), headers: { Accept: "application/json", "User-Agent": UA } });
@@ -121,8 +123,8 @@ async function main() {
   for (const it of items) kinds[it.context?.type || it.type || "?"] = (kinds[it.context?.type || it.type || "?"] || 0) + 1;
   console.log(`Substack feed: ${items.length} item(s) ${JSON.stringify(kinds)}`);
 
-  const src = readFileSync(readingPath, "utf8");
-  const known = knownLinks(src);
+  const src = readFileSync(queuePath, "utf8");
+  const known = new Set([...knownLinks(src), ...knownLinks(readFileSync(readingPath, "utf8"))]);
   let newest = since;
   let mine = 0;
   const added = [];
@@ -147,6 +149,8 @@ async function main() {
       link: stripTracking(link.uri),
       title: link.title ? stripSiteName(clean(link.title), "", host) : "",
       note: noteText(c),
+      source: "Substack Note",
+      publish: false,
     });
   }
 
@@ -155,10 +159,10 @@ async function main() {
     console.log(`No new links in Substack Notes since ${since} (${mine} new Note(s) of mine).`);
     return;
   }
-  writeFileSync(readingPath, insertItems(src, added));
+  writeFileSync(queuePath, insertItems(src, added));
   // userId is saved too, so later runs skip the profile lookup.
   writeFileSync(cursorPath, JSON.stringify({ ...state, userId, since: newest }, null, 2) + "\n");
-  console.log(`${readingPath}: added ${added.length} link(s) from Substack Notes.`);
+  console.log(`${queuePath}: queued ${added.length} link(s) from Substack Notes.`);
 }
 
 await main();

@@ -89,7 +89,7 @@ first, grouped by month, domain after the title, optional Markdown note
 below). Same pattern as News, but a Sveltia *singleton* (sidebar → "Files")
 so it opens straight into the editor. There's deliberately no phone/API
 ingestion; the only automatic sources are my own Bluesky posts and Substack
-Notes (below).
+Notes (below), and those go to a holding queue, not straight to the page.
 
 `.github/workflows/import-reading-links.yml` runs hourly. First
 `npm run import:bluesky` (`scripts/import-bluesky-reading.mjs`) reads
@@ -98,21 +98,34 @@ Notes (below).
 Substack Notes via the *undocumented* endpoints substack.com's web app uses
 (`/api/v1/user/victorshammas/public_profile`, `/api/v1/reader/feed/profile/<id>`),
 which may change or be blocked. substack.com 403s GitHub's runners, so it
-falls back to the same paths on www.theorybrief.com (which lets them in). Each adds links from my own posts (not
+falls back to the same paths on www.theorybrief.com (which lets them in). Each queues links from my own posts (not
 reposts/restacks, quote posts, replies to others, my own sites, or links
-already logged, so a link shared on both appears once) at the top of the
-list, with the post text minus the URL as the note. Each source warns and
+already in the log or the queue, so a link shared on both appears once) at
+the top of `data/reading-queue.yaml`, with the post text minus the URL as the
+note, plus `source:` and `publish: false`. Each source warns and
 skips if unreachable (the Substack one then also reports whether
 theorybrief.com/notes is reachable, as a fallback route). Cursors live in
 `data/reading-bluesky.json` / `data/reading-substack.json` and are only
-committed with new items, so deleting an imported entry is permanent. The
-job then runs the title filler and redeploys. Both reading workflows share
-the `reading-log` concurrency group. Shared helpers (dedupe, insertion,
-skip list, title cleanup) are in `scripts/reading-lib.mjs`.
+committed with new items, so deleting a queued entry is permanent. The
+job then runs the title filler (over both files) and commits; it only
+redeploys if a title in the log itself was filled, since the site never
+shows the queue.
+
+**The queue** is the admin's "Reading queue" singleton. I edit an item, tick
+"Publish" and save; `fill-reading-titles.yml` (which runs on pushes to either
+file) first runs `npm run publish:reading` (`scripts/publish-reading-queue.mjs`),
+which moves ticked items line-for-line to the top of `data/reading.yaml`
+(dropping `publish`/`source`) and removes them from the queue, then fills
+titles, commits, and redeploys. A ticked link already in the log is just
+dropped from the queue (guards against a stale admin tab re-saving a
+published item). Deleting an item from the queue discards it. Both reading
+workflows share the `reading-log` concurrency group. Shared helpers (dedupe,
+insertion, the line-based `itemBlocks` parser, skip list, title cleanup) are
+in `scripts/reading-lib.mjs`.
 
 Titles can be left blank: `.github/workflows/fill-reading-titles.yml` runs
-`npm run fill:reading` (`scripts/fill-reading-titles.mjs`) on every push that
-touches the file, fetches og:title/`<title>` for blank-titled links (dropping
+`npm run fill:reading` (`scripts/fill-reading-titles.mjs`, over both the log
+and the queue) on every push that touches either file, fetches og:title/`<title>` for blank-titled links (dropping
 a trailing " | Site Name" that matches og:site_name or the domain; links
 with a DOI are looked up in Crossref first, since publishers like OUP 403
 GitHub's runners), commits

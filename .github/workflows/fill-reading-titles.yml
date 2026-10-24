@@ -1,10 +1,16 @@
-name: Fill in reading-log titles
+name: Publish queued reading items and fill in titles
 
-# Reading entries can be logged in the admin panel with just a URL. After
-# any change to data/reading.yaml, fetch each blank-titled link's page title
-# and commit it back. That commit is made with GITHUB_TOKEN, so it doesn't
-# trigger a deploy by itself; the last step starts one so the titles go live
-# (until then the page shows the link's domain in place of the title).
+# After any change to data/reading.yaml or data/reading-queue.yaml:
+#
+# 1. Move queue items ticked "Publish" in the admin to the reading log
+#    (scripts/publish-reading-queue.mjs).
+# 2. Fetch each blank-titled link's page title, in both files (entries can
+#    be logged in the admin with just a URL).
+#
+# and commit the result back. That commit is made with GITHUB_TOKEN, so it
+# doesn't trigger a deploy by itself; the last step starts one when the log
+# changed, so published items and titles go live (until then the page shows
+# the link's domain in place of the title).
 #
 # Titles typed or edited in the admin always win: only blank titles are
 # filled, and the bot never merges. It reads the latest main, fills, and
@@ -15,7 +21,7 @@ on:
   push:
     branches: [main]
     # Also re-run when the resolver changes, to retry links it missed before.
-    paths: [data/reading.yaml, scripts/fill-reading-titles.mjs]
+    paths: [data/reading.yaml, data/reading-queue.yaml, scripts/fill-reading-titles.mjs, scripts/publish-reading-queue.mjs]
   workflow_dispatch:
 
 permissions:
@@ -37,7 +43,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Fill blank titles, commit, and redeploy
+      - name: Publish approved items, fill blank titles, commit, and redeploy
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -46,16 +52,19 @@ jobs:
           for attempt in 1 2 3; do
             git fetch --quiet origin main
             git reset --quiet --hard origin/main
+            npm run --silent publish:reading
             npm run --silent fill:reading
-            if git diff --quiet -- data/reading.yaml; then
-              echo "No titles to add."
+            if git diff --quiet -- data/reading.yaml data/reading-queue.yaml; then
+              echo "Nothing to publish and no titles to add."
               exit 0
             fi
-            git commit -qam "Fill in reading-log titles"
+            # The queue isn't on the site, so only a change to the log needs a deploy.
+            if git diff --quiet -- data/reading.yaml; then deploy=; else deploy=1; fi
+            git commit -qam "Reading log: publish approved queue items, fill in titles"
             if git push origin HEAD:main; then
-              gh workflow run deploy.yml --ref main
+              if [ -n "$deploy" ]; then gh workflow run deploy.yml --ref main; fi
               exit 0
             fi
-            echo "main changed while fetching titles; starting over from the latest file."
+            echo "main changed meanwhile; starting over from the latest files."
           done
-          echo "::warning::Gave up after 3 attempts; the next save to data/reading.yaml retries."
+          echo "::warning::Gave up after 3 attempts; the next save to the reading log or queue retries."

@@ -1,12 +1,14 @@
-name: Import Bluesky and Substack Notes links to the reading log
+name: Queue Bluesky and Substack Notes links for the reading log
 
 # Every hour, add links I've posted on Bluesky and in Substack Notes (my own
-# posts, not reposts/restacks) to data/reading.yaml, then fill any blank
-# titles and redeploy. See scripts/import-bluesky-reading.mjs and
-# scripts/import-substack-notes.mjs for what's skipped. Bluesky runs first;
-# a link already in the log (from either source or the admin) is skipped,
-# so one shared in both places appears once. Each importer warns and skips
-# if its source is unreachable. Like the title
+# posts, not reposts/restacks) to the reading queue (data/reading-queue.yaml),
+# then fill any blank titles. The site doesn't show the queue: an item goes
+# live only once I tick "Publish" on it in the admin (fill-reading-titles.yml
+# then moves it to data/reading.yaml). See scripts/import-bluesky-reading.mjs
+# and scripts/import-substack-notes.mjs for what's skipped. Bluesky runs
+# first; a link already in the log or the queue is skipped, so one shared in
+# both places appears once. Each importer warns and skips if its source is
+# unreachable. Like the title
 # filler, it pushes fast-forward only: if main moved meanwhile (e.g. an
 # admin save), it starts over from the new file, so admin edits always win.
 
@@ -34,7 +36,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Import new links, fill titles, commit, and redeploy
+      - name: Queue new links, fill titles, and commit
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -45,16 +47,18 @@ jobs:
             git reset --quiet --hard origin/main
             npm run --silent import:bluesky
             npm run --silent import:substack
-            if git diff --quiet -- data/reading.yaml; then
+            if git diff --quiet -- data/reading-queue.yaml; then
               exit 0
             fi
             # This push is made with GITHUB_TOKEN, which doesn't trigger the
             # fill-reading-titles workflow, so fill blank titles here.
             npm run --silent fill:reading
+            # The queue isn't on the site, so only a filled log title needs a deploy.
+            if git diff --quiet -- data/reading.yaml; then deploy=; else deploy=1; fi
             git add data/reading-bluesky.json data/reading-substack.json
-            git commit -qam "Import Bluesky/Substack links to reading log"
+            git commit -qam "Queue Bluesky/Substack links for the reading log"
             if git push origin HEAD:main; then
-              gh workflow run deploy.yml --ref main
+              if [ -n "$deploy" ]; then gh workflow run deploy.yml --ref main; fi
               exit 0
             fi
             echo "main changed while importing; starting over from the latest file."

@@ -208,6 +208,7 @@ singletons:
   # A blank title is filled in from the page by the fill-reading-titles
   # workflow a minute or two after saving (reload the admin to see it).
   # It only ever fills blanks, so typed or edited titles always win.
+  # Imported links don't land here directly: see "Reading queue" below.
   - label: "Reading"
     name: "reading"
     file: "data/reading.yaml"
@@ -242,3 +243,54 @@ singletons:
             widget: "text"
             required: false
             hint: "Optional commentary, shown under the title. Markdown allowed."
+
+  # ── Reading queue ──────────────────────────────────────────────
+  # Links from my Bluesky posts and Substack Notes, imported hourly by
+  # the import-reading-links workflow, wait here; the site doesn't show
+  # them. Edit an item, tick "Publish" and save: the fill-reading-titles
+  # workflow then moves it to Reading (a minute or two later; reload the
+  # admin to see it). Deleting an item discards it for good. Items can
+  # also be added by hand, to finish and publish later.
+  - label: "Reading queue"
+    name: "reading-queue"
+    file: "data/reading-queue.yaml"
+    fields:
+      - label: "Items"
+        name: "items"
+        widget: "list"
+        add_to_top: true
+        collapsed: auto
+        summary: "{{fields.date}} — {{fields.title}}"
+        fields:
+          - label: "Date"
+            name: "date"
+            widget: "datetime"
+            format: "YYYY-MM-DD"
+            date_format: "YYYY-MM-DD"
+            time_format: false
+            default: "{{now}}"
+            hint: "When you posted it. Change it if you like; it's the date shown in Reading."
+          - label: "Link"
+            name: "link"
+            widget: "string"
+            pattern: ["^https?://", "Must start with http:// or https://"]
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: false
+            hint: "Leave blank to fill it in from the page automatically (reload to see it). A title typed or edited here is never overwritten."
+          - label: "Note"
+            name: "note"
+            widget: "text"
+            required: false
+            hint: "Starts as your post's text, minus the link. Edit it for the log: it's shown under the title once published. Markdown allowed."
+          - label: "Source"
+            name: "source"
+            widget: "string"
+            required: false
+            hint: "Where it was imported from. Not shown on the site."
+          - label: "Publish"
+            name: "publish"
+            widget: "boolean"
+            default: false
+            hint: "Tick and save to move this to Reading (a minute or two later; reload to see it). To discard it instead, delete the item."
