@@ -1,0 +1,20 @@
+{{- /* schema.org data for search engines (JSON-LD). The home page says who
+     the site is about, using only facts shown on the site (About page and
+     sidebar); sameAs lists my profiles elsewhere. Context: the page. */ -}}
+{{- if .IsHome -}}
+{{- $s := site.Params.social -}}
+{{- $person := dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" "Victor Lund Shammas"
+  "alternateName" "Victor Shammas"
+  "honorificPrefix" "Dr."
+  "jobTitle" "Associate Professor of Sociology"
+  "worksFor" (dict "@type" "CollegeOrUniversity" "name" "University of Bergen" "url" "https://www.uib.no/en")
+  "knowsAbout" (slice "Comparative penology" "Political economy" "Critical theory" "Ethnographic methods")
+  "url" site.BaseURL
+  "image" ("images/shammas-keynote-2023.jpg" | absURL)
+  "sameAs" (slice $s.uibProfile $s.googleScholar $s.academia $s.researchGate $s.linkedIn $s.webOfScience $s.substack "https://bsky.app/profile/victorshammas.com")
+-}}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end -}}
