@@ -20,8 +20,14 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { clean, insertItems, isReadingLink, knownLinks, osloDate, sameLinkKey, stripSiteName, stripTracking } from "./reading-lib.mjs";
 
 const HANDLE = "victorshammas";
-// Overridable for offline tests.
-const API = process.env.READING_SUBSTACK_API || "https://substack.com/api/v1";
+// Tried in order. substack.com answers GitHub's runners with 403, but
+// Substack serves the same API on a newsletter's own domain, which lets them
+// in (the deploy reads theorybrief.com/api/v1/archive). Overridable
+// (comma-separated) for offline tests.
+const APIS = (process.env.READING_SUBSTACK_API || "https://substack.com/api/v1,https://www.theorybrief.com/api/v1").split(",");
+const UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
+  "(KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 const NOTES_PAGE = process.env.READING_SUBSTACK_NOTES_PAGE || "https://www.theorybrief.com/notes";
 const MAX_PAGES = 3;
 const TIMEOUT_MS = 15_000;
@@ -30,8 +36,8 @@ const readingPath = process.argv[2] || "data/reading.yaml";
 const cursorPath = process.argv[3] || "data/reading-substack.json";
 
 async function getJson(url) {
-  const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS), headers: { Accept: "application/json" } });
-  if (!res.ok) throw new Error(`HTTP ${res.status} from ${new URL(url).pathname}`);
+  const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS), headers: { Accept: "application/json", "User-Agent": UA } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} from ${new URL(url).host}${new URL(url).pathname}`);
   return res.json();
 }
 
@@ -63,7 +69,7 @@ const noteText = (c) =>
 // theorybrief.com is reachable, as a possible second route in.
 async function probeNotesPage() {
   try {
-    const res = await fetch(NOTES_PAGE, { signal: AbortSignal.timeout(TIMEOUT_MS), redirect: "follow" });
+    const res = await fetch(NOTES_PAGE, { signal: AbortSignal.timeout(TIMEOUT_MS), redirect: "follow", headers: { "User-Agent": UA } });
     const html = res.ok ? await res.text() : "";
     console.log(`  diagnostic: ${NOTES_PAGE} → HTTP ${res.status}, ${html.length} bytes` +
       (html ? `, preloaded data: ${/window\._preloads/.test(html) ? "yes" : "no"}` : ""));
@@ -78,24 +84,35 @@ async function main() {
   if (!since) throw new Error(`${cursorPath}: missing "since"`);
 
   let userId = state.userId;
-  const items = [];
-  try {
-    if (!userId) {
-      userId = (await getJson(`${API}/user/${HANDLE}/public_profile`)).id;
-      if (!userId) throw new Error("profile has no id");
-      console.log(`Substack user id for @${HANDLE}: ${userId}`);
+  let items = [];
+  const errors = [];
+  for (const API of APIS) {
+    try {
+      if (!userId) {
+        userId = (await getJson(`${API}/user/${HANDLE}/public_profile`)).id;
+        if (!userId) throw new Error("profile has no id");
+        console.log(`Substack user id for @${HANDLE}: ${userId}`);
+      }
+      const got = [];
+      let cursor;
+      for (let page = 0; page < MAX_PAGES; page++) {
+        const data = await getJson(`${API}/reader/feed/profile/${userId}` + (cursor ? `?cursor=${encodeURIComponent(cursor)}` : ""));
+        const batch = data.items || [];
+        got.push(...batch);
+        cursor = data.nextCursor;
+        const oldest = batch.at(-1)?.comment?.date || batch.at(-1)?.context?.timestamp;
+        if (!cursor || !oldest || oldest <= since) break;
+      }
+      items = got;
+      console.log(`Read Substack Notes via ${new URL(API).host}.`);
+      errors.length = 0;
+      break;
+    } catch (e) {
+      errors.push(e.message);
     }
-    let cursor;
-    for (let page = 0; page < MAX_PAGES; page++) {
-      const data = await getJson(`${API}/reader/feed/profile/${userId}` + (cursor ? `?cursor=${encodeURIComponent(cursor)}` : ""));
-      const batch = data.items || [];
-      items.push(...batch);
-      cursor = data.nextCursor;
-      const oldest = batch.at(-1)?.comment?.date || batch.at(-1)?.context?.timestamp;
-      if (!cursor || !oldest || oldest <= since) break;
-    }
-  } catch (e) {
-    console.log(`::warning::Couldn't read Substack Notes (${e.message}); trying again next run.`);
+  }
+  if (errors.length) {
+    console.log(`::warning::Couldn't read Substack Notes (${errors.join("; ")}); trying again next run.`);
     await probeNotesPage();
     return;
   }
