@@ -20,6 +20,8 @@ Feel free to reach out with questions about my research, media inquiries, speaki
     Dr. Victor Shammas<br>
     University of Bergen<br>
     Department of Sociology<br>
-    PO Box 7802, 5020 Bergen, Norway
+    PO Box 7802<br>
+    5020 Bergen<br>
+    Norway
   </div>
 </div>
