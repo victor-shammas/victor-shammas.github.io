@@ -1,0 +1,49 @@
+name: Fill in reading-log titles
+
+# Reading entries can be logged in the admin panel with just a URL. After
+# any change to data/reading.yaml, fetch each blank-titled link's page title
+# and commit it back. That commit is made with GITHUB_TOKEN, so it doesn't
+# trigger a deploy by itself; the last step starts one so the titles go live
+# (until then the page shows the link's domain in place of the title).
+
+on:
+  push:
+    branches: [main]
+    paths: [data/reading.yaml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: fill-reading-titles
+  cancel-in-progress: false
+
+jobs:
+  fill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Fill blank titles in data/reading.yaml
+        run: npm run fill:reading
+
+      - name: Commit and redeploy if titles were added
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- data/reading.yaml; then
+            echo "No titles to add."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Fill in reading-log titles"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh workflow run deploy.yml --ref main
