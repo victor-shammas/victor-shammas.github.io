@@ -86,8 +86,20 @@ Consequences to remember:
 `date`/`link`/`title`/`note`), edited only through the admin panel's
 "Reading" collection, rendered by `layouts/shortcodes/reading.html` (newest
 first, grouped by month, domain after the title, optional Markdown note
-below). Same pattern as News. It's a trial; there's deliberately no
-phone/API ingestion.
+below). Same pattern as News, but a Sveltia *singleton* (sidebar → "Files")
+so it opens straight into the editor. There's deliberately no phone/API
+ingestion; the only automatic source is my own Bluesky posts (below).
+
+`.github/workflows/import-bluesky-reading.yml` runs hourly
+(`npm run import:bluesky`, `scripts/import-bluesky-reading.mjs`): reads
+@victorshammas.com's public feed (no auth) and adds links from my own posts
+and own threads (not reposts, quote posts, replies to others, my own
+sites, or links already logged) at the top of the list, with the post text
+(minus the URL) as the note. The cursor in `data/reading-bluesky.json` is
+only committed with new items, so deleting an imported entry is permanent.
+It then runs the title filler and redeploys. Both reading workflows share the
+`reading-log` concurrency group. Shared helpers are in
+`scripts/reading-lib.mjs`.
 
 Titles can be left blank: `.github/workflows/fill-reading-titles.yml` runs
 `npm run fill:reading` (`scripts/fill-reading-titles.mjs`) on every push that

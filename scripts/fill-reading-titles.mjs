@@ -18,6 +18,7 @@
 // Run automatically by .github/workflows/fill-reading-titles.yml on every push.
 
 import { readFileSync, writeFileSync } from "node:fs";
+import { clean, stripSiteName } from "./reading-lib.mjs";
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
@@ -29,35 +30,6 @@ const TIMEOUT_MS = 15_000;
 
 // Titles that describe an error page or bot check, not the article.
 const JUNK = /^(just a moment|attention required|access denied|forbidden|403\b|404\b|page not found|not found|error\b|robot check|are you a robot|are you human|security check|verify you are|captcha|subscribe to (read|continue)|sign in|log ?in\b|please enable (javascript|cookies))/i;
-
-const ENTITIES = {
-  amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ",
-  lsquo: "‘", rsquo: "’", ldquo: "“", rdquo: "”", ndash: "–", mdash: "—",
-  hellip: "…", laquo: "«", raquo: "»", middot: "·",
-};
-const decode = (s) =>
-  s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) => {
-    if (e[0] === "#") {
-      const n = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
-      return Number.isFinite(n) ? String.fromCodePoint(n) : m;
-    }
-    return ENTITIES[e.toLowerCase()] ?? m;
-  });
-const clean = (s) => decode(s).replace(/\s+/g, " ").trim().slice(0, 300);
-
-// Drop a trailing " | Site Name" (or " – ", " — ", " - ", " · ") when it's
-// the site's own name: the page already shows the domain after each title.
-// Only strips a suffix matching og:site_name or the domain, so a real
-// subtitle ("Part 1 – The Beginning") is kept.
-const squash = (s) => s.normalize("NFKD").toLowerCase().replace(/[^a-z0-9]/g, "");
-function stripSiteName(title, siteName, host) {
-  const m = title.match(/^(.+)\s+[|–—·•-]\s+(.+)$/);
-  if (!m) return title;
-  const suffix = squash(m[2]);
-  const bare = (host || "").replace(/^www\./, "");
-  const names = [siteName, bare, bare.split(".")[0]].filter(Boolean).map(squash);
-  return names.includes(suffix) ? m[1].trim() : title;
-}
 
 function titleFromHtml(html, host) {
   const meta = {};

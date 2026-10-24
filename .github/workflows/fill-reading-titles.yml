@@ -22,8 +22,9 @@ permissions:
   contents: write
   actions: write
 
+# Shared with import-bluesky-reading so the two never write at the same time.
 concurrency:
-  group: fill-reading-titles
+  group: reading-log
   cancel-in-progress: false
 
 jobs:

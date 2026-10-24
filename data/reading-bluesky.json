@@ -1,0 +1,4 @@
+{
+  "_comment": "Cursor for scripts/import-bluesky-reading.mjs: only Bluesky posts newer than `since` are imported. Updated automatically.",
+  "since": "2026-10-24T17:20:24.000Z"
+}
