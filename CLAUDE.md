@@ -97,7 +97,8 @@ Notes (below).
 `npm run import:substack` (`scripts/import-substack-notes.mjs`) reads my
 Substack Notes via the *undocumented* endpoints substack.com's web app uses
 (`/api/v1/user/victorshammas/public_profile`, `/api/v1/reader/feed/profile/<id>`),
-which may change or be blocked. Each adds links from my own posts (not
+which may change or be blocked. substack.com 403s GitHub's runners, so it
+falls back to the same paths on www.theorybrief.com (which lets them in). Each adds links from my own posts (not
 reposts/restacks, quote posts, replies to others, my own sites, or links
 already logged, so a link shared on both appears once) at the top of the
 list, with the post text minus the URL as the note. Each source warns and
