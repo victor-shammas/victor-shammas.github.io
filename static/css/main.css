@@ -703,6 +703,11 @@ body.is-resizing-sidebar * { user-select: none !important; }
   font-weight: 500;
 }
 
+/* ── RSS feed links (blog, reading log) ──────────────────────── */
+
+.feed-link,
+.prose .feed-link { margin: 0 0 1rem; font-size: var(--text-sm); }
+
 /* ── Reading log ─────────────────────────────────────────────── */
 
 .reading-month:first-child { margin-top: 0; }
@@ -741,6 +746,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
 .prose .reading-note p { margin: 0 0 0.4rem; }
 .reading-note p:last-child { margin-bottom: 0; }
 .reading-empty { color: var(--muted); }
+
 
 /* ── Media Page ──────────────────────────────────────────────── */
 
