@@ -7,6 +7,7 @@ image: /images/blog/1509551816.jpg
 summary: ''
 aliases:
   - /blog/2023/11/7/review-joseph-vogl-2022-capital-and-ressentiment-a-brief-theory-of-the-present
+original: https://www.theorybrief.com/p/theory-brief-4-joseph-vogl-2022-capital
 ---
 
 **Joseph Vogl (2022),** [**_Capital and Ressentiment: A Brief Theory of the Present_**](https://www.politybooks.com/bookdetail?book_slug=capital-and-ressentiment-a-short-theory-of-the-present--9781509551811)**_._ Cambridge: Polity Press.**

@@ -58,7 +58,3 @@ When we say that Trump is a fascist, then, this is not merely a rhetorical exerc
 Returning to our Napoleonic beginnings, the Left could learn a lesson from how the Trump camp responded to Biden’s apparent cognitive decline around the time of the presidential debate in the summer of 2024: Trump simply let Biden and the Democrats stew in their own discontent and strife. Notice, too, how [silent](https://abcnews.go.com/Politics/trump-stays-quiet-unseen-biden-struggles-save-political/story?id=111693816) the Trump camp went: “‘We're trying something new and shutting up,’ is how one source described the Trump team's strategy.” Sometimes radio silence can be just as effective as breathless commentary on day-to-day events.
 
 But the Left should also be unafraid to offer its specific brand of _analytical militancy_, relaying information about real tensions within the Trump camp, while reframing the issues on which Trump’s coalition is faltering and failing, to demonstrate where the U.S. president’s promises not only fall flat, but contain impossible contradictions that therefore _cannot_ be solved within the framing Trump and his people offer. The Left should do so while mapping out a positive vision of its own, boldly—and sincerely—promoting an agenda of peace, justice, ecology, and equality.
-
-***
-
-_First published on_ [_The Theory Brief_](https://www.theorybrief.com/p/highlight-the-contradictions) _(theorybrief.com)._

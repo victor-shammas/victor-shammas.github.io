@@ -19,6 +19,25 @@
     {{ .Content }}
   </div>
 
+  {{- /* Point mirrored posts back to The Theory Brief. The original is the
+       `original` front-matter URL if set (`original: false` turns it off;
+       an empty value, as the admin saves it, counts as unset), else the
+       Theory Brief post with the same title. */ -}}
+  {{- $original := "" -}}
+  {{- $param := printf "%v" .Params.original -}}
+  {{- if eq $param "false" -}}
+  {{- else if .Params.original -}}
+    {{- $original = .Params.original -}}
+  {{- else -}}
+    {{- $key := lower .Title | replaceRE `[^a-z0-9]` "" -}}
+    {{- range (transform.Unmarshal (readFile "static/feeds/theorybrief.json")).posts -}}
+      {{- if eq (lower .title | replaceRE `[^a-z0-9]` "") $key }}{{ $original = .link }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $original }}
+  <p class="post-original">This piece also appears in <a href="{{ . }}" target="_blank" rel="noopener"><em>The Theory Brief</em></a>, where you can comment and subscribe.</p>
+  {{- end }}
+
   <nav class="post-nav">
     {{ with .PrevInSection }}
       <a href="{{ .Permalink }}">← {{ .Title }}</a>

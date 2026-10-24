@@ -46,7 +46,3 @@ Perpetual patchability may be Silicon Valley’s optimism of the will, embodied 
 But who can really tell? The forever patch means we can never, finally, be certain of what we are dealing with. A perpetually patchable object is one that, therefore, _intelligently_ eludes critique. In this, at least, Silicon Valley demonstrates the not inconsiderable intellectual resources at its command.
 
 And that Switzerland search result? It might already have been patched by some Google engineer.
-
-\*\*\*
-
-_First published on_ [_The Theory Brief_](https://victorshammas.substack.com/p/artificial-unintelligence-au-and)

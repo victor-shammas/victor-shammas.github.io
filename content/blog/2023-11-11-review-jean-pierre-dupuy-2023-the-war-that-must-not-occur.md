@@ -7,6 +7,7 @@ image: /images/blog/36295.webp
 summary: ''
 aliases:
   - /blog/2023/11/11/review-jean-pierre-dupuy-2023-the-war-that-must-not-occur
+original: https://www.theorybrief.com/p/theory-brief-6-jean-pierre-dupuy
 ---
 
 **Jean-Pierre Dupuy (2023).** [**_The War That Must Not Occur_**](https://www.sup.org/books/title/?id=36295&local_ref=new) **(translated by Malcolm Debevoise). Stanford University Press.**

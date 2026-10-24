@@ -7,6 +7,7 @@ image: /images/blog/71Y4QhzC2ML._UF1000,1000_QL80_.jpg
 summary: ''
 aliases:
   - /blog/2023/10/9/zachary-jonathan-jacobson-2023-on-nixons-madness-an-emotional-history
+original: https://www.theorybrief.com/p/zachary-jonathan-jacobson-on-nixons
 ---
 
 **Zachary Jonathan Jacobson (2023). _On Nixon's Madness: An Emotional History_. Johns Hopkins University Press.** [**https://www.press.jhu.edu/books/title/12723/nixons-madness**](https://www.press.jhu.edu/books/title/12723/nixons-madness)**.**

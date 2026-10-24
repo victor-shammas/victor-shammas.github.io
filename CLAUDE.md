@@ -122,6 +122,17 @@ blanks are filled, and the bot pushes fast-forward only (if main moved, it
 re-reads the latest file and starts over, never merges). Unfetchable or
 bot-wall titles stay blank and the page shows the domain.
 
+## Blog ↔ The Theory Brief
+
+The blog mirrors Theory Brief posts. `layouts/blog/single.html` ends each post
+with "This piece also appears in *The Theory Brief*…", linking the original:
+the `original:` front-matter URL if set (admin field "Theory Brief original";
+`original: false` hides the line; an empty value counts as unset), else the
+post in `static/feeds/theorybrief.json` with the same title (lowercased,
+non-alphanumerics stripped). Pre-Substack posts simply get no line. Don't add
+hand-written "Originally published in The Theory Brief" lines; credits to
+other venues stay in the post body.
+
 ## Theory Brief footer
 
 `static/feeds/theorybrief.json` is a checked-in seed of public post metadata.

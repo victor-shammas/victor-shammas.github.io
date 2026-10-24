@@ -7,6 +7,7 @@ image: /images/blog/9780753558201-jacket-large.webp
 summary: ''
 aliases:
   - /blog/2023/7/12/covering-the-field-of-power-lionel-barbers-financial-times-diariesnbsp
+original: https://www.theorybrief.com/p/lionel-barber-2021-the-powerful-and
 ---
 
 **Lionel Barber (2020). _The Powerful and the Damned_. London: WH Allen.**

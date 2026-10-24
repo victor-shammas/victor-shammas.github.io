@@ -52,7 +52,3 @@ Of course, this stance is fake: Many ethnonationalists are all too ready to enjo
 If ethnonationalists are less willing to admit people from these countries in as their equivalent neighbors, in the fully theological sense of that word, we should not accept, even for a moment, the narratives of fullness that abound. Instead, it is the *ethnonationalist imaginary that is full*—filled with dangers and threats, which are often pure inventions of minds distended with undigested figments.
 
 When an ethnonationalist declares their country to be full, they are projecting symbolic space onto physical space. It is up to us to disentangle the two and show what can still be accomplished—through the combined efforts of people of good will—in the real, material world.
-
-\*\*\*
-
-First published on [Substack](https://substack.com/@victorshammas/p-148587709).
