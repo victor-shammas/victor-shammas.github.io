@@ -1,5 +1,6 @@
 // Shared helpers for the reading-log scripts (fill-reading-titles.mjs,
-// import-bluesky-reading.mjs, import-substack-notes.mjs).
+// import-bluesky-reading.mjs, import-substack-notes.mjs,
+// publish-reading-queue.mjs).
 
 const ENTITIES = {
   amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ",
@@ -87,13 +88,38 @@ export const knownLinks = (src) =>
   new Set([...src.matchAll(/^\s*(?:- )?link:\s*(.+)$/gm)]
     .map((m) => sameLinkKey(m[1].trim().replace(/^(['"])(.*)\1$/, "$2"))));
 
-// Insert items ({created, date, link, title, note}) at the top of the list,
-// newest first (where the admin adds too). Returns the new file text.
+// The `items:` list of a reading-log file, read line by line (no YAML
+// re-serialization, so the CMS's quoting and formatting survive): the
+// `items:` line, the list's indentation, and each item as a [start, end)
+// line range (trailing blank lines excluded). null if there's no `items:`.
+export function itemBlocks(lines) {
+  const itemsIdx = lines.findIndex((l) => /^items:/.test(l));
+  if (itemsIdx === -1) return null;
+  const listIndent = (lines.slice(itemsIdx + 1).find((l) => /^\s*- /.test(l)) || "  - ").match(/^\s*/)[0];
+  const blocks = [];
+  let i = itemsIdx + 1;
+  for (; i < lines.length; i++) {
+    if (/^\S/.test(lines[i])) break; // next top-level key
+    if (lines[i].startsWith(listIndent + "- ")) {
+      if (blocks.length) blocks.at(-1).end = i;
+      blocks.push({ start: i, end: lines.length });
+    }
+  }
+  if (blocks.length) blocks.at(-1).end = i;
+  for (const b of blocks) while (b.end > b.start + 1 && !lines[b.end - 1].trim()) b.end--;
+  return { itemsIdx, listIndent, keyIndent: listIndent + "  ", blocks };
+}
+
+// Insert items ({created, date, link, title, note, source?, publish?}) at
+// the top of the list, newest first (where the admin adds too). Returns the
+// new file text.
 export function insertItems(src, items) {
   const sorted = [...items].sort((a, b) => (a.created < b.created ? 1 : -1));
+  // The admin may save an emptied list as "{}" or drop the key.
+  if (!src.trim() || src.trim() === "{}") src = "items: []\n";
+  else if (!/^items:/m.test(src)) src = src.replace(/\n*$/, "\nitems:\n");
   const lines = src.split("\n");
   const i = lines.findIndex((l) => /^items:/.test(l));
-  if (i === -1) throw new Error('no top-level "items:" key');
   lines[i] = "items:"; // also turns an empty "items: []" into a list
   const listIndent = (lines.slice(i + 1).find((l) => /^\s*- /.test(l)) || "  - ").match(/^\s*/)[0];
   const k = listIndent + "  ";
@@ -106,6 +132,8 @@ export function insertItems(src, items) {
       `${k}link: ${q(a.link)}`,
       `${k}title: ${a.title ? q(a.title) : "''"}`,
       ...(a.note ? [`${k}note: ${q(a.note)}`] : []),
+      ...(a.source ? [`${k}source: ${q(a.source)}`] : []),
+      ...(a.publish === false ? [`${k}publish: false`] : []),
     ];
   });
   lines.splice(i + 1, 0, ...block);

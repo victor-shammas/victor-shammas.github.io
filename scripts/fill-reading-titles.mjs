@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Fill in blank titles in data/reading.yaml from each linked page's
+// Fill in blank titles in data/reading.yaml and data/reading-queue.yaml
+// from each linked page's
 // og:title / twitter:title / <title> (minus a trailing " | Site Name"), so a
 // link can be logged from the admin panel by pasting just the URL.
 //
@@ -14,11 +15,13 @@
 // the title stays blank and the site shows the link's domain instead; the
 // next save retries it.
 //
-// Usage: node scripts/fill-reading-titles.mjs [path]   (default: data/reading.yaml)
-// Run automatically by .github/workflows/fill-reading-titles.yml on every push.
+// Usage: node scripts/fill-reading-titles.mjs [path…]
+//   (default: data/reading.yaml data/reading-queue.yaml)
+// Run automatically by .github/workflows/fill-reading-titles.yml on every
+// push, and by import-reading-links.yml after each import.
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { clean, stripSiteName } from "./reading-lib.mjs";
+import { clean, itemBlocks, stripSiteName } from "./reading-lib.mjs";
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
@@ -117,27 +120,17 @@ const unquote = (v) => {
   return v.trim();
 };
 
-async function main() {
-  const path = process.argv[2] || "data/reading.yaml";
+async function fill(path) {
   const lines = readFileSync(path, "utf8").split("\n");
-  const itemsIdx = lines.findIndex((l) => /^items:/.test(l));
-  if (itemsIdx === -1) {
+  const list = itemBlocks(lines);
+  if (!list) {
     console.log(`${path}: no top-level "items:" key; nothing to do.`);
     return;
   }
-  const listIndent = (lines.slice(itemsIdx + 1).find((l) => /^\s*- /.test(l)) || "  - ").match(/^\s*/)[0];
-  const keyIndent = listIndent + "  ";
+  const { listIndent, keyIndent, blocks } = list;
   // A key belongs to the item when it sits at the item's key indentation
   // ("  - key:" or "    key:"); deeper lines are a multi-line note.
   const keyRe = (k) => new RegExp(`^(?:${listIndent}- |${keyIndent})${k}:(.*)$`);
-
-  // Collect item blocks as [start, end) line ranges.
-  const blocks = [];
-  for (let i = itemsIdx + 1; i < lines.length; i++) {
-    if (/^\S/.test(lines[i])) break; // next top-level key
-    if (lines[i].startsWith(listIndent + "- ")) blocks.push({ start: i, end: lines.length });
-    if (blocks.length > 1) blocks[blocks.length - 2].end = blocks[blocks.length - 1].start;
-  }
 
   const edits = []; // { line, insert?: bool, text }
   let blanks = 0;
@@ -195,4 +188,5 @@ async function main() {
   console.log(`${path}: filled ${edits.length} title(s).`);
 }
 
-await main();
+const paths = process.argv.slice(2);
+for (const path of paths.length ? paths : ["data/reading.yaml", "data/reading-queue.yaml"]) await fill(path);

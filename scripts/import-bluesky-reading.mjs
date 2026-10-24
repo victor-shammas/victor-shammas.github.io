@@ -1,19 +1,22 @@
 #!/usr/bin/env node
-// Add links I post on Bluesky to the reading log (data/reading.yaml).
+// Queue links I post on Bluesky for the reading log: they go to
+// data/reading-queue.yaml, which the site doesn't show, and move to
+// data/reading.yaml only once I tick "Publish" on them in the admin (see
+// publish-reading-queue.mjs).
 //
 // Reads my public feed (no login) and, for each of my own posts newer than
-// the saved cursor that links somewhere, adds an item at the top of the list:
+// the saved cursor that links somewhere, adds an item at the top of the queue:
 // date = when I posted it, link = the shared URL, title = the link card's
 // title (blank if there's none; fill-reading-titles.mjs then fills it), and
 // note = the post's text minus the URL.
 //
 // Skipped: reposts, quote-posted links (they're someone else's), replies to
 // other people (my own threads count), links to my own sites and to Bluesky
-// itself, and links already in the log. The cursor (newest post seen) lives
-// in data/reading-bluesky.json and is only committed along with new items,
-// so an imported entry deleted in the admin never comes back.
+// itself, and links already in the log or the queue. The cursor (newest post
+// seen) lives in data/reading-bluesky.json and is only committed along with
+// new items, so an entry deleted from the queue never comes back.
 //
-// Usage: node scripts/import-bluesky-reading.mjs [reading.yaml] [cursor.json]
+// Usage: node scripts/import-bluesky-reading.mjs [reading-queue.yaml] [cursor.json] [reading.yaml]
 // Run by .github/workflows/import-reading-links.yml every hour.
 
 import { readFileSync, writeFileSync } from "node:fs";
@@ -25,8 +28,9 @@ const API = process.env.READING_BSKY_API || "https://public.api.bsky.app/xrpc/ap
 const MAX_PAGES = 3; // 100 posts each; runs are hourly, so this is plenty
 const TIMEOUT_MS = 15_000;
 
-const readingPath = process.argv[2] || "data/reading.yaml";
+const queuePath = process.argv[2] || "data/reading-queue.yaml";
 const cursorPath = process.argv[3] || "data/reading-bluesky.json";
+const readingPath = process.argv[4] || "data/reading.yaml";
 
 // Links in a post, in order: the link card first, then links in the text.
 function postLinks(post) {
@@ -82,8 +86,8 @@ async function main() {
   const since = state.since;
   if (!since) throw new Error(`${cursorPath}: missing "since"`);
 
-  const src = readFileSync(readingPath, "utf8");
-  const known = knownLinks(src);
+  const src = readFileSync(queuePath, "utf8");
+  const known = new Set([...knownLinks(src), ...knownLinks(readFileSync(readingPath, "utf8"))]);
 
   let feed;
   try {
@@ -115,6 +119,8 @@ async function main() {
       link: stripTracking(link.uri),
       title: link.title ? stripSiteName(clean(link.title), "", host) : "",
       note: noteText(post.record),
+      source: "Bluesky",
+      publish: false,
     });
   }
 
@@ -123,9 +129,9 @@ async function main() {
     return;
   }
 
-  writeFileSync(readingPath, insertItems(src, added));
+  writeFileSync(queuePath, insertItems(src, added));
   writeFileSync(cursorPath, JSON.stringify({ ...state, since: newest }, null, 2) + "\n");
-  console.log(`${readingPath}: added ${added.length} link(s) from Bluesky.`);
+  console.log(`${queuePath}: queued ${added.length} link(s) from Bluesky.`);
 }
 
 await main();
