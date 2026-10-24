@@ -14,7 +14,8 @@ name: Fill in reading-log titles
 on:
   push:
     branches: [main]
-    paths: [data/reading.yaml]
+    # Also re-run when the resolver changes, to retry links it missed before.
+    paths: [data/reading.yaml, scripts/fill-reading-titles.mjs]
   workflow_dispatch:
 
 permissions:

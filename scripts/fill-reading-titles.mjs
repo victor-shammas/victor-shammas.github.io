@@ -3,6 +3,10 @@
 // og:title / twitter:title / <title> (minus a trailing " | Site Name"), so a
 // link can be logged from the admin panel by pasting just the URL.
 //
+// Links containing a DOI (most journal articles) are looked up in Crossref
+// first: publishers often block requests from GitHub's servers (OUP answers
+// 403), and Crossref's title is the clean article title anyway.
+//
 // Only items with a missing or empty `title:` are touched; a title typed in
 // the admin always wins. Lines are edited in place (no YAML
 // re-serialization), so the CMS's quoting and formatting are untouched. If a
@@ -19,6 +23,8 @@ const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
   "(KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 const MAX_BYTES = 1_000_000;
+// Overridable for offline tests.
+const CROSSREF = process.env.READING_CROSSREF_URL || "https://api.crossref.org/works/";
 const TIMEOUT_MS = 15_000;
 
 // Titles that describe an error page or bot check, not the article.
@@ -61,12 +67,12 @@ function titleFromHtml(html, host) {
       attrs[a[1].toLowerCase()] = a[2] ?? a[3] ?? a[4];
     }
     const key = (attrs.property || attrs.name || "").toLowerCase();
-    if (["og:title", "twitter:title", "og:site_name"].includes(key) && attrs.content && !meta[key]) {
+    if (["citation_title", "og:title", "twitter:title", "og:site_name"].includes(key) && attrs.content && !meta[key]) {
       meta[key] = attrs.content;
     }
   }
   const t = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
-  for (const raw of [meta["og:title"], meta["twitter:title"], t && t[1]]) {
+  for (const raw of [meta["citation_title"], meta["og:title"], meta["twitter:title"], t && t[1]]) {
     const title = raw && clean(raw);
     if (title && !JUNK.test(title)) {
       return stripSiteName(title, meta["og:site_name"] && clean(meta["og:site_name"]), host);
@@ -101,6 +107,38 @@ async function fetchTitle(url) {
   return titleFromHtml(decoder.decode(Buffer.concat(chunks)), new URL(res.url || url).hostname);
 }
 
+// A DOI in the URL, e.g. academic.oup.com/…/doi/10.1093/ser/mwag045/8885840.
+// Where it ends isn't marked, so try the longest candidate first and drop
+// trailing path segments (here the publisher's own "/8885840") until Crossref
+// knows it.
+function doiCandidates(url) {
+  let s = url;
+  try { s = decodeURIComponent(url); } catch {}
+  const m = s.match(/\b(10\.\d{4,9}\/[^\s?#]+)/);
+  if (!m) return [];
+  const parts = m[1].replace(/[/.,;]+$/, "").split("/");
+  const out = [];
+  for (let n = parts.length; n >= 2 && out.length < 4; n--) out.push(parts.slice(0, n).join("/"));
+  return out;
+}
+
+async function crossrefTitle(url) {
+  for (const doi of doiCandidates(url)) {
+    const res = await fetch(CROSSREF + encodeURI(doi), {
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+      headers: { "User-Agent": "victorshammas.com reading log (+https://victorshammas.com/reading/)" },
+    });
+    if (res.status === 404) continue;
+    if (!res.ok) throw new Error(`Crossref HTTP ${res.status}`);
+    const m = (await res.json()).message || {};
+    const strip = (x) => clean(String(x || "").replace(/<[^>]+>/g, ""));
+    const title = strip((m.title || [])[0]);
+    const sub = strip((m.subtitle || [])[0]);
+    if (title) return sub && !title.includes(sub) ? `${title}: ${sub}` : title;
+  }
+  return "";
+}
+
 const unquote = (v) => {
   v = v.trim();
   if ((v.startsWith("'") && v.endsWith("'")) || (v.startsWith('"') && v.endsWith('"'))) v = v.slice(1, -1);
@@ -130,6 +168,7 @@ async function main() {
   }
 
   const edits = []; // { line, insert?: bool, text }
+  let blanks = 0;
   for (const b of blocks) {
     let link = "", titleLine = -1, linkLine = -1, title = "";
     for (let i = b.start; i < b.end; i++) {
@@ -139,12 +178,23 @@ async function main() {
       if (tm) { title = unquote(tm[1]); titleLine = i; }
     }
     if (title || !/^https?:\/\//i.test(link)) continue;
+    blanks++;
     let found = "";
-    try {
-      found = await fetchTitle(link);
-      if (!found) console.log(`  no usable title: ${link}`);
-    } catch (e) {
-      console.log(`  could not fetch ${link}: ${e.message}`);
+    if (doiCandidates(link).length) {
+      try {
+        found = await crossrefTitle(link);
+        if (!found) console.log(`  DOI not in Crossref: ${link}`);
+      } catch (e) {
+        console.log(`  Crossref lookup failed for ${link}: ${e.message}`);
+      }
+    }
+    if (!found) {
+      try {
+        found = await fetchTitle(link);
+        if (!found) console.log(`  no usable title: ${link}`);
+      } catch (e) {
+        console.log(`  could not fetch ${link}: ${e.message}`);
+      }
     }
     if (!found) continue;
     console.log(`  ${link}\n    → ${found}`);
@@ -159,7 +209,9 @@ async function main() {
   }
 
   if (!edits.length) {
-    console.log(`${path}: no blank titles to fill.`);
+    console.log(blanks
+      ? `${path}: found no titles for ${blanks} blank-titled link(s); they keep showing the domain.`
+      : `${path}: no blank titles to fill.`);
     return;
   }
   // Apply bottom-up so earlier line numbers stay valid.
