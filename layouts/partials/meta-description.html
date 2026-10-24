@@ -1,0 +1,11 @@
+{{- /* The page's search/preview description, as plain text of at most
+     ~160 characters: front-matter `description`, else (blog posts) the
+     admin summary, deck or automatic summary, else the subtitle, else the
+     site description (the home page has its own). Context: the page. */ -}}
+{{- $d := .Description -}}
+{{- if and (not $d) .IsHome }}{{ $d = site.Params.homeDescription }}{{ end -}}
+{{- if and (not $d) .IsPage (eq .Section "blog") -}}
+  {{- $d = .Params.summary | default .Params.dek | default .Summary -}}
+{{- end -}}
+{{- $d = $d | default .Params.subtitle | default site.Params.description -}}
+{{- return (plainify $d | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace | truncate 160) -}}

@@ -9,6 +9,8 @@ canonicalifyURLs = false
 
 [params]
   description = "Sociologist — University of Bergen, Norway"
+  # The home page's search/preview description (other pages use their own).
+  homeDescription = "Victor Lund Shammas, Associate Professor of Sociology at the University of Bergen, Norway: penology, political economy, and critical theory."
   author = "Victor Lund Shammas"
   email = "contact@victorshammas.com"
   # Cloudflare Web Analytics beacon token (public — appears in page HTML).
@@ -92,6 +94,7 @@ divider = true
 # reading log (/reading/index.xml, set in content/reading.md).
 [[cascade]]
   title = "Blog"
+  description = "Essays and book reviews on sociology, politics, and culture."
   outputs = ["HTML", "RSS"]
   [cascade._target]
     kind = "section"

@@ -1,6 +1,7 @@
 ---
 title: Norwegian
 subtitle: Essays, artikler og anmeldelser på norsk. // Essays, articles, and reviews in Norwegian.
+lang: nb
 layout: single
 url: /norwegian/
 aliases: /norwegian-writings

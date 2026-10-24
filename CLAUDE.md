@@ -157,7 +157,21 @@ the `original:` front-matter URL if set (admin field "Theory Brief original";
 post in `static/feeds/theorybrief.json` with the same title (lowercased,
 non-alphanumerics stripped). Pre-Substack posts simply get no line. Don't add
 hand-written "Originally published in The Theory Brief" lines; credits to
-other venues stay in the post body.
+other venues stay in the post body. The lookup lives in
+`layouts/partials/theorybrief-original.html`, and the same URL is the post's
+`<link rel="canonical">` (so the Substack copy is the one that ranks in
+search) and keeps the post out of `sitemap.xml` (`layouts/sitemap.xml`).
+
+## SEO
+
+`layouts/_default/baseof.html` builds each page's head: the description
+(`layouts/partials/meta-description.html`: front-matter `description`, else a
+blog post's summary/deck, else the subtitle; the home page uses
+`params.homeDescription`), Open Graph/Twitter preview tags with absolute image
+URLs (the keynote photo when a page has no image), `<html lang>` from a
+`lang` front-matter field (`nb` on the Norwegian page), and schema.org `Person`
+JSON-LD on the home page (`layouts/partials/structured-data.html`; keep it to
+facts shown on the site).
 
 ## Theory Brief footer
 
