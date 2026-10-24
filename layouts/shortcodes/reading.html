@@ -1,0 +1,36 @@
+{{- /*
+  Reading log, fed by data/reading.yaml (edited via the admin panel's "Reading" collection).
+  Newest first, grouped by month. Usage:  {{< reading >}}
+*/ -}}
+{{- $raw := slice -}}
+{{- with site.Data.reading }}{{ with .items }}{{ $raw = . }}{{ end }}{{ end -}}
+{{- /* Normalize dates (quoted or unquoted YAML) so sorting is reliable */ -}}
+{{- $norm := slice -}}
+{{- range $raw }}{{ if and .date .link }}{{ $norm = $norm | append (merge . (dict "t" (time.AsTime .date))) }}{{ end }}{{ end -}}
+{{- $items := sort $norm "t" "desc" -}}
+{{- if not $items }}
+<p class="reading-empty">Nothing logged yet.</p>
+{{- else }}
+{{- $month := "" }}
+{{- range $items }}
+  {{- $m := .t.Format "January 2006" }}
+  {{- if ne $m $month }}
+    {{- if $month }}
+</ul>
+    {{- end }}
+<h2 class="section-heading reading-month">{{ $m }}</h2>
+<ul class="reading-list">
+    {{- $month = $m }}
+  {{- end }}
+  {{- $domain := replaceRE `^www\.` "" (urls.Parse .link).Hostname }}
+  <li class="reading-item">
+    <time class="reading-date" datetime="{{ .t.Format "2006-01-02" }}">{{ .t.Format "2 Jan" }}</time>
+    <span class="reading-main">
+      <a class="reading-title" href="{{ .link }}">{{ .title | default $domain }}</a>
+      {{- if and .title $domain }} <span class="reading-domain">{{ $domain }}</span>{{ end }}
+    </span>
+  </li>
+{{- end }}
+</ul>
+{{- end -}}
+

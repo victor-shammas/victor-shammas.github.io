@@ -189,3 +189,39 @@ collections:
                 widget: "string"
                 required: false
                 hint: "Optional URL; makes the headline a link."
+
+  # ── Reading ────────────────────────────────────────────────────
+  # The running link log at /reading/. Same shape as News: one data
+  # file with an `items` list, new items added at the top. The page
+  # sorts by date and groups by month, so file order doesn't matter.
+  - name: "reading"
+    label: "Reading"
+    files:
+      - label: "Reading log"
+        name: "reading"
+        file: "data/reading.yaml"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            add_to_top: true
+            collapsed: auto
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - label: "Date"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                default: "{{now}}"
+                hint: "When you read it. Defaults to today."
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                hint: "Article or page title, as you'd like it shown."
+              - label: "Link"
+                name: "link"
+                widget: "string"
+                pattern: ["^https?://", "Must start with http:// or https://"]
+                hint: "Full URL. The site shows its domain next to the title."
