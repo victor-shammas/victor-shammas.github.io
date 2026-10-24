@@ -7,6 +7,7 @@ image: /images/blog/51BQjcAuAwL._SY445_SX342_FMwebp_.webp
 summary: ''
 aliases:
   - /blog/2023/12/18/book-review-the-gourmand-as-class-warrior
+original: https://www.theorybrief.com/p/theory-brief-9-the-gourmand-as-class
 ---
 
 **Dwight Garner (2023),** [**_The Upstairs Delicatessen: On Eating, Reading, Reading About Eating, and Eating While Reading_**](https://us.macmillan.com/books/9780374603427/theupstairsdelicatessen)**. New York: Farrar, Strauss and Giroux.**
@@ -32,7 +33,3 @@ In all his celebrating of honest, cheap, authentic, homely fare, Garner also giv
 > When I can’t muster the energy to cook at lunch, I make a baptismal bowl of Campbell’s tomato soup, from the can. I grew up on it. […] I use whole milk and add a pat of butter. Ideally this is consumed alongside a grilled cheese sandwich. It’s redolent of all that is good in the world. In _The Making of the President_ 1960, Theodore H. White reported that, while boarding a plane after campaigning in West Virginia, John F. Kennedy “called for a favorite drink—a bowl of hot tomato soup.”
 
 There’s that West Virginia upbringing again, and its celebration, against the apparent artifice of the East Coast elites. Curiously, of course, nobody was more élite, and more blue-blooded, than JFK. Still, in that unpretentious bowl of hot tomato soup, there was a folksiness, a popular charm. It might have been fake. It probably _was_ fake. But if you want to understand political leaders who have successfully won over that great American heartland, the Midwest and the Rust Belt—derisively labeled “fly-over country” by some insiders—you have to try to understand that bowl of hot tomato soup, and all that it signifies.
-
-\* _\* \*_
-
-_Originally published on_ [_The Theory Brief_](https://victorshammas.substack.com/p/theory-brief-9-the-gourmand-as-class)_._

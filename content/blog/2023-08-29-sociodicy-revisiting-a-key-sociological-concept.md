@@ -7,6 +7,7 @@ image: ''
 summary: ''
 aliases:
   - /blog/2023/8/15/sociodicy-revisiting-a-key-sociological-concept
+original: https://www.theorybrief.com/p/theory-brief-2-sociodicy-key-concept
 ---
 
 **Introduction**

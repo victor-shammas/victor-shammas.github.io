@@ -40,7 +40,3 @@ P&R are optimistic about the possible role of technology. Sheer computer-process
 > Any future Left that takes the question of planning seriously will also have to depend heavily upon talents from computer science, operations research, combinatorics and graph theory, complexity theory, information theory and allied fields.
 
 At the end of the day, do we even have a choice? In an unequal world and on an overheating planet, planning looks increasingly imperative. The world faces a calamitous series of decades ahead. Climate catastrophe looms large on the horizon. Can we really allow corporations to blindly obey the dictates of the market, prioritizing their shareholders in self-directed fashion? Precious resources, including energy and emissions, need to be allocated in sensible ways. Strangely, Walmart has done a great service to calculation debates by showing that planning is not just some relic of the past but integral to contemporary capitalism. What remains is to show how this might scale up to entire economies—to counteract some of the fundamental crises of our age.
-
-***
-
-_Originally published in_ [The Theory Brief](https://www.theorybrief.com/p/in-praise-of-planning)_._

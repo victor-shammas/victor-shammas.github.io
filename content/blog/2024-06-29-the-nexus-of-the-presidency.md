@@ -46,7 +46,3 @@ The absence of an audience is hard to square with the democratic process: Even i
 \*\*\*
 
 In short, for Biden, the debate performance amounts to a familiar picture: An unhinged or impotent foreign policy (on Gaza and Ukraine, respectively), and yet with a domestic policy that can, with enough popular mobilization, be pulled leftward. In his most recent book, Bernie Sanders boasts of having “[succeeded in pushing Biden in a more progressive direction](https://books.google.no/books?id=4HucEAAAQBAJ&newbks=1&newbks_redir=0&lpg=PT11&dq=%22succeeded%20in%20pushing%20Biden%20in%20a%20more%20progressive%20direction%22&pg=PT11#v=onepage&q=%22succeeded%20in%20pushing%20Biden%20in%20a%20more%20progressive%20direction%22&f=false)” back in 2020. The question is whether the left in America can succeed in doing so again—that is, in reshaping the nexus of forces that Biden represents, more so than obsessing over his personal characteristics, such as they are.
-
-***
-
-[First published on [_The Theory Brief_](https://victorshammas.substack.com/p/the-nexus-of-the-presidency).]

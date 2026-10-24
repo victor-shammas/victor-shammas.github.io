@@ -24,7 +24,3 @@ But the affect of nostalgia is highly effective, politically speaking. No wonder
 > I thought the movie was great. Dennis Quaid is here. [_Turning to Quaid_] Did you like Reagan? He liked Reagan. I think you have to like Reagan to play him that way. You did a beautiful job.
 
 The irony, of course, is that it is a job so beautiful, to speak in Trumpisms, that the movie actually ends up undermining the broad ideological project it seems to want to uphold; _Reagan_ feels cheap and cheesy, on the whole, but it effectively draws attention to the abysmal state of the contemporary Right, if only by way of contrast; as Noam Chomsky has said, the GOP is not so much a political party as a "[radical insurgency](https://www.newsweek.com/noam-chomsky-says-gop-not-political-party-radical-insurgency-1677041).” The supreme irony is that the Right of today owes everything to Reagan and his political legacy—and so we must pass beyond _Reagan_ the movie, to Reagan himself, and to the political events that followed in his wake, in an attempt to parse how we got from there to here. On this point, the film remains silent.
-
-***
-
-_Originally published in_ [The Theory Brief.](https://www.theorybrief.com/p/the-reagan-dream)

@@ -40,7 +40,3 @@ To ensure the survival of democracy requires not just combatting the _symptoms_ 
 [1] An earlier statement of a similar argument can be found in: Shammas, V. L. (2016) “[Who's afraid of penal populism? Technocracy and ‘the people’ in the sociology of punishment](https://www.victorshammas.com/s/Shammas_V_L_2016_Whos_afraid_of_penal.pdf).” _Contemporary Justice Review_ 19(3): 325-346.
 
 [2] Diggle, J. (2021) κρατέω. In: _Cambridge Greek Lexicon_. Cambridge: Cambridge University Press, p. 831.
-
-\*
-
-[[Originally published on Substack: _The Theory Brief_](https://victorshammas.substack.com/p/theory-brief-11-post-politics-and).]

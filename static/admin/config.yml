@@ -78,6 +78,12 @@ collections:
         required: false
         hint: "Short excerpt shown on the blog listing page. If empty, Hugo auto-generates one."
 
+      - label: "Theory Brief original"
+        name: "original"
+        widget: "string"
+        required: false
+        hint: "Optional. Posts link to The Theory Brief post with the same title automatically; paste its URL here only if the titles differ."
+
       - label: "Body"
         name: "body"
         widget: "markdown"

@@ -36,7 +36,3 @@ But what if monetary profit was never the point? Before the 2024 U.S. presidenti
 What Musk bought with his $44 billion was not so much a middling social-media business: As Schiffer points out, Musk could have built a Twitter clone at a far lower cost, like Mark Zuckerberg’s Meta did with Threads. Instead, Musk bought friends and influence in the highest of places. X may be a spiraling business, but it is still an effective megaphone. Musk may even have helped swing the vote for Trump, even as we should be wary of reductive accounts of election outcomes, which are shaped by multiple levers of causality.
 
 Still, what Musk bought in 2022 wasn’t yet another company for his portfolio: He has plenty of those, from Neuralink to SpaceX and Tesla. Instead, Musk bought political power and the chance to help steer the world in his preferred direction. When you’re the [richest](https://www.forbes.com/profile/elon-musk/?list=rtb/) man in the world, what remains are all the kingdoms of the world and their glory. You might just be able to put a price tag on that—a $44 billion price tag.
-
-***
-
-_Originally published on_ [_The Theory Brief_](https://www.theorybrief.com/p/how-to-buy-power-and-influence-people)_._

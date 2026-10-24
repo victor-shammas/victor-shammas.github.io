@@ -7,6 +7,7 @@ image: /images/blog/9781350357129.jpg
 summary: ''
 aliases:
   - /blog/2024/6/29/the-upside-down-philosopher-on-slavoj-ieks-freedom-a-disease-without-a-cure-2023
+original: https://www.theorybrief.com/p/theory-brief-14-the-upside-down-philosopher
 ---
 
 [**Slavoj Žižek. _Freedom: A Disease Without Cure_. London: Bloomsbury, 2023. 320 s.**](https://www.bloomsbury.com/us/freedom-9781350357129/)

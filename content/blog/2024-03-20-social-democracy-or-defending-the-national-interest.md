@@ -32,5 +32,3 @@ Yet again, welfare capitalism tends to mean welfare for those on the inside, and
 [1] For a fuller elucidation of this argument, see: Shammas, V. L. (2024) “[The global hinterland of social democracy: On the limitations of Norwegian welfare capitalism](https://www.victorshammas.com/s/Shammas-2024-The-Global-Hinterland-of-Social-Democracy.pdf).” _Nordic Welfare Research/Nordisk välfärdsforskning_.
 
 [2] Sanders, a self-described democratic socialist, which in some ways is but an American synonym to the more European-inflected term social democracy, is similarly laudatory of Norway in his 2023 book, _It's OK to Be Angry About Capitalism_—understandably so, since social democracy does tend to offer tangible benefits to its citizens.
-
-[Originally published on [Substack: _The Theory Brief_](https://victorshammas.substack.com/p/social-democracy-or-defending-the).]
