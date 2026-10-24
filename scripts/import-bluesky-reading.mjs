@@ -20,7 +20,7 @@
 // Run by .github/workflows/import-reading-links.yml every hour.
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { clean, insertItems, isReadingLink, knownLinks, osloDate, sameLinkKey, stripSiteName, stripTracking } from "./reading-lib.mjs";
+import { clean, cleanLink, insertItems, isReadingLink, knownLinks, osloDate, sameLinkKey, stripSiteName } from "./reading-lib.mjs";
 
 const HANDLE = "victorshammas.com";
 // Overridable for offline tests.
@@ -116,7 +116,7 @@ async function main() {
     added.push({
       created,
       date: osloDate(created),
-      link: stripTracking(link.uri),
+      link: await cleanLink(link.uri),
       title: link.title ? stripSiteName(clean(link.title), "", host) : "",
       note: noteText(post.record),
       source: "Bluesky",

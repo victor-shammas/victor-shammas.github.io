@@ -18,7 +18,7 @@
 // Run by .github/workflows/import-reading-links.yml every hour.
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { clean, insertItems, isReadingLink, knownLinks, osloDate, sameLinkKey, stripSiteName, stripTracking } from "./reading-lib.mjs";
+import { clean, cleanLink, insertItems, isReadingLink, knownLinks, osloDate, sameLinkKey, stripSiteName, UA } from "./reading-lib.mjs";
 
 const HANDLE = "victorshammas";
 // Tried in order. substack.com answers GitHub's runners with 403, but
@@ -26,9 +26,6 @@ const HANDLE = "victorshammas";
 // in (the deploy reads theorybrief.com/api/v1/archive). Overridable
 // (comma-separated) for offline tests.
 const APIS = (process.env.READING_SUBSTACK_API || "https://substack.com/api/v1,https://www.theorybrief.com/api/v1").split(",");
-const UA =
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
-  "(KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 const NOTES_PAGE = process.env.READING_SUBSTACK_NOTES_PAGE || "https://www.theorybrief.com/notes";
 const MAX_PAGES = 3;
 const TIMEOUT_MS = 15_000;
@@ -146,7 +143,7 @@ async function main() {
     added.push({
       created,
       date: osloDate(created),
-      link: stripTracking(link.uri),
+      link: await cleanLink(link.uri),
       title: link.title ? stripSiteName(clean(link.title), "", host) : "",
       note: noteText(c),
       source: "Substack Note",
