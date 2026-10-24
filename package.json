@@ -11,6 +11,7 @@
     "sort:news": "node scripts/sort-news.mjs",
     "fill:reading": "node scripts/fill-reading-titles.mjs",
     "import:bluesky": "node scripts/import-bluesky-reading.mjs",
+    "import:substack": "node scripts/import-substack-notes.mjs",
     "refresh:theorybrief": "node scripts/refresh-theorybrief.mjs",
     "test:theorybrief": "node --test scripts/refresh-theorybrief.test.mjs"
   },

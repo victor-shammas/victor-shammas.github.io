@@ -88,18 +88,26 @@ Consequences to remember:
 first, grouped by month, domain after the title, optional Markdown note
 below). Same pattern as News, but a Sveltia *singleton* (sidebar → "Files")
 so it opens straight into the editor. There's deliberately no phone/API
-ingestion; the only automatic source is my own Bluesky posts (below).
+ingestion; the only automatic sources are my own Bluesky posts and Substack
+Notes (below).
 
-`.github/workflows/import-bluesky-reading.yml` runs hourly
-(`npm run import:bluesky`, `scripts/import-bluesky-reading.mjs`): reads
-@victorshammas.com's public feed (no auth) and adds links from my own posts
-and own threads (not reposts, quote posts, replies to others, my own
-sites, or links already logged) at the top of the list, with the post text
-(minus the URL) as the note. The cursor in `data/reading-bluesky.json` is
-only committed with new items, so deleting an imported entry is permanent.
-It then runs the title filler and redeploys. Both reading workflows share the
-`reading-log` concurrency group. Shared helpers are in
-`scripts/reading-lib.mjs`.
+`.github/workflows/import-reading-links.yml` runs hourly. First
+`npm run import:bluesky` (`scripts/import-bluesky-reading.mjs`) reads
+@victorshammas.com's public feed (official API, no auth); then
+`npm run import:substack` (`scripts/import-substack-notes.mjs`) reads my
+Substack Notes via the *undocumented* endpoints substack.com's web app uses
+(`/api/v1/user/victorshammas/public_profile`, `/api/v1/reader/feed/profile/<id>`),
+which may change or be blocked. Each adds links from my own posts (not
+reposts/restacks, quote posts, replies to others, my own sites, or links
+already logged, so a link shared on both appears once) at the top of the
+list, with the post text minus the URL as the note. Each source warns and
+skips if unreachable (the Substack one then also reports whether
+theorybrief.com/notes is reachable, as a fallback route). Cursors live in
+`data/reading-bluesky.json` / `data/reading-substack.json` and are only
+committed with new items, so deleting an imported entry is permanent. The
+job then runs the title filler and redeploys. Both reading workflows share
+the `reading-log` concurrency group. Shared helpers (dedupe, insertion,
+skip list, title cleanup) are in `scripts/reading-lib.mjs`.
 
 Titles can be left blank: `.github/workflows/fill-reading-titles.yml` runs
 `npm run fill:reading` (`scripts/fill-reading-titles.mjs`) on every push that
