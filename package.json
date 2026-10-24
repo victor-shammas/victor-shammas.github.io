@@ -14,7 +14,8 @@
     "import:bluesky": "node scripts/import-bluesky-reading.mjs",
     "import:substack": "node scripts/import-substack-notes.mjs",
     "refresh:theorybrief": "node scripts/refresh-theorybrief.mjs",
-    "test:theorybrief": "node --test scripts/refresh-theorybrief.test.mjs"
+    "test:theorybrief": "node --test scripts/refresh-theorybrief.test.mjs",
+    "test:reading": "node --test scripts/reading-lib.test.mjs"
   },
   "devDependencies": {
     "pagefind": "^1.1.1"

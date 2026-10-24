@@ -35,17 +35,73 @@ export function stripSiteName(title, siteName, host) {
   return names.includes(suffix) || isInitials ? m[1].trim() : title;
 }
 
-const TRACKING = /^utm_|^(fbclid|gclid|igshid|mc_cid|mc_eid|ref_src)$/i;
+// A browser User-Agent: some sites refuse requests that don't look like one.
+export const UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
+  "(KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 
-// The URL without tracking parameters (utm_*, fbclid, …).
+// Query parameters that only record who shared or clicked a link; the page
+// is the same without them. Deliberately a short list of well-known ones:
+// a parameter that looks like tracking can be what makes a link work (FT
+// and NYT gift links carry an access token, for instance), so anything not
+// listed here is kept.
+const TRACKING = /^(utm_.*|fbclid|gclid|dclid|gbraid|wbraid|msclkid|yclid|twclid|igshid|igsh|mc_cid|mc_eid|_hsenc|_hsmi|mkt_tok|ref_src|ref_url)$/i;
+// Site-specific ones, removed only on that site.
+const SITE_TRACKING = [
+  [/(^|\.)ft\.com$/i, /^syn-[0-9a-f]+$/i], // FT's share links: ?syn-25a6b1a6=1
+];
+
+// The URL without tracking parameters (utm_*, fbclid, …) and without a
+// fragment that's only a share or highlight anchor ("#30670061",
+// "#:~:text=…"). A fragment never changes which page loads, but on a
+// single-page app a "#/…" or "#!…" one does, so other fragments are kept.
+// Every other parameter is kept byte for byte (no re-encoding), and a URL
+// with nothing to remove is returned exactly as given.
 export function stripTracking(url) {
-  try {
-    const u = new URL(url);
-    for (const k of [...u.searchParams.keys()]) if (TRACKING.test(k)) u.searchParams.delete(k);
-    return u.toString();
-  } catch {
+  let u;
+  try { u = new URL(url); } catch { return url; }
+  const site = SITE_TRACKING.filter(([host]) => host.test(u.hostname)).map(([, re]) => re);
+  const isTracking = (pair) => {
+    let key = pair.split("=")[0];
+    try { key = decodeURIComponent(key.replace(/\+/g, " ")); } catch {}
+    return TRACKING.test(key) || site.some((re) => re.test(key));
+  };
+  const parts = u.search.slice(1).split("&").filter(Boolean);
+  const kept = parts.filter((p) => !isTracking(p));
+  const dropHash = /^#(\d+|:~:text=.*)$/.test(u.hash);
+  if (kept.length === parts.length && !dropHash) return url;
+  u.search = kept.length ? "?" + kept.join("&") : "";
+  if (dropHash) u.hash = "";
+  return u.toString();
+}
+
+// stripTracking(url), checked: if the original link loads and the cleaned
+// one doesn't, the original is kept. If neither can be fetched (plenty of
+// sites block GitHub's servers), the cleaned one is used, since only
+// parameters known to be tracking are ever removed.
+export async function cleanLink(url) {
+  const cleaned = stripTracking(url);
+  if (cleaned === url) return url;
+  // Only the fragment went: the server sees the same request either way.
+  const bare = new URL(url);
+  bare.hash = "";
+  if (bare.toString() === cleaned) return cleaned;
+  const status = async (link) => {
+    try {
+      const res = await fetch(link, { redirect: "follow", signal: AbortSignal.timeout(15_000), headers: { "User-Agent": UA } });
+      res.body?.cancel().catch(() => {});
+      return res.status;
+    } catch {
+      return 0;
+    }
+  };
+  const [before, after] = await Promise.all([status(url), status(cleaned)]);
+  const ok = (s) => s >= 200 && s < 400;
+  if (ok(before) && !ok(after)) {
+    console.log(`  kept the link as posted: without its tracking it answers ${after || "nothing"} (vs ${before}): ${url}`);
     return url;
   }
+  return cleaned;
 }
 
 // For spotting the same link twice: ignore scheme, "www.", trailing slash,

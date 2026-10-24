@@ -73,6 +73,9 @@ jobs:
       - name: Test Theory Brief snapshot refresh
         run: npm run test:theorybrief
 
+      - name: Test reading-log link cleaning
+        run: npm run test:reading
+
       - name: Refresh Theory Brief snapshot (retains saved posts on upstream failure)
         run: npm run refresh:theorybrief
 

@@ -102,7 +102,13 @@ falls back to the same paths on www.theorybrief.com (which lets them in). Each q
 reposts/restacks, quote posts, replies to others, my own sites, or links
 already in the log or the queue, so a link shared on both appears once) at
 the top of `data/reading-queue.yaml`, with the post text minus the URL as the
-note, plus `source:` and `publish: false`. Each source warns and
+note, plus `source:` and `publish: false`. Links are cleaned first (`cleanLink`
+in `reading-lib.mjs`): only a short list of known tracking parameters
+(`utm_*`, `fbclid`, FT's `syn-…`, …) and share/highlight-only fragments
+(`#123`, `#:~:text=`) are removed, the rest of the URL is kept byte for byte,
+and if the cleaned link fails to load while the original loads, the original
+is kept. Gift-link tokens and unknown parameters are never touched. Tests:
+`npm run test:reading` (also run in `deploy.yml`). Each source warns and
 skips if unreachable (the Substack one then also reports whether
 theorybrief.com/notes is reachable, as a fallback route). Cursors live in
 `data/reading-bluesky.json` / `data/reading-substack.json` and are only

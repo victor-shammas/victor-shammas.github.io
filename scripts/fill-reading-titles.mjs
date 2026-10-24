@@ -21,11 +21,8 @@
 // push, and by import-reading-links.yml after each import.
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { clean, itemBlocks, stripSiteName } from "./reading-lib.mjs";
+import { clean, itemBlocks, stripSiteName, UA } from "./reading-lib.mjs";
 
-const UA =
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
-  "(KHTML, like Gecko) Chrome/130.0 Safari/537.36";
 const MAX_BYTES = 1_000_000;
 // Overridable for offline tests.
 const CROSSREF = process.env.READING_CROSSREF_URL || "https://api.crossref.org/works/";
