@@ -466,18 +466,6 @@
         "country": "PL"
       },
       {
-        "id": "general",
-        "name": "General Right-Wing News",
-        "flag": "🌍",
-        "queries": [
-          "\"far right\" OR \"alt-right\" OR \"right-wing extremist\" OR \"fascism\"",
-          "\"ethnonationalism\" OR \"white nationalism\" OR \"Christian nationalism\" OR \"manosphere\"",
-          "\"national conservatism\" OR \"illiberal democracy\" OR \"techno-fascism\""
-        ],
-        "lang": "en",
-        "country": "US"
-      },
-      {
         "id": "brazil",
         "name": "Bolsonarismo; PL (Brazil)",
         "flag": "🇧🇷",
@@ -506,6 +494,18 @@
         ],
         "lang": "pt-419",
         "country": "BR"
+      },
+      {
+        "id": "general",
+        "name": "General Right-Wing News",
+        "flag": "🌍",
+        "queries": [
+          "\"far right\" OR \"alt-right\" OR \"right-wing extremist\" OR \"fascism\"",
+          "\"ethnonationalism\" OR \"white nationalism\" OR \"Christian nationalism\" OR \"manosphere\"",
+          "\"national conservatism\" OR \"illiberal democracy\" OR \"techno-fascism\""
+        ],
+        "lang": "en",
+        "country": "US"
       },
       {
         "id": "bluesky",
