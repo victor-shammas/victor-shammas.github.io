@@ -48,7 +48,23 @@
     "the hill",
     "politico",
     "lawfare",
-    "cnbc"
+    "cnbc",
+    "folha de s.paulo",
+    "folha de s. paulo",
+    "folha de são paulo",
+    "estadão",
+    "estadao",
+    "o globo",
+    "g1",
+    "valor econômico",
+    "valor international",
+    "revista piauí",
+    "agência pública",
+    "nexo jornal",
+    "poder360",
+    "uol",
+    "brazilian report",
+    "americas quarterly"
   ],
   "redlist": [
     "stadium rant",
@@ -460,6 +476,36 @@
         ],
         "lang": "en",
         "country": "US"
+      },
+      {
+        "id": "brazil",
+        "name": "Bolsonarismo; PL (Brazil)",
+        "flag": "🇧🇷",
+        "interleave": true,
+        "queries": [
+          {
+            "hl": "pt-419",
+            "gl": "BR",
+            "q": "Bolsonaro OR bolsonarismo OR bolsonarista OR \"Partido Liberal\" OR \"Valdemar Costa Neto\" OR \"trama golpista\" OR \"atos golpistas\""
+          },
+          {
+            "hl": "pt-419",
+            "gl": "BR",
+            "q": "\"Tarcísio de Freitas\" OR \"Nikolas Ferreira\" OR \"Silas Malafaia\" OR \"Damares Alves\" OR \"Pablo Marçal\" OR \"bancada evangélica\" OR \"extrema direita brasileira\""
+          },
+          {
+            "hl": "en",
+            "gl": "US",
+            "q": "Bolsonaro OR \"Brazil's far right\" OR \"Brazilian far right\" OR \"Brazil far-right\" OR \"Brazilian far-right\" OR \"Tarcisio de Freitas\" OR \"Brazil's Liberal Party\""
+          },
+          {
+            "hl": "en",
+            "gl": "GB",
+            "q": "Bolsonaro OR \"Brazil's far right\" OR \"Brazilian far right\" OR \"Brazil far-right\" OR \"Brazilian far-right\" OR \"Tarcisio de Freitas\" OR \"Brazil's Liberal Party\""
+          }
+        ],
+        "lang": "pt-419",
+        "country": "BR"
       },
       {
         "id": "bluesky",

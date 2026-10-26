@@ -58,7 +58,23 @@
     "the hill",
     "politico",
     "lawfare",
-    "cnbc"
+    "cnbc",
+    "folha de s.paulo",
+    "folha de s. paulo",
+    "folha de são paulo",
+    "estadão",
+    "estadao",
+    "o globo",
+    "g1",
+    "valor econômico",
+    "valor international",
+    "revista piauí",
+    "agência pública",
+    "nexo jornal",
+    "poder360",
+    "uol",
+    "brazilian report",
+    "americas quarterly"
   ];
   // @genend GREENLIST
 
