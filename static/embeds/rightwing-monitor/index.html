@@ -557,18 +557,6 @@
                 "country": "PL"
               },
               {
-                "id": "general",
-                "name": "General Right-Wing News",
-                "flag": "🌍",
-                "queries": [
-                  "\"far right\" OR \"alt-right\" OR \"right-wing extremist\" OR \"fascism\"",
-                  "\"ethnonationalism\" OR \"white nationalism\" OR \"Christian nationalism\" OR \"manosphere\"",
-                  "\"national conservatism\" OR \"illiberal democracy\" OR \"techno-fascism\""
-                ],
-                "lang": "en",
-                "country": "US"
-              },
-              {
                 "id": "brazil",
                 "name": "Bolsonarismo; PL (Brazil)",
                 "flag": "🇧🇷",
@@ -597,6 +585,18 @@
                 ],
                 "lang": "pt-419",
                 "country": "BR"
+              },
+              {
+                "id": "general",
+                "name": "General Right-Wing News",
+                "flag": "🌍",
+                "queries": [
+                  "\"far right\" OR \"alt-right\" OR \"right-wing extremist\" OR \"fascism\"",
+                  "\"ethnonationalism\" OR \"white nationalism\" OR \"Christian nationalism\" OR \"manosphere\"",
+                  "\"national conservatism\" OR \"illiberal democracy\" OR \"techno-fascism\""
+                ],
+                "lang": "en",
+                "country": "US"
               },
               {
                 "id": "bluesky",
@@ -678,9 +678,9 @@
             };
 
             // Default sizes preserve prior per-card layout:
-            //  general → 2×8, brazil → 3×4, nodes → 3×3, bluesky → 3×4, others → 1×8.
-            const DEFAULT_SPAN = { general: 2, brazil: 3, nodes: 3, bluesky: 3 };
-            const DEFAULT_ROWS = { general: 8, brazil: 4, nodes: 3, bluesky: 4 };
+            //  general → 2×8, nodes → 3×3, bluesky → 3×4, others → 1×8.
+            const DEFAULT_SPAN = { general: 2, nodes: 3, bluesky: 3 };
+            const DEFAULT_ROWS = { general: 8, nodes: 3, bluesky: 4 };
             const defaultSpan = (id) => DEFAULT_SPAN[id] || 1;
             const defaultRows = (id) => DEFAULT_ROWS[id] || 8;
             function getSpan(id) {
