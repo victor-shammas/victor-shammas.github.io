@@ -7,7 +7,7 @@
         <title>Right-Wing Politics Monitor</title>
         <meta
             name="description"
-            content="A media monitoring tool tracking right-wing and far-right political actors across Europe and the United States for research purposes."
+            content="A media monitoring tool tracking right-wing and far-right political actors across Europe, the United States, and Brazil for research purposes."
         />
         <meta property="og:title" content="Right-Wing Politics Monitor" />
         <meta
@@ -46,6 +46,7 @@
                 --accent-hungary: #a05c20;
                 --accent-vox:     #5e8a3a;
                 --accent-pis:     #804a48;
+                --accent-brazil:  #2e7d4f;
                 --accent-general: #6a7080;
                 --accent-nodes:   #6e52a0;
                 --accent-bluesky: #4a7a9e;
@@ -214,6 +215,7 @@
             .card.hungary { border-top-color: var(--accent-hungary); }
             .card.vox     { border-top-color: var(--accent-vox); }
             .card.pis     { border-top-color: var(--accent-pis); }
+            .card.brazil  { border-top-color: var(--accent-brazil); }
             .card.general { border-top-color: var(--accent-general); }
             .card.nodes   { border-top-color: var(--accent-nodes); }
             .card.bluesky { border-top-color: var(--accent-bluesky); }
@@ -256,6 +258,7 @@
             .card.hungary .title { color: var(--accent-hungary); }
             .card.vox     .title { color: var(--accent-vox); }
             .card.pis     .title { color: var(--accent-pis); }
+            .card.brazil  .title { color: var(--accent-brazil); }
             .card.general .title { color: var(--accent-general); }
             .card.nodes   .title { color: var(--accent-nodes); }
             .card.bluesky .title { color: var(--accent-bluesky); }
@@ -322,6 +325,7 @@
             .card.hungary .item h3:hover { color: var(--accent-hungary); }
             .card.vox     .item h3:hover { color: var(--accent-vox); }
             .card.pis     .item h3:hover { color: var(--accent-pis); }
+            .card.brazil  .item h3:hover { color: var(--accent-brazil); }
             .card.general .item h3:hover { color: var(--accent-general); }
             .card.nodes   .item h3:hover { color: var(--accent-nodes); }
             .card.bluesky .item h3:hover { color: var(--accent-bluesky); }
@@ -565,6 +569,36 @@
                 "country": "US"
               },
               {
+                "id": "brazil",
+                "name": "Bolsonarismo; PL (Brazil)",
+                "flag": "🇧🇷",
+                "interleave": true,
+                "queries": [
+                  {
+                    "hl": "pt-419",
+                    "gl": "BR",
+                    "q": "Bolsonaro OR bolsonarismo OR bolsonarista OR \"Partido Liberal\" OR \"Valdemar Costa Neto\" OR \"trama golpista\" OR \"atos golpistas\""
+                  },
+                  {
+                    "hl": "pt-419",
+                    "gl": "BR",
+                    "q": "\"Tarcísio de Freitas\" OR \"Nikolas Ferreira\" OR \"Silas Malafaia\" OR \"Damares Alves\" OR \"Pablo Marçal\" OR \"bancada evangélica\" OR \"extrema direita brasileira\""
+                  },
+                  {
+                    "hl": "en",
+                    "gl": "US",
+                    "q": "Bolsonaro OR \"Brazil's far right\" OR \"Brazilian far right\" OR \"Brazil far-right\" OR \"Brazilian far-right\" OR \"Tarcisio de Freitas\" OR \"Brazil's Liberal Party\""
+                  },
+                  {
+                    "hl": "en",
+                    "gl": "GB",
+                    "q": "Bolsonaro OR \"Brazil's far right\" OR \"Brazilian far right\" OR \"Brazil far-right\" OR \"Brazilian far-right\" OR \"Tarcisio de Freitas\" OR \"Brazil's Liberal Party\""
+                  }
+                ],
+                "lang": "pt-419",
+                "country": "BR"
+              },
+              {
                 "id": "bluesky",
                 "name": "TrumpNews (Bluesky)",
                 "flag": "🦋",
@@ -601,6 +635,7 @@
                 hungary: '<svg viewBox="0 0 22 22"><rect x="0" y="4"    width="22" height="4.67" fill="#cd2a3e"/><rect x="0" y="8.67" width="22" height="4.67" fill="#fff"/><rect x="0" y="13.33" width="22" height="4.67" fill="#436f4d"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
                 vox: '<svg viewBox="0 0 22 22"><rect x="0" y="4"   width="22" height="3.5" fill="#aa151b"/><rect x="0" y="7.5" width="22" height="7"   fill="#f1bf00"/><rect x="0" y="14.5" width="22" height="3.5" fill="#aa151b"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
                 pis: '<svg viewBox="0 0 22 22"><rect x="0" y="4"  width="22" height="7" fill="#fff"/><rect x="0" y="11" width="22" height="7" fill="#dc143c"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
+                brazil: '<svg viewBox="0 0 22 22"><rect x="0" y="4" width="22" height="14" fill="#009c3b"/><polygon points="11,5.6 20,11 11,16.4 2,11" fill="#ffdf00"/><circle cx="11" cy="11" r="3.3" fill="#002776"/><path d="M7.9 10.3 Q11 9.6 14.1 11.5" stroke="#fff" stroke-width="0.6" fill="none"/><rect x="0" y="4" width="22" height="14" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.5"/></svg>',
                 general: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.55"/><ellipse cx="11" cy="11" rx="3.8" ry="8" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.5"/><line x1="3" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="0.7" opacity="0.45"/><path d="M4 7 Q11 9 18 7" stroke="currentColor" stroke-width="0.7" fill="none" opacity="0.35"/><path d="M4 15 Q11 13 18 15" stroke="currentColor" stroke-width="0.7" fill="none" opacity="0.35"/></svg>',
                 bluesky: '<svg viewBox="0 0 22 22" fill="none"><path d="M11 12 C8 7 5 6 4 8 C3 10 5 12 8 13 C5 13 4 14 5 15 C6 16 9 15 11 13 C13 15 16 16 17 15 C18 14 17 13 14 13 C17 12 19 10 18 8 C17 6 14 7 11 12 Z" fill="currentColor" opacity="0.9"/></svg>',
                 nodes: '<svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="2"   fill="currentColor" opacity="0.85"/><circle cx="4"  cy="5"  r="1.4" fill="currentColor" opacity="0.7"/><circle cx="18" cy="5"  r="1.4" fill="currentColor" opacity="0.7"/><circle cx="4"  cy="17" r="1.4" fill="currentColor" opacity="0.7"/><circle cx="18" cy="17" r="1.4" fill="currentColor" opacity="0.7"/><line x1="11" y1="11" x2="4"  y2="5"  stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="11" y1="11" x2="18" y2="5"  stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="11" y1="11" x2="4"  y2="17" stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="11" y1="11" x2="18" y2="17" stroke="currentColor" stroke-width="0.6" opacity="0.55"/><line x1="4"  y1="5"  x2="18" y2="5"  stroke="currentColor" stroke-width="0.5" opacity="0.3"/><line x1="4"  y1="17" x2="18" y2="17" stroke="currentColor" stroke-width="0.5" opacity="0.3"/></svg>',
@@ -643,9 +678,9 @@
             };
 
             // Default sizes preserve prior per-card layout:
-            //  general → 2×8, nodes → 3×3, bluesky → 3×4, others → 1×8.
-            const DEFAULT_SPAN = { general: 2, nodes: 3, bluesky: 3 };
-            const DEFAULT_ROWS = { general: 8, nodes: 3, bluesky: 4 };
+            //  general → 2×8, brazil → 3×4, nodes → 3×3, bluesky → 3×4, others → 1×8.
+            const DEFAULT_SPAN = { general: 2, brazil: 3, nodes: 3, bluesky: 3 };
+            const DEFAULT_ROWS = { general: 8, brazil: 4, nodes: 3, bluesky: 4 };
             const defaultSpan = (id) => DEFAULT_SPAN[id] || 1;
             const defaultRows = (id) => DEFAULT_ROWS[id] || 8;
             function getSpan(id) {
@@ -671,10 +706,16 @@
                 card.dataset.span = String(eff);
             }
 
+            // A query is a string (searched in the panel's lang/country) or a
+            // {hl, gl, q} object with its own Google News locale, so one panel
+            // can mix national and Anglophone coverage (e.g. brazil).
             const feedUrl = (p, query) => {
                 const win = p.window || "3d"; // 3-day window — concentrates Google News' sampling on the freshest items
-                const q = query || p.q;
-                const g = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:" + win)}&hl=${p.lang}&gl=${p.country}&ceid=${p.country}:${p.lang}&_cb=${Date.now()}`;
+                const isObj = query && typeof query === "object";
+                const q = (isObj ? query.q : query) || p.q;
+                const hl = (isObj && query.hl) || p.lang;
+                const gl = (isObj && query.gl) || p.country;
+                const g = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:" + win)}&hl=${hl}&gl=${gl}&ceid=${gl}:${hl}&_cb=${Date.now()}`;
                 const keyParam = RSS2JSON_KEY
                     ? `&api_key=${encodeURIComponent(RSS2JSON_KEY)}`
                     : "";
@@ -835,34 +876,53 @@
                                 }
                             }),
                         );
-                        const merged = [].concat(...results);
-                        const seen = new Set();
-                        const deduped = merged.filter((it) => {
-                            if (!it.link || seen.has(it.link)) return false;
-                            seen.add(it.link);
-                            return true;
-                        });
                         // Local cutoff matches the API window
                         const cutoffMs = Date.now() - 3 * 24 * 3600 * 1000;
-                        const mapped = deduped
-                            .filter((it) => {
-                                const t = new Date(it.pubDate || 0).getTime();
-                                return t && t >= cutoffMs;
-                            })
-                            .map((it) => {
-                                const source = srcOf(it.title);
-                                return {
-                                    title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
-                                    url: it.link,
-                                    source,
-                                    date: it.pubDate,
-                                    summary: "",
-                                };
-                            });
-                        const kept = (window.MonitorCanon && window.MonitorCanon.filterBlocked) ? window.MonitorCanon.filterBlocked(mapped) : mapped;
-                        stories = (window.MonitorCanon && window.MonitorCanon.rankByCanon)
-                            ? window.MonitorCanon.rankByCanon(kept, MAX_CACHED, "date")
-                            : kept.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
+                        const toStories = (items) => {
+                            const seen = new Set();
+                            const mapped = items
+                                .filter((it) => {
+                                    if (!it.link || seen.has(it.link)) return false;
+                                    seen.add(it.link);
+                                    const t = new Date(it.pubDate || 0).getTime();
+                                    return t && t >= cutoffMs;
+                                })
+                                .map((it) => {
+                                    const source = srcOf(it.title);
+                                    return {
+                                        title: it.title.replace(/\s-\s[^-]+$/, "").trim(),
+                                        url: it.link,
+                                        source,
+                                        date: it.pubDate,
+                                        summary: "",
+                                    };
+                                });
+                            const kept = (window.MonitorCanon && window.MonitorCanon.filterBlocked) ? window.MonitorCanon.filterBlocked(mapped) : mapped;
+                            return (window.MonitorCanon && window.MonitorCanon.rankByCanon)
+                                ? window.MonitorCanon.rankByCanon(kept, MAX_CACHED, "date")
+                                : kept.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0)).slice(0, MAX_CACHED);
+                        };
+                        if (p.interleave) {
+                            // Rank each sub-query on its own, then round-robin so every
+                            // locale (e.g. Brazilian and Anglophone press) gets equal
+                            // room at the top instead of the busiest one crowding it.
+                            // (en-US and en-GB often return the same article.)
+                            const groups = results.map(toStories);
+                            const seen = new Set();
+                            stories = [];
+                            for (let i = 0; ; i++) {
+                                let added = false;
+                                for (const g of groups) {
+                                    if (i >= g.length) continue;
+                                    added = true;
+                                    if (!seen.has(g[i].url)) { seen.add(g[i].url); stories.push(g[i]); }
+                                }
+                                if (!added) break;
+                            }
+                            stories = stories.slice(0, MAX_CACHED);
+                        } else {
+                            stories = toStories([].concat(...results));
+                        }
                     }
                     // Stale-while-revalidate
                     const prev = state[p.id]?.stories || [];
@@ -898,6 +958,11 @@
                 return j[0].map((chunk) => (chunk && chunk[0]) || "").join("");
             }
 
+            // Mixed-locale panels (per-query hl) hold more than one language, so
+            // let Google detect each item's; English items come back unchanged.
+            const srcLang = (p) =>
+                (p.queries || []).some((q) => q && typeof q === "object") ? "auto" : p.lang;
+
             async function translateCard(p) {
                 const card = document.querySelector(`[data-id="${p.id}"]`);
                 const tbtn = card.querySelector(".tbtn");
@@ -929,7 +994,7 @@
                         d.stories.map(async (s) => {
                             if (s.titleEn === undefined) {
                                 try {
-                                    s.titleEn = await translateText(s.title, p.lang);
+                                    s.titleEn = await translateText(s.title, srcLang(p));
                                 } catch {
                                     s.titleEn = s.title;
                                 }
@@ -937,7 +1002,7 @@
                             if (s.summaryEn === undefined) {
                                 try {
                                     s.summaryEn = s.summary
-                                        ? await translateText(s.summary, p.lang)
+                                        ? await translateText(s.summary, srcLang(p))
                                         : "";
                                 } catch {
                                     s.summaryEn = s.summary || "";
@@ -1238,11 +1303,11 @@
                             await Promise.all(
                                 d.stories.map(async (s) => {
                                     if (s.titleEn === undefined) {
-                                        try { s.titleEn = await translateText(s.title, p.lang); }
+                                        try { s.titleEn = await translateText(s.title, srcLang(p)); }
                                         catch { s.titleEn = s.title; }
                                     }
                                     if (s.summaryEn === undefined) {
-                                        try { s.summaryEn = s.summary ? await translateText(s.summary, p.lang) : ""; }
+                                        try { s.summaryEn = s.summary ? await translateText(s.summary, srcLang(p)) : ""; }
                                         catch { s.summaryEn = s.summary || ""; }
                                     }
                                 }),

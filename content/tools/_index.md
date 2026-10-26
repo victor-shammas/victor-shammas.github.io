@@ -27,7 +27,7 @@ url: "/tools/"
 
 [**Left Politics Monitor**](/tools/leftpolitics-monitor/) — Social democracy, democratic socialism, and the radical left across Europe and the Americas.
 
-[**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Right-wing populist actors across Europe and the U.S.
+[**Right-Wing Politics Monitor**](/tools/rightwing-monitor/) — Right-wing populist actors across Europe, the U.S., and Brazil.
 
 <hr style="border:0;border-top:1px solid var(--rule);width:4rem;margin:1.5rem 0;">
 
