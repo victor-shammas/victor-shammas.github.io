@@ -1,1 +1,7 @@
-items: []
+items:
+  - date: 2026-10-26
+    link: "https://www.aljazeera.com/news/2026/10/26/lula-holds-off-far-right-with-victory-in-brazil-presidential-election"
+    title: "Lula holds off far right with victory in Brazil presidential election"
+    note: "A good start to the week."
+    source: "Substack Note"
+    publish: false
