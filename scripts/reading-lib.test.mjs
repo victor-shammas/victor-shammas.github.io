@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import test from 'node:test';
-import { cleanLink, sameLinkKey, stripTracking } from './reading-lib.mjs';
+import { cleanLink, linkFromShare, sameLinkKey, stripTracking } from './reading-lib.mjs';
 
 test('strips FT share parameters and numeric share anchors', () => {
   assert.equal(
@@ -60,4 +60,15 @@ test('cleanLink keeps the original when the cleaned link stops loading', async t
 test('cleanLink uses the cleaned link when neither can be fetched', async () => {
   // Port 9 on localhost: nothing listens, both fetches fail.
   assert.equal(await cleanLink('http://127.0.0.1:9/a?fbclid=x'), 'http://127.0.0.1:9/a');
+});
+
+test('linkFromShare finds the URL in shared text', () => {
+  assert.equal(linkFromShare('https://example.com/a?b=1'), 'https://example.com/a?b=1');
+  assert.equal(linkFromShare('  Some headline https://example.com/a. '), 'https://example.com/a');
+  assert.equal(linkFromShare('Read this (https://example.com/a)'), 'https://example.com/a');
+  assert.equal(linkFromShare('https://en.wikipedia.org/wiki/Tesla_(unit)'), 'https://en.wikipedia.org/wiki/Tesla_(unit)');
+  assert.equal(linkFromShare('see https://en.wikipedia.org/wiki/Tesla_(unit), ok'), 'https://en.wikipedia.org/wiki/Tesla_(unit)');
+  assert.equal(linkFromShare('“https://example.com/a”'), 'https://example.com/a');
+  for (const bad of ['', 'no link here', 'javascript:alert(1)', 'ftp://example.com/a', 'file:///etc/passwd'])
+    assert.equal(linkFromShare(bad), null);
 });

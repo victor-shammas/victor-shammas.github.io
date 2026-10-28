@@ -1,5 +1,5 @@
 // Shared helpers for the reading-log scripts (fill-reading-titles.mjs,
-// import-bluesky-reading.mjs, import-substack-notes.mjs,
+// import-bluesky-reading.mjs, import-substack-notes.mjs, save-reading-link.mjs,
 // publish-reading-queue.mjs).
 
 const ENTITIES = {
@@ -194,4 +194,23 @@ export function insertItems(src, items) {
   });
   lines.splice(i + 1, 0, ...block);
   return lines.join("\n");
+}
+
+// The link in something shared from a phone: the text itself if it's an
+// http(s) URL, else the first http(s) URL inside it (apps often share
+// "Headline https://…"), minus trailing punctuation. null if there's none.
+export function linkFromShare(text) {
+  const s = String(text || "").trim();
+  const isHttp = (u) => { try { return /^https?:$/.test(new URL(u).protocol); } catch { return false; } };
+  if (isHttp(s)) return s;
+  const m = s.match(/https?:\/\/[^\s<>"]+/i);
+  if (!m) return null;
+  let url = m[0];
+  const count = (c) => url.split(c).length - 1;
+  while (/[.,;:!?'’”)\]]$/.test(url)) {
+    // Keep a closing parenthesis the URL itself opened (Wikipedia links).
+    if (url.endsWith(")") && count("(") >= count(")")) break;
+    url = url.slice(0, -1);
+  }
+  return isHttp(url) ? url : null;
 }

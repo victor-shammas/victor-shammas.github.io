@@ -1,0 +1,78 @@
+name: Save a link to the reading log
+
+# Started by my "Save to Reading" Apple Shortcut (share sheet on iPhone,
+# iPad and Mac) through GitHub's workflow-dispatch API. It adds the link
+# straight to the top of data/reading.yaml, dated today, fills its title
+# if blank, commits, and redeploys. See scripts/save-reading-link.mjs.
+#
+# The Shortcut holds a fine-grained token for this repository only, with
+# just "Actions: read and write": it can start workflows but can't push or
+# change files itself. Only this workflow writes, and only a link and a
+# note. The inputs reach the script as environment variables, never pasted
+# into the shell. Runs started by anyone but the repository owner are
+# skipped. Like the other reading-log jobs it pushes fast-forward only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      link:
+        description: "Link (or shared text containing one)"
+        required: true
+        type: string
+      note:
+        description: "Note (optional, Markdown)"
+        required: false
+        type: string
+      title:
+        description: "Title (optional; filled in from the page if blank)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  actions: write
+
+# Shared with the other reading-log workflows so they never write at once.
+concurrency:
+  group: reading-log
+  cancel-in-progress: false
+
+jobs:
+  save:
+    if: github.actor == github.repository_owner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Add the link, fill its title, commit, and redeploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+          READING_LINK: ${{ inputs.link }}
+          READING_NOTE: ${{ inputs.note }}
+          READING_TITLE: ${{ inputs.title }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch --quiet origin main
+            git reset --quiet --hard origin/main
+            npm run --silent save:reading
+            if git diff --quiet -- data/reading.yaml; then
+              exit 0
+            fi
+            # This push is made with GITHUB_TOKEN, which doesn't trigger the
+            # fill-reading-titles workflow, so fill the title here.
+            npm run --silent fill:reading -- data/reading.yaml
+            git commit -qam "Reading log: save a link from the Shortcut"
+            if git push origin HEAD:main; then
+              gh workflow run deploy.yml --ref main
+              exit 0
+            fi
+            echo "main changed while saving; starting over from the latest file."
+          done
+          echo "::error::Gave up after 3 attempts; share the link again."
+          exit 1
