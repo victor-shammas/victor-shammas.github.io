@@ -17,9 +17,9 @@ Feel free to reach out with questions about my research, media inquiries, speaki
   </div>
   <div class="contact-item">
     <span class="contact-label">Mail</span>
-    Dr. Victor Shammas<br>
-    University of Bergen<br>
+    Dr. Victor Lund Shammas<br>
     Department of Sociology<br>
+    University of Bergen<br>
     PO Box 7802<br>
     5020 Bergen<br>
     Norway

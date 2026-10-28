@@ -259,6 +259,9 @@ singletons:
       - label: "Items"
         name: "items"
         widget: "list"
+        # Lists are required by default, so deleting the last item
+        # wouldn't save ("One field has an error"). An empty queue is fine.
+        required: false
         add_to_top: true
         collapsed: auto
         summary: "{{fields.date}} — {{fields.title}}"
