@@ -1,4 +1,10 @@
 items:
+  - date: 2026-10-31
+    link: "https://fullfact.org/ai-benchmark/report-one/"
+    title: "Wrong on Sunday, right on Monday. Why AI chatbots have a confidence problem"
+    note: "One of the biggest problems with the AI rollout of the past few years has been its largely unregulated, Wild-West nature. And despite technical advances, hallucinations are still a concern.\n\nShould regulators demand a minimum accuracy threshold for models released to the public? Or at least require independent, systematic auditing of accuracy? That raises the issue of who gets to decide what counts as factual, but the alternative is letting Silicon Valley police itself, with dubious results.\n\nHere’s a fact-checking report that points in the right direction"
+    source: "Substack Note"
+    publish: false
   - date: 2026-10-27
     link: "https://www.ft.com/content/f41fc704-c9e6-42de-b800-d43cabe61947"
     title: "Inside Donald Trump Jr’s Mongolian hunting trip with a Kremlin-linked oligarch"
