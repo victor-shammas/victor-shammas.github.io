@@ -1,4 +1,13 @@
 items:
+  - date: 2026-10-31
+    link: https://fullfact.org/ai-benchmark/report-one/
+    title: Wrong on Sunday, right on Monday. Why AI chatbots have a confidence problem
+    note: |-
+      One of the biggest problems with the AI rollout of the past few years has been its largely unregulated, Wild-West nature. Despite technical advances, hallucinations are still a concern.
+
+      Should regulators demand a minimum accuracy threshold for models released to the public? Or at least require independent, systematic auditing of accuracy? That raises the issue of who gets to decide what counts as factual, but the alternative is letting Silicon Valley police itself, with dubious results.
+
+      Here’s a fact-checking report that points in the right direction.
   - date: 2026-10-26
     link: https://www.bloomberg.com/news/articles/2026-10-26/microsoft-to-offer-buyouts-to-60-000-workers-in-latest-cost-cut?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5MzAzMTcwOSwiZXhwIjoxNzkzNjM2NTA5LCJhcnRpY2xlSWQiOiJUTklLUk9UOTZPU00wMCIsImJjb25uZWN0SWQiOiJCOTFDOTAxQkI4MTk0NTA4OEM3NDA1RTk3N0FCRDE2NSJ9.KOHEPHWtJHRvnPnIitGOzyhWXwfY8-nVjbyaEV-KxOE
     title: Microsoft to Offer Buyouts to 60,000 Workers in Latest Cost Cut
