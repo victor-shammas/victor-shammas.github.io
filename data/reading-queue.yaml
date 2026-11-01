@@ -1,11 +1,11 @@
 items:
   - date: 2026-10-31
     link: https://www.nytimes.com/2026/10/30/opinion/ezra-klein-podcast-quinn-slobodian.html?unlocked_article_code=1.M1E.3BcF.G0vnLsOuW_KA&smid=nytcore-ios-share
-    title: Opinion | Elon Musk’s Endgame (Gift Article)
+    title: Opinion | Elon Musk’s Endgame
     note: |-
       Quinn Slobodian on Musk’s vulnerabilities: “If you pick up the SpaceX prospectus and read through the risk factors, the No. 1 risk factor is national legislation. These are the things that actually keep Musk up at night […]. So that’s something to bear in mind, too: his impression of invulnerability is actually part of his political project.”
 
-      Even trillionaires fear public opinion and, with it, the prospect of laws that might limit their field of action.
+      Even trillionaires fear public opinion and the prospect of laws that might limit their scope of action.
     source: Substack Note
     publish: false
   - date: 2026-10-27
@@ -13,10 +13,4 @@ items:
     title: Inside Donald Trump Jr’s Mongolian hunting trip with a Kremlin-linked oligarch
     note: '“The auction winners were not Trump Jr’s only companions in the Mongolian wilderness this summer. He also spent two days with Umar Kremlev, a businessman with a criminal record who has close ties to Russian President Vladimir Putin’s personal security service.” #Trump #Putin #oligarchs'
     source: Bluesky
-    publish: false
-  - date: 2026-10-26
-    link: https://www.aljazeera.com/news/2026/10/26/lula-holds-off-far-right-with-victory-in-brazil-presidential-election
-    title: Lula holds off far right with victory in Brazil presidential election
-    note: A good start to the week.
-    source: Substack Note
     publish: false
