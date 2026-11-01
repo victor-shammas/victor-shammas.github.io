@@ -1,21 +1,29 @@
 items:
   - date: 2026-10-31
-    link: "https://www.nytimes.com/2026/10/30/opinion/ezra-klein-podcast-quinn-slobodian.html?unlocked_article_code=1.M1E.3BcF.G0vnLsOuW_KA&smid=nytcore-ios-share"
-    title: "Opinion | Elon Musk’s Endgame (Gift Article)"
-    note: "Quinn Slobodian on Musk’s vulnerabilities: “If you pick up the SpaceX prospectus and read through the risk factors, the No. 1 risk factor is national legislation. These are the things that actually keep Musk up at night […]. So that’s something to bear in mind, too: his impression of invulnerability is actually part of his political project.”\n\nEven trillionaires fear public opinion and, with it, the prospect of laws that might limit their field of action."
-    source: "Substack Note"
+    link: https://www.nytimes.com/2026/10/30/opinion/ezra-klein-podcast-quinn-slobodian.html?unlocked_article_code=1.M1E.3BcF.G0vnLsOuW_KA&smid=nytcore-ios-share
+    title: Opinion | Elon Musk’s Endgame (Gift Article)
+    note: |-
+      Quinn Slobodian on Musk’s vulnerabilities: “If you pick up the SpaceX prospectus and read through the risk factors, the No. 1 risk factor is national legislation. These are the things that actually keep Musk up at night […]. So that’s something to bear in mind, too: his impression of invulnerability is actually part of his political project.”
+
+      Even trillionaires fear public opinion and, with it, the prospect of laws that might limit their field of action.
+    source: Substack Note
     publish: false
   - date: 2026-10-31
-    link: "https://fullfact.org/ai-benchmark/report-one/"
-    title: "Wrong on Sunday, right on Monday. Why AI chatbots have a confidence problem"
-    note: "One of the biggest problems with the AI rollout of the past few years has been its largely unregulated, Wild-West nature. And despite technical advances, hallucinations are still a concern.\n\nShould regulators demand a minimum accuracy threshold for models released to the public? Or at least require independent, systematic auditing of accuracy? That raises the issue of who gets to decide what counts as factual, but the alternative is letting Silicon Valley police itself, with dubious results.\n\nHere’s a fact-checking report that points in the right direction"
-    source: "Substack Note"
-    publish: false
+    link: https://fullfact.org/ai-benchmark/report-one/
+    title: Wrong on Sunday, right on Monday. Why AI chatbots have a confidence problem
+    note: |-
+      One of the biggest problems with the AI rollout of the past few years has been its largely unregulated, Wild-West nature. Despite technical advances, hallucinations are still a concern.
+
+      Should regulators demand a minimum accuracy threshold for models released to the public? Or at least require independent, systematic auditing of accuracy? That raises the issue of who gets to decide what counts as factual, but the alternative is letting Silicon Valley police itself, with dubious results.
+
+      Here’s a fact-checking report that points in the right direction.
+    source: Substack Note
+    publish: true
   - date: 2026-10-27
-    link: "https://www.ft.com/content/f41fc704-c9e6-42de-b800-d43cabe61947"
-    title: "Inside Donald Trump Jr’s Mongolian hunting trip with a Kremlin-linked oligarch"
-    note: "“The auction winners were not Trump Jr’s only companions in the Mongolian wilderness this summer. He also spent two days with Umar Kremlev, a businessman with a criminal record who has close ties to Russian President Vladimir Putin’s personal security service.” #Trump #Putin #oligarchs"
-    source: "Bluesky"
+    link: https://www.ft.com/content/f41fc704-c9e6-42de-b800-d43cabe61947
+    title: Inside Donald Trump Jr’s Mongolian hunting trip with a Kremlin-linked oligarch
+    note: '“The auction winners were not Trump Jr’s only companions in the Mongolian wilderness this summer. He also spent two days with Umar Kremlev, a businessman with a criminal record who has close ties to Russian President Vladimir Putin’s personal security service.” #Trump #Putin #oligarchs'
+    source: Bluesky
     publish: false
   - date: 2026-10-26
     link: https://www.aljazeera.com/news/2026/10/26/lula-holds-off-far-right-with-victory-in-brazil-presidential-election
