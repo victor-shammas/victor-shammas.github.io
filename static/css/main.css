@@ -403,6 +403,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
   transition: color 0.15s;
 }
 .pub-entry .title-link:hover { color: var(--link-hover); text-decoration: underline; }
+.pub-entry .title-text { font-weight: 500; }
 
 .pub-entry .journal { font-style: italic; }
 
