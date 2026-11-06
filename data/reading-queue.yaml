@@ -1,4 +1,16 @@
 items:
+  - date: 2026-11-06
+    link: "https://www.rawstory.com/elon-musk-election-loss/"
+    title: "Elon Musk’s ‘very bad day’ erased more than the fortune he shoveled into MAGA: economist"
+    note: "The midterms wiped \"somewhere between $50 billion and $70 billion off Musk's personal fortune. Those losses dwarf the $474 million the billionaire spent backing Republicans in the midterms, more than any single donor has ever put into one cycle.\" (Paper losses are subject to change, of course.)"
+    source: "Bluesky"
+    publish: false
+  - date: 2026-11-06
+    link: "https://www.politico.eu/article/from-madrid-to-maga-how-spains-vox-forged-a-right-wing-network-with-global-reach/"
+    title: "From Madrid to MAGA: How Spain’s Vox forged a right-wing network with global reach"
+    note: "Spain’s Vox as the far right’s new post-Orbán bridge: via its Disenso Foundation, Vox “has established ties with Latin American leaders such as Argentina’s Javier Milei and Chile’s José Antonio Kast, while forging relationships with influential figures in the MAGA movement in Washington.”"
+    source: "Bluesky"
+    publish: false
   - date: 2026-11-05
     link: "https://www.nytimes.com/2026/11/05/us/california-death-row-newsom-commutation.html?unlocked_article_code=1.OFE.WtUZ.4E0apIeuGYYu&smid=nytcore-ios-share"
     title: "Newsom Commutes the Sentences of California’s 548 Death Row Inmates (Gift Article)"
