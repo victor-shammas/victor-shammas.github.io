@@ -1,4 +1,10 @@
 items:
+  - date: 2026-11-05
+    link: "https://www.nytimes.com/2026/11/05/us/california-death-row-newsom-commutation.html?unlocked_article_code=1.OFE.WtUZ.4E0apIeuGYYu&smid=nytcore-ios-share"
+    title: "Newsom Commutes the Sentences of California’s 548 Death Row Inmates (Gift Article)"
+    note: "\"The many people sentenced to death in California makes his decision especially significant. California has more death row inmates than any other state, and Mr. Newsom’s action cancels approximately one-fourth of all death sentences nationwide.”"
+    source: "Bluesky"
+    publish: false
   - date: 2026-11-03
     link: "https://youtu.be/RVVfJVj5z8s"
     title: "Amazon Empire: The Rise and Reign of Jeff Bezos (full documentary) | FRONTLINE"
