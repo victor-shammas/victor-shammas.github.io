@@ -87,9 +87,23 @@ Consequences to remember:
 "Reading" collection, rendered by `layouts/shortcodes/reading.html` (newest
 first, grouped by month, domain after the title, optional Markdown note
 below). Same pattern as News, but a Sveltia *singleton* (sidebar → "Files")
-so it opens straight into the editor. There's deliberately no phone/API
-ingestion; the only automatic sources are my own Bluesky posts and Substack
-Notes (below), and those go to a holding queue, not straight to the page.
+so it opens straight into the editor. Two other ways in: my own Bluesky posts
+and Substack Notes are imported automatically (below), but only to a holding
+queue, not straight to the page; and a "Save to Reading" Apple Shortcut
+(share sheet, iPhone/iPad/Mac) adds a link straight to the log.
+
+**The Shortcut** starts `.github/workflows/save-reading-link.yml` through
+GitHub's workflow-dispatch API (`POST /repos/victor-shammas/victor-shammas.github.io/actions/workflows/save-reading-link.yml/dispatches`,
+`{"ref":"main","inputs":{"link","note","title"}}`). It holds a fine-grained
+token for this repo only, with just "Actions: read and write": it can start
+workflows but can't push, so the workflow is the only thing that writes.
+`scripts/save-reading-link.mjs` takes the inputs from environment variables
+(never interpolate `inputs.*` into `run:`), finds the first http(s) URL in
+the shared text (`linkFromShare`), cleans it, skips links already in the log,
+and inserts it at the top dated today (Oslo); the workflow then fills the
+title, commits, and dispatches `deploy.yml`. Runs by anyone but the repo
+owner are skipped. The API answers 204 before the run starts, so a bad link
+shows up only as a failed run in Actions.
 
 `.github/workflows/import-reading-links.yml` runs hourly. First
 `npm run import:bluesky` (`scripts/import-bluesky-reading.mjs`) reads
