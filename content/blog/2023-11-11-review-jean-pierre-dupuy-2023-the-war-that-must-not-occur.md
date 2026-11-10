@@ -1,12 +1,12 @@
 ---
-title: "Review: Jean-Pierre Dupuy (2023), 'The War That Must Not Occur'"
-date: 2023-11-11
-draft: false
-dek: ''
-image: /images/blog/36295.webp
-summary: ''
 aliases:
   - /blog/2023/11/11/review-jean-pierre-dupuy-2023-the-war-that-must-not-occur
+title: 'A Stay of Execution: Jean-Pierre Dupuy on Nuclear Deterrence'
+date: 2023-11-11
+draft: false
+dek: Nuclear deterrence works—until it doesn’t. A philosopher explores the narrow margin between necessity and catastrophe.
+image: /images/blog/36295.webp
+summary: ''
 original: https://www.theorybrief.com/p/theory-brief-6-jean-pierre-dupuy
 ---
 
