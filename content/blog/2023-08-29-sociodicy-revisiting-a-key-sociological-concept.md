@@ -1,12 +1,12 @@
 ---
+aliases:
+  - /blog/2023/8/15/sociodicy-revisiting-a-key-sociological-concept
 title: 'Sociodicy: Revisiting A Key Sociological Concept'
 date: 2023-08-29
 draft: false
 dek: ''
 image: ''
 summary: ''
-aliases:
-  - /blog/2023/8/15/sociodicy-revisiting-a-key-sociological-concept
 original: https://www.theorybrief.com/p/theory-brief-2-sociodicy-key-concept
 ---
 
@@ -28,7 +28,7 @@ In places, Bourdieu seems to think the chances of such defiance meeting with suc
 
 As noted, the concept of sociodicy has its origins in theology. On Leibniz’s (1710/1951) classical account, a _theodicy_ is any attempt to reconcile God’s essential goodness with the manifest suffering of this world. Aquinas described God as the _summum bonum_, or “highest good,” in his _Summa Theologiae_, but the theodicean question is how this _Theos_ (God) could still be said to be a bearer of _dike_ (justice), despite natural “evils” like childhood leukemia or the Lisbon earthquake of 1755 and (moral) evils such as the Holocaust (see e.g. van Inwagen 2006). Theodicies are apologies for God, attempting to make sense of the coexistence of human suffering with an omnipotent, omniscient, and omnibenevolent Creator. Thinkers have produced numerous theodicies over the centuries; one early form, for instance, is sometimes called compensation theology, that is, the idea that the afterlife compensates for earthly suffering, which one philosopher shrewdly calls a “Heaven swamps everything” theodicy (Maitzen 2009: 122).
 
-Importing this theological discourse into the social sciences some two centuries after Leibniz, the sociologist Max Weber distinguished between a “theodicy of good fortune”(_Theodizee des Glückes_) and a “theodicy of suffering”(_Theodizee des Leidens_) (see Swedeberg & Agevall 2016; Wacquant 2023). How can the suffering of the dominated be justified? How can the privilege of the dominant be made acceptable? Commentators have noted that while Weber’s apparent concern is to engage with religious thought, he is really far more interested in the _sociology of suffering and privilege_. Even as he used the term “theodicy,” he was already thinking its sociological derivation: “As the underpinning of capitalism and the social order generally, Weber may actually have had in mind sociodicy—the legitimation of society in the face of its failures—as much as the justification of the cultural authority of divinity” (Kleinman 1997: 317).
+Importing this theological discourse into the social sciences some two centuries after Leibniz, the sociologist Max Weber distinguished between a “theodicy of good fortune”(_Theodizee des Glückes_) and a “theodicy of suffering”(_Theodizee des Leidens_) (see Swedberg & Agevall 2016; Wacquant 2023). How can the suffering of the dominated be justified? How can the privilege of the dominant be made acceptable? Commentators have noted that while Weber’s apparent concern is to engage with religious thought, he is really far more interested in the _sociology of suffering and privilege_. Even as he used the term “theodicy,” he was already thinking its sociological derivation: “As the underpinning of capitalism and the social order generally, Weber may actually have had in mind sociodicy—the legitimation of society in the face of its failures—as much as the justification of the cultural authority of divinity” (Kleinman 1997: 317).
 
 Of course, a theodicy _can function as sociodicy_. The previously noted idea of compensation theodicy—that the rewards of the afterlife assuage the horrors of everyday reality here and now—clearly has all the qualities of sociodicy: The Church’s religious teachings in the Middle Ages _justified_ the inequalities of feudal society by promising to drown out worldly suffering in an everlasting state of heavenly bliss.
 
@@ -110,4 +110,4 @@ Weber, M. (1946) The social psychology of the world religions. In: H. H. Gerth, 
 
 ***
 
-[First published on [_Critical Legal Thinking_](https://criticallegalthinking.com/2023/09/06/sociodicy-notes-on-the-thought-of-pierre-bourdieu/).]
+[First published on _[Critical Legal Thinking](https://criticallegalthinking.com/2023/09/06/sociodicy-notes-on-the-thought-of-pierre-bourdieu/)_.]
