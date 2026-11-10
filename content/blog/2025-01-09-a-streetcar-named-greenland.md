@@ -1,17 +1,18 @@
 ---
+aliases:
+  - /blog/2025/2/6/a-streetcar-named-greenland
 title: A Streetcar Named Greenland
 date: 2025-01-09
 draft: false
 dek: Trump wants to wrest control of Greenland from Denmark. But replacing a former colonizer with a global hegemon is only a recipe for deeper subjugation, not authentic freedom.
 image: /images/blog/dc3f3b63-b98c-4677-b245-f05f2a03bbed_1015x1353.jpg
 summary: ''
-aliases:
-  - /blog/2025/2/6/a-streetcar-named-greenland
+original: ''
 ---
 
 > “BLANCHE: What you are talking about is brutal desire—just—Desire!—the name of that rattle-trap street-car that bangs through the Quarter, up one old narrow street and down another...”
 
-— Arthur Miller, A Streetcar Named Desire
+— Tennessee Williams, A Streetcar Named Desire
 
 **One of the** strangest episodes in the still-unfolding Trump saga is the 42nd/44th president’s growing interest in Greenland, a territory controlled by Denmark, which Trump has said he wants to incorporate into the United States.
 
@@ -89,7 +90,7 @@ Of course, it would hardly be difficult for the U.S. to match and outspend the D
 
 There is, of course, something so fundamentally bizarre about the prospect of one NATO member state appropriating the terrain of another NATO member state. Didn’t the Western world just spend hundreds of billions of dollars funding a major war effort in Ukraine in support of the principle of territorial inviolability?
 
-It would be a mistake to reduce Trump’s desire for Greenland to purely rational geopolitical terms. This is not how his mind works or political instincts function. In [_Fear_](http://bob%20woodward%20recounts%20in/)_: Trump in the White House_, Bob Woodwardrecounts how Trump’s short attention span meant that advisors could routinely pull documents from his desk to distract him from irrational policy ideas, such as annulling the U.S.-South Korea free-trade agreement, KORUS, which most agreed was a terrible idea. Trump is at times a creature of such short-lived fixations and cravings.
+It would be a mistake to reduce Trump’s desire for Greenland to purely rational geopolitical terms. This is not how his mind works or political instincts function. In [_Fear_](http://bob%20woodward%20recounts%20in/)*: Trump in the White House*, Bob Woodwardrecounts how Trump’s short attention span meant that advisors could routinely pull documents from his desk to distract him from irrational policy ideas, such as annulling the U.S.-South Korea free-trade agreement, KORUS, which most agreed was a terrible idea. Trump is at times a creature of such short-lived fixations and cravings.
 
 Still, there is an element of functional performance to his ravings. Trump’s single greatest foreign policy influence is surely Nixon’s madman theory, by which the nuttier the performance, the greater the chance of success. To rationally maximize profits you sometimes have to play the lunatic king, on Nixon’s, and now Trump’s, view.
 
