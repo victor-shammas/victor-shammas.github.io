@@ -1,12 +1,12 @@
 ---
-title: 'Review: Shadi Bartsch (2023), ‘Plato Goes to China: The Greek Classics and Chinese Nationalism’'
-date: 2023-10-29
-draft: false
-dek: ''
-image: /images/blog/9780691229591.avif
-summary: ''
 aliases:
   - /blog/2023/11/7/review-shadi-bartsch-2023-plato-goes-to-china-the-greek-classics-and-chinese-nationalism
+title: Who Will Interpret the Interpreters? Plato in Xi’s China
+date: 2023-10-29
+draft: false
+dek: What happens when the Greek classics travel to Xi’s China and are appropriated to promote “hexie,” or harmony?
+image: /images/blog/9780691229591.avif
+summary: ''
 original: https://www.theorybrief.com/p/theory-brief-5-shadi-bartsch-2023
 ---
 
