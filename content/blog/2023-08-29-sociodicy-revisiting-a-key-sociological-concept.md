@@ -74,9 +74,9 @@ Bourdieu, P. (1998) _Acts of Resistance: Against the New Myths of our Time_. Cam
 
 Bourdieu, P. (2000) _Pascalian Meditations_. Stanford: Stanford University Press.
 
-Bourdieu, P. and Wacquant, L. (1999) The cunning of imperialist reason.
+Bourdieu, P. and Wacquant, L. (1999) On the cunning of imperialist reason. _Theory, Culture & Society_ 16(1): 41–58.
 
-Cohen, A. (2023) “Raymond Aron, Pierre Bourdieu, and the Ford Foundation: Exploring the borderlands of human and social sciences at the Center for European Sociology.”
+Cohen, A. (2023) Raymond Aron, Pierre Bourdieu, and the Ford Foundation: Exploring the borderlands of human and social sciences at the Center for European Sociology. _The International History Review_ 45(3): 515–534.
 
 Elster, J. (1981) Snobs. _London Review of Books_. 5 November 1981. <https://www.lrb.co.uk/the-paper/v03/n20/jon-elster/snobs>.
 
@@ -84,7 +84,7 @@ Elster, J. (1983) _Explaining Technical Change: A Case Study in the Philosophy o
 
 Fukuyama, F. (1992) _The End of History and the Last Man_. New York: The Free Press.
 
-Kleinman, A. (1997) ‘Everything That Really Matters’: Social Suffering, Subjectivity, and the Remaking of Human Experience in a Disordering World. _Harvard Theological Review_ 90: 315-336.
+Kleinman, A. (1997) ‘Everything that really matters’: Social suffering, subjectivity, and the remaking of human experience in a disordering world. _Harvard Theological Review_ 90: 315-336.
 
 Leibniz, G. W. (1710/1951) _Theodicy: Essays on the Goodness of God, the Freedom of Man and the Origin of Evil_. London: Routledge & Kegan Paul.
 
@@ -100,14 +100,14 @@ Schumpeter, J. A. (1951) _Imperialism and Social Classes_. New York: August M. K
 
 Sherman, R. (2017) _Uneasy Street: The Anxieties of Affluence_. Princeton: Princeton University Press.
 
-Swedberg, R., & Agevall, O. (2016) Theodicy (_Theodizee_). In: _The Max Weber Dictionary: Key Words and Central Concepts_. Stanford: Stanford University Press, pp. 347-348.
+Swedberg, R., & Agevall, O. (2016) Theodicy (_Theodizee_). In: _The Max Weber Dictionary: Key Words and Central Concepts_. Stanford: Stanford University Press*,* pp. 347-348.
 
 Van Inwagen, P. (2006) _The Problem of Evil (The Gifford Lectures Delivered in the University of St Andrews in 2003)_. Oxford: Clarendon Press.
 
 Wacquant, L. (2023) Carnal concepts in action: The diagonal sociology of Loïc Wacquant. _Thesis Eleven_ [DOI:10.1177/07255136221149782](https://doi.org/10.1177/07255136221149782).
 
-Weber, M. (1946) The social psychology of the world religions. In: H. H. Gerth, & C. Wright Mills (Eds.), _From Max Weber: Essays in Sociology_ (pp. 267-301). New York: Oxford University Press.
+Weber, M. (1946) The social psychology of the world religions. In: H. H. Gerth, & C. Wright Mills (Eds.), _From Max Weber: Essays in Sociology_. New York: Oxford University Press, pp. 267-301.
 
 ***
 
-[First published on _[Critical Legal Thinking](https://criticallegalthinking.com/2023/09/06/sociodicy-notes-on-the-thought-of-pierre-bourdieu/)_.]
+[First published on \_[Critical Legal Thinking](https://criticallegalthinking.com/2023/09/06/sociodicy-notes-on-the-thought-of-pierre-bourdieu/)\_.]
