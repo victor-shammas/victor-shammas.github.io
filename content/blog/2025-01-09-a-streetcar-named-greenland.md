@@ -14,7 +14,7 @@ original: ''
 
 — Tennessee Williams, A Streetcar Named Desire
 
-**One of the** strangest episodes in the still-unfolding Trump saga is the 42nd/44th president’s growing interest in Greenland, a territory controlled by Denmark, which Trump has said he wants to incorporate into the United States.
+**One of the** strangest episodes in the still-unfolding Trump saga is the 45th/47th president’s growing interest in Greenland, a territory controlled by Denmark, which Trump has said he wants to incorporate into the United States.
 
 Trump has had his sights on Greenland since at least 2019. He first floated the idea of “[buying](https://www.theguardian.com/world/2019/aug/18/trump-considering-buying-greenland)” the autonomous Danish territory five years ago, which the president, in typical property-developer fashion, described as “essentially a real estate deal”:
 
