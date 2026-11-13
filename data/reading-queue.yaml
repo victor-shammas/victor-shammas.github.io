@@ -1,21 +1,26 @@
 items:
   - date: 2026-11-11
-    link: "https://wapo.st/3VlVy4j"
-    title: "Hegseth and staff reprimanded by guard at Tomb of the Unknown Soldier"
-    note: "“A soldier guarding the Tomb of the Unknown Soldier reprimanded Defense Secretary Pete Hegseth and his staff for breaking decorum after a Veterans Day ceremony at Arlington National Cemetery.”"
-    source: "Bluesky"
+    link: https://wapo.st/3VlVy4j
+    title: Hegseth and staff reprimanded by guard at Tomb of the Unknown Soldier
+    note: “A soldier guarding the Tomb of the Unknown Soldier reprimanded Defense Secretary Pete Hegseth and his staff for breaking decorum after a Veterans Day ceremony at Arlington National Cemetery.”
+    source: Bluesky
     publish: false
   - date: 2026-11-11
-    link: "https://www.politico.com/news/2026/11/10/musk-data-center-spacex-hometown-01157834"
-    title: "Musk seeking tax breaks for $24B data center in SpaceX's hometown"
-    note: "Municipal state capture: SpaceX executives voting on a SpaceX proposal.\n\n“The three-person city commission — two members of which are also SpaceX executives — will consider the company’s proposal at a Dec. 9 hearing.”"
-    source: "Bluesky"
-    publish: false
+    link: https://www.politico.com/news/2026/11/10/musk-data-center-spacex-hometown-01157834
+    title: Musk seeking tax breaks for $24B data center in SpaceX's hometown
+    note: 'We might call this municipal state capture, when SpaceX executives get to vote on a SpaceX proposal: “The three-person city commission — two members of which are also SpaceX executives — will consider the company’s proposal at a Dec. 9 hearing.”'
+    source: Bluesky
+    publish: true
   - date: 2026-11-10
-    link: "https://www.nytimes.com/2026/11/08/us/politics/rubio-nvidia-ceo-chinese-spy.html?unlocked_article_code=1.PVE.U94Z.8_G5_Khw-SNX&smid=nytcore-ios-share"
-    title: "Rubio Warned Officials About Nvidia Chief’s Entanglement With Chinese Spy (Gift Article)"
-    note: "Marco Rubio may be the real winner in the Jensen Huang scandal: this spring, he oversaw the drafting of a secret memo warning that the Nvidia CEO was having an affair with a suspected Chinese spy; Trump apparently ignored it. (Nvidia had pledged $25 million toward Trump’s ballroom.)\n\nNow that the scandal has exploded in the media, and Rubio’s role has conveniently surfaced, he can claim that he kept his hands clean and even warned his own president, only to be dismissed.\n\nAs Rubio and Vance vie for the 2028 nomination, with Trump near record lows in popularity, anything that can put daylight between Rubio and Trump, without the appearance of disloyalty, will no doubt be welcome."
-    source: "Substack Note"
+    link: https://www.nytimes.com/2026/11/08/us/politics/rubio-nvidia-ceo-chinese-spy.html?unlocked_article_code=1.PVE.U94Z.8_G5_Khw-SNX&smid=nytcore-ios-share
+    title: Rubio Warned Officials About Nvidia Chief’s Entanglement With Chinese Spy (Gift Article)
+    note: |-
+      Marco Rubio may be the real winner in the Jensen Huang scandal: this spring, he oversaw the drafting of a secret memo warning that the Nvidia CEO was having an affair with a suspected Chinese spy; Trump apparently ignored it. (Nvidia had pledged $25 million toward Trump’s ballroom.)
+
+      Now that the scandal has exploded in the media, and Rubio’s role has conveniently surfaced, he can claim that he kept his hands clean and even warned his own president, only to be dismissed.
+
+      As Rubio and Vance vie for the 2028 nomination, with Trump near record lows in popularity, anything that can put daylight between Rubio and Trump, without the appearance of disloyalty, will no doubt be welcome.
+    source: Substack Note
     publish: false
   - date: 2026-11-06
     link: https://www.rawstory.com/elon-musk-election-loss/
