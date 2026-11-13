@@ -1,4 +1,10 @@
 items:
+  - date: 2026-11-13
+    link: "https://www.bloomberg.com/graphics/2026-spacex-starship-rocket-future/?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5NDYwMDM4OCwiZXhwIjoxNzk1MjA1MTg4LCJhcnRpY2xlSWQiOiJUT0cwNk5SS1YyVTUwMCIsImJjb25uZWN0SWQiOiJCOTFDOTAxQkI4MTk0NTA4OEM3NDA1RTk3N0FCRDE2NSJ9.lvc4HlhI4ZN3l1yxrm3zj4qCnB64a6btz_ExzcObAzI"
+    title: "SpaceX’s Future Hinges on Starship. Can It Deliver?"
+    note: "Reinventing the Space Shuttle: “Musk says that the heat shield problem is essentially ‘solved.’ Some heat shield experts have cast doubt on the Starship design, saying the vehicle still experiences extensive damage when returning from space.“"
+    source: "Bluesky"
+    publish: false
   - date: 2026-11-11
     link: https://wapo.st/3VlVy4j
     title: Hegseth and staff reprimanded by guard at Tomb of the Unknown Soldier
