@@ -1,10 +1,11 @@
 ---
 title: AI and Authenticity
 date: 2026-08-19
-draft: false
+draft: true
 dek: ''
 image: ''
 summary: ''
+original: ''
 ---
 
 In recent months we’ve seen a wider debate over the use of AI in both academic research and among students pursuing higher education. But much anti-AI positioning seems to rely on its weakest argument. Yes, there are legitimate questions about veracity — about truthfulness, accuracy, and hallucinations — and about deskilling, particularly with regard to students. But the least convincing claim on the anti-AI side is that of _authenticity_, because authenticity is such a deeply problematic category. We’re never simply authentic; Adorno [taught](https://www.routledge.com/The-Jargon-of-Authenticity/Adorno/p/book/9780415289917) us that in the 1960s in _The Jargon of Authenticity_. We’re always-already embedded in a social order, which means we benefit from or are disadvantaged by the social relations that we find ourselves caught up in. We’re enmeshed in a social fabric that punishes or rewards us, conferring unfair advantages or disadvantages, as the sociologist Pierre Bourdieu pointed out over decades of research. There is, therefore, no natural, spontaneous self with which we can authentically be in communication. We’re augmented or disadvantaged by the mere fact of being social beings or products of societies.
