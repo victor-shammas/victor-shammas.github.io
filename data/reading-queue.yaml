@@ -1,4 +1,10 @@
 items:
+  - date: 2026-11-16
+    link: "https://www.reuters.com/business/finance/bloomberg-two-trading-firms-agree-pay-trumps-truth-social-faster-access-2026-10-29/"
+    title: "EXCLUSIVE: Bloomberg, trading firms to pay Trump for faster Truth Social access, sources say"
+    note: "Paying for a 50ms head start on Trump’s Truths: “Truth Social…has signed up news and data provider Bloomberg and two Wall Street firms for faster access to the president’s posts, which it sells for up to $100,000 a month, according to people with direct knowledge of the matter.” (Reuters, Oct. 29)"
+    source: "Bluesky"
+    publish: false
   - date: 2026-11-15
     link: "https://www.derstandard.at/story/3000000347232/oesterreichischer-geschichtsprofessor-beklagt-in-blog-propaganda-maschinerie-zu-gedenken-nach-1945"
     title: "Österreichischer Geschichtsprofessor beklagt in Blog \"Propaganda-Maschinerie\" zu Gedenken nach 1945"
