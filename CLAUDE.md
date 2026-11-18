@@ -202,4 +202,5 @@ for pagination, validation, and outage-retention tests.
 
 Full-site search (blog, pages, and full-text of every PDF in `static/pdfs/`) is
 built with Pagefind in the deploy workflow (`scripts/build-search-index.mjs`);
-PDF text extraction is cached weekly. Results render at `/search/`.
+PDF text extraction is cached weekly (keyed on the PDFs' contents); on a cache hit
+the deploy skips installing poppler/tesseract. Results render at `/search/`.
