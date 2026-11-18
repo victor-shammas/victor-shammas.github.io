@@ -8,7 +8,7 @@ subtitle: "Articles, essays, reviews, and theses."
 
 <li class="pub-entry">
 <span class="authors">Shammas, V. L.</span> <span class="year">(2027, forthcoming)</span>
-<a href="/pdfs/Shammas-2027-Capitalistkind-Revisited.pdf" class="title-link">"Capitalistkind revisited: NewSpace, Elon Musk's SpaceX, and the politics of oligarchic infrastructure."</a>
+<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7699498" class="title-link">"Capitalistkind revisited: NewSpace, Elon Musk's SpaceX, and the politics of oligarchic infrastructure."</a>
 In: Brush, C. G. and Greene, P. (eds.), <span class="journal">Building the Global Space Economy: A Research Agenda for Entrepreneurship and Space Law</span>. Cheltenham: Edward Elgar.
 <a href="/pdfs/Shammas-2027-Capitalistkind-Revisited.pdf" class="pdf-link">PDF</a>
 </li>
