@@ -652,11 +652,11 @@ body.is-resizing-sidebar * { user-select: none !important; }
 .about-bio { font-size: var(--text-base); line-height: 1.8; }
 .about-bio p { margin-bottom: 1rem; }
 
-.contact-block { font-size: var(--text-base); line-height: 1.9; }
+.contact-block { font-size: var(--text-base); line-height: 1.5; }
 .contact-label {
   font-weight: 500; color: var(--muted); font-size: var(--text-xs);
   text-transform: uppercase; letter-spacing: 0.08em;
-  margin-top: 0.75rem; display: block;
+  margin-top: 0.75rem; margin-bottom: 0.3rem; display: block;
 }
 .contact-label:first-of-type { margin-top: 0; }
 
