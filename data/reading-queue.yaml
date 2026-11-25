@@ -1,4 +1,10 @@
 items:
+  - date: 2026-11-25
+    link: "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/"
+    title: "Microsoft CEO Satya Nadella explains why he asked 60K employees to quit"
+    note: "One of the most eye-popping claims made by Microsoft CEO Satya Nadella at DealBook last week was that Cowork, the AI agent inside Microsoft 365 available to tens of millions of users, is being built by a team of eleven software developers.\n\nThis is why the tech stack and its assorted ideologies will never become the Fordism of the twenty-first century: there are simply not enough jobs around for them to become the new social compact between capital and labor."
+    source: "Substack Note"
+    publish: false
   - date: 2026-11-24
     link: "https://giftarticle.ft.com/giftarticle/actions/redeem/c19e68a2-8fb9-4a5b-9be5-358032741b1d"
     title: "Inside the ‘war room’ that lobbied Donald Trump to bring back Nvidia’s Jensen Huang"
