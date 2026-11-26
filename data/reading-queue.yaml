@@ -1,4 +1,16 @@
 items:
+  - date: 2026-11-26
+    link: "https://www.middleeasteye.net/news/uae-lana-nusseibeh-says-she-doesnt-work-uae"
+    title: "UAE's Lana Nusseibeh says she doesn't work for the UAE"
+    note: "One would expect someone aiming to become the UN's next Secretary-General to be willing to comment on whether the UAE has helped arm Sudan's RSF. Instead, Nusseibeh refers \"all questions about what the UAE or others have done to the UAE government\" (while promising to \"call out all governments\")."
+    source: "Bluesky"
+    publish: false
+  - date: 2026-11-26
+    link: "https://www.npr.org/2026/11/26/g-s1-155940/fcc-spacex-satellites-data-centers-in-space"
+    title: "FCC says SpaceX can deploy 1 million satellites for data centers in space. Scientists are skeptical"
+    note: "Astrophysicist Adam Becker says launching a million data-center satellites into space is \"a fantasy.\" As NPR points out, space is a vacuum, \"trapping heat inside objects much like a thermos. Becker explained that there are 'basic physical limits' to otherwise radiating that heat out.\""
+    source: "Bluesky"
+    publish: false
   - date: 2026-11-25
     link: "https://www.icij.org/news/2026/11/new-study-shows-proposed-un-tax-convention-could-see-countries-recover-nearly-400-billion-in-taxes/"
     title: "New study shows proposed UN tax convention could see countries recover nearly $400 billion in taxes"
