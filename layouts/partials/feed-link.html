@@ -1,5 +1,5 @@
 {{- /* Small RSS icon for a page header, if the page has an RSS output
-       (the blog and the reading log). Context: the page. */ -}}
+       (the blog and Annotations). Context: the page. */ -}}
 {{- with .OutputFormats.Get "rss" -}}
   {{- $href := .RelPermalink -}}
   {{- with resources.Get "icons/rss.svg" }}

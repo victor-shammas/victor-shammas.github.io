@@ -98,7 +98,7 @@ async function crossrefTitle(url) {
   for (const doi of doiCandidates(url)) {
     const res = await fetch(CROSSREF + encodeURI(doi), {
       signal: AbortSignal.timeout(TIMEOUT_MS),
-      headers: { "User-Agent": "victorshammas.com reading log (+https://victorshammas.com/reading/)" },
+      headers: { "User-Agent": "victorshammas.com reading log (+https://victorshammas.com/annotations/)" },
     });
     if (res.status === 404) continue;
     if (!res.ok) throw new Error(`Crossref HTTP ${res.status}`);
