@@ -1,4 +1,10 @@
 items:
+  - date: 2026-11-27
+    link: "https://www.reuters.com/business/autos-transportation/mexico-seeking-talks-with-us-spacex-airspace-use-2026-11-26/"
+    title: "Mexico seeking talks with US on SpaceX airspace use"
+    note: "Understandably, Mexico doesn’t want SpaceX debris littering its beaches or Musk’s rockets disrupting its airspace without a say. Sheinbaum has even floated relocating SpaceX’s launch site from Boca Chica, Texas."
+    source: "Substack Note"
+    publish: false
   - date: 2026-11-23
     link: https://techcrunch.com/2026/11/23/trump-reportedly-called-into-nvidia-board-meeting-to-advocate-for-huangs-return/
     title: Trump reportedly called into Nvidia board meeting to advocate for Huang's return
