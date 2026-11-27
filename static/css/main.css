@@ -867,43 +867,24 @@ body.is-resizing-sidebar * { user-select: none !important; }
   color: var(--muted);
   margin-top: 0.15rem;
 }
-.newsletter-card__form {
-  display: flex;
-  align-items: stretch;
-  gap: 0.5rem;
-  flex: 0 1 320px;
+.newsletter-card__embed {
+  /* Kept narrow on purpose: below ~400px wide, Substack's embed drops its
+     own logo/title/description and shows just the form and terms, so it
+     sits under our heading instead of repeating it. Don't widen it. */
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 360px;
+  height: 150px;
+  border: 1px solid rgba(255, 103, 25, 0.25);
+  border-radius: 8px;
+  background: #fff;
 }
-.newsletter-card__input {
-  flex: 1 1 auto;
-  min-width: 0;
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--text);
-  background: var(--paper);
-  border: 1px solid rgba(255, 103, 25, 0.35);
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
+.newsletter-card__fallback {
+  flex: 0 0 100%;
+  margin: -0.6rem 0 0;
+  font-size: var(--text-xs);
+  color: var(--muted);
 }
-.newsletter-card__input::placeholder { color: var(--muted); }
-.newsletter-card__input:focus {
-  outline: none;
-  border-color: var(--stk);
-  box-shadow: 0 0 0 2px rgba(255, 103, 25, 0.20);
-}
-.newsletter-card__button {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: #fff;
-  background: var(--stk);
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1.1rem;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s ease;
-}
-.newsletter-card__button:hover { background: var(--stk-dark); }
 
 @media (prefers-color-scheme: dark) {
   .newsletter-card {
@@ -923,7 +904,8 @@ body.is-resizing-sidebar * { user-select: none !important; }
      become a 280px min-height and inflate the card. Size both to content so
      the border hugs the contents. */
   .newsletter-card__intro,
-  .newsletter-card__form { flex: 0 0 auto; }
+  .newsletter-card__embed { flex: 0 0 auto; }
+  .newsletter-card__embed { max-width: none; }
 }
 
 /* ── Animations ──────────────────────────────────────────────── */

@@ -3,6 +3,10 @@
   Rendered on every page except the monitor embeds (gated in baseof.html).
   Full-width within the content column, orange-tinted to match theorybrief.com.
   Pass "tight" when a feed strip precedes the card so the gap above it is halved.
+  The sign-up itself is Substack's official embed (an iframe of
+  theorybrief.com/embed), so readers subscribe in place without leaving the
+  site. Its look is Substack's and can't be restyled from here. Lazy-loaded,
+  since the card is on nearly every page; the link below is a fallback.
 */}}
 <aside class="newsletter-card{{ if .tight }} newsletter-card--tight{{ end }}" aria-label="Subscribe to The Theory Brief">
   <div class="newsletter-card__intro">
@@ -14,8 +18,8 @@
       <p class="newsletter-card__desc">Notes on society, politics, and ideas &mdash; delivered to your inbox.</p>
     </div>
   </div>
-  <form class="newsletter-card__form" action="https://www.theorybrief.com/subscribe" method="get" target="_blank" rel="noopener">
-    <input class="newsletter-card__input" type="email" name="email" placeholder="your@email.com" aria-label="Email address" required>
-    <button class="newsletter-card__button" type="submit">Subscribe</button>
-  </form>
+  <iframe class="newsletter-card__embed" src="https://www.theorybrief.com/embed"
+          title="Subscribe to The Theory Brief" loading="lazy"
+          width="360" height="150" frameborder="0" scrolling="no"></iframe>
+  <p class="newsletter-card__fallback">Or <a href="https://www.theorybrief.com/subscribe" target="_blank" rel="noopener">subscribe on theorybrief.com</a>.</p>
 </aside>
