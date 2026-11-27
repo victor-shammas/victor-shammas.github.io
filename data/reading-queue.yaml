@@ -15,9 +15,7 @@ items:
     link: https://www.nrk.no/tromsogfinnmark/flyktet-fra-gaza-til-norge_-na-ma-hun-reise-til-ukraina-1.18084497
     title: Flyktet fra Gaza til Norge, nå må hun reise til Ukraina
     note: |-
-      Here’s the incredible, and cruel, story of a young woman from Gaza, with a Palestinian father and a Ukrainian mother, who was evacuated to Ukraine in late 2023, and who now risks being deported by the Norwegian state to a country at war.
-
-      According to the Norwegian public broadcaster NRK, she spent two months living with her grandmother in Sumy, near the Russian border, waiting for a Ukrainian passport. She then came to Norway with her mother and sister. Nearly three years on, she now speaks Norwegian, is a volunteer with the Red Cross, and wants to become a dentist. But the Norwegian state has ordered her to leave in three days’ time, unless a last-minute request to reverse the decision succeeds. Her mother and sister can stay.
+      The terrible story of a young woman from Gaza, with a Palestinian father and a Ukrainian mother, who was evacuated to Ukraine in late 2023, and who now risks being deported by the Norwegian state to a country at war. According to the Norwegian public broadcaster NRK, she spent two months living with her grandmother in Sumy, near the Russian border, waiting for a Ukrainian passport. She then came to Norway with her mother and sister. Nearly three years on, she now speaks Norwegian, is a volunteer with the Red Cross, and wants to become a dentist. But the Norwegian state has ordered her to leave in three days’ time, unless a last-minute request to reverse the decision succeeds. Her mother and sister can stay.
 
       Her Ukrainian citizenship—which helped her escape from Gaza—is now being held against her: the Norwegian state says there are parts of Ukraine safe enough for her to live in. And because she wasn’t living in Ukraine at the time of Russia’s invasion, she isn’t eligible for the same collective protections afforded other Ukrainian refugees. The terrible irony of the Norwegian state’s reasoning is that this young woman has proven she’s resourceful enough to manage on her own, and so can be sent, alone, to a country being attacked by Russia, where she has no network and doesn’t speak the language. 
 
@@ -47,25 +45,9 @@ items:
     note: |-
       A professor of history at the University of Bergen (UiB) in Norway, Stephan Sander-Faes, has posted comments on his pseudonymous Substack denying that the Nazis operated extermination camps, as reported by the Austrian newspaper Der Standard and the Norwegian higher-education outlet Khrono.
 
-      In a comment under one of his own posts from September, Sander-Faes, writing under the moniker “epimetheus,” claims, contrary to all historical evidence, that “there were no dedicated ‘annihilation’ or ‘death camps’” during the Holocaust, and refers to them as “so-called ‘extermination camps.’” In another comment thread from February, a reader writes that “the 6 million Jewish victim of holocaust [sic] are also exaggerated and should be revised down accordingly,” to which Sander-Faes replies: “Exactly.” Sander-Faes appears to have deleted both posts earlier today, along with their comment threads.
-
-      As a UiB faculty member, I was glad to see two of my colleagues, Ines Prodöhl and Yngve Flo, publish a forceful rebuttal of his statements, in which they note that “any expression that minimizes or trivializes the Holocaust is incompatible with the most fundamental scholarly and ethical standards of the historical profession.”
-
-      Responding to Sander-Faes’s claims that his remarks were taken out of context and that he was publishing in a private capacity, they point out that “it is not possible to maintain any meaningful distinction between what a history professor publicly states on this subject as a private individual and what they are expected to uphold as a scholar and representative of the academic community and institution of which they are a part.”
-
-      UiB’s rector, Margareth Hagen, first cited employees’ “freedom of expression” and declined to comment on the case. Later, Hagen affirmed that “the Holocaust is a historical fact” and that the university rejects “any form of antisemitism, including relativization of the Holocaust.”
+      Responding to Sander-Faes’s claims that his remarks were taken out of context and that he was publishing in a private capacity, two UiB professors point out that “it is not possible to maintain any meaningful distinction between what a history professor publicly states on this subject as a private individual and what they are expected to uphold as a scholar and representative of the academic community and institution of which they are a part.”
 
       No trivialization or denial of the Holocaust should go unanswered.
-
-      Sources:
-
-      Der Standard:
-
-      Khrono:
-
-      Prodöhl & Flo:
-
-      Hagen (later statement)
     source: Substack Note
     publish: false
   - date: 2026-11-13
@@ -106,21 +88,18 @@ items:
   - date: 2026-11-03
     link: https://youtu.be/RVVfJVj5z8s
     title: 'Amazon Empire: The Rise and Reign of Jeff Bezos (full documentary) | FRONTLINE'
-    note: '“We’re not treated as human beings. We’re not even treated as robots. We’re treated as part of the data stream.” —Former Amazon warehouse worker, in Amazon Empire: The Rise and Reign of Jeff Bezos (PBS Frontline, 2020)'
+    note: '“We’re not treated as human beings. We’re not even treated as robots. We’re treated as part of the data stream.”—Former Amazon warehouse worker, in Amazon Empire: The Rise and Reign of Jeff Bezos (PBS Frontline, 2020)'
     source: Bluesky
-    publish: false
+    publish: true
   - date: 2026-10-31
     link: https://www.nytimes.com/2026/10/30/opinion/ezra-klein-podcast-quinn-slobodian.html?unlocked_article_code=1.M1E.3BcF.G0vnLsOuW_KA&smid=nytcore-ios-share
     title: Opinion | Elon Musk’s Endgame
-    note: |-
-      Quinn Slobodian on Musk’s vulnerabilities: “If you pick up the SpaceX prospectus and read through the risk factors, the No. 1 risk factor is national legislation. These are the things that actually keep Musk up at night […]. So that’s something to bear in mind, too: his impression of invulnerability is actually part of his political project.”
-
-      Even trillionaires fear public opinion and the prospect of laws that might limit their scope of action.
+    note: 'Quinn Slobodian on Musk’s vulnerabilities: “If you pick up the SpaceX prospectus and read through the risk factors, the No. 1 risk factor is national legislation. These are the things that actually keep Musk up at night […]. So that’s something to bear in mind, too: his impression of invulnerability is actually part of his political project.” Even trillionaires fear the court of public opinion and the prospect of legislation that might limit their scope of action.'
     source: Substack Note
-    publish: false
+    publish: true
   - date: 2026-10-27
     link: https://www.ft.com/content/f41fc704-c9e6-42de-b800-d43cabe61947
     title: Inside Donald Trump Jr’s Mongolian hunting trip with a Kremlin-linked oligarch
-    note: '“The auction winners were not Trump Jr’s only companions in the Mongolian wilderness this summer. He also spent two days with Umar Kremlev, a businessman with a criminal record who has close ties to Russian President Vladimir Putin’s personal security service.” #Trump #Putin #oligarchs'
+    note: “The auction winners were not Trump Jr’s only companions in the Mongolian wilderness this summer. He also spent two days with Umar Kremlev, a businessman with a criminal record who has close ties to Russian President Vladimir Putin’s personal security service.”
     source: Bluesky
     publish: false
