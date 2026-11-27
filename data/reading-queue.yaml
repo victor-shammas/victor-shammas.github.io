@@ -1,34 +1,4 @@
 items:
-  - date: 2026-11-26
-    link: https://www.middleeasteye.net/news/uae-lana-nusseibeh-says-she-doesnt-work-uae
-    title: UAE's Lana Nusseibeh says she doesn't work for the UAE
-    note: One would expect someone hoping to become next UN Secretary-General to be willing to comment on whether the UAE has helped arm Sudan's RSF; instead, Nusseibeh refers "all questions about what the UAE or others have done to the UAE government" (while promising to "call out all governments").
-    source: Bluesky
-    publish: true
-  - date: 2026-11-26
-    link: https://www.npr.org/2026/11/26/g-s1-155940/fcc-spacex-satellites-data-centers-in-space
-    title: FCC says SpaceX can deploy 1 million satellites for data centers in space. Scientists are skeptical
-    note: Astrophysicist Adam Becker says launching a million data-center satellites into space is "a fantasy." As NPR points out, space is a vacuum, "trapping heat inside objects much like a thermos. Becker explained that there are 'basic physical limits' to otherwise radiating that heat out."
-    source: Bluesky
-    publish: true
-  - date: 2026-11-25
-    link: https://www.icij.org/news/2026/11/new-study-shows-proposed-un-tax-convention-could-see-countries-recover-nearly-400-billion-in-taxes/
-    title: New study shows proposed UN tax convention could see countries recover nearly $400 billion in taxes
-    note: 'Interesting proposal: “The UK and EU each stand to gain over $40 billion and $90 billion per year, respectively, under a proposed UN tax convention…Even on the business side, the convention could be good news for all the small and medium enterprises that are not able to use international loopholes to dodge taxes, but instead have to compete on an unlevel playing field with multinational corporations that are based in tax havens.”'
-    source: Substack Note
-    publish: true
-  - date: 2026-11-25
-    link: https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/
-    title: Microsoft CEO Satya Nadella explains why he asked 60K employees to quit
-    note: 'One of the standout claims made by Microsoft CEO Satya Nadella at DealBook last week was that Cowork, the AI agent inside Microsoft 365 available to tens of millions of users, is being built by a team of eleven software developers. This is why the tech stack and its assorted ideologies will never become the Fordism of the twenty-first century: there are simply not enough jobs around for them to become the new social compact between capital and labor.'
-    source: Substack Note
-    publish: true
-  - date: 2026-11-24
-    link: https://giftarticle.ft.com/giftarticle/actions/redeem/c19e68a2-8fb9-4a5b-9be5-358032741b1d
-    title: Inside the ‘war room’ that lobbied Donald Trump to bring back Nvidia’s Jensen Huang
-    note: 'Good behind-the-scenes account, with plausible political analysis: “Vance, a former venture capitalist who was mentored by Peter Thiel and has raised millions of dollars from Silicon Valley, was seemingly persuaded by the entreaties of Huang and his allies, who are probably a crucial source of funding if Vance decides to run for president.”'
-    source: Substack Note
-    publish: true
   - date: 2026-11-23
     link: https://techcrunch.com/2026/11/23/trump-reportedly-called-into-nvidia-board-meeting-to-advocate-for-huangs-return/
     title: Trump reportedly called into Nvidia board meeting to advocate for Huang's return
