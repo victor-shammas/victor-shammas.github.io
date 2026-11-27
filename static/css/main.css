@@ -893,7 +893,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
   content: "";
   position: absolute;
   inset: 68px 0 0 0;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   pointer-events: none;
 }
 .newsletter-card__fallback {
