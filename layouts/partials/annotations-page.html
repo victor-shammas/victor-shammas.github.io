@@ -1,0 +1,48 @@
+{{- /*
+  Body of the Annotations pages (/annotations/ and the generated
+  /annotations/page/N/): the usual page header and body (the reading
+  shortcode renders one page of items), then a pager when there's more than
+  one page. Used by layouts/annotations/reading.html (page 1) and
+  layouts/annotations/single.html (pages 2+). Context: the page.
+*/ -}}
+{{- $section := site.GetPage "/annotations" | default . -}}
+
+<header class="page-header">
+  <h1>{{ $section.Title }}</h1>
+  {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
+  {{- partial "feed-link.html" $section }}
+</header>
+
+<div class="prose">
+  {{ .Content }}
+</div>
+
+{{- $n := 0 -}}
+{{- with site.Data.reading }}{{ with .items }}{{ range . }}{{ if and .date .link }}{{ $n = add $n 1 }}{{ end }}{{ end }}{{ end }}{{ end -}}
+{{- $per := site.Params.annotationsPerPage | default 100 -}}
+{{- $pages := int (math.Ceil (div (float $n) $per)) -}}
+{{- $pg := .Params.pagenum | default 1 -}}
+{{- if gt $pages 1 }}
+{{- $base := $section.RelPermalink }}
+<nav class="pagination reading-pager" aria-label="Annotations pages">
+  {{- if gt $pg 1 }}
+  <a href="{{ if eq $pg 2 }}{{ $base }}{{ else }}{{ $base }}page/{{ sub $pg 1 }}/{{ end }}" rel="prev">← Newer</a>
+  {{- else }}
+  <span></span>
+  {{- end }}
+  <span class="reading-pager__pages">
+  {{- range seq $pages }}
+    {{- if eq . $pg }}
+    <span class="reading-pager__current" aria-current="page">{{ . }}</span>
+    {{- else }}
+    <a href="{{ if eq . 1 }}{{ $base }}{{ else }}{{ $base }}page/{{ . }}/{{ end }}">{{ . }}</a>
+    {{- end }}
+  {{- end }}
+  </span>
+  {{- if lt $pg $pages }}
+  <a href="{{ $base }}page/{{ add $pg 1 }}/" rel="next">Older →</a>
+  {{- else }}
+  <span></span>
+  {{- end }}
+</nav>
+{{- end }}

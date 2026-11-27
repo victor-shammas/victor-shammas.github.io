@@ -16,6 +16,8 @@ canonicalifyURLs = false
   # Cloudflare Web Analytics beacon token (public — appears in page HTML).
   # Loaded only in production builds; leave empty to disable.
   cloudflareAnalyticsToken = "3fc9d9e70dba473490a7340792fdd54a"
+  # Items per page on /annotations/ (older items go to /annotations/page/2/ …).
+  annotationsPerPage = 100
 
 [params.social]
   uibProfile = "https://www4.uib.no/en/find-employees/victor-lund.shammas"
@@ -63,8 +65,8 @@ weight = 6
 icon = "wrench"
 
 [[menus.main]]
-name = "Reading"
-url = "/reading/"
+name = "Annotations"
+url = "/annotations/"
 weight = 7
 [menus.main.params]
 icon = "book-open"
@@ -90,7 +92,8 @@ divider = true
   page = ["HTML"]
 
 # RSS feeds: the blog (/blog/index.xml, layouts/blog/list.rss.xml) and the
-# reading log (/reading/index.xml, set in content/reading.md).
+# Annotations (/annotations/index.xml, set in content/annotations.md; the old
+# /reading/index.xml is kept alive by content/reading-feed.md).
 [[cascade]]
   title = "Blog"
   description = "Essays and book reviews on sociology, politics, and culture."

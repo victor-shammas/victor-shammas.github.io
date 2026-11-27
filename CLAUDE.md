@@ -80,14 +80,16 @@ Consequences to remember:
 - `layouts/_default/embed.html` → the manila tab bar (AI · Space · Tech · Left ·
   Right) and the iframe wrapper.
 
-## Reading log
+## Annotations (formerly the reading log)
 
-`/reading/` is a running link log: `data/reading.yaml` (an `items` list of
+`/annotations/` (formerly `/reading/`, which now redirects there via an
+`aliases` entry in `content/annotations.md`) is a running link log: `data/reading.yaml` (an `items` list of
 `date`/`link`/`title`/`note`), edited only through the admin panel's
-"Reading" collection, rendered by `layouts/shortcodes/reading.html` (newest
+"Annotations" collection, rendered by `layouts/shortcodes/reading.html` (newest
 first, grouped by month, domain after the title, optional Markdown note
 below). Same pattern as News, but a Sveltia *singleton* (sidebar → "Files")
-so it opens straight into the editor. There's deliberately no phone/API
+so it opens straight into the editor. Data files, scripts, workflows and
+admin collection `name`s keep the old "reading" names. There's deliberately no phone/API
 ingestion; the only automatic sources are my own Bluesky posts and Substack
 Notes (below), and those go to a holding queue, not straight to the page.
 
@@ -117,7 +119,7 @@ job then runs the title filler (over both files) and commits; it only
 redeploys if a title in the log itself was filled, since the site never
 shows the queue.
 
-**The queue** is the admin's "Reading queue" singleton. I edit an item, tick
+**The queue** is the admin's "Annotations queue" singleton. I edit an item, tick
 "Publish" and save; `fill-reading-titles.yml` (which runs on pushes to either
 file) first runs `npm run publish:reading` (`scripts/publish-reading-queue.mjs`),
 which moves ticked items line-for-line to the top of `data/reading.yaml`
@@ -129,8 +131,18 @@ workflows share the `reading-log` concurrency group. Shared helpers (dedupe,
 insertion, the line-based `itemBlocks` parser, skip list, title cleanup) are
 in `scripts/reading-lib.mjs`.
 
-RSS: `/reading/index.xml` (`layouts/_default/reading.rss.xml`, the 50 newest,
-linking straight to each article; enabled in `content/reading.md`) and
+Paging: `content/annotations/` is a section. `_index.md` is page 1;
+`_content.gotmpl` (a content adapter) generates `/annotations/page/2/`, `/3/`, …
+whenever `data/reading.yaml` holds more than `params.annotationsPerPage` (100,
+in `hugo.toml`) items. The shortcode renders the page's slice (its `pagenum`
+param), and `layouts/partials/annotations-page.html` (used by
+`layouts/annotations/reading.html` and `layouts/annotations/single.html`)
+adds the numbered pager. Month headings repeat on a page that starts mid-month.
+
+RSS: `/annotations/index.xml` (`layouts/_default/reading.rss.xml`, the 50 newest,
+linking straight to each article; enabled in `content/annotations.md`; the old
+`/reading/index.xml` is still published, identical, by the RSS-only
+`content/reading-feed.md` so existing subscribers keep working) and
 `/blog/index.xml` (`layouts/blog/list.rss.xml`, 20 newest posts; enabled by the
 `[[cascade]]` for `/blog` in `hugo.toml`). Both pages show a small RSS icon in
 the page header (`layouts/partials/feed-link.html`, shown on any page with an

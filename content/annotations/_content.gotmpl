@@ -1,0 +1,24 @@
+{{- /*
+  Generates /annotations/page/2/, /page/3/, … when there are more than
+  site.Params.annotationsPerPage items in data/reading.yaml. Page 1 is
+  _index.md. Each page renders its slice via the reading shortcode, and
+  layouts/partials/annotations-page.html adds the pager.
+*/ -}}
+{{- $n := 0 -}}
+{{- with site.Data.reading }}{{ with .items }}{{ range . }}{{ if and .date .link }}{{ $n = add $n 1 }}{{ end }}{{ end }}{{ end }}{{ end -}}
+{{- $per := site.Params.annotationsPerPage | default 100 -}}
+{{- $pages := int (math.Ceil (div (float $n) $per)) -}}
+{{- if gt $pages 1 }}
+  {{- range seq 2 $pages }}
+    {{- $.AddPage (dict
+        "path" (printf "page/%d" .)
+        "title" (printf "Annotations, page %d" .)
+        "kind" "page"
+        "params" (dict
+          "pagenum" .
+          "subtitle" "Brief excerpts from and comments on things I’ve read, listened to, or watched."
+          "description" (printf "Annotations, page %d." .))
+        "content" (dict "mediaType" "text/markdown" "value" "{{< reading >}}")
+    ) }}
+  {{- end }}
+{{- end }}

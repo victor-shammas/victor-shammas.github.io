@@ -1,7 +1,11 @@
 {{- /*
-  Reading log, fed by data/reading.yaml (edited via the admin panel's "Reading" collection).
+  Annotations (/annotations/, formerly the reading log at /reading/), fed by
+  data/reading.yaml (edited via the admin panel's "Annotations" collection).
   Newest first, grouped by month, with an optional Markdown note under each title.
   Also available as RSS (layouts/_default/reading.rss.xml; icon in the page header).
+  Shows one page of params.annotationsPerPage items: the page's `pagenum`
+  param (set on /annotations/page/N/ by content/annotations/_content.gotmpl),
+  else page 1. The pager itself is in layouts/partials/annotations-page.html.
   Usage:  {{< reading >}}
 */ -}}
 {{- $raw := slice -}}
@@ -10,6 +14,9 @@
 {{- $norm := slice -}}
 {{- range $raw }}{{ if and .date .link }}{{ $norm = $norm | append (merge . (dict "t" (time.AsTime .date))) }}{{ end }}{{ end -}}
 {{- $items := sort $norm "t" "desc" -}}
+{{- $per := site.Params.annotationsPerPage | default 100 -}}
+{{- $pg := .Page.Params.pagenum | default 1 -}}
+{{- $items = first $per (after (mul (sub $pg 1) $per) $items) -}}
 {{- if not $items }}
 <p class="reading-empty">Nothing logged yet.</p>
 {{- else }}

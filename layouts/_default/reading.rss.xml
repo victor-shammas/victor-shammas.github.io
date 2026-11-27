@@ -1,5 +1,6 @@
 {{- /*
-  RSS feed of the reading log (/reading/index.xml), from data/reading.yaml.
+  RSS feed of Annotations (/annotations/index.xml, and the old
+  /reading/index.xml via content/reading-feed.md), from data/reading.yaml.
   One item per link, newest first: the item links straight to the article,
   with the domain and my note as its description. Same date handling as
   layouts/shortcodes/reading.html.
@@ -9,12 +10,15 @@
 {{- $norm := slice -}}
 {{- range $raw }}{{ if and .date .link }}{{ $norm = $norm | append (merge . (dict "t" (time.AsTime .date))) }}{{ end }}{{ end -}}
 {{- $items := first 50 (sort $norm "t" "desc") -}}
+{{- /* Title, link and description always come from the Annotations page,
+       so the old-URL feed is identical apart from its self link. */ -}}
+{{- $page := site.GetPage "/annotations" | default . -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ .Title }} — {{ site.Title }}</title>
-    <link>{{ .Permalink }}</link>
-    <description>{{ with .Params.subtitle }}{{ . }}{{ else }}{{ .Description }}{{ end }}</description>
+    <title>{{ $page.Title }} — {{ site.Title }}</title>
+    <link>{{ $page.Permalink }}</link>
+    <description>{{ with $page.Params.subtitle }}{{ . }}{{ else }}{{ $page.Description }}{{ end }}</description>
     <language>{{ site.LanguageCode }}</language>
     <managingEditor>{{ site.Params.email }} ({{ site.Params.author }})</managingEditor>
     {{- with index $items 0 }}

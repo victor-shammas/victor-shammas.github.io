@@ -202,15 +202,16 @@ collections:
 # (listed under "Files", below the collections), with no intermediate
 # list page to click through.
 singletons:
-  # ── Reading ────────────────────────────────────────────────────
-  # The running link log at /reading/. Same shape as News: one data
+  # ── Annotations ────────────────────────────────────────────────
+  # The running link log at /annotations/ (formerly /reading/; the data
+  # files and collection names keep the old "reading" names). Same shape as News: one data
   # file with an `items` list, new items added at the top. The page
   # sorts by date and groups by month, so file order doesn't matter.
   # A blank title is filled in from the page by the fill-reading-titles
   # workflow a minute or two after saving (reload the admin to see it).
   # It only ever fills blanks, so typed or edited titles always win.
-  # Imported links don't land here directly: see "Reading queue" below.
-  - label: "Reading"
+  # Imported links don't land here directly: see "Annotations queue" below.
+  - label: "Annotations"
     name: "reading"
     file: "data/reading.yaml"
     fields:
@@ -245,14 +246,14 @@ singletons:
             required: false
             hint: "Optional commentary, shown under the title. Markdown allowed."
 
-  # ── Reading queue ──────────────────────────────────────────────
+  # ── Annotations queue ──────────────────────────────────────────
   # Links from my Bluesky posts and Substack Notes, imported hourly by
   # the import-reading-links workflow, wait here; the site doesn't show
   # them. Edit an item, tick "Publish" and save: the fill-reading-titles
-  # workflow then moves it to Reading (a minute or two later; reload the
+  # workflow then moves it to Annotations (a minute or two later; reload the
   # admin to see it). Deleting an item discards it for good. Items can
   # also be added by hand, to finish and publish later.
-  - label: "Reading queue"
+  - label: "Annotations queue"
     name: "reading-queue"
     file: "data/reading-queue.yaml"
     fields:
@@ -273,7 +274,7 @@ singletons:
             date_format: "YYYY-MM-DD"
             time_format: false
             default: "{{now}}"
-            hint: "When you posted it. Change it if you like; it's the date shown in Reading."
+            hint: "When you posted it. Change it if you like; it's the date shown in Annotations."
           - label: "Link"
             name: "link"
             widget: "string"
@@ -297,4 +298,4 @@ singletons:
             name: "publish"
             widget: "boolean"
             default: false
-            hint: "Tick and save to move this to Reading (a minute or two later; reload to see it). To discard it instead, delete the item."
+            hint: "Tick and save to move this to Annotations (a minute or two later; reload to see it). To discard it instead, delete the item."
