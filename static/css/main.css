@@ -871,6 +871,7 @@ body.is-resizing-sidebar * { user-select: none !important; }
   /* Kept narrow on purpose: below ~400px wide, Substack's embed drops its
      own logo/title/description and shows just the form and terms, so it
      sits under our heading instead of repeating it. Don't widen it. */
+  position: relative;
   flex: 0 0 100%;
   width: 100%;
   max-width: 360px;
@@ -878,6 +879,22 @@ body.is-resizing-sidebar * { user-select: none !important; }
   border: 1px solid rgba(255, 103, 25, 0.25);
   border-radius: 8px;
   background: #fff;
+  overflow: hidden;
+}
+.newsletter-card__embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+/* Lighten Substack's terms line and logo (everything below the form, which
+   ends ~64px down inside the embed). Clicks pass through to the links. */
+.newsletter-card__embed::after {
+  content: "";
+  position: absolute;
+  inset: 68px 0 0 0;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
 }
 .newsletter-card__fallback {
   flex: 0 0 100%;

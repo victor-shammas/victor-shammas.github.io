@@ -7,6 +7,9 @@
   theorybrief.com/embed), so readers subscribe in place without leaving the
   site. Its look is Substack's and can't be restyled from here. Lazy-loaded,
   since the card is on nearly every page; the link below is a fallback.
+  Substack's terms line can't be restyled (cross-origin), so a translucent
+  veil over the box below the form (.newsletter-card__embed::after) lightens
+  it; clicks pass through.
 */}}
 <aside class="newsletter-card{{ if .tight }} newsletter-card--tight{{ end }}" aria-label="Subscribe to The Theory Brief">
   <div class="newsletter-card__intro">
@@ -18,8 +21,10 @@
       <p class="newsletter-card__desc">Notes on society, politics, and ideas &mdash; delivered to your inbox.</p>
     </div>
   </div>
-  <iframe class="newsletter-card__embed" src="https://www.theorybrief.com/embed"
-          title="Subscribe to The Theory Brief" loading="lazy"
-          width="360" height="150" frameborder="0" scrolling="no"></iframe>
+  <div class="newsletter-card__embed">
+    <iframe src="https://www.theorybrief.com/embed"
+            title="Subscribe to The Theory Brief" loading="lazy"
+            width="360" height="150" frameborder="0" scrolling="no"></iframe>
+  </div>
   <p class="newsletter-card__fallback">Or <a href="https://www.theorybrief.com/subscribe" target="_blank" rel="noopener">subscribe on theorybrief.com</a>.</p>
 </aside>
