@@ -1,81 +1,108 @@
 items:
   - date: 2026-11-26
-    link: "https://www.middleeasteye.net/news/uae-lana-nusseibeh-says-she-doesnt-work-uae"
-    title: "UAE's Lana Nusseibeh says she doesn't work for the UAE"
-    note: "One would expect someone aiming to become the UN's next Secretary-General to be willing to comment on whether the UAE has helped arm Sudan's RSF. Instead, Nusseibeh refers \"all questions about what the UAE or others have done to the UAE government\" (while promising to \"call out all governments\")."
-    source: "Bluesky"
-    publish: false
+    link: https://www.middleeasteye.net/news/uae-lana-nusseibeh-says-she-doesnt-work-uae
+    title: UAE's Lana Nusseibeh says she doesn't work for the UAE
+    note: One would expect someone hoping to become next UN Secretary-General to be willing to comment on whether the UAE has helped arm Sudan's RSF; instead, Nusseibeh refers "all questions about what the UAE or others have done to the UAE government" (while promising to "call out all governments").
+    source: Bluesky
+    publish: true
   - date: 2026-11-26
-    link: "https://www.npr.org/2026/11/26/g-s1-155940/fcc-spacex-satellites-data-centers-in-space"
-    title: "FCC says SpaceX can deploy 1 million satellites for data centers in space. Scientists are skeptical"
-    note: "Astrophysicist Adam Becker says launching a million data-center satellites into space is \"a fantasy.\" As NPR points out, space is a vacuum, \"trapping heat inside objects much like a thermos. Becker explained that there are 'basic physical limits' to otherwise radiating that heat out.\""
-    source: "Bluesky"
-    publish: false
+    link: https://www.npr.org/2026/11/26/g-s1-155940/fcc-spacex-satellites-data-centers-in-space
+    title: FCC says SpaceX can deploy 1 million satellites for data centers in space. Scientists are skeptical
+    note: Astrophysicist Adam Becker says launching a million data-center satellites into space is "a fantasy." As NPR points out, space is a vacuum, "trapping heat inside objects much like a thermos. Becker explained that there are 'basic physical limits' to otherwise radiating that heat out."
+    source: Bluesky
+    publish: true
   - date: 2026-11-25
-    link: "https://www.icij.org/news/2026/11/new-study-shows-proposed-un-tax-convention-could-see-countries-recover-nearly-400-billion-in-taxes/"
-    title: "New study shows proposed UN tax convention could see countries recover nearly $400 billion in taxes"
-    note: "Interesting proposal: “The UK and EU each stand to gain over $40 billion and $90 billion per year, respectively, under a proposed UN tax convention…Even on the business side, the convention could be good news for all the small and medium enterprises that are not able to use international loopholes to dodge taxes, but instead have to compete on an unlevel playing field with multinational corporations that are based in tax havens.”"
-    source: "Substack Note"
-    publish: false
+    link: https://www.icij.org/news/2026/11/new-study-shows-proposed-un-tax-convention-could-see-countries-recover-nearly-400-billion-in-taxes/
+    title: New study shows proposed UN tax convention could see countries recover nearly $400 billion in taxes
+    note: 'Interesting proposal: “The UK and EU each stand to gain over $40 billion and $90 billion per year, respectively, under a proposed UN tax convention…Even on the business side, the convention could be good news for all the small and medium enterprises that are not able to use international loopholes to dodge taxes, but instead have to compete on an unlevel playing field with multinational corporations that are based in tax havens.”'
+    source: Substack Note
+    publish: true
   - date: 2026-11-25
-    link: "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/"
-    title: "Microsoft CEO Satya Nadella explains why he asked 60K employees to quit"
-    note: "One of the most eye-popping claims made by Microsoft CEO Satya Nadella at DealBook last week was that Cowork, the AI agent inside Microsoft 365 available to tens of millions of users, is being built by a team of eleven software developers.\n\nThis is why the tech stack and its assorted ideologies will never become the Fordism of the twenty-first century: there are simply not enough jobs around for them to become the new social compact between capital and labor."
-    source: "Substack Note"
-    publish: false
+    link: https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/
+    title: Microsoft CEO Satya Nadella explains why he asked 60K employees to quit
+    note: 'One of the standout claims made by Microsoft CEO Satya Nadella at DealBook last week was that Cowork, the AI agent inside Microsoft 365 available to tens of millions of users, is being built by a team of eleven software developers. This is why the tech stack and its assorted ideologies will never become the Fordism of the twenty-first century: there are simply not enough jobs around for them to become the new social compact between capital and labor.'
+    source: Substack Note
+    publish: true
   - date: 2026-11-24
-    link: "https://giftarticle.ft.com/giftarticle/actions/redeem/c19e68a2-8fb9-4a5b-9be5-358032741b1d"
-    title: "Inside the ‘war room’ that lobbied Donald Trump to bring back Nvidia’s Jensen Huang"
-    note: "Good behind-the-scenes account, with plausible political analysis: “Vance, a former venture capitalist who was mentored by Peter Thiel and has raised millions of dollars from Silicon Valley, was seemingly persuaded by the entreaties of Huang and his allies, who are probably a crucial source of funding if Vance decides to run for president.”"
-    source: "Substack Note"
-    publish: false
+    link: https://giftarticle.ft.com/giftarticle/actions/redeem/c19e68a2-8fb9-4a5b-9be5-358032741b1d
+    title: Inside the ‘war room’ that lobbied Donald Trump to bring back Nvidia’s Jensen Huang
+    note: 'Good behind-the-scenes account, with plausible political analysis: “Vance, a former venture capitalist who was mentored by Peter Thiel and has raised millions of dollars from Silicon Valley, was seemingly persuaded by the entreaties of Huang and his allies, who are probably a crucial source of funding if Vance decides to run for president.”'
+    source: Substack Note
+    publish: true
   - date: 2026-11-23
-    link: "https://www.reuters.com/business/energy/exclusive-jd-vances-ties-prized-venezuelan-oil-contract-under-investigation-by-2026-11-23/"
-    title: "JD Vance's ties to prized Venezuelan oil contract under investigation by US Senate panel"
-    note: "“‘I write today with serious concern that you may have used your position as Vice President to help a major political donor secure lucrative business opportunities involving ​Venezuelan oil,’ according to the letter, sent to Vance by Senator Maggie Hassan, a New Hampshire Democrat.”"
-    source: "Bluesky"
-    publish: false
-  - date: 2026-11-23
-    link: "https://techcrunch.com/2026/11/23/trump-reportedly-called-into-nvidia-board-meeting-to-advocate-for-huangs-return/"
-    title: "Trump reportedly called into Nvidia board meeting to advocate for Huang's return"
-    note: "This story just keeps getting worse and worse: \"'I spoke to them, let me put it that way… And I convinced them,' the president told CNBC.\""
-    source: "Bluesky"
+    link: https://techcrunch.com/2026/11/23/trump-reportedly-called-into-nvidia-board-meeting-to-advocate-for-huangs-return/
+    title: Trump reportedly called into Nvidia board meeting to advocate for Huang's return
+    note: 'This story just keeps getting worse and worse: "''I spoke to them, let me put it that way… And I convinced them,'' the president told CNBC."'
+    source: Bluesky
     publish: false
   - date: 2026-11-21
-    link: "https://youtu.be/iHDNxZF7LRw?is=QDm6lmngMVTFXeBR"
-    title: "ONCE UPON A TIME IN THE MIDDLE EAST | Trailer | Starring Shen Teng | In Theaters October 9"
-    note: "On my watchlist: Once Upon a Time in the Middle East (2026), about a chef who leaves China to work at a struggling restaurant in a lightly fictionalized version of Iraq, only to get caught up in an ill-conceived invasion. It doesn’t look like a terribly subtle film, but it’s interesting to see familiar events from unfamiliar vantage points."
-    source: "Substack Note"
+    link: https://youtu.be/iHDNxZF7LRw?is=QDm6lmngMVTFXeBR
+    title: ONCE UPON A TIME IN THE MIDDLE EAST | Trailer | Starring Shen Teng | In Theaters October 9
+    note: 'On my watchlist: Once Upon a Time in the Middle East (2026), about a chef who leaves China to work at a struggling restaurant in a lightly fictionalized version of Iraq, only to get caught up in an ill-conceived invasion. It doesn’t look like a terribly subtle film, but it’s interesting to see familiar events from unfamiliar vantage points.'
+    source: Substack Note
     publish: false
   - date: 2026-11-20
-    link: "https://www.nrk.no/tromsogfinnmark/flyktet-fra-gaza-til-norge_-na-ma-hun-reise-til-ukraina-1.18084497"
-    title: "Flyktet fra Gaza til Norge, nå må hun reise til Ukraina"
-    note: "Here’s the incredible, and cruel, story of a young woman from Gaza, with a Palestinian father and a Ukrainian mother, who was evacuated to Ukraine in late 2023, and who now risks being deported by the Norwegian state to a country at war.\n\nAccording to the Norwegian public broadcaster NRK, she spent two months living with her grandmother in Sumy, near the Russian border, waiting for a Ukrainian passport. She then came to Norway with her mother and sister. Nearly three years on, she now speaks Norwegian, is a volunteer with the Red Cross, and wants to become a dentist. But the Norwegian state has ordered her to leave in three days’ time, unless a last-minute request to reverse the decision succeeds. Her mother and sister can stay.\n\nHer Ukrainian citizenship—which helped her escape from Gaza—is now being held against her: the Norwegian state says there are parts of Ukraine safe enough for her to live in. And because she wasn’t living in Ukraine at the time of Russia’s invasion, she isn’t eligible for the same collective protections afforded other Ukrainian refugees. The terrible irony of the Norwegian state’s reasoning is that this young woman has proven she’s resourceful enough to manage on her own, and so can be sent, alone, to a country being attacked by Russia, where she has no network and doesn’t speak the language. \n\nShe is, in effect, not Ukrainian enough to receive collective protection, but Ukrainian enough to be sent there."
-    source: "Substack Note"
+    link: https://www.nrk.no/tromsogfinnmark/flyktet-fra-gaza-til-norge_-na-ma-hun-reise-til-ukraina-1.18084497
+    title: Flyktet fra Gaza til Norge, nå må hun reise til Ukraina
+    note: |-
+      Here’s the incredible, and cruel, story of a young woman from Gaza, with a Palestinian father and a Ukrainian mother, who was evacuated to Ukraine in late 2023, and who now risks being deported by the Norwegian state to a country at war.
+
+      According to the Norwegian public broadcaster NRK, she spent two months living with her grandmother in Sumy, near the Russian border, waiting for a Ukrainian passport. She then came to Norway with her mother and sister. Nearly three years on, she now speaks Norwegian, is a volunteer with the Red Cross, and wants to become a dentist. But the Norwegian state has ordered her to leave in three days’ time, unless a last-minute request to reverse the decision succeeds. Her mother and sister can stay.
+
+      Her Ukrainian citizenship—which helped her escape from Gaza—is now being held against her: the Norwegian state says there are parts of Ukraine safe enough for her to live in. And because she wasn’t living in Ukraine at the time of Russia’s invasion, she isn’t eligible for the same collective protections afforded other Ukrainian refugees. The terrible irony of the Norwegian state’s reasoning is that this young woman has proven she’s resourceful enough to manage on her own, and so can be sent, alone, to a country being attacked by Russia, where she has no network and doesn’t speak the language. 
+
+      She is, in effect, not Ukrainian enough to receive collective protection, but Ukrainian enough to be sent there.
+    source: Substack Note
     publish: false
   - date: 2026-11-18
-    link: "https://youtu.be/owCXOqxiwbo?is=4vThaaSWnljnpyyM"
-    title: "Mr Charm"
-    note: "Even the Stones have taken a jab at oligarchic power in space:\n\n“And who would take you into space? Who would you really trust? Is it Boeing, is it NASA, is it mad mogul Mr. Musk?”\n\n(Oddly, Jagger has since called it a “sidewinding compliment”—which it clearly isn’t.)"
-    source: "Substack Note"
+    link: https://youtu.be/owCXOqxiwbo?is=4vThaaSWnljnpyyM
+    title: Mr Charm
+    note: |-
+      Even the Stones have taken a jab at oligarchic power in space:
+
+      “And who would take you into space? Who would you really trust? Is it Boeing, is it NASA, is it mad mogul Mr. Musk?”
+
+      (Oddly, Jagger has since called it a “sidewinding compliment”—which it clearly isn’t.)
+    source: Substack Note
     publish: false
   - date: 2026-11-16
-    link: "https://www.reuters.com/business/finance/bloomberg-two-trading-firms-agree-pay-trumps-truth-social-faster-access-2026-10-29/"
-    title: "EXCLUSIVE: Bloomberg, trading firms to pay Trump for faster Truth Social access, sources say"
-    note: "Paying for a 50ms head start on Trump’s Truths: “Truth Social…has signed up news and data provider Bloomberg and two Wall Street firms for faster access to the president’s posts, which it sells for up to $100,000 a month, according to people with direct knowledge of the matter.” (Reuters, Oct. 29)"
-    source: "Bluesky"
+    link: https://www.reuters.com/business/finance/bloomberg-two-trading-firms-agree-pay-trumps-truth-social-faster-access-2026-10-29/
+    title: 'EXCLUSIVE: Bloomberg, trading firms to pay Trump for faster Truth Social access, sources say'
+    note: 'Paying for a 50ms head start on Trump’s Truths: “Truth Social…has signed up news and data provider Bloomberg and two Wall Street firms for faster access to the president’s posts, which it sells for up to $100,000 a month, according to people with direct knowledge of the matter.” (Reuters, Oct. 29)'
+    source: Bluesky
     publish: false
   - date: 2026-11-15
-    link: "https://www.derstandard.at/story/3000000347232/oesterreichischer-geschichtsprofessor-beklagt-in-blog-propaganda-maschinerie-zu-gedenken-nach-1945"
-    title: "Österreichischer Geschichtsprofessor beklagt in Blog \"Propaganda-Maschinerie\" zu Gedenken nach 1945"
-    note: "A professor of history at the University of Bergen (UiB) in Norway, Stephan Sander-Faes, has posted comments on his pseudonymous Substack denying that the Nazis operated extermination camps, as reported by the Austrian newspaper Der Standard and the Norwegian higher-education outlet Khrono.\n\nIn a comment under one of his own posts from September, Sander-Faes, writing under the moniker “epimetheus,” claims, contrary to all historical evidence, that “there were no dedicated ‘annihilation’ or ‘death camps’” during the Holocaust, and refers to them as “so-called ‘extermination camps.’” In another comment thread from February, a reader writes that “the 6 million Jewish victim of holocaust [sic] are also exaggerated and should be revised down accordingly,” to which Sander-Faes replies: “Exactly.” Sander-Faes appears to have deleted both posts earlier today, along with their comment threads.\n\nAs a UiB faculty member, I was glad to see two of my colleagues, Ines Prodöhl and Yngve Flo, publish a forceful rebuttal of his statements, in which they note that “any expression that minimizes or trivializes the Holocaust is incompatible with the most fundamental scholarly and ethical standards of the historical profession.”\n\nResponding to Sander-Faes’s claims that his remarks were taken out of context and that he was publishing in a private capacity, they point out that “it is not possible to maintain any meaningful distinction between what a history professor publicly states on this subject as a private individual and what they are expected to uphold as a scholar and representative of the academic community and institution of which they are a part.”\n\nUiB’s rector, Margareth Hagen, first cited employees’ “freedom of expression” and declined to comment on the case. Later, Hagen affirmed that “the Holocaust is a historical fact” and that the university rejects “any form of antisemitism, including relativization of the Holocaust.”\n\nNo trivialization or denial of the Holocaust should go unanswered.\n\nSources:\n\nDer Standard:\n\nKhrono:\n\nProdöhl & Flo:\n\nHagen (later statement)"
-    source: "Substack Note"
+    link: https://www.derstandard.at/story/3000000347232/oesterreichischer-geschichtsprofessor-beklagt-in-blog-propaganda-maschinerie-zu-gedenken-nach-1945
+    title: Österreichischer Geschichtsprofessor beklagt in Blog "Propaganda-Maschinerie" zu Gedenken nach 1945
+    note: |-
+      A professor of history at the University of Bergen (UiB) in Norway, Stephan Sander-Faes, has posted comments on his pseudonymous Substack denying that the Nazis operated extermination camps, as reported by the Austrian newspaper Der Standard and the Norwegian higher-education outlet Khrono.
+
+      In a comment under one of his own posts from September, Sander-Faes, writing under the moniker “epimetheus,” claims, contrary to all historical evidence, that “there were no dedicated ‘annihilation’ or ‘death camps’” during the Holocaust, and refers to them as “so-called ‘extermination camps.’” In another comment thread from February, a reader writes that “the 6 million Jewish victim of holocaust [sic] are also exaggerated and should be revised down accordingly,” to which Sander-Faes replies: “Exactly.” Sander-Faes appears to have deleted both posts earlier today, along with their comment threads.
+
+      As a UiB faculty member, I was glad to see two of my colleagues, Ines Prodöhl and Yngve Flo, publish a forceful rebuttal of his statements, in which they note that “any expression that minimizes or trivializes the Holocaust is incompatible with the most fundamental scholarly and ethical standards of the historical profession.”
+
+      Responding to Sander-Faes’s claims that his remarks were taken out of context and that he was publishing in a private capacity, they point out that “it is not possible to maintain any meaningful distinction between what a history professor publicly states on this subject as a private individual and what they are expected to uphold as a scholar and representative of the academic community and institution of which they are a part.”
+
+      UiB’s rector, Margareth Hagen, first cited employees’ “freedom of expression” and declined to comment on the case. Later, Hagen affirmed that “the Holocaust is a historical fact” and that the university rejects “any form of antisemitism, including relativization of the Holocaust.”
+
+      No trivialization or denial of the Holocaust should go unanswered.
+
+      Sources:
+
+      Der Standard:
+
+      Khrono:
+
+      Prodöhl & Flo:
+
+      Hagen (later statement)
+    source: Substack Note
     publish: false
   - date: 2026-11-13
-    link: "https://www.bloomberg.com/graphics/2026-spacex-starship-rocket-future/?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5NDYwMDM4OCwiZXhwIjoxNzk1MjA1MTg4LCJhcnRpY2xlSWQiOiJUT0cwNk5SS1YyVTUwMCIsImJjb25uZWN0SWQiOiJCOTFDOTAxQkI4MTk0NTA4OEM3NDA1RTk3N0FCRDE2NSJ9.lvc4HlhI4ZN3l1yxrm3zj4qCnB64a6btz_ExzcObAzI"
-    title: "SpaceX’s Future Hinges on Starship. Can It Deliver?"
-    note: "Reinventing the Space Shuttle: “Musk says that the heat shield problem is essentially ‘solved.’ Some heat shield experts have cast doubt on the Starship design, saying the vehicle still experiences extensive damage when returning from space.“"
-    source: "Bluesky"
+    link: https://www.bloomberg.com/graphics/2026-spacex-starship-rocket-future/?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc5NDYwMDM4OCwiZXhwIjoxNzk1MjA1MTg4LCJhcnRpY2xlSWQiOiJUT0cwNk5SS1YyVTUwMCIsImJjb25uZWN0SWQiOiJCOTFDOTAxQkI4MTk0NTA4OEM3NDA1RTk3N0FCRDE2NSJ9.lvc4HlhI4ZN3l1yxrm3zj4qCnB64a6btz_ExzcObAzI
+    title: SpaceX’s Future Hinges on Starship. Can It Deliver?
+    note: 'Reinventing the Space Shuttle: “Musk says that the heat shield problem is essentially ‘solved.’ Some heat shield experts have cast doubt on the Starship design, saying the vehicle still experiences extensive damage when returning from space.“'
+    source: Bluesky
     publish: false
   - date: 2026-11-11
     link: https://wapo.st/3VlVy4j
